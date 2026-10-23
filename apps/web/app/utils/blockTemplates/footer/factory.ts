@@ -144,8 +144,8 @@ export function createFooterContainer(): FooterContainerBlock {
     configuration: {
       visible: true,
       colors: {
-        background: '#cfe4ec',
-        text: '#1c1c1c',
+        background: '#F3F3F3',
+        text: '#1A1A1A',
       },
     },
   };

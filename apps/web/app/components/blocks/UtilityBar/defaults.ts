@@ -30,8 +30,8 @@ const blocksList = {
                 actions: true,
               },
               color: {
-                iconColor: '#ffffff',
-                backgroundColor: 'rgb(var(--colors-2-primary-500))',
+                iconColor: '#1A1A1A',
+                backgroundColor: '#FFFFFF',
               },
               search: {
                 displayMode: 'full',
@@ -69,8 +69,8 @@ const blocksList = {
                 actions: true,
               },
               color: {
-                iconColor: '#ffffff',
-                backgroundColor: 'rgb(var(--colors-2-primary-500))',
+                iconColor: '#1A1A1A',
+                backgroundColor: '#FFFFFF',
               },
               search: {
                 displayMode: 'full',
