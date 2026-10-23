@@ -170,15 +170,19 @@ export const useStructuredData: useStructuredDataReturn = () => {
       availability: productSeoSettingsGetters.getMappedAvailability(product) as ItemAvailability,
       itemCondition: productSeoSettingsGetters.getConditionOfItem(product) as OfferItemCondition,
       ...(priceValidUntil !== '' && { priceValidUntil }),
+      shippingDetails: buildShippingDetails(productGetters.getSpecialPriceCurrency(product)),
+      hasMerchantReturnPolicy: buildReturnPolicy(),
     };
+
+    const fullSizeImage = productGetters.getGallery(product)[0]?.url;
 
     const metaObject: WithContext<SchemaProduct> = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      name: productGetters.getName(product),
+      name: getDisplayName(product),
       category: productGetters.getCategoryName(product),
       releaseDate: '',
-      image: productGetters.getCoverImage(product),
+      image: fullSizeImage || productGetters.getCoverImage(product),
       identifier: productGetters.getId(product),
       description: product.texts.description,
       disambiguatingDescription: '',
@@ -242,6 +246,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
           innerHTML: safeSerializeJsonLd(metaObject, 4),
         },
       ],
+      meta: [{ property: 'og:type', content: 'product' }],
     });
     state.value.loading = false;
   };
@@ -264,7 +269,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
         '@type': 'ListItem',
         position: index + 1,
         url: `${runtimeConfig.public.domain}${productPath}`,
-        name: productGetters.getName(product),
+        name: getDisplayName(product),
       });
 
       return result;
@@ -321,9 +326,18 @@ export const useStructuredData: useStructuredDataReturn = () => {
       const runtimeConfig = useRuntimeConfig();
       const route = useRoute();
 
-      const canonicalHref =
+      const backendHref =
         productSeoSettingsGetters.getCanonicalHref(canonical) ||
         `${runtimeConfig.public.domain}${localePath(route.path)}`;
+
+      // Sizes of one colour share a canonical: swap the trailing variation id for the group's first variation.
+      const groupVariationId = getCanonicalVariationId(
+        product,
+        Number(runtimeConfig.public.canonicalGroupAttributeId || 0),
+      );
+      const canonicalHref = groupVariationId
+        ? backendHref.replace(/_(\d+)_(\d+)(\/?)$/, `_$1_${groupVariationId}$3`)
+        : backendHref;
 
       const canonicalUrl = applyTrailingSlashToUrl(canonicalHref);
       useHead({

@@ -32,7 +32,7 @@ const { product, quantity = 1, discard = false, variant = 'tertiary' } = defineP
 const { isWishlistItem, interactWithWishlist, loading: wishlistLoading } = useWishlist();
 const actionLoading = ref(false);
 
-const productName = computed(() => productGetters.getName(product));
+const productName = computed(() => getDisplayName(product));
 const variationId = computed(() => productGetters.getVariationId(product));
 const isCloseButton = computed(() => isWishlistItem(variationId.value) && discard);
 const onWishlistClick = async () => {

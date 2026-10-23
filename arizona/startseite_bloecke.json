@@ -1,0 +1,833 @@
+[
+  {
+    "name": "HeaderContainer",
+    "type": "structure",
+    "meta": {
+      "uuid": "ae0a2866-73f1-448d-a408-dbca97359a91",
+      "isGlobalTemplate": true
+    },
+    "content": [
+      {
+        "name": "AnnouncementBar",
+        "type": "content",
+        "meta": {
+          "uuid": "243c86cc-b802-404f-923b-b3eaab7c5a58",
+          "isGlobalTemplate": true
+        },
+        "configuration": {
+          "visible": true
+        },
+        "content": {
+          "backgroundColor": "#F3F3F3",
+          "text": "Gratis Versand & Rückversand · Kauf auf Rechnung · 60 Tage Rückgaberecht"
+        }
+      },
+      {
+        "name": "UtilityBar",
+        "type": "content",
+        "meta": {
+          "uuid": "de5d09dd-f462-42c5-b5f1-456c570cea7e",
+          "isGlobalTemplate": true
+        },
+        "content": {
+          "layout": {
+            "paddingTop": 14,
+            "paddingBottom": 14,
+            "paddingLeft": 40,
+            "paddingRight": 40
+          },
+          "sectionOrder": {
+            "sections": [
+              "logo",
+              "search",
+              "actions"
+            ]
+          },
+          "sectionVisibility": {
+            "logo": true,
+            "search": true,
+            "actions": true
+          },
+          "color": {
+            "iconColor": "#1A1A1A",
+            "backgroundColor": "#FFFFFF"
+          },
+          "search": {
+            "displayMode": "full"
+          },
+          "actions": {
+            "order": [
+              "wishlist",
+              "cart",
+              "account",
+              "language"
+            ],
+            "visibility": {
+              "language": false,
+              "wishlist": true,
+              "cart": true,
+              "account": true
+            }
+          }
+        }
+      },
+      {
+        "name": "Navigation",
+        "type": "content",
+        "meta": {
+          "uuid": "31877c7b-a5b6-4f4e-a970-90525d10b494",
+          "isGlobalTemplate": true
+        },
+        "content": {
+          "layout": {
+            "paddingTop": 6,
+            "paddingBottom": 6,
+            "paddingLeft": 28,
+            "paddingRight": 28
+          },
+          "text": {
+            "textAlignment": "left"
+          },
+          "color": {
+            "backgroundColor": "#FFFFFF",
+            "textColor": "#1A1A1A",
+            "hoverBackgroundColor": "#F3F3F3"
+          }
+        }
+      }
+    ],
+    "configuration": {
+      "visible": true,
+      "layout": {
+        "sticky": false
+      }
+    }
+  },
+  {
+    "name": "TextCard",
+    "type": "content",
+    "meta": {
+      "uuid": "54c246e6-3096-4d94-bac6-5da9ba63e5be",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "text": {
+        "pretitle": "HERBST / WINTER 2026",
+        "title": "Neue Jeans für Damen",
+        "subtitle": "",
+        "htmlDescription": "<p>Wide Leg, Straight und Skinny von ONLY, Mavi, Noisy May und Tom Tailor. Heute bestellt, in 1–2 Tagen bei dir.</p><p><a class='underline' href='/herrenmode/jeans'>Jeans für Herren</a></p>",
+        "textAlignment": "left",
+        "color": "#1A1A1A"
+      },
+      "button": {
+        "label": "Jetzt entdecken",
+        "link": "/damenmode/jeans",
+        "variant": "primary"
+      },
+      "layout": {
+        "backgroundColor": "#EFE7DC",
+        "paddingTop": 72,
+        "paddingBottom": 72,
+        "paddingLeft": 48,
+        "paddingRight": 48,
+        "fullWidth": false
+      }
+    }
+  },
+  {
+    "name": "MultiGrid",
+    "type": "structure",
+    "meta": {
+      "uuid": "2fb1961c-a7ae-4344-8abe-4047361c4851",
+      "isGlobalTemplate": false
+    },
+    "configuration": {
+      "visible": true,
+      "columnWidths": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "columnWidthsTablet": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "columnWidthsMobile": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "layout": {
+        "gap": "M",
+        "marginTop": 32,
+        "marginBottom": 0,
+        "backgroundColor": "transparent"
+      }
+    },
+    "content": [
+      {
+        "name": "Image",
+        "type": "content",
+        "meta": {
+          "uuid": "04f39876-0263-45c9-9a0c-6def916388fb"
+        },
+        "parent_slot": 0,
+        "content": {
+          "image": {
+            "wideScreen": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/denim_Kopie.jpg",
+            "desktop": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/denim_Kopie.jpg",
+            "tablet": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/denim_Kopie.jpg",
+            "mobile": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/denim_Kopie.jpg",
+            "alt": "Jeansjacken für Damen",
+            "imageAlignment": "left",
+            "fillMode": "fill",
+            "aspectRatio": "7 / 10",
+            "linktarget": "/damenmode/jacken/jeansjacken"
+          },
+          "text": {
+            "textOverlay": "",
+            "textOverlayColor": "",
+            "textOverlayAlignY": "center",
+            "textOverlayAlignX": "center"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        }
+      },
+      {
+        "name": "Image",
+        "type": "content",
+        "meta": {
+          "uuid": "1b9502a1-0f4e-40e4-bd98-8b1e986b5057"
+        },
+        "parent_slot": 1,
+        "content": {
+          "image": {
+            "wideScreen": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/eleg_Kopie.jpg",
+            "desktop": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/eleg_Kopie.jpg",
+            "tablet": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/eleg_Kopie.jpg",
+            "mobile": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/eleg_Kopie.jpg",
+            "alt": "Hosen in Lederoptik",
+            "imageAlignment": "left",
+            "fillMode": "fill",
+            "aspectRatio": "7 / 10",
+            "linktarget": "/damenmode/hosen/lederoptik"
+          },
+          "text": {
+            "textOverlay": "",
+            "textOverlayColor": "",
+            "textOverlayAlignY": "center",
+            "textOverlayAlignX": "center"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        }
+      },
+      {
+        "name": "Image",
+        "type": "content",
+        "meta": {
+          "uuid": "2ef3846a-2963-442b-accf-4ce2cc6726a8"
+        },
+        "parent_slot": 2,
+        "content": {
+          "image": {
+            "wideScreen": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/chino_Kopie.jpg",
+            "desktop": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/chino_Kopie.jpg",
+            "tablet": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/chino_Kopie.jpg",
+            "mobile": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/chino_Kopie.jpg",
+            "alt": "Chinos für Herren",
+            "imageAlignment": "left",
+            "fillMode": "fill",
+            "aspectRatio": "7 / 10",
+            "linktarget": "/herrenmode/hosen/chinos"
+          },
+          "text": {
+            "textOverlay": "",
+            "textOverlayColor": "",
+            "textOverlayAlignY": "center",
+            "textOverlayAlignX": "center"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        }
+      },
+      {
+        "name": "Image",
+        "type": "content",
+        "meta": {
+          "uuid": "8d0825b3-8aff-41bf-9b34-73ce13056630"
+        },
+        "parent_slot": 3,
+        "content": {
+          "image": {
+            "wideScreen": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/shirtss_Kopie.jpg",
+            "desktop": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/shirtss_Kopie.jpg",
+            "tablet": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/shirtss_Kopie.jpg",
+            "mobile": "https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2021_Seite/shirtss_Kopie.jpg",
+            "alt": "T-Shirts für Herren",
+            "imageAlignment": "left",
+            "fillMode": "fill",
+            "aspectRatio": "7 / 10",
+            "linktarget": "/herrenmode/oberteile/t-shirts"
+          },
+          "text": {
+            "textOverlay": "",
+            "textOverlayColor": "",
+            "textOverlayAlignY": "center",
+            "textOverlayAlignX": "center"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        }
+      }
+    ]
+  },
+  {
+    "name": "ProductRecommendedProducts",
+    "type": "content",
+    "meta": {
+      "uuid": "cefefe6e-e14f-4e3c-a459-823a5c67a439",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "source": {
+        "type": "category",
+        "categoryId": "44",
+        "itemId": "",
+        "crossSellingRelation": "Similar"
+      },
+      "text": {
+        "pretitle": "",
+        "title": "Neu bei Damen",
+        "subtitle": "",
+        "htmlDescription": "<p><a class='underline' href='/damenmode'>Alle Damen-Artikel</a></p>",
+        "color": "#1A1A1A",
+        "textAlignment": "left"
+      },
+      "layout": {
+        "fullWidth": false
+      }
+    }
+  },
+  {
+    "name": "ProductRecommendedProducts",
+    "type": "content",
+    "meta": {
+      "uuid": "f7f75cda-e295-4e20-8ad5-9a4f8c24c5b9",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "source": {
+        "type": "category",
+        "categoryId": "16",
+        "itemId": "",
+        "crossSellingRelation": "Similar"
+      },
+      "text": {
+        "pretitle": "",
+        "title": "Neu bei Herren",
+        "subtitle": "",
+        "htmlDescription": "<p><a class='underline' href='/herrenmode'>Alle Herren-Artikel</a></p>",
+        "color": "#1A1A1A",
+        "textAlignment": "left"
+      },
+      "layout": {
+        "fullWidth": false
+      }
+    }
+  },
+  {
+    "name": "ProductRecommendedProducts",
+    "type": "content",
+    "meta": {
+      "uuid": "f50709ef-1876-4ba0-9bca-3b3a13c10202",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "source": {
+        "type": "category",
+        "categoryId": "216",
+        "itemId": "",
+        "crossSellingRelation": "Similar"
+      },
+      "text": {
+        "pretitle": "",
+        "title": "Sale – bis zu −60 %",
+        "subtitle": "",
+        "htmlDescription": "<p><a class='underline' href='/sale-und-outlet'>Zum Sale</a></p>",
+        "color": "#1A1A1A",
+        "textAlignment": "left"
+      },
+      "layout": {
+        "fullWidth": false
+      }
+    }
+  },
+  {
+    "name": "TextCard",
+    "type": "content",
+    "meta": {
+      "uuid": "419ae1bd-fcae-4c56-96ac-aa1a89f6d5bb",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "text": {
+        "pretitle": "",
+        "title": "Unsere Marken",
+        "subtitle": "",
+        "htmlDescription": "<p><a href='/search?term=ONLY'>ONLY</a> · <a href='/search?term=Jack+%26+Jones'>Jack & Jones</a> · <a href='/search?term=Vero+Moda'>Vero Moda</a> · <a href='/search?term=Tom+Tailor'>Tom Tailor</a> · <a href='/search?term=Mavi'>Mavi</a> · <a href='/search?term=Noisy+May'>Noisy May</a> · <a href='/search?term=JDY'>JDY</a> · <a href='/search?term=Only+%26+Sons'>Only & Sons</a> · <a href='/search?term=!Solid'>!Solid</a></p>",
+        "textAlignment": "center",
+        "color": "#1A1A1A"
+      },
+      "button": {
+        "label": "",
+        "link": "",
+        "variant": "primary"
+      },
+      "layout": {
+        "backgroundColor": "#F3F3F3",
+        "paddingTop": 40,
+        "paddingBottom": 40,
+        "paddingLeft": 24,
+        "paddingRight": 24,
+        "fullWidth": false
+      }
+    }
+  },
+  {
+    "name": "MultiGrid",
+    "type": "structure",
+    "meta": {
+      "uuid": "0da8a7aa-5e8e-4fd4-b018-4175861999b7",
+      "isGlobalTemplate": false
+    },
+    "configuration": {
+      "visible": true,
+      "columnWidths": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "columnWidthsTablet": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "columnWidthsMobile": [
+        12,
+        12,
+        12,
+        12
+      ],
+      "layout": {
+        "gap": "L",
+        "marginTop": 40,
+        "marginBottom": 40,
+        "backgroundColor": "transparent"
+      }
+    },
+    "content": [
+      {
+        "name": "TextCard",
+        "type": "content",
+        "meta": {
+          "uuid": "5226cc34-cad7-4544-bc0c-6789e5537d44",
+          "isGlobalTemplate": false
+        },
+        "content": {
+          "text": {
+            "pretitle": "",
+            "title": "",
+            "subtitle": "",
+            "htmlDescription": "<p><strong>Gratis Hin- und Rückversand</strong><br>Ohne Mindestbestellwert</p>",
+            "textAlignment": "left",
+            "color": "#1A1A1A"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "backgroundColor": "",
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        },
+        "parent_slot": 0
+      },
+      {
+        "name": "TextCard",
+        "type": "content",
+        "meta": {
+          "uuid": "b1b069e1-13b1-4c8d-a40d-32ab2fdae324",
+          "isGlobalTemplate": false
+        },
+        "content": {
+          "text": {
+            "pretitle": "",
+            "title": "",
+            "subtitle": "",
+            "htmlDescription": "<p><strong>Lieferung in 1–2 Tagen</strong><br>Versand bis 14 Uhr am selben Tag</p>",
+            "textAlignment": "left",
+            "color": "#1A1A1A"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "backgroundColor": "",
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        },
+        "parent_slot": 1
+      },
+      {
+        "name": "TextCard",
+        "type": "content",
+        "meta": {
+          "uuid": "96135a67-85ef-4371-96ba-9be767349952",
+          "isGlobalTemplate": false
+        },
+        "content": {
+          "text": {
+            "pretitle": "",
+            "title": "",
+            "subtitle": "",
+            "htmlDescription": "<p><strong>Kauf auf Rechnung</strong><br>Auch PayPal, Amazon Pay, Lastschrift</p>",
+            "textAlignment": "left",
+            "color": "#1A1A1A"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "backgroundColor": "",
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        },
+        "parent_slot": 2
+      },
+      {
+        "name": "TextCard",
+        "type": "content",
+        "meta": {
+          "uuid": "0904c4cc-f5cb-463b-9ec0-34bb490dba38",
+          "isGlobalTemplate": false
+        },
+        "content": {
+          "text": {
+            "pretitle": "",
+            "title": "",
+            "subtitle": "",
+            "htmlDescription": "<p><strong>60 Tage Rückgaberecht</strong><br>Service aus Deutschland</p>",
+            "textAlignment": "left",
+            "color": "#1A1A1A"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "backgroundColor": "",
+            "paddingTop": 0,
+            "paddingBottom": 0,
+            "paddingLeft": 0,
+            "paddingRight": 0,
+            "fullWidth": false
+          }
+        },
+        "parent_slot": 3
+      }
+    ]
+  },
+  {
+    "name": "NewsletterSubscribe",
+    "type": "content",
+    "meta": {
+      "uuid": "786bd090-f063-412c-9007-0c53ca9dd027",
+      "isGlobalTemplate": false
+    },
+    "content": {
+      "text": {
+        "bgColor": "#F3F3F3",
+        "title": "Newsletter",
+        "htmlDescription": "Neuheiten und Aktionen zuerst erfahren."
+      },
+      "input": {
+        "displayNameInput": false,
+        "nameIsRequired": false
+      },
+      "button": {
+        "label": "Anmelden"
+      },
+      "settings": {
+        "emailFolderId": 1
+      }
+    }
+  },
+  {
+    "name": "FooterContainer",
+    "type": "structure",
+    "meta": {
+      "uuid": "8b237adc-3c03-42f6-9fb2-0c4d2b7d85b5",
+      "isGlobalTemplate": true
+    },
+    "content": [
+      {
+        "name": "MultiGrid",
+        "type": "structure",
+        "meta": {
+          "uuid": "1ba51225-8b50-4396-81a8-29f3cf8c1d9e",
+          "isGlobalTemplate": false
+        },
+        "configuration": {
+          "visible": true,
+          "columnWidths": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "layout": {
+            "gap": "XL",
+            "marginTop": 0,
+            "marginBottom": 32,
+            "backgroundColor": "transparent"
+          }
+        },
+        "content": [
+          {
+            "name": "TextCard",
+            "type": "content",
+            "meta": {
+              "uuid": "48779e6b-aea0-41e4-bff7-933e1cd8c9f7",
+              "isGlobalTemplate": false
+            },
+            "content": {
+              "text": {
+                "pretitle": "",
+                "title": "",
+                "subtitle": "",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Rechtliches</span></h2><p><a rel=\"noopener noreferrer nofollow\" href=\"/terms-and-conditions\"><span style=\"font-size: 0.875rem\">AGB</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/legal-disclosure\"><span style=\"font-size: 0.875rem\">Impressum</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/privacy-policy\"><span style=\"font-size: 0.875rem\">Datenschutzerklärung</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/declaration-of-accessibility\"><span style=\"font-size: 0.875rem\">Barrierefreiheitserklärung</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/cancellation-rights\"><span style=\"font-size: 0.875rem\">Widerrufsrecht</span></a></p>",
+                "textAlignment": "left",
+                "color": ""
+              },
+              "button": {
+                "label": "",
+                "link": "",
+                "variant": "primary"
+              },
+              "layout": {
+                "backgroundColor": "",
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "fullWidth": false
+              }
+            },
+            "parent_slot": 0
+          },
+          {
+            "name": "TextCard",
+            "type": "content",
+            "meta": {
+              "uuid": "2404530e-0a1d-43ba-b554-0809e3bbe73a",
+              "isGlobalTemplate": false
+            },
+            "content": {
+              "text": {
+                "pretitle": "",
+                "title": "",
+                "subtitle": "",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Kundenservice</span></h2><p><a rel=\"noopener noreferrer nofollow\" href=\"/contact\"><span style=\"font-size: 0.875rem\">Kontakt</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/shipping\"><span style=\"font-size: 0.875rem\">Versand</span></a></p><p><a rel=\"noopener noreferrer nofollow\" href=\"/register\"><span style=\"font-size: 0.875rem\">Registrieren</span></a></p><p><span style=\"font-size: 0.875rem\">Telefon 06241 / 5003701</span></p>",
+                "textAlignment": "left",
+                "color": ""
+              },
+              "button": {
+                "label": "",
+                "link": "",
+                "variant": "primary"
+              },
+              "layout": {
+                "backgroundColor": "",
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "fullWidth": false
+              }
+            },
+            "parent_slot": 1
+          },
+          {
+            "name": "TextCard",
+            "type": "content",
+            "meta": {
+              "uuid": "9937c412-a67f-4e98-b63f-fbce4904bf73",
+              "isGlobalTemplate": false
+            },
+            "content": {
+              "text": {
+                "pretitle": "",
+                "title": "",
+                "subtitle": "",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Bezahlen</span></h2><p><span style=\"font-size: 0.875rem\">PayPal</span></p><p><span style=\"font-size: 0.875rem\">Kauf auf Rechnung</span></p><p><span style=\"font-size: 0.875rem\">Amazon Pay</span></p><p><span style=\"font-size: 0.875rem\">Lastschrift</span></p><p><span style=\"font-size: 0.875rem\">Kreditkarte</span></p><p><span style=\"font-size: 0.875rem\">Vorkasse</span></p>",
+                "textAlignment": "left",
+                "color": ""
+              },
+              "button": {
+                "label": "",
+                "link": "",
+                "variant": "primary"
+              },
+              "layout": {
+                "backgroundColor": "",
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "fullWidth": false
+              }
+            },
+            "parent_slot": 2
+          },
+          {
+            "name": "TextCard",
+            "type": "content",
+            "meta": {
+              "uuid": "33a85b02-d3ed-468e-ab97-a40207b152b0",
+              "isGlobalTemplate": false
+            },
+            "content": {
+              "text": {
+                "pretitle": "",
+                "title": "",
+                "subtitle": "",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Unsere Vorteile</span></h2><p><span style=\"font-size: 0.875rem\">Gratis Hin- und Rücksendung</span></p><p><span style=\"font-size: 0.875rem\">Lieferung in 1–2 Tagen</span></p><p><span style=\"font-size: 0.875rem\">60 Tage Rückgaberecht</span></p>",
+                "textAlignment": "left",
+                "color": ""
+              },
+              "button": {
+                "label": "Vertrag widerrufen",
+                "link": "/cancellation-form",
+                "variant": "secondary"
+              },
+              "layout": {
+                "backgroundColor": "",
+                "paddingTop": 0,
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "fullWidth": false
+              }
+            },
+            "parent_slot": 3
+          }
+        ]
+      },
+      {
+        "name": "TextCard",
+        "type": "content",
+        "meta": {
+          "uuid": "693bae2a-1441-4530-be3d-01913d371e3d",
+          "isGlobalTemplate": false
+        },
+        "content": {
+          "text": {
+            "pretitle": "",
+            "title": "",
+            "subtitle": "",
+            "htmlDescription": "<p><span style=\"font-size: 0.875rem;\">© Arizona Shopping 2026</span></p>",
+            "textAlignment": "right",
+            "color": "#B3B3B3"
+          },
+          "button": {
+            "label": "",
+            "link": "",
+            "variant": "primary"
+          },
+          "layout": {
+            "backgroundColor": "#1A1A1A",
+            "paddingTop": 16,
+            "paddingBottom": 16,
+            "paddingLeft": 40,
+            "paddingRight": 40,
+            "fullWidth": true
+          }
+        }
+      }
+    ],
+    "configuration": {
+      "visible": true,
+      "colors": {
+        "background": "#F3F3F3",
+        "text": "#1A1A1A"
+      }
+    }
+  }
+]

@@ -165,8 +165,9 @@ export const useUrlPageMeta: UseUrlPageMetaReturn = () => {
     const localePath = useLocalePath();
     const runtimeConfig = useRuntimeConfig();
 
-    const queryString = new URLSearchParams(route.query as Record<string, string>).toString();
-    const querySuffix = queryString ? `?${queryString}` : '';
+    // Canonical keeps only the page number: filters, sorting and items-per-page are variants of the same listing.
+    const page = Number(route.query.page);
+    const querySuffix = Number.isInteger(page) && page >= 2 ? `?page=${page}` : '';
 
     const canonicalLink =
       canonicalOverride && canonicalOverride.trim() !== ''

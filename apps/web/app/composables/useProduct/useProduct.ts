@@ -94,7 +94,7 @@ export const useProduct: UseProductReturn = (slug) => {
     const titleSuffix = getOgTitle() || runtimeConfig.ogTitle;
 
     const title =
-      productGetters.getTitle(state.value.data) || `${productGetters.getName(state.value.data)} | ${titleSuffix}`;
+      productGetters.getTitle(state.value.data) || buildProductTitle(getDisplayName(state.value.data), titleSuffix);
 
     useHead({
       title,

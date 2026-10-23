@@ -36,13 +36,13 @@
           >
             <UiProductCard
               :product="product"
-              :name="productGetters.getName(product) ?? ''"
+              :name="getDisplayName(product) ?? ''"
               :rating-count="productGetters.getTotalReviews(product)"
               :rating="productGetters.getAverageRating(product, 'half')"
               :image-url="addModernImageExtension(productGetters.getCoverImage(product))"
               :image-alt="
                 productImageGetters.getImageAlternate(productImageGetters.getFirstImage(product)) ||
-                productGetters.getName(product) ||
+                getDisplayName(product) ||
                 ''
               "
               :image-title="productImageGetters.getImageName(productImageGetters.getFirstImage(product)) || ''"

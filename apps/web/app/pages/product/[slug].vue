@@ -49,7 +49,7 @@ definePageMeta({
 
 const showRecommended = ref(false);
 const recommendedSection = ref<HTMLElement | null>(null);
-const productName = computed(() => productGetters.getName(product.value));
+const productName = computed(() => getDisplayName(product.value));
 const icon = 'sell';
 setPageMeta(productName.value, icon);
 
@@ -121,7 +121,7 @@ watch(
 watch(
   () => route.params,
   () => {
-    const productName = computed(() => productGetters.getName(product.value));
+    const productName = computed(() => getDisplayName(product.value));
     const icon = 'sell';
     setPageMeta(productName.value, icon);
   },

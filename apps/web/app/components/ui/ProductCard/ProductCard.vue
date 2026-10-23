@@ -1,10 +1,6 @@
 <template>
-  <div
-    class="rounded-md hover:shadow-lg flex flex-col"
-    data-testid="product-card"
-    :class="{ 'border border-neutral-200': configuration?.cardBorders }"
-  >
-    <div class="relative overflow-hidden">
+  <div class="flex flex-col" data-testid="product-card">
+    <div class="relative overflow-hidden bg-[#F3F3F3]">
       <UiBadges
         :use-tags="useTagsOnCategoryPage"
         :class="['absolute', isFromWishlist ? 'mx-2' : 'm-2']"
@@ -20,10 +16,10 @@
           class="relative group/image flex items-center justify-center"
           data-testid="product-card-link"
         >
-          <div class="relative w-full aspect-square">
+          <div class="relative w-full aspect-[3/4] bg-[#F3F3F3] isolate">
             <div
               v-if="!mainImageLoaded"
-              class="absolute inset-0 rounded-md bg-neutral-100 animate-pulse"
+              class="absolute inset-0 bg-[#F3F3F3] animate-pulse"
               aria-hidden="true"
             />
 
@@ -39,7 +35,7 @@
               :width="getWidth()"
               :height="getHeight()"
               :class="[
-                'object-contain rounded-md aspect-square w-full h-full transition-opacity duration-300',
+                'object-contain mix-blend-multiply w-full h-full transition-opacity duration-300',
                 mainImageLoaded ? 'opacity-100' : 'opacity-0',
                 effectiveHoverImageUrl && hoverImageLoaded ? 'group-hover/image:opacity-0' : '',
               ]"
@@ -60,7 +56,7 @@
               :width="getWidth()"
               :height="getHeight()"
               :class="[
-                'absolute inset-0 object-contain rounded-md w-full h-full opacity-0 transition-opacity duration-300',
+                'absolute inset-0 object-contain mix-blend-multiply w-full h-full opacity-0 transition-opacity duration-300',
                 hoverImageLoaded ? 'group-hover/image:opacity-100' : '',
               ]"
               data-testid="hover-image-slot"
@@ -71,31 +67,35 @@
         </UiLink>
       </div>
 
+      <span
+        v-if="discountPercent"
+        class="absolute bottom-2 left-2 bg-white px-1.5 py-0.5 typography-text-xs font-semibold text-[#C8102E]"
+        data-testid="product-card-discount"
+      >
+        −{{ discountPercent }} %
+      </span>
+
       <template v-if="configuration?.showWishlistButton">
         <slot name="wishlistButton">
-          <WishlistButton
-            square
-            class="absolute bottom-0 right-0 mr-2 mb-2 bg-white ring-1 ring-inset ring-neutral-200 !rounded-full"
-            :product="product"
-          />
+          <WishlistButton square class="absolute top-0 right-0 mr-2 mt-2 bg-white/90 !rounded-full" :product="product" />
         </slot>
       </template>
     </div>
 
     <div
-      class="p-2 border-t border-neutral-200 typography-text-sm flex flex-col flex-auto"
+      class="pt-3 pb-4 px-0.5 typography-text-sm flex flex-col flex-auto"
       :class="{
         'items-center': configuration?.contentAlignment === 'center',
         'items-end': configuration?.contentAlignment === 'right',
         'items-start': configuration?.contentAlignment === 'left',
       }"
     >
-      <template v-for="key in configuration?.fieldsOrder" :key="key">
+      <template v-for="key in fieldsOrder" :key="key">
         <template v-if="key === 'title' && configuration?.fields?.title">
           <UiLink
             :tag="NuxtLink"
             :to="productPath"
-            class="no-underline"
+            class="no-underline !text-neutral-600 line-clamp-1"
             variant="secondary"
             data-testid="productcard-name"
           >
@@ -105,7 +105,7 @@
         <template v-if="key === 'manufacturer' && configuration?.fields?.manufacturer">
           <div
             v-if="manufacturer"
-            class="mb-1 typography-text-xs text-neutral-500"
+            class="typography-text-sm font-semibold text-neutral-900 truncate"
             data-testid="productcard-manufacturer"
           >
             {{ manufacturer.externalName }}
@@ -130,15 +130,19 @@
           <div v-if="showBasePrice" class="mb-2">
             <BasePriceInLine :base-price="basePrice" :unit-content="unitContent" :unit-name="unitName" />
           </div>
-          <div class="flex flex-col-reverse items-start @md:flex-row @md:items-center mt-auto">
-            <span class="block pb-2 font-bold typography-text-sm" data-testid="product-card-vertical-price">
+          <div class="flex flex-wrap items-baseline gap-x-2 mt-1">
+            <span
+              class="block pb-2 font-semibold typography-text-sm"
+              :class="discountPercent ? 'text-[#C8102E]' : 'text-neutral-900'"
+              data-testid="product-card-vertical-price"
+            >
               <span v-if="showFromText" class="mr-1">{{ t('account.ordersAndReturns.orderDetails.priceFrom') }}</span>
               <span>{{ format(price) }}</span>
               <span>{{ t('common.labels.asterisk') }}</span>
             </span>
             <span
               v-if="crossedPrice && differentPrices(price, crossedPrice) && crossedPrice > price"
-              class="typography-text-sm text-neutral-500 line-through @md:ml-3 @md:pb-2"
+              class="typography-text-sm text-neutral-500 line-through pb-2"
             >
               {{ format(crossedPrice) }}
             </span>
@@ -227,7 +231,7 @@ const loading = ref(false);
 const config = useRuntimeConfig();
 const useTagsOnCategoryPage = config.public.useTagsOnCategoryPage;
 const name = computed(
-  () => productGetters.getName(product.value) + productGetters.getGroupedAttributesString(product.value),
+  () => getDisplayName(product.value) + productGetters.getGroupedAttributesString(product.value),
 );
 const manufacturer = computed(() => productGetters.getManufacturer(product.value));
 const ratingCount = computed(() => productGetters.getTotalReviews(product.value));
@@ -411,6 +415,25 @@ const addWithLoader = async (productId: number, quickCheckout = true) => {
 const differentPrices = (price: number, crossedPrice: number) => {
   return crossedPrice ? Math.round(price * 100) / 100 !== Math.round(crossedPrice * 100) / 100 : false;
 };
+
+const discountPercent = computed(() => {
+  const current = price.value;
+  const crossed = crossedPrice.value;
+  if (!current || !crossed || crossed <= current || !differentPrices(current, crossed)) return 0;
+  return Math.round((1 - current / crossed) * 100);
+});
+
+// Brand first, then name – the order shoppers scan fashion listings in.
+const fieldsOrder = computed(() => {
+  const order = [...(configuration.value?.fieldsOrder ?? [])];
+  const brandIndex = order.indexOf('manufacturer');
+  const titleIndex = order.indexOf('title');
+  if (titleIndex !== -1 && brandIndex > titleIndex) {
+    order.splice(brandIndex, 1);
+    order.splice(titleIndex, 0, 'manufacturer');
+  }
+  return order;
+});
 
 const NuxtLink = resolveComponent('NuxtLink');
 </script>

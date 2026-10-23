@@ -19,7 +19,7 @@
         :alt="`${storeName} logo`"
         :width="imgWidth"
         :height="imgHeight"
-        class="max-h-[100px] max-w-[200px]"
+        class="max-h-[40px] max-w-[170px] w-auto h-auto"
         preload
       />
     </template>

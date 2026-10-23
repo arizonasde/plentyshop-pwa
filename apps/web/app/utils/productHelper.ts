@@ -2,6 +2,13 @@ import type { RouteParams } from 'vue-router';
 import type { Breadcrumb, Product, ProductParams } from '@plentymarkets/shop-api';
 import { productGetters, breadcrumbGetters } from '@plentymarkets/shop-api';
 
+/**
+ * Returns the name shown to shoppers: `name2` (the descriptive shop name),
+ * falling back to `name1` when no secondary name is maintained.
+ */
+export const getDisplayName = (product: Product): string =>
+  productGetters.getName2(product) || productGetters.getName(product);
+
 export const validateProductParams = (params: RouteParams): boolean => {
   const itemId = params.itemId as string;
   if (!itemId) return false;
@@ -60,7 +67,7 @@ export const updateProductURLPathForVariation = (
 
 export const generateBreadcrumbs = (product: Product, home: string): Breadcrumb[] => {
   const breadcrumbs = breadcrumbGetters.mapFromCategoryBreadcrumbs(product.breadcrumbs ?? []);
-  const productName = productGetters.getName(product);
+  const productName = getDisplayName(product);
 
   breadcrumbs.unshift({ name: home, link: '/' });
   breadcrumbs.push({ name: productName, link: `#` });

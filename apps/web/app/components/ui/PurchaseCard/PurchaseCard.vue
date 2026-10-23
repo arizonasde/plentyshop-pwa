@@ -20,7 +20,7 @@
             </template>
             <template v-if="key === 'itemName' && configuration?.fields.itemName">
               <h1 class="font-bold typography-headline-4 break-word" data-testid="product-name">
-                {{ productGetters.getName(product) }}
+                {{ getDisplayName(product) }}
               </h1>
             </template>
             <template v-if="key === 'variationNumber' && configuration?.fields.variationNumber">

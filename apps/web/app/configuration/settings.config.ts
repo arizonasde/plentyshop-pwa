@@ -33,6 +33,8 @@ export default {
   robotsItemPage: process.env.NUXT_PUBLIC_ROBOTS_ITEM_PAGE || 'ALL',
   robotsItemPageId: process.env.NUXT_PUBLIC_ROBOTS_ITEM_PAGE || '1',
   itemCanonicalId: process.env.NUXT_PUBLIC_ITEM_CANONICAL_ID || '',
+  // Arizona: attribute that splits an item into separate product pages (2 = Farbe); all sizes of a colour share one canonical.
+  canonicalGroupAttributeId: process.env.NUXT_PUBLIC_CANONICAL_GROUP_ATTRIBUTE_ID || '2',
   seoRichSnippetBrand: process.env.NUXT_PUBLIC_ROBOTS_ITEM_PAGE || '1',
   seoRichSnippetBrandId: process.env.NUXT_PUBLIC_ROBOTS_ITEM_PAGE || '',
   seoRichSnippetManufacturer: process.env.NUXT_PUBLIC_ROBOTS_ITEM_PAGE || '1',
