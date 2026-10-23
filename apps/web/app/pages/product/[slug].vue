@@ -59,7 +59,13 @@ await fetchProduct(productParams).then(() => {
   });
 });
 
-if (Object.keys(product.value).length === 0) {
+// An unknown or inactive variation (e.g. a size that is no longer sold) redirects to the item URL instead of 404.
+const itemPath = route.path.replace(/_(\d+)_(\d+)(\/?)$/, '_$1$3');
+const redirectToItem = Object.keys(product.value).length === 0 && itemPath !== route.path;
+
+if (redirectToItem) {
+  await navigateTo({ path: itemPath, query: route.query }, { redirectCode: 301, replace: true });
+} else if (Object.keys(product.value).length === 0) {
   if (import.meta.client) showError({ statusCode: 404, statusMessage: 'Product not found' });
 
   throw createError({
