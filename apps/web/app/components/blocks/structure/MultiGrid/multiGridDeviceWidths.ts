@@ -21,9 +21,16 @@ export const useMultiGridDeviceWidths = (config: MaybeRef<MultiGridColumnConfig>
     resolveDevice(isInEditorClient.value, device.value, viewport.breakpoint.value),
   );
 
-  const widths = computed(() => widthsForDevice(toValue(config), effectiveDevice.value));
+  // Arizona: on small screens explicit mobile widths (e.g. two tiles side by side) win over the full-width fallback.
+  const hasMobileWidths = computed(() => Boolean(toValue(config).columnWidthsMobile?.length));
 
-  const mobileFullWidthColumn = computed(() => viewport.isLessThan('md'));
+  const widths = computed(() =>
+    viewport.isLessThan('md') && hasMobileWidths.value
+      ? (toValue(config).columnWidthsMobile ?? [])
+      : widthsForDevice(toValue(config), effectiveDevice.value),
+  );
+
+  const mobileFullWidthColumn = computed(() => viewport.isLessThan('md') && !hasMobileWidths.value);
 
   const setWidths = (newWidths: number[]) => {
     const cfg = toValue(config);

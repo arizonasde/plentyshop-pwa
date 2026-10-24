@@ -112,7 +112,7 @@ def kopfbereich():
         "configuration": {"visible": True},
         "content": {
             "backgroundColor": GRAU,
-            "text": "Versand mit DHL in 1–2 Werktagen · 60 Tage Rückgaberecht · Bezahlen mit PayPal, Lastschrift oder giropay",
+            "text": "Lieferung in 1–2 Werktagen · 60 Tage Rückgabe",
         },
     }
     leiste = {
@@ -158,7 +158,7 @@ def startseite():
         pretitle="HERBST / WINTER 2026",
         title="Neue Jeans für Damen",
         bg=SAND,
-        pad=(72, 72, 48, 48),
+        pad=(48, 48, 24, 24),
         button={"label": "Jetzt entdecken", "link": "/damenmode/jeans", "variant": "primary"},
     )
 
@@ -202,7 +202,7 @@ def startseite():
             "visible": True,
             "columnWidths": [3, 3, 3, 3],
             "columnWidthsTablet": [6, 6, 6, 6],
-            "columnWidthsMobile": [12, 12, 12, 12],
+            "columnWidthsMobile": [6, 6, 6, 6],
             "layout": {"gap": "L", "marginTop": 40, "marginBottom": 40, "backgroundColor": "transparent"},
         },
         "content": [
@@ -262,6 +262,8 @@ def fussbereich():
         "configuration": {
             "visible": True,
             "columnWidths": [3, 3, 3, 3],
+            "columnWidthsTablet": [6, 6, 6, 6],
+            "columnWidthsMobile": [6, 6, 6, 6],
             "layout": {"gap": "XL", "marginTop": 0, "marginBottom": 32, "backgroundColor": "transparent"},
         },
         "content": [

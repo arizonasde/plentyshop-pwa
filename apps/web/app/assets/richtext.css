@@ -1,7 +1,8 @@
 .rte-prose h1 {
-  font-size: 3.75rem;
+  /* Arizona: scales from 2.25rem on phones to 3.75rem on desktop instead of a fixed 3.75rem. */
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
   margin: 1.25rem 0 0.5rem;
 }
 

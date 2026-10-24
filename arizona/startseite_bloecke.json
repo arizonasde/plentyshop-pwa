@@ -11,7 +11,7 @@
         "name": "AnnouncementBar",
         "type": "content",
         "meta": {
-          "uuid": "82ae30f5-87a9-44eb-a7b3-229714010b19",
+          "uuid": "a70f2ad9-e1df-40eb-b806-4dde8e7ddc65",
           "isGlobalTemplate": true
         },
         "configuration": {
@@ -19,7 +19,7 @@
         },
         "content": {
           "backgroundColor": "#F3F3F3",
-          "text": "Versand mit DHL in 1–2 Werktagen · 60 Tage Rückgaberecht · Bezahlen mit PayPal, Lastschrift oder giropay"
+          "text": "Lieferung in 1–2 Werktagen · 60 Tage Rückgabe"
         }
       },
       {
@@ -107,7 +107,7 @@
     "name": "TextCard",
     "type": "content",
     "meta": {
-      "uuid": "20cfecea-d1fd-4a64-bdcd-79d6e197b29a",
+      "uuid": "3e6254ec-0146-445e-ba44-802bd900e438",
       "isGlobalTemplate": false
     },
     "content": {
@@ -126,10 +126,10 @@
       },
       "layout": {
         "backgroundColor": "#EFE7DC",
-        "paddingTop": 72,
-        "paddingBottom": 72,
-        "paddingLeft": 48,
-        "paddingRight": 48,
+        "paddingTop": 48,
+        "paddingBottom": 48,
+        "paddingLeft": 24,
+        "paddingRight": 24,
         "fullWidth": false
       }
     }
@@ -138,7 +138,7 @@
     "name": "MultiGrid",
     "type": "structure",
     "meta": {
-      "uuid": "9037016d-40b0-4d24-9231-7bc6e5509d6f",
+      "uuid": "b6de2975-6882-4517-9bbf-766047a88556",
       "isGlobalTemplate": false
     },
     "configuration": {
@@ -173,7 +173,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "5c83c4d9-94e6-43f5-87db-3c3ebc5b0b93"
+          "uuid": "047ed8aa-1987-4f4d-ac95-6abb7e5aa6e3"
         },
         "parent_slot": 0,
         "content": {
@@ -212,7 +212,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "f2fe7bd5-d888-4d6d-9b06-49cfdcea8d46"
+          "uuid": "2674985b-4f74-420e-8151-4c3e41ab8fdd"
         },
         "parent_slot": 1,
         "content": {
@@ -251,7 +251,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "df789efb-5174-43cf-8c3b-92178b3a2f8e"
+          "uuid": "d3c7161d-5001-4aa4-b60f-a06b6782679e"
         },
         "parent_slot": 2,
         "content": {
@@ -290,7 +290,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "5cf61a89-bb20-4538-ab27-ae7533cb100d"
+          "uuid": "dc17e82c-c1ae-4aca-8c44-402cb622eac6"
         },
         "parent_slot": 3,
         "content": {
@@ -331,7 +331,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "7a400333-b52b-4b0c-a6c4-435677bfa5a4",
+      "uuid": "86af209e-917b-450e-a0c8-c7a47808cf1b",
       "isGlobalTemplate": false
     },
     "content": {
@@ -358,7 +358,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "0343b861-3e18-47fc-9cbb-3b47a5589671",
+      "uuid": "fe26035f-8444-42bf-b749-bb67bf934ead",
       "isGlobalTemplate": false
     },
     "content": {
@@ -385,7 +385,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "8ef1bf61-2ef8-422d-a4ab-0a49ae274d17",
+      "uuid": "a01c6446-e0ba-4093-ae20-5dca40429632",
       "isGlobalTemplate": false
     },
     "content": {
@@ -412,7 +412,7 @@
     "name": "TextCard",
     "type": "content",
     "meta": {
-      "uuid": "4e227b4c-cbbf-445f-8ea6-3f1a38b142c1",
+      "uuid": "6fd17386-9ef8-4ca5-b0aa-42d5cc6deef5",
       "isGlobalTemplate": false
     },
     "content": {
@@ -443,7 +443,7 @@
     "name": "MultiGrid",
     "type": "structure",
     "meta": {
-      "uuid": "6380bf57-326a-4107-9410-b431dc0ae581",
+      "uuid": "72c6e13b-f48a-4081-869e-28bce38692a9",
       "isGlobalTemplate": false
     },
     "configuration": {
@@ -461,10 +461,10 @@
         6
       ],
       "columnWidthsMobile": [
-        12,
-        12,
-        12,
-        12
+        6,
+        6,
+        6,
+        6
       ],
       "layout": {
         "gap": "L",
@@ -478,7 +478,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "fa58c8f6-0bb4-4048-bebb-ff316ad7e370",
+          "uuid": "9f5d8462-1d42-4405-afa2-1c1ff78d3e8a",
           "isGlobalTemplate": false
         },
         "content": {
@@ -510,7 +510,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "80e3caab-2c75-4f12-9817-12a5d42d60cc",
+          "uuid": "7a172ab3-dcb8-49b0-8495-4d2ff3082e50",
           "isGlobalTemplate": false
         },
         "content": {
@@ -542,7 +542,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "bc593455-907b-407c-b6cb-09c3113c8956",
+          "uuid": "35e260a1-3cbd-4e92-a04f-16863bd33a8f",
           "isGlobalTemplate": false
         },
         "content": {
@@ -574,7 +574,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "01ecc4b6-1e80-4578-bca2-f120ba7f3954",
+          "uuid": "62287b02-2c9b-4f7f-bc54-5230edbb52cb",
           "isGlobalTemplate": false
         },
         "content": {
@@ -608,7 +608,7 @@
     "name": "NewsletterSubscribe",
     "type": "content",
     "meta": {
-      "uuid": "e0e44349-6e8e-40ae-acf2-06e66585c5ad",
+      "uuid": "e2acab36-f136-486c-95a8-c7dd8dd77d8b",
       "isGlobalTemplate": false
     },
     "content": {
@@ -652,6 +652,18 @@
             3,
             3
           ],
+          "columnWidthsTablet": [
+            6,
+            6,
+            6,
+            6
+          ],
+          "columnWidthsMobile": [
+            6,
+            6,
+            6,
+            6
+          ],
           "layout": {
             "gap": "XL",
             "marginTop": 0,
@@ -664,7 +676,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "af5553c9-44ec-485b-ad58-35352af549e9",
+              "uuid": "b859b2a3-5e0b-4b2c-aabc-e9ea71656d3f",
               "isGlobalTemplate": false
             },
             "content": {
@@ -696,7 +708,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "802f3146-b897-49e0-a1ee-20e65cf5927f",
+              "uuid": "e236ee5d-d495-411c-871d-8fb1d7f28bbe",
               "isGlobalTemplate": false
             },
             "content": {
@@ -728,7 +740,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "e4b22c18-b9c3-454e-aeef-b4dfb0bee789",
+              "uuid": "42a5dddb-ce1b-4682-964c-1a809d849f82",
               "isGlobalTemplate": false
             },
             "content": {
@@ -760,7 +772,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "53e397e5-8c50-40ba-813e-cf23b3315efa",
+              "uuid": "6d0cdbdf-b34c-4187-a450-db72fab9b9f5",
               "isGlobalTemplate": false
             },
             "content": {
