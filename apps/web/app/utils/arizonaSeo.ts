@@ -3,14 +3,11 @@ import type { MerchantReturnPolicy, OfferShippingDetails } from 'schema-dts';
 
 /**
  * Shop-specific SEO rules for arizona-shopping.de.
- * Shipping and return terms mirror the live shop (free shipping and returns in DE, 60 days return window).
+ * Shipping and return terms mirror the checkout: DHL to Germany for 4.90 EUR (no free-shipping threshold;
+ * items cannot be ordered to other countries), 60 days return window.
  */
 
-const SHIPPING_RATES: { countries: string[]; value: number }[] = [
-  { countries: ['DE'], value: 0 },
-  { countries: ['AT', 'NL', 'FR', 'IT', 'ES'], value: 7.9 },
-  { countries: ['CH'], value: 17.9 },
-];
+const SHIPPING_RATES: { countries: string[]; value: number }[] = [{ countries: ['DE'], value: 4.9 }];
 
 const RETURN_DAYS = 60;
 

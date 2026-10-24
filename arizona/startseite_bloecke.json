@@ -11,7 +11,7 @@
         "name": "AnnouncementBar",
         "type": "content",
         "meta": {
-          "uuid": "243c86cc-b802-404f-923b-b3eaab7c5a58",
+          "uuid": "82ae30f5-87a9-44eb-a7b3-229714010b19",
           "isGlobalTemplate": true
         },
         "configuration": {
@@ -19,7 +19,7 @@
         },
         "content": {
           "backgroundColor": "#F3F3F3",
-          "text": "Gratis Versand & Rückversand · Kauf auf Rechnung · 60 Tage Rückgaberecht"
+          "text": "Versand mit DHL in 1–2 Werktagen · 60 Tage Rückgaberecht · Bezahlen mit PayPal, Lastschrift oder giropay"
         }
       },
       {
@@ -107,7 +107,7 @@
     "name": "TextCard",
     "type": "content",
     "meta": {
-      "uuid": "54c246e6-3096-4d94-bac6-5da9ba63e5be",
+      "uuid": "20cfecea-d1fd-4a64-bdcd-79d6e197b29a",
       "isGlobalTemplate": false
     },
     "content": {
@@ -138,7 +138,7 @@
     "name": "MultiGrid",
     "type": "structure",
     "meta": {
-      "uuid": "2fb1961c-a7ae-4344-8abe-4047361c4851",
+      "uuid": "9037016d-40b0-4d24-9231-7bc6e5509d6f",
       "isGlobalTemplate": false
     },
     "configuration": {
@@ -173,7 +173,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "04f39876-0263-45c9-9a0c-6def916388fb"
+          "uuid": "5c83c4d9-94e6-43f5-87db-3c3ebc5b0b93"
         },
         "parent_slot": 0,
         "content": {
@@ -212,7 +212,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "1b9502a1-0f4e-40e4-bd98-8b1e986b5057"
+          "uuid": "f2fe7bd5-d888-4d6d-9b06-49cfdcea8d46"
         },
         "parent_slot": 1,
         "content": {
@@ -251,7 +251,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "2ef3846a-2963-442b-accf-4ce2cc6726a8"
+          "uuid": "df789efb-5174-43cf-8c3b-92178b3a2f8e"
         },
         "parent_slot": 2,
         "content": {
@@ -290,7 +290,7 @@
         "name": "Image",
         "type": "content",
         "meta": {
-          "uuid": "8d0825b3-8aff-41bf-9b34-73ce13056630"
+          "uuid": "5cf61a89-bb20-4538-ab27-ae7533cb100d"
         },
         "parent_slot": 3,
         "content": {
@@ -331,7 +331,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "cefefe6e-e14f-4e3c-a459-823a5c67a439",
+      "uuid": "7a400333-b52b-4b0c-a6c4-435677bfa5a4",
       "isGlobalTemplate": false
     },
     "content": {
@@ -358,7 +358,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "f7f75cda-e295-4e20-8ad5-9a4f8c24c5b9",
+      "uuid": "0343b861-3e18-47fc-9cbb-3b47a5589671",
       "isGlobalTemplate": false
     },
     "content": {
@@ -385,7 +385,7 @@
     "name": "ProductRecommendedProducts",
     "type": "content",
     "meta": {
-      "uuid": "f50709ef-1876-4ba0-9bca-3b3a13c10202",
+      "uuid": "8ef1bf61-2ef8-422d-a4ab-0a49ae274d17",
       "isGlobalTemplate": false
     },
     "content": {
@@ -412,7 +412,7 @@
     "name": "TextCard",
     "type": "content",
     "meta": {
-      "uuid": "419ae1bd-fcae-4c56-96ac-aa1a89f6d5bb",
+      "uuid": "4e227b4c-cbbf-445f-8ea6-3f1a38b142c1",
       "isGlobalTemplate": false
     },
     "content": {
@@ -443,7 +443,7 @@
     "name": "MultiGrid",
     "type": "structure",
     "meta": {
-      "uuid": "0da8a7aa-5e8e-4fd4-b018-4175861999b7",
+      "uuid": "6380bf57-326a-4107-9410-b431dc0ae581",
       "isGlobalTemplate": false
     },
     "configuration": {
@@ -478,7 +478,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "5226cc34-cad7-4544-bc0c-6789e5537d44",
+          "uuid": "fa58c8f6-0bb4-4048-bebb-ff316ad7e370",
           "isGlobalTemplate": false
         },
         "content": {
@@ -486,7 +486,7 @@
             "pretitle": "",
             "title": "",
             "subtitle": "",
-            "htmlDescription": "<p><strong>Gratis Hin- und Rückversand</strong><br>Ohne Mindestbestellwert</p>",
+            "htmlDescription": "<p><strong>Versand mit DHL</strong><br>4,90 € innerhalb Deutschlands</p>",
             "textAlignment": "left",
             "color": "#1A1A1A"
           },
@@ -510,7 +510,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "b1b069e1-13b1-4c8d-a40d-32ab2fdae324",
+          "uuid": "80e3caab-2c75-4f12-9817-12a5d42d60cc",
           "isGlobalTemplate": false
         },
         "content": {
@@ -542,7 +542,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "96135a67-85ef-4371-96ba-9be767349952",
+          "uuid": "bc593455-907b-407c-b6cb-09c3113c8956",
           "isGlobalTemplate": false
         },
         "content": {
@@ -550,7 +550,7 @@
             "pretitle": "",
             "title": "",
             "subtitle": "",
-            "htmlDescription": "<p><strong>Kauf auf Rechnung</strong><br>Auch PayPal, Amazon Pay, Lastschrift</p>",
+            "htmlDescription": "<p><strong>Sicher bezahlen</strong><br>PayPal, SEPA-Lastschrift oder giropay</p>",
             "textAlignment": "left",
             "color": "#1A1A1A"
           },
@@ -574,7 +574,7 @@
         "name": "TextCard",
         "type": "content",
         "meta": {
-          "uuid": "0904c4cc-f5cb-463b-9ec0-34bb490dba38",
+          "uuid": "01ecc4b6-1e80-4578-bca2-f120ba7f3954",
           "isGlobalTemplate": false
         },
         "content": {
@@ -608,7 +608,7 @@
     "name": "NewsletterSubscribe",
     "type": "content",
     "meta": {
-      "uuid": "786bd090-f063-412c-9007-0c53ca9dd027",
+      "uuid": "e0e44349-6e8e-40ae-acf2-06e66585c5ad",
       "isGlobalTemplate": false
     },
     "content": {
@@ -664,7 +664,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "48779e6b-aea0-41e4-bff7-933e1cd8c9f7",
+              "uuid": "af5553c9-44ec-485b-ad58-35352af549e9",
               "isGlobalTemplate": false
             },
             "content": {
@@ -696,7 +696,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "2404530e-0a1d-43ba-b554-0809e3bbe73a",
+              "uuid": "802f3146-b897-49e0-a1ee-20e65cf5927f",
               "isGlobalTemplate": false
             },
             "content": {
@@ -728,7 +728,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "9937c412-a67f-4e98-b63f-fbce4904bf73",
+              "uuid": "e4b22c18-b9c3-454e-aeef-b4dfb0bee789",
               "isGlobalTemplate": false
             },
             "content": {
@@ -736,7 +736,7 @@
                 "pretitle": "",
                 "title": "",
                 "subtitle": "",
-                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Bezahlen</span></h2><p><span style=\"font-size: 0.875rem\">PayPal</span></p><p><span style=\"font-size: 0.875rem\">Kauf auf Rechnung</span></p><p><span style=\"font-size: 0.875rem\">Amazon Pay</span></p><p><span style=\"font-size: 0.875rem\">Lastschrift</span></p><p><span style=\"font-size: 0.875rem\">Kreditkarte</span></p><p><span style=\"font-size: 0.875rem\">Vorkasse</span></p>",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Bezahlen</span></h2><p><span style=\"font-size: 0.875rem\">PayPal</span></p><p><span style=\"font-size: 0.875rem\">SEPA-Lastschrift</span></p><p><span style=\"font-size: 0.875rem\">giropay</span></p>",
                 "textAlignment": "left",
                 "color": ""
               },
@@ -760,7 +760,7 @@
             "name": "TextCard",
             "type": "content",
             "meta": {
-              "uuid": "33a85b02-d3ed-468e-ab97-a40207b152b0",
+              "uuid": "53e397e5-8c50-40ba-813e-cf23b3315efa",
               "isGlobalTemplate": false
             },
             "content": {
@@ -768,7 +768,7 @@
                 "pretitle": "",
                 "title": "",
                 "subtitle": "",
-                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Unsere Vorteile</span></h2><p><span style=\"font-size: 0.875rem\">Gratis Hin- und Rücksendung</span></p><p><span style=\"font-size: 0.875rem\">Lieferung in 1–2 Tagen</span></p><p><span style=\"font-size: 0.875rem\">60 Tage Rückgaberecht</span></p>",
+                "htmlDescription": "<h2 data-heading-variant=\"footer\"><span style=\"font-size: 1rem;\">Unsere Vorteile</span></h2><p><span style=\"font-size: 0.875rem\">Versand mit DHL: 4,90 €</span></p><p><span style=\"font-size: 0.875rem\">Lieferung in 1–2 Tagen</span></p><p><span style=\"font-size: 0.875rem\">60 Tage Rückgaberecht</span></p>",
                 "textAlignment": "left",
                 "color": ""
               },

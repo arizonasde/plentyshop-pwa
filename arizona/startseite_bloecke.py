@@ -112,7 +112,7 @@ def kopfbereich():
         "configuration": {"visible": True},
         "content": {
             "backgroundColor": GRAU,
-            "text": "Gratis Versand & Rückversand · Kauf auf Rechnung · 60 Tage Rückgaberecht",
+            "text": "Versand mit DHL in 1–2 Werktagen · 60 Tage Rückgaberecht · Bezahlen mit PayPal, Lastschrift oder giropay",
         },
     }
     leiste = {
@@ -206,9 +206,9 @@ def startseite():
             "layout": {"gap": "L", "marginTop": 40, "marginBottom": 40, "backgroundColor": "transparent"},
         },
         "content": [
-            textcard("<p><strong>Gratis Hin- und Rückversand</strong><br>Ohne Mindestbestellwert</p>", slot=0),
+            textcard("<p><strong>Versand mit DHL</strong><br>4,90 € innerhalb Deutschlands</p>", slot=0),
             textcard("<p><strong>Lieferung in 1–2 Tagen</strong><br>Versand bis 14 Uhr am selben Tag</p>", slot=1),
-            textcard("<p><strong>Kauf auf Rechnung</strong><br>Auch PayPal, Amazon Pay, Lastschrift</p>", slot=2),
+            textcard("<p><strong>Sicher bezahlen</strong><br>PayPal, SEPA-Lastschrift oder giropay</p>", slot=2),
             textcard("<p><strong>60 Tage Rückgaberecht</strong><br>Service aus Deutschland</p>", slot=3),
         ],
     }
@@ -278,13 +278,10 @@ def fussbereich():
                    + zeile("Telefon 06241 / 5003701")),
             spalte(2, ueberschrift("Bezahlen")
                    + zeile("PayPal")
-                   + zeile("Kauf auf Rechnung")
-                   + zeile("Amazon Pay")
-                   + zeile("Lastschrift")
-                   + zeile("Kreditkarte")
-                   + zeile("Vorkasse")),
+                   + zeile("SEPA-Lastschrift")
+                   + zeile("giropay")),
             spalte(3, ueberschrift("Unsere Vorteile")
-                   + zeile("Gratis Hin- und Rücksendung")
+                   + zeile("Versand mit DHL: 4,90 €")
                    + zeile("Lieferung in 1–2 Tagen")
                    + zeile("60 Tage Rückgaberecht"),
                    button={"label": "Vertrag widerrufen", "link": "/cancellation-form", "variant": "secondary"}),

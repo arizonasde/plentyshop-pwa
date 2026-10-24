@@ -12,9 +12,9 @@ import { SfIconCheck } from '@storefront-ui/vue';
 
 // Arizona service promises, shown next to every buying decision (product page, cart).
 const servicePromises = [
-  'Gratis Versand und Rückversand',
+  'Versand mit DHL für 4,90 €',
   'Lieferung in 1–2 Werktagen',
-  'Kauf auf Rechnung',
+  'Bezahlen mit PayPal, SEPA-Lastschrift oder giropay',
   '60 Tage Rückgaberecht',
 ];
 </script>
