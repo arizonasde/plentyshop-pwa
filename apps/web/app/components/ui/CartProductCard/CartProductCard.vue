@@ -1,7 +1,12 @@
 <template>
   <div class="relative flex border-neutral-200 border-b min-w-[320px] p-4 last:mb-0" data-testid="cart-product-card">
-    <div class="relative overflow-hidden rounded-md w-[100px] @sm:w-[176px]">
-      <UiLink :tag="NuxtLink" :to="path" class="flex items-center justify-center" data-testid="cart-product-card-link">
+    <div class="relative overflow-hidden w-[96px] @sm:w-[132px] shrink-0 self-start bg-[#F3F3F3] isolate">
+      <UiLink
+        :tag="NuxtLink"
+        :to="path"
+        class="flex items-center justify-center aspect-[3/4]"
+        data-testid="cart-product-card-link"
+      >
         <NuxtImg
           v-if="cartItem.variation?.images?.all?.length"
           ref="img"
@@ -17,22 +22,25 @@
           width="300"
           height="300"
           loading="lazy"
-          class="w-full h-auto border rounded-md border-neutral-200"
+          class="w-full h-full object-contain mix-blend-multiply"
         />
         <SfLoaderCircular v-if="!imageLoaded" class="absolute" size="sm" />
       </UiLink>
     </div>
     <div class="flex flex-col pl-4 min-w-[180px] flex-1">
+      <p v-if="brandName" class="typography-text-sm font-semibold text-neutral-900" data-testid="cart-item-brand">
+        {{ brandName }}
+      </p>
       <UiLink
         :tag="NuxtLink"
         :to="path"
         variant="secondary"
-        class="w-fit no-underline typography-text-sm @sm:typography-text-lg break-word"
+        class="w-fit no-underline typography-text-sm @sm:typography-text-base !text-neutral-700 break-word"
       >
-        {{ cartGetters.getItemName(cartItem) }}
+        {{ itemName }}
       </UiLink>
 
-      <div v-if="!cartItem.variation?.bundleComponents" data-testid="cart-item-price">
+      <div v-if="!cartItem.variation?.bundleComponents" class="mt-1 font-semibold" data-testid="cart-item-price">
         {{ format(cartGetters.getCartItemPrice(cartItem)) }}
       </div>
 
@@ -155,6 +163,13 @@ const { data: cartData, setCartItemQuantity, deleteCartItem } = useCart();
 const { send } = useNotification();
 const { format } = usePriceFormatter();
 const localePath = useLocalizedPath();
+
+const brandName = computed(() =>
+  cartItem.variation ? productGetters.getManufacturer(cartItem.variation)?.externalName || '' : '',
+);
+const itemName = computed(
+  () => (cartItem.variation && getDisplayName(cartItem.variation)) || cartGetters.getItemName(cartItem),
+);
 
 const imageLoaded = ref(false);
 const img = ref();

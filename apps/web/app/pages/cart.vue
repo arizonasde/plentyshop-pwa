@@ -28,6 +28,7 @@
           >
             {{ t('common.actions.goToCheckout') }}
           </UiButton>
+          <ArizonaServicePromises class="mt-5" />
           <client-only>
             <PayPalExpressButton :disabled="loading" location="cartPage" class="mt-4" type="CartPreview" />
             <PayPalPayLaterBanner
