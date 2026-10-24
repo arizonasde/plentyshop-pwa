@@ -12,3 +12,5 @@ export type ProductCardProps = {
   /** Other colours of the same item that are part of the current listing (Arizona colour preview). */
   colorVariants?: Product[];
 };
+
+export type ColorPreview = { key: string; name: string; imageUrl: string; path: string; current: boolean };

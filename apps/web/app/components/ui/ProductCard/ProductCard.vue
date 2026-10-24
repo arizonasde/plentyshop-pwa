@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col" data-testid="product-card">
+  <div ref="cardRef" class="flex flex-col" data-testid="product-card">
     <div class="relative overflow-hidden bg-[#F3F3F3]">
       <UiBadges
         :use-tags="useTagsOnCategoryPage"
@@ -91,37 +91,42 @@
       }"
     >
       <nav
-        v-if="colorVariants?.length"
+        v-if="colorOptions.length > 1"
         class="flex items-center gap-1 mb-2"
         aria-label="Weitere Farben"
         data-testid="product-card-colors"
       >
-        <span class="w-8 aspect-[3/4] bg-[#F3F3F3] ring-1 ring-neutral-900 isolate" :title="colorName(product)">
-          <NuxtImg
-            :src="productGetters.getCoverImagePreview(product)"
-            :alt="colorName(product)"
-            width="32"
-            height="43"
-            loading="lazy"
-            class="w-full h-full object-contain mix-blend-multiply"
-          />
-        </span>
-        <NuxtLink
-          v-for="variant in visibleColorVariants"
-          :key="productGetters.getVariationId(variant)"
-          :to="variantPath(variant)"
-          :title="colorName(variant)"
-          class="w-8 aspect-[3/4] bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
-        >
-          <NuxtImg
-            :src="productGetters.getCoverImagePreview(variant)"
-            :alt="colorName(variant)"
-            width="32"
-            height="43"
-            loading="lazy"
-            class="w-full h-full object-contain mix-blend-multiply"
-          />
-        </NuxtLink>
+        <template v-for="option in visibleColorOptions" :key="option.key">
+          <span
+            v-if="option.current"
+            class="w-8 aspect-[3/4] bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
+            :title="option.name"
+          >
+            <NuxtImg
+              :src="option.imageUrl"
+              :alt="option.name"
+              width="32"
+              height="43"
+              loading="lazy"
+              class="w-full h-full object-contain mix-blend-multiply"
+            />
+          </span>
+          <NuxtLink
+            v-else
+            :to="option.path"
+            :title="option.name"
+            class="w-8 aspect-[3/4] bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
+          >
+            <NuxtImg
+              :src="option.imageUrl"
+              :alt="option.name"
+              width="32"
+              height="43"
+              loading="lazy"
+              class="w-full h-full object-contain mix-blend-multiply"
+            />
+          </NuxtLink>
+        </template>
         <span v-if="hiddenColorCount" class="typography-text-xs text-neutral-600 ml-1">+{{ hiddenColorCount }}</span>
       </nav>
 
@@ -219,7 +224,7 @@
 <script setup lang="ts">
 import { productGetters, productImageGetters } from '@plentymarkets/shop-api';
 import { SfIconShoppingCart, SfLoaderCircular, SfRating, SfCounter } from '@storefront-ui/vue';
-import type { ProductCardProps } from '~/components/ui/ProductCard/types';
+import type { ProductCardProps, ColorPreview } from '~/components/ui/ProductCard/types';
 import type { ItemGridContent } from '~/components/blocks/ItemGrid/types';
 import type { BasketItemOrderParamsProperty, Product, DoAddItemParams } from '@plentymarkets/shop-api';
 
@@ -458,16 +463,53 @@ const discountPercent = computed(() => {
   return Math.round((1 - current / crossed) * 100);
 });
 
-// Colour preview: the current colour plus up to three sibling colours from the listing, the rest as "+N".
-const MAX_COLOR_PREVIEWS = 3;
-const visibleColorVariants = computed(() => (props.colorVariants ?? []).slice(0, MAX_COLOR_PREVIEWS));
-const hiddenColorCount = computed(() => Math.max((props.colorVariants?.length ?? 0) - MAX_COLOR_PREVIEWS, 0));
-const colorName = (variant: Product): string =>
-  productGetters.getGroupedAttributesString(variant).replace(/^[,\s]+/, '') || getDisplayName(variant);
-const variantPath = (variant: Product): string =>
-  localePath(
-    `/${productGetters.getUrlPath(variant)}_${productGetters.getItemId(variant)}_${productGetters.getVariationId(variant)}`,
+// Colour preview: current colour first, then up to three more, the rest as "+N".
+// Shows the colours found in the listing right away and swaps in all colours of the item once the card was visible.
+const MAX_COLOR_PREVIEWS = 4;
+const cardRef = ref<HTMLElement | null>(null);
+const { loadColors, colorsOf } = useColorVariants();
+const itemId = computed(() => productGetters.getItemId(product.value));
+const currentColorName = computed(() => product.value.groupedAttributes?.[0]?.value ?? '');
+
+const colorOptions = computed<ColorPreview[]>(() => {
+  const loaded = colorsOf(itemId.value);
+  const options: ColorPreview[] =
+    loaded && loaded.length > 0
+      ? loaded.map((option) => ({
+          key: String(option.valueId),
+          name: option.name,
+          imageUrl: option.imageUrl,
+          path: option.path,
+          current: option.name === currentColorName.value,
+        }))
+      : [product.value, ...(props.colorVariants ?? [])].map((variant, index) => ({
+          key: String(productGetters.getVariationId(variant)),
+          name: variant.groupedAttributes?.[0]?.value ?? getDisplayName(variant),
+          imageUrl: productGetters.getCoverImagePreview(variant),
+          path: localePath(
+            `/${productGetters.getUrlPath(variant)}_${productGetters.getItemId(variant)}_${productGetters.getVariationId(variant)}`,
+          ),
+          current: index === 0,
+        }));
+  return [...options.filter((option) => option.current), ...options.filter((option) => !option.current)];
+});
+const visibleColorOptions = computed(() => colorOptions.value.slice(0, MAX_COLOR_PREVIEWS));
+const hiddenColorCount = computed(() => Math.max(colorOptions.value.length - MAX_COLOR_PREVIEWS, 0));
+
+onMounted(() => {
+  if (props.isFromSlider || props.isFromWishlist || !cardRef.value || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        loadColors(itemId.value);
+        observer.disconnect();
+      }
+    },
+    { rootMargin: '200px' },
   );
+  observer.observe(cardRef.value);
+  onBeforeUnmount(() => observer.disconnect());
+});
 
 // Brand first, then name – the order shoppers scan fashion listings in.
 const fieldsOrder = computed(() => {
