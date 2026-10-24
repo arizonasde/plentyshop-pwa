@@ -90,6 +90,41 @@
         'items-start': configuration?.contentAlignment === 'left',
       }"
     >
+      <nav
+        v-if="colorVariants?.length"
+        class="flex items-center gap-1 mb-2"
+        aria-label="Weitere Farben"
+        data-testid="product-card-colors"
+      >
+        <span class="w-8 aspect-[3/4] bg-[#F3F3F3] ring-1 ring-neutral-900 isolate" :title="colorName(product)">
+          <NuxtImg
+            :src="productGetters.getCoverImagePreview(product)"
+            :alt="colorName(product)"
+            width="32"
+            height="43"
+            loading="lazy"
+            class="w-full h-full object-contain mix-blend-multiply"
+          />
+        </span>
+        <NuxtLink
+          v-for="variant in visibleColorVariants"
+          :key="productGetters.getVariationId(variant)"
+          :to="variantPath(variant)"
+          :title="colorName(variant)"
+          class="w-8 aspect-[3/4] bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
+        >
+          <NuxtImg
+            :src="productGetters.getCoverImagePreview(variant)"
+            :alt="colorName(variant)"
+            width="32"
+            height="43"
+            loading="lazy"
+            class="w-full h-full object-contain mix-blend-multiply"
+          />
+        </NuxtLink>
+        <span v-if="hiddenColorCount" class="typography-text-xs text-neutral-600 ml-1">+{{ hiddenColorCount }}</span>
+      </nav>
+
       <template v-for="key in fieldsOrder" :key="key">
         <template v-if="key === 'title' && configuration?.fields?.title">
           <UiLink
@@ -422,6 +457,17 @@ const discountPercent = computed(() => {
   if (!current || !crossed || crossed <= current || !differentPrices(current, crossed)) return 0;
   return Math.round((1 - current / crossed) * 100);
 });
+
+// Colour preview: the current colour plus up to three sibling colours from the listing, the rest as "+N".
+const MAX_COLOR_PREVIEWS = 3;
+const visibleColorVariants = computed(() => (props.colorVariants ?? []).slice(0, MAX_COLOR_PREVIEWS));
+const hiddenColorCount = computed(() => Math.max((props.colorVariants?.length ?? 0) - MAX_COLOR_PREVIEWS, 0));
+const colorName = (variant: Product): string =>
+  productGetters.getGroupedAttributesString(variant).replace(/^[,\s]+/, '') || getDisplayName(variant);
+const variantPath = (variant: Product): string =>
+  localePath(
+    `/${productGetters.getUrlPath(variant)}_${productGetters.getItemId(variant)}_${productGetters.getVariationId(variant)}`,
+  );
 
 // Brand first, then name – the order shoppers scan fashion listings in.
 const fieldsOrder = computed(() => {

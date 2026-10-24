@@ -34,7 +34,12 @@
     </template>
     <section v-if="products?.length" :class="gridClasses" data-testid="category-grid">
       <NuxtLazyHydrate v-for="(product, index) in products" :key="productGetters.getVariationId(product)" when-visible>
-        <UiProductCard :product="product" :configuration="content" :index="index" />
+        <UiProductCard
+          :product="product"
+          :configuration="content"
+          :index="index"
+          :color-variants="colorVariantsOf(product)"
+        />
       </NuxtLazyHydrate>
     </section>
     <LazyCategoryEmptyState v-else />
@@ -70,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters } from '@plentymarkets/shop-api';
+import { productGetters, type Product } from '@plentymarkets/shop-api';
 import type { ItemGridProps } from '~/components/blocks/ItemGrid/types';
 
 const { getFacetsFromURL } = useCategoryFilter();
@@ -82,6 +87,20 @@ const { data: productsCatalog, productsPerPage } = useProducts();
 
 const props = defineProps<ItemGridProps>();
 const products = computed(() => productsCatalog.value.products || []);
+
+// Arizona: every colour of an item is its own card; collect the siblings so each card can preview the other colours.
+const productsByItem = computed(() => {
+  const groups = new Map<string, Product[]>();
+  for (const product of products.value) {
+    const itemId = String(productGetters.getItemId(product));
+    groups.set(itemId, [...(groups.get(itemId) ?? []), product]);
+  }
+  return groups;
+});
+const colorVariantsOf = (product: Product): Product[] =>
+  (productsByItem.value.get(String(productGetters.getItemId(product))) ?? []).filter(
+    (sibling) => productGetters.getVariationId(sibling) !== productGetters.getVariationId(product),
+  );
 const totalProducts = computed(() => Number(productsCatalog.value.pagination?.totals) || 0);
 const itemsPerPage = computed(() => Number(productsPerPage.value) || 0);
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 2));

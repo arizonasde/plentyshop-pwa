@@ -9,4 +9,6 @@ export type ProductCardProps = {
   isFromSlider?: boolean;
   lazy?: boolean;
   shouldLoadImage?: boolean;
+  /** Other colours of the same item that are part of the current listing (Arizona colour preview). */
+  colorVariants?: Product[];
 };
