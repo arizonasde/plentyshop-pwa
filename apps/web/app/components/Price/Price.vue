@@ -12,7 +12,7 @@
       <span v-if="props.displayVatHint">{{ t('common.labels.asterisk') }}</span>
     </span>
     <span
-      v-if="isReduced"
+      v-if="isReduced && props.crossedPrice"
       class="text-base font-normal text-neutral-500 line-through"
     >
       {{ format(props.crossedPrice) }}
