@@ -1,27 +1,29 @@
 <template>
   <div>
-    <label for="attribute-box" class="leading-5 text-sm text-zinc-900">
+    <p :id="labelId" class="leading-5 text-sm font-semibold text-neutral-900 mb-2">
       {{ productAttributeGetters.getAttributeName(attribute) }}
-    </label>
+    </p>
 
-    <div id="attribute-box" class="w-full flex gap-4 flex-wrap">
-      <div
+    <div role="group" :aria-labelledby="labelId" class="w-full grid grid-cols-[repeat(auto-fill,minmax(5.75rem,1fr))] gap-2">
+      <button
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
-        class="border h-12 border-zinc-300 rounded-md cursor-pointer hover:bg-[#3C3C4226]"
+        type="button"
+        class="border min-h-11 border-neutral-300 bg-white text-neutral-900 cursor-pointer hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         :class="{
-          'text-zinc-400 border-dashed': productAttributeGetters.isAttributeValueDisabled(item),
-          '!border-primary-500 bg-zinc-100': value === productAttributeGetters.getAttributeValueId(item),
+          'text-neutral-400 line-through': productAttributeGetters.isAttributeValueDisabled(item),
+          '!border-neutral-900 ring-1 ring-neutral-900': value === productAttributeGetters.getAttributeValueId(item),
           '!ring-negative-700 !border-negative-700 ring-1': Boolean(errors['selectedValue']),
         }"
+        :aria-pressed="value === productAttributeGetters.getAttributeValueId(item)"
         @click="doUpdateValue(productAttributeGetters.getAttributeValueId(item))"
       >
         <SfTooltip :label="getLabel(item)" strategy="absolute" :show-arrow="true" placement="top">
-          <div class="font-medium h-12 flex items-center px-4">
+          <span class="typography-text-sm font-medium min-h-11 flex items-center justify-center px-2">
             {{ productAttributeGetters.getAttributeValueName(item) }}
-          </div>
+          </span>
         </SfTooltip>
-      </div>
+      </button>
     </div>
     <ErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
   </div>
@@ -41,6 +43,7 @@ const { shouldUseFakeData } = useEditorState();
 const { registerValidator, registerInvalidFields } = useValidatorAggregator('attributes');
 const props = defineProps<AttributeSelectProps>();
 const value = computed(() => getValue(props.attribute.attributeId));
+const labelId = useId();
 
 const getLabel = (item: VariationMapProductAttributeValue): string => {
   return productAttributeGetters.isAttributeValueDisabled(item) ? t('product.attributes.seeAvailableOptions') : '';

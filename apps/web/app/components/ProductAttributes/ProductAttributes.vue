@@ -12,13 +12,13 @@
 
 <script setup lang="ts">
 import type { ProductAttributesProps, ComponentsMapper } from './types';
-import AttributeDropdown from './AttributeDropdown/AttributeDropdown.vue';
 import AttributeBox from './AttributeBox/AttributeBox.vue';
 import AttributeImage from './AttributeImage/AttributeImage.vue';
 import { productAttributeGetters } from '@plentymarkets/shop-api';
 
+// Arizona: sizes and lengths are picked from buttons instead of a dropdown, like on large fashion shops.
 const componentsMapper: ComponentsMapper = {
-  dropdown: AttributeDropdown,
+  dropdown: AttributeBox,
   box: AttributeBox,
   image: AttributeImage,
 };

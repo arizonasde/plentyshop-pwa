@@ -19,7 +19,14 @@
               />
             </template>
             <template v-if="key === 'itemName' && configuration?.fields.itemName">
-              <h1 class="font-bold typography-headline-4 break-word" data-testid="product-name">
+              <p
+                v-if="brandName"
+                class="typography-text-lg font-semibold text-neutral-900 uppercase tracking-wide"
+                data-testid="product-brand"
+              >
+                {{ brandName }}
+              </p>
+              <h1 class="font-normal typography-headline-5 text-neutral-700 break-word mb-2" data-testid="product-name">
                 {{ getDisplayName(product) }}
               </h1>
             </template>
@@ -198,6 +205,12 @@
                     </template>
                   </i18n-t>
                 </div>
+                <ul class="mt-5 space-y-2 typography-text-sm text-neutral-900" data-testid="service-promises">
+                  <li v-for="promise in servicePromises" :key="promise" class="flex items-center gap-2">
+                    <SfIconCheck size="sm" class="text-positive-700 shrink-0" aria-hidden="true" />
+                    {{ promise }}
+                  </li>
+                </ul>
                 <template v-if="showPayPalButtons">
                   <PayPalExpressButton
                     class="mt-4"
@@ -239,7 +252,7 @@
 
 <script lang="ts" setup>
 import { productGetters, reviewGetters, productBundleGetters } from '@plentymarkets/shop-api';
-import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip } from '@storefront-ui/vue';
+import { SfCounter, SfRating, SfIconShoppingCart, SfLoaderCircular, SfTooltip, SfIconCheck } from '@storefront-ui/vue';
 import type { PriceCardPadding, PriceCardTextBlockItem, PurchaseCardProps } from '~/components/ui/PurchaseCard/types';
 import type { PayPalAddToCartCallback } from '#paypal/types';
 const isTextBlock = (item: unknown): item is PriceCardTextBlockItem =>
@@ -341,6 +354,16 @@ const renderTextBlock = (html: string): string =>
     localizeHtmlLinks(html, router, localePath, resolvePathTrailingSlash),
     props.product,
   );
+
+const brandName = computed(() => productGetters.getManufacturer(props.product)?.externalName || '');
+
+// Arizona service promises shown under the add-to-cart button.
+const servicePromises = [
+  'Gratis Versand und Rückversand',
+  'Lieferung in 1–2 Werktagen',
+  'Kauf auf Rechnung',
+  '60 Tage Rückgaberecht',
+];
 
 const inlineStyle = computed(() => {
   const layout = props?.configuration?.layout || ({} as PriceCardPadding);
