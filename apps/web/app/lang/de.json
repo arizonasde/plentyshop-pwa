@@ -497,7 +497,7 @@
   },
   "CookieBar": {
     "about": {
-      "description": "Wir verwenden Cookies und ähnliche Technologien auf unserer Website und verarbeiten personenbezogene Daten von Besucher:innen unserer Webseite (z.B. IP-Adresse), um z.B. Inhalte zu personalisieren, Medien von Drittanbietern einzubinden oder Zugriffe auf unsere Website zu analysieren. Die Datenverarbeitung erfolgt erst durch gesetzte Cookies. Wir teilen diese Daten mit Dritten, die wir in den Einstellungen benennen. Die Datenverarbeitung kann mit Einwilligung oder aufgrund eines berechtigten Interesses erfolgen. Die Zustimmung kann erteilt oder abgelehnt werden. Es besteht das Recht, nicht einzuwilligen und die Einwilligung zu einem späteren Zeitpunkt zu ändern oder zu widerrufen. Beachten Sie unser {legal} und weitere Hinweise zur Verwendung personenbezogener Daten in unserer {policy}.",
+      "description": "Wir verwenden Cookies und ähnliche Technologien, um unseren Shop bereitzustellen, Inhalte von Drittanbietern einzubinden und Zugriffe zu analysieren. Dabei verarbeiten wir personenbezogene Daten (z. B. IP-Adresse) und geben sie an die in den Einstellungen genannten Dritten weiter. Optionale Cookies setzen wir nur mit Ihrer Einwilligung. Sie können ablehnen und Ihre Wahl jederzeit ändern. Mehr im {legal} und in der {policy}.",
       "label": "Ihre Privatsphäre ist uns wichtig"
     },
     "Accept All": "Alles akzeptieren",

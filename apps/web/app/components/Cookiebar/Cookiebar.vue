@@ -5,10 +5,10 @@
   >
     <div v-if="!furtherSettingsOn">
       <!-- cookie info -->
-      <div class="text-center font-medium">
+      <div class="text-center font-semibold">
         {{ t(cookieJson?.barTitle) }}
       </div>
-      <div class="max-h-[35vh] leading-relaxed overflow-y-auto">
+      <div class="mt-1 max-h-[30vh] text-sm leading-normal overflow-y-auto @md:text-base">
         <i18n-t v-if="cookieJson.barDescription" :keypath="cookieJson.barDescription" scope="global">
           <template #legal
             ><UiLink :tag="NuxtLink" :to="legalDisclosure">{{ t('CookieBar.legalDisclosure') }}</UiLink></template
@@ -111,15 +111,10 @@
       </template>
     </div>
 
-    <!-- Actions -->
-    <div class="my-5 text-center">
-      <UiLink tag="button" class="text-base" @click="furtherSettingsOn = !furtherSettingsOn">
-        {{ furtherSettingsOn ? t('CookieBar.Back') : t('CookieBar.Further Settings') }}
-      </UiLink>
-    </div>
-    <div class="flex flex-col gap-4 @sm:flex-row">
+    <!-- Actions: accept and reject side by side with equal weight, the rest as compact links (Arizona) -->
+    <div class="mt-3 grid grid-cols-2 gap-2">
       <UiButton
-        class="w-full h-10 @md:h-12"
+        class="w-full h-11 @md:h-12"
         :aria-disabled="false"
         type="button"
         :aria-label="t('CookieBar.Accept All')"
@@ -129,7 +124,7 @@
         {{ t('CookieBar.Accept All') }}
       </UiButton>
       <UiButton
-        class="w-full h-10 @md:h-12"
+        class="w-full h-11 @md:h-12"
         :aria-disabled="false"
         type="button"
         :aria-label="t('CookieBar.Reject All')"
@@ -137,16 +132,14 @@
       >
         {{ t('CookieBar.Reject All') }}
       </UiButton>
-      <UiButton
-        variant="secondary"
-        class="w-full h-10 @md:h-12"
-        :aria-disabled="false"
-        type="button"
-        :aria-label="t('CookieBar.Accept Selection')"
-        @click="setConsent()"
-      >
+    </div>
+    <div class="mt-1 flex flex-wrap justify-center gap-x-6">
+      <UiLink tag="button" class="min-h-11 inline-flex items-center text-sm" @click="setConsent()">
         {{ t('CookieBar.Accept Selection') }}
-      </UiButton>
+      </UiLink>
+      <UiLink tag="button" class="min-h-11 inline-flex items-center text-sm" @click="furtherSettingsOn = !furtherSettingsOn">
+        {{ furtherSettingsOn ? t('CookieBar.Back') : t('CookieBar.Further Settings') }}
+      </UiLink>
     </div>
   </div>
 
