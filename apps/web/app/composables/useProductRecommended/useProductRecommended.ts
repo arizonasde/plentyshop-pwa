@@ -74,15 +74,12 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
       ...(params.facets && { facets: params.facets }),
     };
 
-    const payload =
-      params.type === 'last_seen'
-        ? { type: params.type as FacetSearchCriteria['type'] }
-        : {
-            ...common,
-            itemId: params.itemId,
-            crossSellingRelation: params.crossSellingRelation,
-            categoryId: params.categoryId,
-          };
+    const payload = {
+      ...common,
+      itemId: params.itemId,
+      crossSellingRelation: params.crossSellingRelation,
+      categoryId: params.categoryId,
+    };
 
     const idForKey = params.type === 'cross_selling' ? params.itemId : `${params.categoryId}-${params.facets ?? ''}`;
 

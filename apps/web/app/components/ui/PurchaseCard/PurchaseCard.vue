@@ -201,7 +201,7 @@
                     </template>
                   </i18n-t>
                 </div>
-                <ArizonaBestsellerHint :item-id="productGetters.getItemId(product)" class="mt-5" />
+                <ArizonaBestsellerHint :item-id="Number(productGetters.getItemId(product))" class="mt-5" />
                 <ArizonaShippingCountdown class="mt-4" />
                 <ArizonaServicePromises class="mt-4" />
                 <ArizonaTrustBadge class="mt-4" />
