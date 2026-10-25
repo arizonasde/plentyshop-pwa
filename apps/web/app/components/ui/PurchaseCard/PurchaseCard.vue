@@ -37,6 +37,7 @@
               <h1 class="font-normal typography-headline-5 text-neutral-700 break-word mb-2" data-testid="product-name">
                 {{ getDisplayName(product) }}
               </h1>
+              <ArizonaBestsellerHint :item-id="Number(productGetters.getItemId(product))" class="mb-2" />
             </template>
             <template v-if="key === 'variationNumber' && configuration?.fields.variationNumber">
               <p
@@ -201,8 +202,7 @@
                     </template>
                   </i18n-t>
                 </div>
-                <ArizonaBestsellerHint :item-id="Number(productGetters.getItemId(product))" class="mt-5" />
-                <ArizonaShippingCountdown class="mt-4" />
+                <ArizonaShippingCountdown class="mt-5" />
                 <ArizonaServicePromises without-delivery class="mt-4" />
                 <template v-if="showPayPalButtons">
                   <PayPalExpressButton
