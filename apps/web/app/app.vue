@@ -119,6 +119,30 @@ const { getBooleanSetting: customAssetsSafeMode } = useSiteSettings('customAsset
 
 const { data: productsCatalog } = useProducts();
 
+const localePath = useLocalizedPath();
+// Arizona: search results, cart, checkout and customer pages carry no own content for search engines
+const NON_INDEXABLE_PATHS = [
+  paths.search,
+  paths.cart,
+  paths.checkout,
+  paths.readonlyCheckout,
+  paths.confirmation,
+  paths.guestLogin,
+  paths.authLogin,
+  paths.register,
+  paths.wishlist,
+  '/my-account',
+  paths.authResetPassword,
+  paths.authResetPasswordSuccess,
+];
+const isNonIndexablePage = computed(() => {
+  const path = route.path.replace(/\/$/, '');
+  return NON_INDEXABLE_PATHS.some((prefix) => {
+    const localized = localePath(prefix).replace(/\/$/, '');
+    return path === localized || path.startsWith(`${localized}/`);
+  });
+});
+
 const category = computed(() => productsCatalog.value?.category);
 const isCategoryPage = computed(() => route.meta?.type === 'category' && !!category.value);
 
@@ -169,7 +193,7 @@ const ogImage = ref(getOgImage());
 const ogDescription = ref(getCategoryMetaDescription());
 const description = ref(getCategoryMetaDescription());
 const keywords = ref(getCategoryMetaKeywords());
-const robots = ref(getRobots());
+const robots = ref(isNonIndexablePage.value ? 'noindex, follow' : getRobots());
 const fav = ref(getFavicon());
 const themeColor = ref(getPrimaryColor());
 
@@ -204,7 +228,7 @@ watchEffect(() => {
   ogDescription.value = getCategoryMetaDescription();
   description.value = getCategoryMetaDescription();
   keywords.value = getCategoryMetaKeywords();
-  robots.value = getRobots();
+  robots.value = isNonIndexablePage.value ? 'noindex, follow' : getRobots();
   fav.value = getFavicon();
   themeColor.value = getPrimaryColor();
 });

@@ -16,11 +16,11 @@ export const usePageTitle = () => {
 
   useHead({
     titleTemplate: (titleChunk) => {
-      if (titleChunk) {
-        return `${titleChunk} | ${titleSuffix.value}`;
-      }
+      const title = titleChunk || defaultTitle.value;
+      // Arizona: no second shop name when the title already contains it (e.g. the home page)
+      if (titleSuffix.value && title.includes(titleSuffix.value)) return title;
 
-      return `${defaultTitle.value} | ${titleSuffix.value}`;
+      return `${title} | ${titleSuffix.value}`;
     },
   });
 };

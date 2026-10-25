@@ -122,3 +122,27 @@ export const buildCategoryDescription = (label: string): string => {
   const shipping = SHIPPING_RATES[0]?.value.toFixed(2).replace('.', ',');
   return `${label} günstig bei Arizona Shopping kaufen. Versand mit DHL für ${shipping} €, Lieferung in 1–2 Werktagen, ${RETURN_DAYS} Tage Rückgaberecht.`;
 };
+
+/**
+ * Value of the variation attribute that plentyONE maps to a Google Shopping attribute ("color", "size"),
+ * e.g. "Dunkelgrau" or "S"; empty when the variation has none.
+ */
+export const getShoppingAttributeValue = (product: Product, key: 'color' | 'size'): string => {
+  const entry = product.attributes?.find((attribute) => attribute.attribute?.googleShoppingAttribute === key);
+  return entry?.value?.names?.name || entry?.value?.backendName || '';
+};
+
+/** Plain text for structured data: tags removed, entities decoded, whitespace collapsed, at most `maxLength` chars. */
+export const toPlainText = (htmlText: string, maxLength = 5000): string =>
+  htmlText
+    .replace(/<(br|\/p|\/li|\/h\d)\s*\/?>/gi, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;|&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, maxLength);

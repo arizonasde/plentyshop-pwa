@@ -12,6 +12,7 @@ import type { Product, CanonicalAlternate } from '@plentymarkets/shop-api';
 import type {
   WithContext,
   Organization as SchemaOrganization,
+  WebSite as SchemaWebSite,
   Product as SchemaProduct,
   ItemList as SchemaItemList,
   ListItem as SchemaListItem,
@@ -68,17 +69,38 @@ export const useStructuredData: useStructuredDataReturn = () => {
     state.value.loading = true;
 
     const runtimeConfig = useRuntimeConfig();
+    const { getSetting: getOgTitle } = useSiteSettings('ogTitle');
+    const shopName = getOgTitle() || String(runtimeConfig.public.ogTitle ?? '');
     const structuredData: WithContext<SchemaOrganization> = {
       '@context': 'https://schema.org',
       '@type': 'Organization',
+      ...(shopName && { name: shopName }),
       url: runtimeConfig.public.domain,
       logo: runtimeConfig.public.domain + '/_nuxt-plenty/images/logo.png',
+    };
+    // Arizona: WebSite with search action, so search engines and AI assistants know the shop name and its search
+    const webSite: WithContext<SchemaWebSite> = {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      ...(shopName && { name: shopName }),
+      url: `${runtimeConfig.public.domain}/`,
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${runtimeConfig.public.domain}${localePath(paths.search)}?term={search_term_string}`,
+        // schema-dts does not know the "query-input" shorthand Google documents
+        ...({ 'query-input': 'required name=search_term_string' } as object),
+      },
     };
     useHead({
       script: [
         {
           type: 'application/ld+json',
           innerHTML: safeSerializeJsonLd(structuredData),
+        },
+        {
+          key: 'website-structured-data',
+          type: 'application/ld+json',
+          innerHTML: safeSerializeJsonLd(webSite),
         },
       ],
     });
@@ -136,9 +158,6 @@ export const useStructuredData: useStructuredDataReturn = () => {
         price: Number(price.value),
         priceCurrency: productGetters.getSpecialPriceCurrency(product),
         priceType: 'SalePrice',
-        referenceQuantity: {
-          '@type': 'QuantitativeValue',
-        },
       },
     ];
 
@@ -153,19 +172,25 @@ export const useStructuredData: useStructuredDataReturn = () => {
         priceCurrency: specialOffer
           ? productGetters.getSpecialPriceCurrency(product)
           : productGetters.getRegularPriceCurrency(product),
-        priceType: 'ListPrice',
-        referenceQuantity: {
-          '@type': 'QuantitativeValue',
-        },
+        // Arizona: Google reads the former price as strikethrough price, not as a list price
+        priceType: 'https://schema.org/StrikethroughPrice',
       });
     }
 
     const priceValidUntil = productSeoSettingsGetters.getPriceValidUntil(product);
+    // Arizona: the offer points to the same URL as the canonical (first variation of the colour)
+    const canonicalVariationId =
+      getCanonicalVariationId(product, Number(runtimeConfig.public.canonicalGroupAttributeId || 0)) ??
+      productGetters.getVariationId(product);
+    const offerPath =
+      productPath && !isSingleProductUrlSchemeEnabled
+        ? localePath(`/${productGetters.getUrlPath(product)}_${productGetters.getItemId(product)}_${canonicalVariationId}`)
+        : productPath;
     const offers: SchemaOffer = {
       '@type': 'Offer',
       priceCurrency: productGetters.getSpecialPriceCurrency(product),
       price: Number(price.value),
-      url: productPath ? `${runtimeConfig.public.domain}${productPath}` : undefined,
+      url: offerPath ? applyTrailingSlashToUrl(`${runtimeConfig.public.domain}${offerPath}`) : undefined,
       priceSpecification,
       availability: productSeoSettingsGetters.getMappedAvailability(product) as ItemAvailability,
       itemCondition: productSeoSettingsGetters.getConditionOfItem(product) as OfferItemCondition,
@@ -181,11 +206,9 @@ export const useStructuredData: useStructuredDataReturn = () => {
       '@type': 'Product',
       name: getDisplayName(product),
       category: productGetters.getCategoryName(product),
-      releaseDate: '',
       image: fullSizeImage || productGetters.getCoverImage(product),
       identifier: productGetters.getId(product),
-      description: product.texts.description,
-      disambiguatingDescription: '',
+      description: toPlainText(product.texts.description || product.texts.shortDescription || ''),
       review: reviews,
       ...(totalReviews > 0 && {
         aggregateRating: {
@@ -195,23 +218,28 @@ export const useStructuredData: useStructuredDataReturn = () => {
         },
       }),
       offers,
-      depth: {
-        '@type': 'QuantitativeValue',
-        value: productGetters.getLengthMM(product),
-      },
-      width: {
-        '@type': 'QuantitativeValue',
-        value: productGetters.getWidthMM(product),
-      },
-      height: {
-        '@type': 'QuantitativeValue',
-        value: productGetters.getHeightMM(product),
-      },
-      weight: {
-        '@type': 'QuantitativeValue',
-        value: productGetters.getWeightG(product),
-      },
     };
+
+    // Arizona: colour, size and the item as variant group help Google Shopping match the variants
+    const color = getShoppingAttributeValue(product, 'color');
+    if (color) metaObject.color = color;
+    const size = getShoppingAttributeValue(product, 'size');
+    if (size) metaObject.size = size;
+    metaObject.inProductGroupWithID = String(productGetters.getItemId(product));
+
+    // empty dimensions are invalid in structured data, so only real values are added
+    const dimensions = {
+      depth: productGetters.getLengthMM(product),
+      width: productGetters.getWidthMM(product),
+      height: productGetters.getHeightMM(product),
+    };
+    for (const [key, value] of Object.entries(dimensions)) {
+      if (Number(value) > 0) {
+        metaObject[key as keyof typeof dimensions] = { '@type': 'QuantitativeValue', value, unitCode: 'MMT' };
+      }
+    }
+    const weight = productGetters.getWeightG(product);
+    if (Number(weight) > 0) metaObject.weight = { '@type': 'QuantitativeValue', value: weight, unitCode: 'GRM' };
 
     const manufacturer = productSeoSettingsGetters.getSeoManufacturer(product);
     if (manufacturer !== '') metaObject.manufacturer = { '@type': 'Organization', name: manufacturer };

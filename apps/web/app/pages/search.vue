@@ -56,4 +56,6 @@ watch(
 
 await getRobots();
 setRobotForStaticPage('SearchResult');
+// Arizona: search result pages stay out of the index (the plentyONE value is shared with the old shop)
+useHead({ meta: [{ name: 'robots', content: 'noindex, follow' }] });
 </script>
