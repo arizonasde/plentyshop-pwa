@@ -3,11 +3,11 @@ import { eventHandler, setHeader } from 'h3';
 // Arizona: guide for AI assistants at /llms.txt. Served as a route because plentyONE only allows public/_nuxt-plenty/.
 const LLMS_TXT = `# Arizona Shopping
 
-> Online-Shop für Damen-, Herren- und Kindermode bekannter Marken (u. a. ONLY, Jack & Jones, Vero Moda, Tom Tailor, Mavi, Noisy May) zu günstigen Preisen. Betreiber: ARIZONAS GmbH, Worms (Deutschland). Lieferung nur innerhalb Deutschlands.
+> Online-Shop für Damen-, Herren- und Kindermode bekannter Marken (u. a. ONLY, Jack & Jones, Vero Moda, Tom Tailor, Mavi, Noisy May) zu günstigen Preisen. Betreiber: ARIZONAS GmbH, Worms (Deutschland). Lieferung nach Deutschland, Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien.
 
 ## Einkaufen bei Arizona Shopping
 
-- Versand: mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–2 Werktagen. Bestellungen ins Ausland sind nicht möglich.
+- Versand: mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–3 Werktagen. Lieferung ins Ausland nach Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien; die Versandkosten dafür stehen im Warenkorb.
 - Rückgabe: 60 Tage, kostenlos.
 - Bezahlen: PayPal, SEPA-Lastschrift oder giropay.
 - Bestellen ohne Kundenkonto ist möglich.

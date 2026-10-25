@@ -51,7 +51,8 @@ const faqGroups = [
     items: [
       {
         question: 'Was kostet der Versand?',
-        answer: 'Wir versenden mit DHL. Der Versand kostet 4,90 € pro Bestellung innerhalb Deutschlands.',
+        answer:
+          'Wir versenden mit DHL. Innerhalb Deutschlands kostet der Versand 4,90 € pro Bestellung, die Versandkosten ins Ausland siehst du im Warenkorb.',
       },
       {
         question: 'Wie lange dauert die Lieferung?',
@@ -59,7 +60,8 @@ const faqGroups = [
       },
       {
         question: 'Liefert ihr auch ins Ausland?',
-        answer: 'Nein, wir liefern derzeit nur an Adressen in Deutschland.',
+        answer:
+          'Ja, wir liefern nach Deutschland, Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien. Die Versandkosten für dein Land siehst du im Warenkorb.',
       },
     ],
   },

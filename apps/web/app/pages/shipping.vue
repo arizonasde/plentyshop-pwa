@@ -57,7 +57,7 @@ if (categoryId.value > 0) {
 }
 
 setPageMeta(t('orderConfirmation.shipping'), 'page');
-useArizonaStaticPageHead(t('orderConfirmation.shipping'), 'Versand mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–3 Werktagen.');
+useArizonaStaticPageHead(t('orderConfirmation.shipping'), 'Versand mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–3 Werktagen. Wir liefern auch nach Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien.');
 
 const hasEditorContent = computed(() => pageBlocks.value.length > 0);
 
