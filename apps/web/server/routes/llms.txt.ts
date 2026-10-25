@@ -1,4 +1,7 @@
-# Arizona Shopping
+import { eventHandler, setHeader } from 'h3';
+
+// Arizona: guide for AI assistants at /llms.txt. Served as a route because plentyONE only allows public/_nuxt-plenty/.
+const LLMS_TXT = `# Arizona Shopping
 
 > Online-Shop für Damen-, Herren- und Kindermode bekannter Marken (u. a. ONLY, Jack & Jones, Vero Moda, Tom Tailor, Mavi, Noisy May) zu günstigen Preisen. Betreiber: ARIZONAS GmbH, Worms (Deutschland). Lieferung nur innerhalb Deutschlands.
 
@@ -27,3 +30,10 @@
 - [Impressum](https://www.arizona-shopping.de/legal-disclosure)
 - [Datenschutz](https://www.arizona-shopping.de/privacy-policy)
 - [Kontakt](https://www.arizona-shopping.de/contact)
+`;
+
+export default eventHandler((event) => {
+  setHeader(event, 'Content-Type', 'text/plain; charset=utf-8');
+  setHeader(event, 'Cache-Control', 'public, max-age=3600');
+  return LLMS_TXT;
+});
