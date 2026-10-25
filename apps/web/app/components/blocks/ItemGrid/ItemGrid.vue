@@ -4,6 +4,9 @@
       <h1 class="typography-headline-4 @md:typography-headline-3 font-bold">{{ categoryName }}</h1>
       <span class="typography-text-sm text-neutral-600">{{ totalProducts }} Artikel</span>
     </div>
+    <p v-if="categoryText" class="typography-text-sm text-neutral-600 max-w-3xl mb-4" data-testid="category-intro-text">
+      {{ categoryText }}
+    </p>
     <ArizonaFilterBar
       v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
       :facets="productsCatalog.facets"
@@ -100,6 +103,11 @@ const products = computed(() => productsCatalog.value.products || []);
 const categoryName = computed(() =>
   productsCatalog.value.category ? categoryGetters.getCategoryName(productsCatalog.value.category) : '',
 );
+
+const categoryText = computed(() => {
+  const id = productsCatalog.value.category?.id;
+  return id ? (ARIZONA_CATEGORY_TEXTS[Number(id)] ?? '') : '';
+});
 
 // Arizona: every colour of an item is its own card; collect the siblings so each card can preview the other colours.
 const productsByItem = computed(() => {

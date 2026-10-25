@@ -94,7 +94,11 @@ export const useProduct: UseProductReturn = (slug) => {
     const titleSuffix = getOgTitle() || runtimeConfig.ogTitle;
 
     const title =
-      productGetters.getTitle(state.value.data) || buildProductTitle(getDisplayName(state.value.data), titleSuffix);
+      productGetters.getTitle(state.value.data) ||
+      buildProductTitle(getDisplayName(state.value.data), titleSuffix, 75, {
+        brand: productGetters.getManufacturer(state.value.data)?.externalName,
+        color: getShoppingAttributeValue(state.value.data, 'color').replace(/-\d+$/, ''),
+      });
 
     useHead({
       title,

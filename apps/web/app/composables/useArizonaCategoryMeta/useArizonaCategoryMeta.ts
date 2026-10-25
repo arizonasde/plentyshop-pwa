@@ -12,7 +12,7 @@ export const useArizonaCategoryMeta = () => {
   const runtimeConfig = useRuntimeConfig().public;
 
   const label = computed(() => {
-    if (locale.value !== 'de' || !productsCatalog.value?.category) return '';
+    if (locale.value !== 'de' || productsCatalog.value?.category?.type !== 'item') return '';
     const path = breadcrumbGetters
       .mapFromCategoryBreadcrumbs(productsCatalog.value.breadcrumbs ?? [])
       .map((breadcrumb) => breadcrumb.name);

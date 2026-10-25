@@ -1,5 +1,8 @@
 <template>
-  <div class="w-full p-5 overflow-x-auto break-words no-preflight" v-html="getHTMLTexts()" />
+  <div class="w-full p-5">
+    <h1 class="font-bold typography-headline-3 @md:typography-headline-2 mb-4">{{ t('legal.legalDisclosure') }}</h1>
+    <div class="overflow-x-auto break-words no-preflight" v-html="getHTMLTexts()" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -15,6 +18,7 @@ const { setPageMeta } = usePageMeta();
 
 const icon = 'page';
 setPageMeta(t('legal.legalDisclosure'), icon);
+useArizonaStaticPageHead(t('legal.legalDisclosure'), 'Impressum von Arizona Shopping (ARIZONAS GmbH, Worms): Anbieterkennung, Kontaktdaten und Registerangaben.');
 
 definePageMeta({
   pageType: 'static',

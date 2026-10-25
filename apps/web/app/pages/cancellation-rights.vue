@@ -27,6 +27,7 @@ const getHTMLTexts = () => {
 
 const icon = 'page';
 setPageMeta(t('legal.cancellationRights'), icon);
+useArizonaStaticPageHead(t('legal.cancellationRights'), 'Widerrufsbelehrung von Arizona Shopping mit Hinweisen zur Rücksendung deiner Bestellung.');
 
 await getRobots();
 setRobotForStaticPage('CancellationRights');

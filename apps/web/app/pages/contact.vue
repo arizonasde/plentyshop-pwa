@@ -177,6 +177,7 @@ const { setPageMeta } = usePageMeta();
 
 const icon = 'page';
 setPageMeta(t('contact.label'), icon);
+useArizonaStaticPageHead(t('contact.label'), 'Kontakt zu Arizona Shopping: Fragen zu Bestellung, Versand, Rücksendung und Größen.');
 
 const contactShopEmail = getContactShopEmail() ?? '';
 const turnstileSiteKey = getSetting() ?? '';

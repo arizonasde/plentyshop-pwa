@@ -35,19 +35,30 @@ export const buildReturnPolicy = (): MerchantReturnPolicy => ({
 });
 
 /**
- * Builds the document title from the product name and a short shop suffix.
- * Drops a leading "[Paket]" marker and shortens the name at a word boundary so the title stays within `maxLength`.
+ * Builds the document title: brand, product name and colour plus a short shop suffix,
+ * e.g. "NOISY MAY Damen Kleid Lang Rundhals – Dunkelgrau | Arizona Shopping".
+ * Drops a leading "[Paket]" marker; when too long only the name is shortened (at a word boundary),
+ * so brand and colour stay visible within `maxLength`.
  */
-export const buildProductTitle = (name: string, suffix: string, maxLength = 65): string => {
+export const buildProductTitle = (
+  name: string,
+  suffix: string,
+  maxLength = 65,
+  extras: { brand?: string; color?: string } = {},
+): string => {
   const cleanName = name.replace(/^\s*\[paket\]\s*/i, '').trim();
-  const tail = suffix ? ` | ${suffix}` : '';
-  if (cleanName.length + tail.length <= maxLength) return `${cleanName}${tail}`;
+  const brand = extras.brand?.trim() ?? '';
+  const color = extras.color?.trim() ?? '';
+  const head = brand && !cleanName.toLowerCase().includes(brand.toLowerCase()) ? `${brand} ` : '';
+  const colorTail = color && !cleanName.toLowerCase().includes(color.toLowerCase()) ? ` – ${color}` : '';
+  const tail = `${colorTail}${suffix ? ` | ${suffix}` : ''}`;
+  if (head.length + cleanName.length + tail.length <= maxLength) return `${head}${cleanName}${tail}`;
 
-  const room = Math.max(maxLength - tail.length - 1, 10);
+  const room = Math.max(maxLength - head.length - tail.length - 1, 10);
   const cut = cleanName.slice(0, room);
   const lastSpace = cut.lastIndexOf(' ');
   const shortened = (lastSpace > room / 2 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:–-]+$/, '');
-  return `${shortened}…${tail}`;
+  return `${head}${shortened}…${tail}`;
 };
 
 /**
@@ -146,3 +157,19 @@ export const toPlainText = (htmlText: string, maxLength = 5000): string =>
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, maxLength);
+
+/**
+ * Arizona: slims the category listing response before it is stored and sent to the browser.
+ * Cards only use the first two images (main and hover image) and no long description, so the rest is dropped;
+ * this roughly halves the HTML of a category page.
+ */
+export const trimListingProducts = <T extends { data?: { products?: Product[] } }>(response: T): T => {
+  for (const product of response?.data?.products ?? []) {
+    if (product.images) {
+      if (product.images.all?.length > 2) product.images.all = product.images.all.slice(0, 2);
+      if (product.images.variation?.length > 2) product.images.variation = product.images.variation.slice(0, 2);
+    }
+    if (product.texts?.description) product.texts.description = '';
+  }
+  return response;
+};

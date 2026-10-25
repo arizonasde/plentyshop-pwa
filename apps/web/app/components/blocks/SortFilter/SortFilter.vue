@@ -1,5 +1,10 @@
 <template>
-  <div v-if="showSortAndFilter" data-testid="category-sort-filter">
+  <!-- Arizona: on large screens the filter column stays in view while the product list scrolls -->
+  <div
+    v-if="showSortAndFilter"
+    data-testid="category-sort-filter"
+    class="@md:max-h-[calc(100vh-2rem)] @md:overflow-y-auto scrollbar-hidden"
+  >
     <CategorySidebar class="sidebar w-full" :is-open="isOpen" @close="close">
       <template v-for="key in props.content?.filtersOrder" :key="key">
         <template v-if="key === 'category' && props.content?.fields.category">
@@ -126,3 +131,14 @@ watch(
   }
 }
 </i18n>
+
+<style>
+/* Arizona: the grid row that holds the filter sticks below the top edge (the row wrapper is only as tall as the
+   filter, the grid column around it spans the whole product list) */
+@media (min-width: 768px) {
+  [class~='group/row']:has(> * [data-testid='category-sort-filter']) {
+    position: sticky;
+    top: 1rem;
+  }
+}
+</style>

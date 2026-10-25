@@ -1,5 +1,8 @@
 <template>
-  <div class="w-full p-5 overflow-x-auto break-words no-preflight" v-html="getHTMLTexts()" />
+  <div class="w-full p-5">
+    <h1 class="font-bold typography-headline-3 @md:typography-headline-2 mb-4">{{ t('legal.cancellationForm') }}</h1>
+    <div class="overflow-x-auto break-words no-preflight" v-html="getHTMLTexts()" />
+  </div>
 
   <div class="mx-auto my-8 w-full max-w-4xl rounded-md border border-neutral-200 bg-white p-8">
     <h2 class="mb-6 text-2xl font-semibold text-neutral-900">
@@ -161,6 +164,7 @@ const { setPageMeta } = usePageMeta();
 const localePath = useLocalizedPath();
 
 setPageMeta(t('legal.cancellationForm'), 'page');
+useArizonaStaticPageHead(t('legal.cancellationForm'), 'Widerrufsformular von Arizona Shopping: Vertrag einfach online widerrufen.');
 
 await getLegalTexts({ type: 'WithdrawalForm' });
 
