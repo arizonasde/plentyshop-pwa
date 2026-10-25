@@ -73,7 +73,13 @@
           <SfIconMenu aria-hidden="true" />
         </UiButton>
 
-        <div v-if="isSectionVisible('logo')" class="flex items-center justify-center" :style="slotStyle('logo')">
+        <ArizonaMainCategoryPills v-if="isFashionLayout" class="flex-1 min-w-0" :style="{ order: 0 }" />
+
+        <div
+          v-if="isSectionVisible('logo')"
+          class="flex items-center justify-center"
+          :style="isFashionLayout ? { order: 1, flex: '0 0 auto', margin: '0 24px' } : slotStyle('logo')"
+        >
           <NuxtLink
             id="blockified-logo"
             data-testid="logo-link"
@@ -86,7 +92,7 @@
         </div>
 
         <div
-          v-if="isSectionVisible('search')"
+          v-if="isSectionVisible('search') && !isFashionLayout"
           ref="iconSearchContainerRef"
           class="flex items-center justify-center min-w-0"
           :style="slotStyle('search')"
@@ -131,8 +137,9 @@
 
         <nav
           v-if="isSectionVisible('actions')"
-          class="flex flex-row flex-nowrap items-center justify-center"
-          :style="slotStyle('actions')"
+          class="flex flex-row flex-nowrap items-center"
+          :class="isFashionLayout ? 'justify-end' : 'justify-center'"
+          :style="isFashionLayout ? { order: 2, flex: '1' } : slotStyle('actions')"
         >
           <template v-if="isActionVisible('language')">
             <UiButton
@@ -419,6 +426,9 @@ const isActive = computed(() => isLanguageSelectOpen);
 onNuxtReady(async () => {
   cartItemsCount.value = cart.value?.items?.reduce((price, { quantity }) => price + quantity, 0) ?? 0;
 });
+
+// Arizona: on large screens main categories left, logo centred, actions right; search moves into the navigation row.
+const isFashionLayout = computed(() => viewport.isGreaterOrEquals('lg'));
 
 const isIconSearchExpanded = ref(false);
 const showSearchIcon = ref(true);

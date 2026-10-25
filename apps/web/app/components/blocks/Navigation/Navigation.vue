@@ -1,17 +1,23 @@
 <template>
   <div ref="referenceRef" :style="navigationRootStyle" class="relative w-full">
-    <nav v-if="viewport.isGreaterOrEquals('lg')" ref="floatingRef" @mouseleave="onMouseLeave">
-      <ul :class="navigationContainerClasses" :style="navigationContainerStyle" @focusout="onNavBlur">
-        <li v-if="categoryTree.length === 0" class="h-10" />
+    <nav
+      v-if="viewport.isGreaterOrEquals('lg')"
+      ref="floatingRef"
+      class="flex items-center gap-4 border-b nav-border border-b-solid"
+      :style="navigationContainerStyle"
+      @mouseleave="onMouseLeave"
+    >
+      <ul :class="navigationContainerClasses" class="flex-1 min-w-0" @focusout="onNavBlur">
+        <li v-if="rowItems.length === 0" class="h-10" />
 
-        <li v-for="(menuNode, index) in categoryTree" v-else :key="index" @mouseenter="onCategoryMouseEnter(menuNode)">
+        <li v-for="(menuNode, index) in rowItems" v-else :key="menuNode.id" @mouseenter="onCategoryMouseEnter(menuNode)">
           <NuxtLink
             v-if="menuNode.childCount > 0"
             ref="triggerReference"
             :to="localePath(generateCategoryLink(menuNode))"
             data-testid="category-button"
             :class="[categoryButtonClasses, isActiveMainCategory(menuNode) && activeButtonClasses]"
-            :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
+            :style="categoryButtonStyle"
             tabindex="0"
             aria-haspopup="true"
             :aria-expanded="isOpen && activeNode[0] === menuNode.id ? 'true' : 'false'"
@@ -25,16 +31,6 @@
             @keydown.right="focusNextCategory(index)"
           >
             <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
-            <SfIconChevronRight
-              aria-hidden="true"
-              class="rotate-90"
-              :class="
-                isActiveMainCategory(menuNode)
-                  ? 'text-white'
-                  : 'text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900'
-              "
-              :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
-            />
           </NuxtLink>
 
           <NuxtLink
@@ -43,7 +39,7 @@
             :to="localePath(generateCategoryLink(menuNode))"
             data-testid="category-button"
             :class="[categoryButtonClasses, isActiveMainCategory(menuNode) && activeButtonClasses]"
-            :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
+            :style="categoryButtonStyle"
             tabindex="0"
             @keydown.left="focusPreviousCategory(index)"
             @keydown.right="focusNextCategory(index)"
@@ -116,6 +112,7 @@
           </div>
         </li>
       </ul>
+      <UiSearch class="w-64 @xl:w-80 shrink-0" />
     </nav>
 
     <template v-else>
@@ -259,14 +256,19 @@ const triggerReference = ref();
 const tappedCategoryId = ref<number | null>(null);
 const TOUCH_DETECTION_THRESHOLD = 500;
 const categoryButtonClasses =
-  'inline-flex items-center justify-center gap-2 font-semibold text-base rounded-full py-2 px-4 group mr-2 nav-hover-bg active:!bg-neutral-300';
-// Arizona: the main category the shopper is in is shown as a filled pill (like large fashion shops).
+  'inline-flex items-center justify-center text-sm rounded-full py-2 px-2.5 group nav-hover-bg active:!bg-neutral-300 whitespace-nowrap';
+// Arizona: this row lists the subcategories of the current main category (the main categories sit as pills in the
+// header row); the subcategory the shopper is in is underlined.
 const route = useRoute();
+const { currentMainCategory } = useArizonaMainCategory();
+const rowItems = computed(
+  () => categoryTree.value.find((node) => node.id === currentMainCategory.value?.id)?.children ?? categoryTree.value,
+);
 const isActiveMainCategory = (node: CategoryTreeItem) => {
   const base = localePath(generateCategoryLink(node)).replace(/\/$/, '');
   return base.length > 1 && (route.path === base || route.path.startsWith(`${base}/`));
 };
-const activeButtonClasses = '!bg-neutral-900 !text-white hover:!bg-neutral-800';
+const activeButtonClasses = 'font-semibold underline underline-offset-8 decoration-2';
 let removeHook: () => void;
 
 const trapFocusOptions = {
@@ -302,11 +304,11 @@ const navigationRootStyle = computed(() => ({
 const navigationContainerClasses = computed(() => {
   switch (resolvedContent.value.text.textAlignment) {
     case 'center':
-      return 'flex flex-wrap justify-center border-b nav-border border-b-solid';
+      return 'flex flex-wrap justify-center';
     case 'right':
-      return 'flex flex-wrap justify-end border-b nav-border border-b-solid';
+      return 'flex flex-wrap justify-end';
     default:
-      return 'flex flex-wrap justify-start border-b nav-border border-b-solid';
+      return 'flex flex-wrap justify-start';
   }
 });
 
@@ -373,12 +375,12 @@ const focusTrigger = (index: number) => {
 };
 
 const focusNextCategory = (currentIndex: number) => {
-  const nextIndex = (currentIndex + 1) % categoryTree.value.length;
+  const nextIndex = (currentIndex + 1) % rowItems.value.length;
   focusTrigger(nextIndex);
 };
 
 const focusPreviousCategory = (currentIndex: number) => {
-  const prevIndex = currentIndex === 0 ? categoryTree.value.length - 1 : currentIndex - 1;
+  const prevIndex = currentIndex === 0 ? rowItems.value.length - 1 : currentIndex - 1;
   focusTrigger(prevIndex);
 };
 
