@@ -1,6 +1,6 @@
 <template>
-  <div ref="cardRef" class="flex flex-col" data-testid="product-card">
-    <div class="relative overflow-hidden bg-[#F3F3F3]">
+  <div ref="cardRef" class="group/card flex flex-col" data-testid="product-card">
+    <div class="relative overflow-hidden rounded-lg bg-[#F3F3F3]">
       <UiBadges
         :use-tags="useTagsOnCategoryPage"
         :class="['absolute', isFromWishlist ? 'mx-2' : 'm-2']"
@@ -69,7 +69,7 @@
 
       <span
         v-if="discountPercent"
-        class="absolute bottom-2 left-2 bg-white px-1.5 py-0.5 typography-text-xs font-semibold text-[#C8102E]"
+        class="absolute bottom-2 left-2 rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white"
         data-testid="product-card-discount"
       >
         −{{ discountPercent }} %
@@ -80,6 +80,49 @@
           <WishlistButton square class="absolute top-0 right-0 mr-2 mt-2 bg-white/90 !rounded-full" :product="product" />
         </slot>
       </template>
+
+      <!-- Colours on hover (devices with a mouse); touch devices get the compact row below the image -->
+      <div
+        v-if="colorOptions.length > 1"
+        class="hidden [@media(hover:hover)]:group-hover/card:flex [@media(hover:hover)]:group-focus-within/card:flex absolute inset-x-0 bottom-0 z-raised flex-col gap-2 bg-white px-1 pt-2 pb-1"
+        data-testid="product-card-colors-hover"
+      >
+        <p class="typography-text-xs text-neutral-700">In {{ colorOptions.length }} Farben erhältlich</p>
+        <nav class="flex items-center gap-1.5" aria-label="Weitere Farben">
+          <template v-for="option in visibleColorOptions" :key="option.key">
+            <span
+              v-if="option.current"
+              class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
+              :title="option.name"
+            >
+              <NuxtImg
+                :src="option.imageUrl"
+                :alt="option.name"
+                width="48"
+                height="64"
+                loading="lazy"
+                class="w-full h-full object-contain mix-blend-multiply"
+              />
+            </span>
+            <NuxtLink
+              v-else
+              :to="option.path"
+              :title="option.name"
+              class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-500"
+            >
+              <NuxtImg
+                :src="option.imageUrl"
+                :alt="option.name"
+                width="48"
+                height="64"
+                loading="lazy"
+                class="w-full h-full object-contain mix-blend-multiply"
+              />
+            </NuxtLink>
+          </template>
+          <span v-if="hiddenColorCount" class="typography-text-xs text-neutral-600 ml-1">+{{ hiddenColorCount }}</span>
+        </nav>
+      </div>
     </div>
 
     <div
@@ -92,14 +135,14 @@
     >
       <nav
         v-if="colorOptions.length > 1"
-        class="flex items-center gap-1 mb-2"
+        class="flex items-center gap-1 mb-2 [@media(hover:hover)]:hidden"
         aria-label="Weitere Farben"
         data-testid="product-card-colors"
       >
         <template v-for="option in visibleColorOptions" :key="option.key">
           <span
             v-if="option.current"
-            class="w-8 aspect-[3/4] bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
+            class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
             :title="option.name"
           >
             <NuxtImg
@@ -115,7 +158,7 @@
             v-else
             :to="option.path"
             :title="option.name"
-            class="w-8 aspect-[3/4] bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
+            class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
           >
             <NuxtImg
               :src="option.imageUrl"

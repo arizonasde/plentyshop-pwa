@@ -1,5 +1,10 @@
 <template>
   <div class="flex-1">
+    <ArizonaFilterBar
+      v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
+      :facets="productsCatalog.facets"
+      class="mb-4"
+    />
     <template v-if="content?.showItemCount">
       <div
         class="flex items-center mb-6"

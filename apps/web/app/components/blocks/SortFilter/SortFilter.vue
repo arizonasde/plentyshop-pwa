@@ -10,15 +10,15 @@
           />
         </template>
 
-        <template v-if="key === 'sortBy' && props.content?.fields.sortBy">
+        <template v-if="key === 'sortBy' && props.content?.fields.sortBy && showFiltersInSidebar">
           <CategorySorting class="mb-6" />
         </template>
 
-        <template v-if="key === 'perPage' && props.content?.fields.perPage">
+        <template v-if="key === 'perPage' && props.content?.fields.perPage && showFiltersInSidebar">
           <CategoryItemsPerPage class="mb-6" :total-products="productsCatalog.pagination?.totals ?? 0" />
         </template>
 
-        <template v-if="key === 'itemRating' && props.content?.fields.itemRating">
+        <template v-if="key === 'itemRating' && props.content?.fields.itemRating && showFiltersInSidebar">
           <CategoryFiltersSort
             v-if="productsCatalog.facets && facetGetters.hasFilters(productsCatalog.facets)"
             class="mb-1"
@@ -28,7 +28,7 @@
           />
         </template>
 
-        <template v-if="key === 'manufacturer' && props.content?.fields.manufacturer">
+        <template v-if="key === 'manufacturer' && props.content?.fields.manufacturer && showFiltersInSidebar">
           <CategoryFiltersSort
             v-if="productsCatalog.facets && facetGetters.hasFilters(productsCatalog.facets)"
             class="mb-1"
@@ -38,7 +38,7 @@
           />
         </template>
 
-        <template v-if="key === 'price' && props.content?.fields.price">
+        <template v-if="key === 'price' && props.content?.fields.price && showFiltersInSidebar">
           <CategoryFiltersSort
             v-if="productsCatalog.facets && facetGetters.hasFilters(productsCatalog.facets)"
             class="mb-1"
@@ -48,7 +48,7 @@
           />
         </template>
 
-        <template v-if="key === 'availability' && props.content?.fields.availability">
+        <template v-if="key === 'availability' && props.content?.fields.availability && showFiltersInSidebar">
           <CategoryFiltersSort
             v-if="productsCatalog.facets && facetGetters.hasFilters(productsCatalog.facets)"
             class="mb-1"
@@ -58,7 +58,7 @@
           />
         </template>
 
-        <template v-if="key === 'customizedFilters' && props.content?.fields.customizedFilters">
+        <template v-if="key === 'customizedFilters' && props.content?.fields.customizedFilters && showFiltersInSidebar">
           <CategoryFiltersSort
             v-if="productsCatalog.facets && facetGetters.hasFilters(productsCatalog.facets)"
             class="mb-1"
@@ -99,6 +99,8 @@ const { isOpen, open, close } = useDisclosure();
 const { t } = useI18n({ useScope: 'global' });
 
 const viewport = useViewport();
+// Arizona: from md upwards sorting and filters live in the pill bar above the grid; the sidebar keeps the categories.
+const showFiltersInSidebar = computed(() => viewport.isLessThan('md'));
 const { isInEditorClient } = useEditorState();
 const clientPreview = computed(() => isInEditorClient.value && viewport.isGreaterOrEquals('lg'));
 
