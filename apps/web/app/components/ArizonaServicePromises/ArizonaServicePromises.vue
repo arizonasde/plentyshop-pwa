@@ -10,11 +10,15 @@
 <script setup lang="ts">
 import { SfIconCheck } from '@storefront-ui/vue';
 
-// Arizona service promises, shown next to every buying decision (product page, cart).
-const servicePromises = [
+// Arizona service promises, shown next to every buying decision (product page, cart). The delivery promise names the
+// concrete days once the page runs in the browser.
+const deliveryPromise = ref('Lieferung in 1–2 Werktagen');
+onMounted(() => (deliveryPromise.value = `Lieferung voraussichtlich ${formatArizonaDeliveryWindow()}`));
+
+const servicePromises = computed(() => [
   'Versand mit DHL für 4,90 €',
-  'Lieferung in 1–2 Werktagen',
+  deliveryPromise.value,
   'Bezahlen mit PayPal, SEPA-Lastschrift oder giropay',
   '60 Tage kostenlose Rückgabe',
-];
+]);
 </script>

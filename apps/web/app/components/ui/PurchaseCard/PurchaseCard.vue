@@ -71,7 +71,9 @@
               <UiBadges :product="product" :use-availability="false" :use-tags="true" class="mb-2" />
             </template>
             <template v-if="key === 'availability' && configuration?.fields.availability">
-              <UiBadges :product="product" :use-availability="true" :use-tags="false" class="mb-2" />
+              <!-- Arizona: concrete delivery window instead of the availability "Lieferzeit 1-2 Werktage" -->
+              <ArizonaDeliveryDate v-if="productGetters.isSalable(product)" class="mb-2" />
+              <UiBadges v-else :product="product" :use-availability="true" :use-tags="false" class="mb-2" />
             </template>
             <template v-if="key === 'variationProperties' && configuration?.fields.variationProperties">
               <div class="mb-2 variation-properties">
