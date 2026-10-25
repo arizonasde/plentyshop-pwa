@@ -76,17 +76,20 @@ const imageAlt =
 const imageTitle =
   productImageGetters.getImageName(image.value) || productImageGetters.getCleanImageName(image.value) || '';
 
-// Arizona: real widths of the plentyONE image sizes in this system – "middle" is 485 px wide (700 px high),
-// "preview" only 139 px and "secondPreview" as large as the original, so only middle and full are offered.
+// Arizona: real widths of the plentyONE image sizes in this system – "middle" fits into 700 × 700 px (485 px wide
+// for portrait photos), "secondPreview" into 800 × 1111 px (set on 25.10.2026 for phones), "preview" is only 139 px.
 const MIDDLE_IMAGE_WIDTH = 485;
+const SECOND_PREVIEW_IMAGE_WIDTH = 800;
 
 const getSourceSet = (image: ImagesData) => {
   const middle = productImageGetters.getImageUrlMiddle(image);
+  const secondPreview = productImageGetters.getImageUrlSecondPreview(image);
   const full = productImageGetters.getImageUrl(image);
   const fullWidth = productImageGetters.getImageWidth(image) || 1600;
 
   return `
     ${middle} ${MIDDLE_IMAGE_WIDTH}w,
+    ${secondPreview} ${SECOND_PREVIEW_IMAGE_WIDTH}w,
     ${full} ${fullWidth}w
   `;
 };
