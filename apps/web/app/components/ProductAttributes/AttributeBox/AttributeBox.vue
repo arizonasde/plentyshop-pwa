@@ -1,7 +1,7 @@
 <template>
   <div ref="rootRef" class="relative">
     <div class="mb-2 flex items-center justify-between gap-3">
-      <p :id="labelId" class="leading-5 text-sm font-semibold text-neutral-900">
+      <p :id="labelId" class="leading-5 text-base font-bold text-neutral-900">
         {{ productAttributeGetters.getAttributeName(attribute) }}
       </p>
       <!-- Arizona: size guide next to the size selection -->
@@ -11,15 +11,21 @@
     <!-- Arizona: size selection as a dropdown list with stock per size, like on Zalando -->
     <button
       type="button"
-      class="flex w-full min-h-12 items-center justify-between gap-3 rounded-md border bg-white px-4 text-left hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-      :class="errors['selectedValue'] ? 'border-negative-700 ring-1 ring-negative-700' : 'border-neutral-300'"
+      class="flex w-full min-h-14 items-center justify-between gap-3 rounded-md border-2 bg-white px-4 text-left hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+      :class="
+        errors['selectedValue']
+          ? 'border-negative-700'
+          : selectedOption
+            ? 'border-neutral-900'
+            : 'border-neutral-400'
+      "
       :aria-expanded="open"
       :aria-labelledby="labelId"
       aria-haspopup="listbox"
       data-testid="size-select-trigger"
       @click="open = !open"
     >
-      <span class="typography-text-base" :class="selectedOption ? 'font-medium' : 'text-neutral-500'">
+      <span class="typography-text-base" :class="selectedOption ? 'font-semibold' : 'text-neutral-600'">
         {{ selectedOption ? selectedOption.name : 'Größe wählen' }}
       </span>
       <span class="flex items-center gap-3">

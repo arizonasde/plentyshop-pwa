@@ -2,10 +2,10 @@
   <div>
     <label
       :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="block leading-5 text-base text-neutral-900 mb-3"
+      class="block leading-5 text-base text-neutral-900 mb-3 mt-2"
     >
-      <span class="font-semibold">{{ productAttributeGetters.getAttributeName(attribute) }}</span>
-      <span v-if="value">: {{ selectedAttributeValueName }}</span>
+      <span class="font-bold">{{ productAttributeGetters.getAttributeName(attribute) }}</span>
+      <span v-if="value" class="text-neutral-700">: {{ selectedAttributeValueName }}</span>
     </label>
     <!-- Arizona: large photo tiles per colour, like on large fashion shops -->
     <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="w-full flex gap-2 flex-wrap">
@@ -22,7 +22,8 @@
           class="isolate w-[6.75rem] h-[6.75rem] flex items-center justify-center rounded-md bg-[#F3F3F3] border border-transparent cursor-pointer hover:border-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           :class="{
             'opacity-40': productAttributeGetters.isAttributeValueDisabled(item),
-            '!border-neutral-900': value === productAttributeGetters.getAttributeValueId(item),
+            // Arizona: the chosen colour gets a clear black frame
+            '!border-neutral-900 ring-2 ring-neutral-900 ring-offset-2': value === productAttributeGetters.getAttributeValueId(item),
             '!border-negative-700': Boolean(errors['selectedValue']),
           }"
           :aria-pressed="value === productAttributeGetters.getAttributeValueId(item)"

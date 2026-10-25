@@ -132,7 +132,7 @@
                 v-if="product && productGetters.possibleUnitCombination(product).length > 1"
                 :product="product"
               />
-              <div ref="addToCartAreaRef" class="mt-4">
+              <div ref="addToCartAreaRef" class="mt-6">
                 <div class="flex flex-col @md:flex-row flex-wrap gap-4">
                   <UiQuantitySelector
                     v-if="productGetters.isActiveVariationSalable(product)"
@@ -158,7 +158,7 @@
                   >
                     <UiButton
                       :disabled="loading || !productGetters.isSalable(product)"
-                      class="w-full h-full"
+                      class="w-full h-full min-h-14 !text-lg !font-bold tracking-wide"
                       data-testid="add-to-cart"
                       size="lg"
                       type="submit"
@@ -180,7 +180,7 @@
                     :quantity="quantitySelectorValue"
                     variant="secondary"
                     square
-                    class="!m-0 !p-0 size-12 shrink-0 self-stretch h-auto min-h-12"
+                    class="!m-0 !p-0 w-14 shrink-0 self-stretch h-auto min-h-14"
                     data-testid="purchase-card-wishlist"
                   />
                   </div>
