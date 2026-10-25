@@ -10,13 +10,14 @@ describe('useProductRecommended', () => {
     expect(recommendedProducts.value).not.toBeUndefined();
   });
 
-  it('should request the last_seen facet with only the type argument', async () => {
+  it('should load last_seen products from the list in the browser, newest first', async () => {
+    localStorage.setItem('arizonaLastSeen', JSON.stringify([5, 3]));
     const { fetchProductRecommended } = useProductRecommended('last-seen-block');
-    const getFacet = useSdk().plentysystems.getFacet;
+    const getProductsByIds = useSdk().plentysystems.getProductsByIds;
 
     await fetchProductRecommended({ type: 'last_seen', categoryId: '16', itemId: '42' });
 
-    const payload = vi.mocked(getFacet).mock.calls.at(-1)?.[0];
-    expect(payload).toEqual({ type: 'last_seen' });
+    expect(vi.mocked(getProductsByIds).mock.calls.at(-1)?.[0]).toEqual({ variationIds: [5, 3] });
+    localStorage.removeItem('arizonaLastSeen');
   });
 });

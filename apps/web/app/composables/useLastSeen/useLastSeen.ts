@@ -28,6 +28,8 @@ export const useLastSeen = () => {
   const { getBooleanSetting: isLastSeenTrackingEnabled } = useSiteSettings('enableLastSeenTracking');
 
   const addLastSeen = (product: Product) => {
+    // Arizona: also remember the product in the browser for the slider "Zuletzt angesehen"
+    addArizonaLastSeen(Number(productGetters.getVariationId(product)));
     if (import.meta.client && isLastSeenTrackingEnabled()) {
       try {
         useSdk().plentysystems.doAddLastSeen(productGetters.getVariationId(product));

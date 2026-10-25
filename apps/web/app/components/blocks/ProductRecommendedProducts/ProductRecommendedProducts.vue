@@ -131,6 +131,13 @@ watch(
   { immediate: true },
 );
 
+// Arizona: refresh "Zuletzt angesehen" when moving from one product page to the next
+watch(itemId, async () => {
+  if (!isLastSeen.value || !shouldFetch.value) return;
+  const products = await fetchProductRecommended(contentSource.value);
+  registerBlockVisibility(props.meta.uuid, (products?.length ?? 0) > 0);
+});
+
 watch(
   [
     () => props.content.source?.categoryId,

@@ -47,6 +47,25 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
       return state.value.data;
     }
 
+    // Arizona: recently viewed products from the list in the browser, newest first
+    if (params.type === 'last_seen') {
+      const ids = readArizonaLastSeen();
+      if (ids.length === 0) {
+        state.value.loading = false;
+        return state.value.data;
+      }
+      try {
+        const { data } = await useSdk().plentysystems.getProductsByIds({ variationIds: ids });
+        const products = data?.products ?? [];
+        const position = (product: Product) => ids.indexOf(Number(product.variation?.id));
+        state.value.data = [...products].sort((a, b) => position(a) - position(b));
+      } catch {
+        // keep the previous list
+      }
+      state.value.loading = false;
+      return state.value.data;
+    }
+
     const common = {
       itemsPerPage: 20,
       sort: params.sort || 'sorting.price.avg_asc',
