@@ -1,16 +1,27 @@
 /**
  * Arizona: brands with their own landing page under /marken/<slug>.
- * `facetValueId` is the value of the brand filter ("Marke") in plentyONE; only brands with at least four items
+ * `facetValueId` is the value of the brand filter ("Marke") in plentyONE; brands without that filter value (Faera) are
+ * listed via `searchTerm` instead. Only brands with at least four items
  * in the shop are listed (as of 25.10.2026). The intros only state what is known about the brand or visible in
  * the assortment – no claims about materials, production or prices.
  */
-export const ARIZONA_BRANDS: { slug: string; name: string; facetValueId: number; intro: string }[] = [
+export const ARIZONA_BRANDS: ({ slug: string; name: string; intro: string } & (
+  | { facetValueId: number; searchTerm?: never }
+  | { searchTerm: string; facetValueId?: never }
+))[] = [
   {
     slug: 'sublevel',
     name: 'Sublevel',
     facetValueId: 50,
     intro:
       'Sublevel steht für lässige Alltagsmode für Damen und Herren: Hoodies, Teddy- und Winterjacken, Strick und bequeme Basics, die sich leicht kombinieren lassen.',
+  },
+  {
+    slug: 'faera',
+    name: 'Faera',
+    searchTerm: 'Faera',
+    intro:
+      'Faera steht bei uns für Schals und Mützen für Damen: Dreieckstücher und Karoschals mit Fransen, leichte Tücher mit Print und gerippte Strickmützen – in vielen Farben.',
   },
   {
     slug: 'jack-and-jones',

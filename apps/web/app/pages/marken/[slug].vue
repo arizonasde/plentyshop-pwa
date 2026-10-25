@@ -74,13 +74,20 @@ const currentPage = computed(() => Number(route.query.page) || 1);
 const { data } = await useAsyncData(
   () => `arizona-brand-${brand.slug}-${currentPage.value}`,
   () =>
-    useSdk().plentysystems.getFacet({
-      type: 'all',
-      facets: String(brand.facetValueId),
-      itemsPerPage: PAGE_SIZE,
-      page: currentPage.value,
-      sort: 'item.score',
-    }),
+    brand.searchTerm
+      ? useSdk().plentysystems.getSearch({
+          term: brand.searchTerm,
+          itemsPerPage: PAGE_SIZE,
+          page: currentPage.value,
+          sort: 'item.score',
+        })
+      : useSdk().plentysystems.getFacet({
+          type: 'all',
+          facets: String(brand.facetValueId),
+          itemsPerPage: PAGE_SIZE,
+          page: currentPage.value,
+          sort: 'item.score',
+        }),
   { transform: trimListingProducts, watch: [currentPage] },
 );
 
