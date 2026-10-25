@@ -21,6 +21,7 @@
 import { productGetters, productPropertyGetters } from '@plentymarkets/shop-api';
 import type { Product, VariationProperty } from '@plentymarkets/shop-api';
 import type { VariationPropertiesProps, ComponentsMapper } from './types';
+import { isArizonaManufacturerNumber } from '~/utils/arizonaManufacturerNumber';
 import VariationPropertyText from '~/components/VariationPropertyText/VariationPropertyText.vue';
 import VariationPropertyHtml from '~/components/VariationPropertyHtml/VariationPropertyHtml.vue';
 import VariationPropertyDate from '~/components/VariationPropertyDate/VariationPropertyDate.vue';
@@ -40,7 +41,10 @@ const itemCanonicalId = computed(() => getNumberSetting(-1));
 const variationPropertyGroups = computed(() => productGetters.getPropertyGroups(props.product ?? ({} as Product)));
 
 const showProperty = (property: VariationProperty) => {
-  return propertyHasNameOrValue(property) && property.id !== itemCanonicalId.value;
+  // Arizona: the manufacturer number is listed in the "Artikeldetails" instead
+  return (
+    propertyHasNameOrValue(property) && property.id !== itemCanonicalId.value && !isArizonaManufacturerNumber(property)
+  );
 };
 
 const componentsMapper: ComponentsMapper = {

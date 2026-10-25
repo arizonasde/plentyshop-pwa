@@ -108,33 +108,7 @@
               />
             </template>
 
-            <template v-if="key === 'addToWishlist' && configuration?.fields.addToWishlist">
-              <div
-                :class="{ 'justify-center': configuration?.wishlistSize === 'large' }"
-                class="flex items-center mt-2"
-              >
-                <WishlistButton
-                  :class="{
-                    'mr-2 mb-2 bg-white': viewport.isLessThan('lg'),
-                    'w-full': configuration?.wishlistSize === 'large',
-                    '!p-0 hover:bg-transparent active:bg-transparent': configuration?.wishlistSize === 'small',
-                  }"
-                  :product="product"
-                  :quantity="quantitySelectorValue"
-                  :square="viewport.isLessThan('lg')"
-                  :variant="wishlistButtonVariant"
-                  class="!m-0 !mb-2"
-                >
-                  <div>
-                    {{
-                      !isWishlistItem(productGetters.getVariationId(product))
-                        ? t('common.actions.addToWishlist')
-                        : t('common.actions.removeFromWishlist')
-                    }}
-                  </div>
-                </WishlistButton>
-              </div>
-            </template>
+            <!-- Arizona: the wishlist button sits next to "In den Warenkorb" (see the add to cart area) -->
 
             <template v-if="key === 'attributes' && configuration?.fields.attributes">
               <ProductAttributes :product="product" />
@@ -167,6 +141,8 @@
                     class="min-w-[145px] flex-grow-0 flex-shrink-0 basis-0"
                     @change-quantity="changeQuantity"
                   />
+                  <!-- Arizona: add to cart with a square heart button next to it, like on About You -->
+                  <div class="flex flex-grow-[2] flex-shrink basis-auto gap-2">
                   <div
                     v-if="showNotifyMe && !productGetters.isActiveVariationSalable(product)"
                     class="flex-grow-[2] flex-shrink basis-auto whitespace-nowrap"
@@ -198,6 +174,16 @@
                       </template>
                     </UiButton>
                   </SfTooltip>
+                  <WishlistButton
+                    v-if="configuration?.fields.addToWishlist"
+                    :product="product"
+                    :quantity="quantitySelectorValue"
+                    variant="secondary"
+                    square
+                    class="!m-0 !p-0 size-12 shrink-0 self-stretch h-auto min-h-12"
+                    data-testid="purchase-card-wishlist"
+                  />
+                  </div>
                 </div>
 
                 <div class="mt-4 typography-text-xs flex gap-1">
@@ -276,6 +262,15 @@
         <SfLoaderCircular v-if="loading" size="sm" />
         <span v-else>{{ t('common.actions.addToCart') }}</span>
       </UiButton>
+      <WishlistButton
+        v-if="configuration?.fields.addToWishlist"
+        :product="product"
+        :quantity="quantitySelectorValue"
+        variant="secondary"
+        square
+        class="!m-0 !p-0 size-12 shrink-0 !rounded-full"
+        data-testid="sticky-wishlist"
+      />
     </div>
   </form>
 </template>
@@ -369,7 +364,6 @@ const {
 const { clear, send } = useNotification();
 const { addToCart, loading } = useCart();
 const quantitySelectorValue = ref(productGetters.getMinimumOrderQuantity(props?.product));
-const { isWishlistItem } = useWishlist();
 const { openQuickCheckout } = useQuickCheckout();
 const { crossedPrice, price: currentPrice } = useProductPrice(props?.product);
 const { format } = usePriceFormatter();
@@ -434,9 +428,6 @@ onBeforeRouteLeave(() => {
   resetAttributeFields();
 });
 
-const wishlistButtonVariant = computed(() => {
-  return props.configuration?.wishlistSize === 'small' ? 'tertiary' : 'secondary';
-});
 const priceWithProperties = computed(
   () =>
     (productGetters.getSpecialOffer(props?.product) ||

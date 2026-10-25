@@ -19,6 +19,9 @@
           class="no-preflight [&>p:first-child]:mt-0 [&>p:last-child]:mb-0"
           v-html="text"
         />
+        <p v-if="manufacturerNumber" class="mt-4 typography-text-sm" data-testid="item-text-manufacturer-number">
+          <span class="font-semibold">Herstellernummer:</span> {{ manufacturerNumber }}
+        </p>
       </UiAccordionItem>
       <UiDivider v-if="initiallyCollapsed && text?.length" class="mb-2 mt-2" />
     </div>
@@ -27,6 +30,9 @@
         {{ content.text.title }}
       </h2>
       <div v-if="text" class="no-preflight [&>p:first-child]:mt-0 [&>p:last-child]:mb-0" v-html="text" />
+      <p v-if="manufacturerNumber" class="mt-4 typography-text-sm" data-testid="item-text-manufacturer-number">
+        <span class="font-semibold">Herstellernummer:</span> {{ manufacturerNumber }}
+      </p>
     </div>
   </div>
 </template>
@@ -34,6 +40,7 @@
 <script setup lang="ts">
 import { productGetters } from '@plentymarkets/shop-api';
 import type { ItemTextProps } from './types';
+import { getArizonaManufacturerNumber } from '~/utils/arizonaManufacturerNumber';
 
 const props = defineProps<ItemTextProps>();
 const initiallyCollapsed = computed(() => !props.content?.layout.initiallyCollapsed);
@@ -41,6 +48,8 @@ const displayAsCollapsable = computed(() => props.content?.layout.displayAsColla
 const { currentProduct } = useProducts();
 const content = computed(() => props.content);
 const text = computed(() => productGetters.getDescription(currentProduct.value));
+// Arizona: manufacturer number below the description (moved here from the purchase area)
+const manufacturerNumber = computed(() => getArizonaManufacturerNumber(currentProduct.value));
 const inlineStyle = computed(() => {
   const layout = props.content?.layout || {};
   return {
