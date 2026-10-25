@@ -9,15 +9,19 @@
 
 <script setup lang="ts">
 import { SfIconCheck } from '@storefront-ui/vue';
+import { getArizonaDeliveryPromise } from '~/utils/arizonaDelivery';
+import type { ArizonaServicePromisesProps } from './types';
+
+const props = defineProps<ArizonaServicePromisesProps>();
 
 // Arizona service promises, shown next to every buying decision (product page, cart). The delivery promise names the
 // concrete days once the page runs in the browser.
 const deliveryPromise = ref('Lieferung in 1–3 Werktagen');
-onMounted(() => (deliveryPromise.value = `Lieferung voraussichtlich ${formatArizonaDeliveryWindow()}`));
+onMounted(() => (deliveryPromise.value = `Lieferung voraussichtlich ${getArizonaDeliveryPromise().window}`));
 
 const servicePromises = computed(() => [
   'Versand mit DHL für 4,90 €',
-  deliveryPromise.value,
+  ...(props.withoutDelivery ? [] : [deliveryPromise.value]),
   'Bezahlen mit PayPal, SEPA-Lastschrift oder giropay',
   '60 Tage kostenlose Rückgabe',
 ]);

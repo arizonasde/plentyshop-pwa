@@ -130,7 +130,6 @@ export const formatArizonaDeliveryWindow = (now = new Date()) => {
   return `${formatArizonaDeliveryDay(earliest)} – ${formatArizonaDeliveryDay(latest)}`;
 };
 
-const WEEKDAYS_LONG = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
 const MONTHS_LONG = [
   'Januar',
   'Februar',
@@ -154,16 +153,18 @@ export const formatArizonaDuration = (minutes: number) => {
 };
 
 /**
- * Earliest delivery day with the time left to order for it, e.g. { day: "Morgen, 26. Oktober", orderWithin: "29 Min." }
- * or { day: "Dienstag, 27. Oktober", … }.
+ * Delivery window of the first two delivery days with the time left to order for it, e.g.
+ * { window: "Di, 27. – Mi, 28. Oktober", orderWithin: "29 Min." } or "Sa, 31. Oktober – Mo, 2. November".
  */
 export const getArizonaDeliveryPromise = (now = new Date()) => {
   const { earliest, minutesToCutoff } = getArizonaShipping(now);
-  const { today } = germanNow(now);
-  const daysAhead = Math.round((earliest.getTime() - today.getTime()) / 86_400_000);
-  const label = daysAhead === 1 ? 'Morgen' : daysAhead === 2 ? 'Übermorgen' : WEEKDAYS_LONG[earliest.getUTCDay()];
+  const second = nextDay(earliest, isDeliveryDay);
+  const day = (d: Date) => `${WEEKDAYS_SHORT[d.getUTCDay()]}, ${d.getUTCDate()}.`;
+  const sameMonth = earliest.getUTCMonth() === second.getUTCMonth();
   return {
-    day: `${label}, ${earliest.getUTCDate()}. ${MONTHS_LONG[earliest.getUTCMonth()]}`,
+    window: sameMonth
+      ? `${day(earliest)} – ${day(second)} ${MONTHS_LONG[second.getUTCMonth()]}`
+      : `${day(earliest)} ${MONTHS_LONG[earliest.getUTCMonth()]} – ${day(second)} ${MONTHS_LONG[second.getUTCMonth()]}`,
     orderWithin: formatArizonaDuration(minutesToCutoff),
   };
 };

@@ -203,7 +203,7 @@
                 </div>
                 <ArizonaBestsellerHint :item-id="Number(productGetters.getItemId(product))" class="mt-5" />
                 <ArizonaShippingCountdown class="mt-4" />
-                <ArizonaServicePromises class="mt-4" />
+                <ArizonaServicePromises without-delivery class="mt-4" />
                 <template v-if="showPayPalButtons">
                   <PayPalExpressButton
                     class="mt-4"

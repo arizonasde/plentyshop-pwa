@@ -33,18 +33,23 @@ describe('arizonaDelivery', () => {
 });
 
 describe('getArizonaDeliveryPromise', () => {
-  it('names the earliest delivery day and the time left until the cut-off', () => {
+  it('names the first two delivery days and the time left until the cut-off', () => {
     expect(getArizonaDeliveryPromise(new Date('2026-10-27T11:31:00+01:00'))).toEqual({
-      day: 'Morgen, 28. Oktober',
+      window: 'Mi, 28. – Do, 29. Oktober',
       orderWithin: '29 Min.',
     });
   });
 
   it('counts down to the next working day after the cut-off', () => {
     expect(getArizonaDeliveryPromise(new Date('2026-10-25T23:00:00+01:00'))).toEqual({
-      day: 'Übermorgen, 27. Oktober',
+      window: 'Di, 27. – Mi, 28. Oktober',
       orderWithin: '13 Std. 0 Min.',
     });
-    expect(getArizonaDeliveryPromise(new Date('2026-10-30T13:00:00+01:00')).day).toBe('Dienstag, 3. November');
+  });
+
+  it('writes both months when the window spans two months', () => {
+    expect(getArizonaDeliveryPromise(new Date('2026-10-30T09:00:00+01:00')).window).toBe(
+      'Sa, 31. Oktober – Mo, 2. November',
+    );
   });
 });
