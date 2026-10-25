@@ -9,7 +9,7 @@
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
         type="button"
-        class="border min-h-11 border-neutral-300 bg-white text-neutral-900 cursor-pointer hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        class="border rounded-md min-h-11 border-neutral-300 bg-white text-neutral-900 cursor-pointer hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
         :class="{
           'text-neutral-400 line-through': productAttributeGetters.isAttributeValueDisabled(item),
           '!border-neutral-900 ring-1 ring-neutral-900': value === productAttributeGetters.getAttributeValueId(item),
