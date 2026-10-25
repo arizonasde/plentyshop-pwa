@@ -213,7 +213,8 @@
                     </template>
                   </i18n-t>
                 </div>
-                <ArizonaServicePromises class="mt-5" />
+                <ArizonaShippingCountdown class="mt-5" />
+                <ArizonaServicePromises class="mt-4" />
                 <template v-if="showPayPalButtons">
                   <PayPalExpressButton
                     class="mt-4"

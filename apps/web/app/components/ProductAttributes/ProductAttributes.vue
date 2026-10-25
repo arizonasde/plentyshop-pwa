@@ -5,6 +5,7 @@
         :is="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
         v-if="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
         :attribute="attribute"
+        :product="product"
       />
     </div>
   </div>
