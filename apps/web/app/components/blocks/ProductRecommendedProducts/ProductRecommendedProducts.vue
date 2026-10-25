@@ -108,10 +108,14 @@ const contentSource = computed(() => ({
   ...(props.content.source?.type === 'same_color' && sameColorFacet.value && { facets: String(sameColorFacet.value) }),
 }));
 
-// Arizona: the product the shopper is looking at does not appear in its own sliders
+// Arizona: on a product page the product itself does not appear in its own sliders. Only there – the last viewed
+// product stays in the state after leaving the page and must not be hidden elsewhere (e.g. on the home page).
+const route = useRoute();
+const isProductPage = computed(() => route.meta?.type === 'product');
 const sliderProducts = computed(() =>
   (recommendedProducts.value ?? []).filter(
-    (product) => !itemId.value || String(productGetters.getItemId(product)) !== String(itemId.value),
+    (product) =>
+      !isProductPage.value || !itemId.value || String(productGetters.getItemId(product)) !== String(itemId.value),
   ),
 );
 
