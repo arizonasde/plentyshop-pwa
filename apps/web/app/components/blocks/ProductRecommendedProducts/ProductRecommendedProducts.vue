@@ -84,6 +84,7 @@ watch(
     () => props.content.source?.itemId,
     () => props.content.source?.type,
     () => props.content.source?.crossSellingRelation,
+    () => props.content.source?.sort,
     () => locale.value,
   ],
   async () => {

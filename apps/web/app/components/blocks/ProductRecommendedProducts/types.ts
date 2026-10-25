@@ -20,6 +20,8 @@ export type ProductRecommendedProductsContent = {
     categoryId: string;
     itemId: string;
     crossSellingRelation: CrossSellingRelationType;
+    // Arizona: optional sort order, e.g. 'variation.createdAt_desc' for "new in" sliders (default: price ascending)
+    sort?: string;
   };
   text: {
     pretitle?: string;

@@ -28,7 +28,7 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
 
     const common = {
       itemsPerPage: 20,
-      sort: 'sorting.price.avg_asc',
+      sort: params.sort || 'sorting.price.avg_asc',
       type: params.type,
     };
 
@@ -45,7 +45,7 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
     const idForKey = params.type === 'cross_selling' ? params.itemId : params.categoryId;
 
     const { data, error } = await useAsyncData(
-      `useProductRecommended-${params.type}-${idForKey}-${params.crossSellingRelation}`,
+      `useProductRecommended-${params.type}-${idForKey}-${params.crossSellingRelation}-${params.sort ?? ''}`,
       () => useSdk().plentysystems.getFacet(payload),
     );
 
