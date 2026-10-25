@@ -28,6 +28,9 @@
         </span>
       </li>
     </ul>
+    <div class="mt-4 flex justify-center">
+      <ArizonaTrustBadge />
+    </div>
   </div>
 </template>
 

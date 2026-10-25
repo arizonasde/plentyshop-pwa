@@ -52,6 +52,7 @@
               <PaymentButtons />
             </ClientOnly>
             <ModuleComponentRendering area="checkout.afterBuyButton" />
+            <ArizonaSecureCheckout />
             <GuaranteeNoticeBanner
               v-if="isGuaranteeNoticeEnabled && guaranteeNoticeDisplayMode === GUARANTEE_NOTICE_DISPLAY_MODE.Inline"
               class="mt-4"

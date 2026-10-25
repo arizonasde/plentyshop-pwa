@@ -1,8 +1,12 @@
 <template>
   <div ref="rootRef" class="relative">
-    <p :id="labelId" class="leading-5 text-sm font-semibold text-neutral-900 mb-2">
-      {{ productAttributeGetters.getAttributeName(attribute) }}
-    </p>
+    <div class="mb-2 flex items-center justify-between gap-3">
+      <p :id="labelId" class="leading-5 text-sm font-semibold text-neutral-900">
+        {{ productAttributeGetters.getAttributeName(attribute) }}
+      </p>
+      <!-- Arizona: size guide next to the size selection -->
+      <ArizonaSizeGuide v-if="isSizeAttribute" />
+    </div>
 
     <!-- Arizona: size selection as a dropdown list with stock per size, like on Zalando -->
     <button
@@ -105,6 +109,14 @@ onClickOutside(rootRef, () => (open.value = false));
 onKeyStroke('Escape', () => (open.value = false));
 
 const itemId = computed(() => props.product?.item.id ?? 0);
+// Size guide only for real sizes, not for "One Size"
+const isSizeAttribute = computed(
+  () =>
+    /größe/i.test(productAttributeGetters.getAttributeName(props.attribute)) &&
+    productAttributeGetters
+      .getAttributeValues(props.attribute)
+      .some((item) => !/one ?size/i.test(productAttributeGetters.getAttributeValueName(item))),
+);
 const productName = computed(() => (props.product ? productGetters.getName(props.product) : ''));
 /** Values of the other attributes (e.g. "Farbe: Beige-2") for the notification. */
 const variantName = computed(() =>
