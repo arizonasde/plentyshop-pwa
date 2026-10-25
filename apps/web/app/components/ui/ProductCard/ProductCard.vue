@@ -191,7 +191,7 @@
             class="typography-text-sm font-semibold text-neutral-900 truncate"
             data-testid="productcard-manufacturer"
           >
-            {{ manufacturer.externalName }}
+            {{ formatBrandName(manufacturer.externalName ?? '') }}
           </div>
         </template>
         <template v-if="key === 'rating' && configuration?.fields?.rating">

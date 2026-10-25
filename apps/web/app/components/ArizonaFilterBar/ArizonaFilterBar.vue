@@ -67,7 +67,9 @@
             class="flex items-center gap-3 min-h-11 px-3 rounded-md cursor-pointer hover:bg-[#F3F3F3]"
           >
             <SfCheckbox :model-value="isSelected(filter.id)" @update:model-value="toggleFilter(filter.id, Boolean($event))" />
-            <span class="typography-text-sm flex-1">{{ filter.name }}</span>
+            <span class="typography-text-sm flex-1">
+              {{ facetGetters.getType(facet) === 'producer' ? formatBrandName(filter.name ?? '') : filter.name }}
+            </span>
             <span class="typography-text-xs text-neutral-500">{{ filter.count }}</span>
           </label>
         </template>

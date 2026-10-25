@@ -95,7 +95,7 @@ let timeout: ReturnType<typeof setTimeout> | undefined;
 const item = computed(() => lastUpdatedCartItem.value);
 const variation = computed(() => (item.value && cartGetters.getVariation(item.value)) || props.product);
 const name = computed(() => getDisplayName(variation.value));
-const brand = computed(() => productGetters.getManufacturer(variation.value)?.externalName ?? '');
+const brand = computed(() => getBrandName(variation.value));
 const image = computed(() => addModernImageExtension(productGetters.getMiddleImage(variation.value)));
 const attributes = computed(() => (item.value ? cartGetters.getItemAttributes(item.value) : []));
 // quantity and price of this item in the whole cart, not only of the latest click

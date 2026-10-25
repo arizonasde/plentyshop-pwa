@@ -52,8 +52,7 @@
             @click="slideTo(index)"
           >
             <NuxtImg
-              :alt="productImageGetters.getImageAlternate(image) || productImageGetters.getCleanImageName(image) || ''"
-              :title="productImageGetters.getImageName(image) ? productImageGetters.getImageName(image) : null"
+              :alt="thumbnailAlt(image, index)"
               class="rounded h-full w-full object-contain"
               :class="activeIndex === index ? 'border-primary-500' : ''"
               :width="productImageGetters.getImageWidth(image) ?? 80"
@@ -107,7 +106,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Thumbs, FreeMode, Keyboard, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { SfIconChevronLeft, SfIconChevronRight } from '@storefront-ui/vue';
-import { productImageGetters } from '@plentymarkets/shop-api';
+import { productImageGetters, type ImagesData } from '@plentymarkets/shop-api';
 import type { GalleryProps } from '~/components/Gallery/types';
 
 const props = withDefaults(defineProps<GalleryProps>(), {
@@ -124,6 +123,12 @@ const props = withDefaults(defineProps<GalleryProps>(), {
 });
 
 const { shouldEnableEditorFeatures } = useEditorState();
+// Arizona: thumbnails get the same descriptive alternative text as the large images
+const { currentProduct } = useProducts();
+const thumbnailAlt = (image: ImagesData, index: number) =>
+  Object.keys(currentProduct.value).length
+    ? buildProductImageAlt(currentProduct.value, productImageGetters.getImageAlternate(image), index)
+    : productImageGetters.getImageAlternate(image) || productImageGetters.getCleanImageName(image) || '';
 
 const configuration = computed(() => props.configuration);
 const { images } = toRefs(props);

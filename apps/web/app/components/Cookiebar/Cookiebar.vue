@@ -143,10 +143,10 @@
     </div>
   </div>
 
-  <!-- Button to Open Cookie Tab -->
+  <!-- Button to Open Cookie Tab (Arizona: on phones above the fixed add-to-cart bar) -->
   <div
     v-if="!visible"
-    class="z-cookiebar h-auto w-12 fixed bottom-[4.3rem] @md:bottom-2 left-2 @xl:left-auto @xl:right-2"
+    class="z-cookiebar h-auto w-12 fixed bottom-[9rem] @md:bottom-2 left-2 @xl:left-auto @xl:right-2"
   >
     <SfTooltip :label="t('CookieBar.Cookie Settings')" placement="left">
       <UiButton

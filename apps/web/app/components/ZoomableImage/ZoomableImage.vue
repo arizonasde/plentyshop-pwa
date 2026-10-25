@@ -71,10 +71,12 @@ const isMobile = computed(() => viewport.isLessThan('lg'));
 const showZoomHint = ref(false);
 
 const imageUrl = productImageGetters.getImageUrl(image.value);
-const imageAlt =
-  productImageGetters.getImageAlternate(image.value) || productImageGetters.getCleanImageName(image.value) || '';
-const imageTitle =
-  productImageGetters.getImageName(image.value) || productImageGetters.getCleanImageName(image.value) || '';
+// Arizona: describe the image with brand, name and colour instead of its file name
+const { currentProduct } = useProducts();
+const imageAlt = Object.keys(currentProduct.value).length
+  ? buildProductImageAlt(currentProduct.value, productImageGetters.getImageAlternate(image.value), index.value)
+  : productImageGetters.getImageAlternate(image.value) || productImageGetters.getCleanImageName(image.value) || '';
+const imageTitle = imageAlt;
 
 // Arizona: real widths of the plentyONE image sizes in this system – "middle" fits into 700 × 700 px (485 px wide
 // for portrait photos), "secondPreview" into 800 × 1111 px (set on 25.10.2026 for phones), "preview" is only 139 px.

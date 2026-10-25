@@ -165,7 +165,7 @@ const { format } = usePriceFormatter();
 const localePath = useLocalizedPath();
 
 const brandName = computed(() =>
-  cartItem.variation ? productGetters.getManufacturer(cartItem.variation)?.externalName || '' : '',
+  cartItem.variation ? getBrandName(cartItem.variation) : '',
 );
 const itemName = computed(
   () => (cartItem.variation && getDisplayName(cartItem.variation)) || cartGetters.getItemName(cartItem),

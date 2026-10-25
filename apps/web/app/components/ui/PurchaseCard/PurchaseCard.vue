@@ -148,7 +148,7 @@
                 v-if="product && productGetters.possibleUnitCombination(product).length > 1"
                 :product="product"
               />
-              <div class="mt-4">
+              <div ref="addToCartAreaRef" class="mt-4">
                 <div class="flex flex-col @md:flex-row flex-wrap gap-4">
                   <UiQuantitySelector
                     v-if="productGetters.isActiveVariationSalable(product)"
@@ -241,6 +241,28 @@
           </template>
         </section>
       </div>
+    </div>
+
+    <!-- Arizona: on phones the add-to-cart button stays reachable above the bottom bar once it scrolled out of view -->
+    <div
+      v-if="showStickyAddToCart"
+      class="fixed inset-x-0 bottom-[62px] z-sticky flex items-center gap-3 border-t border-neutral-200 bg-white px-4 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] @md:hidden"
+      data-testid="sticky-add-to-cart"
+    >
+      <div class="min-w-0 flex-1">
+        <p v-if="brandName" class="truncate text-xs text-neutral-600">{{ brandName }}</p>
+        <p class="font-semibold" :class="{ 'text-[#C8102E]': isReducedPrice }">{{ format(currentPrice) }}</p>
+      </div>
+      <UiButton
+        :disabled="loading || !productGetters.isSalable(product)"
+        class="flex-1 !rounded-full"
+        size="lg"
+        type="submit"
+        data-testid="sticky-add-to-cart-button"
+      >
+        <SfLoaderCircular v-if="loading" size="sm" />
+        <span v-else>{{ t('common.actions.addToCart') }}</span>
+      </UiButton>
     </div>
   </form>
 </template>
@@ -336,7 +358,29 @@ const { addToCart, loading } = useCart();
 const quantitySelectorValue = ref(productGetters.getMinimumOrderQuantity(props?.product));
 const { isWishlistItem } = useWishlist();
 const { openQuickCheckout } = useQuickCheckout();
-const { crossedPrice } = useProductPrice(props?.product);
+const { crossedPrice, price: currentPrice } = useProductPrice(props?.product);
+const { format } = usePriceFormatter();
+const isReducedPrice = computed(() => crossedPrice.value !== null && crossedPrice.value > currentPrice.value);
+
+// Arizona: the sticky bar shows on phones while the regular add-to-cart button is out of view
+// the area sits inside the v-for over the card fields, so Vue fills the ref with an array
+const addToCartAreaRef = ref<HTMLElement | HTMLElement[] | null>(null);
+const addToCartAreaVisible = ref(true);
+const showStickyAddToCart = computed(
+  () =>
+    viewport.isLessThan('md') &&
+    !addToCartAreaVisible.value &&
+    productGetters.isActiveVariationSalable(props.product),
+);
+onMounted(() => {
+  const area = Array.isArray(addToCartAreaRef.value) ? addToCartAreaRef.value[0] : addToCartAreaRef.value;
+  if (!area || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(([entry]) => {
+    addToCartAreaVisible.value = Boolean(entry?.isIntersecting);
+  });
+  observer.observe(area);
+  onBeforeUnmount(() => observer.disconnect());
+});
 const { reviewArea } = useProductReviews(Number(productGetters.getId(props?.product)));
 const { getBooleanSetting: getNotifyMeSetting } = useSiteSettings('showNotifyMe');
 const showNotifyMe = computed(() => getNotifyMeSetting());
@@ -350,7 +394,7 @@ const renderTextBlock = (html: string): string =>
     props.product,
   );
 
-const brandName = computed(() => productGetters.getManufacturer(props.product)?.externalName || '');
+const brandName = computed(() => getBrandName(props.product));
 
 
 const inlineStyle = computed(() => {
