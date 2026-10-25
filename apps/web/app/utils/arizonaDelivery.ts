@@ -107,6 +107,9 @@ export const getArizonaShipping = (now = new Date()) => {
     shipsToday,
     /** Minutes until the cut-off when the order still ships today. */
     minutesLeft: shipsToday ? (CUTOFF_HOUR - hour) * 60 - minute : 0,
+    /** Minutes until the cut-off of the shipping day (today or a later working day). */
+    minutesToCutoff:
+      Math.round((shippingDay.getTime() - today.getTime()) / 60_000) + CUTOFF_HOUR * 60 - (hour * 60 + minute),
     /** "morgen" or "am Montag" when the order ships on a later day. */
     shippingDayLabel:
       key(shippingDay) === key(addDays(today, 1))
@@ -125,4 +128,42 @@ export const formatArizonaDeliveryDay = (day: Date) =>
 export const formatArizonaDeliveryWindow = (now = new Date()) => {
   const { earliest, latest } = getArizonaShipping(now);
   return `${formatArizonaDeliveryDay(earliest)} – ${formatArizonaDeliveryDay(latest)}`;
+};
+
+const WEEKDAYS_LONG = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+const MONTHS_LONG = [
+  'Januar',
+  'Februar',
+  'März',
+  'April',
+  'Mai',
+  'Juni',
+  'Juli',
+  'August',
+  'September',
+  'Oktober',
+  'November',
+  'Dezember',
+];
+
+/** e.g. "2 Std. 5 Min." or "29 Min." */
+export const formatArizonaDuration = (minutes: number) => {
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  return hours > 0 ? `${hours} Std. ${rest} Min.` : `${rest} Min.`;
+};
+
+/**
+ * Earliest delivery day with the time left to order for it, e.g. { day: "Morgen, 26. Oktober", orderWithin: "29 Min." }
+ * or { day: "Dienstag, 27. Oktober", … }.
+ */
+export const getArizonaDeliveryPromise = (now = new Date()) => {
+  const { earliest, minutesToCutoff } = getArizonaShipping(now);
+  const { today } = germanNow(now);
+  const daysAhead = Math.round((earliest.getTime() - today.getTime()) / 86_400_000);
+  const label = daysAhead === 1 ? 'Morgen' : daysAhead === 2 ? 'Übermorgen' : WEEKDAYS_LONG[earliest.getUTCDay()];
+  return {
+    day: `${label}, ${earliest.getUTCDate()}. ${MONTHS_LONG[earliest.getUTCMonth()]}`,
+    orderWithin: formatArizonaDuration(minutesToCutoff),
+  };
 };

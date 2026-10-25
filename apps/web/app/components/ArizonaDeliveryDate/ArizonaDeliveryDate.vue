@@ -16,23 +16,29 @@
       <circle cx="7" cy="18" r="2" />
       <circle cx="17" cy="18" r="2" />
     </svg>
-    <span>Lieferung {{ deliveryWindow }}</span>
+    <span v-if="promise">
+      Lieferung <strong>{{ promise.day }}</strong>.
+      <span class="font-normal text-neutral-700">Bestellung innerhalb {{ promise.orderWithin }}</span>
+    </span>
+    <span v-else>Lieferung in 1–3 Werktagen</span>
   </p>
 </template>
 
 <script setup lang="ts">
+import { getArizonaDeliveryPromise } from '~/utils/arizonaDelivery';
+
 /**
- * Arizona: concrete delivery window on the product page (e.g. "Di, 27. Okt – Mi, 28. Okt") instead of
- * "1–3 Werktage". Rendered with the generic wording on the server and replaced in the browser, where the time is
- * current.
+ * Arizona: earliest delivery day with the time left to order for it on the product page, e.g.
+ * "Lieferung Morgen, 26. Oktober. Bestellung innerhalb 29 Min." (see utils/arizonaDelivery.ts). Rendered with the
+ * generic wording on the server and replaced in the browser, where the time is current.
  */
-const deliveryWindow = ref('in 1–3 Werktagen');
+const promise = ref<ReturnType<typeof getArizonaDeliveryPromise>>();
 let timer: ReturnType<typeof setInterval> | undefined;
 
 onMounted(() => {
-  const update = () => (deliveryWindow.value = formatArizonaDeliveryWindow());
+  const update = () => (promise.value = getArizonaDeliveryPromise());
   update();
-  timer = setInterval(update, 60_000);
+  timer = setInterval(update, 30_000);
 });
 onBeforeUnmount(() => clearInterval(timer));
 </script>
