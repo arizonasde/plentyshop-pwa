@@ -8,7 +8,7 @@
         :use-availability="isFromWishlist"
       />
 
-      <div ref="imageContainerRef" :class="[{ 'size-48': isFromSlider }, 'relative']">
+      <div ref="imageContainerRef" class="relative">
         <UiLink
           :tag="NuxtLink"
           :to="productPath"
@@ -540,7 +540,7 @@ const visibleColorOptions = computed(() => colorOptions.value.slice(0, MAX_COLOR
 const hiddenColorCount = computed(() => Math.max(colorOptions.value.length - MAX_COLOR_PREVIEWS, 0));
 
 onMounted(() => {
-  if (props.isFromSlider || props.isFromWishlist || !cardRef.value || !('IntersectionObserver' in window)) return;
+  if (props.isFromWishlist || !cardRef.value || !('IntersectionObserver' in window)) return;
   const observer = new IntersectionObserver(
     (entries) => {
       if (entries.some((entry) => entry.isIntersecting)) {

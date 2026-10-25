@@ -12,8 +12,9 @@
         :product="product"
         :should-load-image="shouldLoadImage(index)"
         :index="index"
+        :configuration="cardConfiguration"
         is-from-slider
-        class="w-48 max-w-48 shrink-0"
+        class="w-44 max-w-44 @md:w-60 @md:max-w-60 shrink-0"
       />
     </SfScrollable>
   </div>
@@ -39,13 +40,33 @@
 import { productGetters } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
 import type { ProductSliderProps } from '~/components/ProductSlider/types';
+import type { ItemGridContent } from '~/components/blocks/ItemGrid/types';
 const { showNetPrices } = useCart();
 const localePath = useLocalizedPath();
 
 defineProps<ProductSliderProps>();
 
+// Arizona: slider cards look like the cards in the category listing (brand first, no rating or cart button).
+const cardConfiguration: ItemGridContent = {
+  cardBorders: false,
+  contentAlignment: 'left',
+  fields: { title: true, manufacturer: true, rating: false, previewText: false, price: true, addToCart: false },
+  fieldsOrder: ['manufacturer', 'title', 'rating', 'previewText', 'price', 'addToCart'],
+  fieldsDisabled: ['title'],
+  showWishlistButton: true,
+  showSecondImageOnHover: true,
+  addToCartStyle: 'primary',
+  itemsPerRowDesktop: 4,
+  itemsPerRowTablet: 3,
+  itemsPerRowMobile: 2,
+  showItemCount: false,
+  itemCountPosition: 'left',
+  paginationPosition: 'bottom',
+  layout: { fullWidth: false },
+};
+
 const { sliderRootRef, shouldLoadImage } = useSliderImagePreload({
-  itemWidth: 192,
+  itemWidth: 240,
   itemGap: 16,
   preloadBuffer: 2,
 });
