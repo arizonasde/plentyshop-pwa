@@ -76,7 +76,8 @@ export const useStructuredData: useStructuredDataReturn = () => {
       '@type': 'Organization',
       ...(shopName && { name: shopName }),
       url: runtimeConfig.public.domain,
-      logo: runtimeConfig.public.domain + '/_nuxt-plenty/images/logo.png',
+      // Arizona: the shop's own logo (PNG version of the header logo, readable for every crawler)
+      logo: 'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-startseite/arizonas-logo.png',
     };
     // Arizona: WebSite with search action, so search engines and AI assistants know the shop name and its search
     const webSite: WithContext<SchemaWebSite> = {

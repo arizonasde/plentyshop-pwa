@@ -79,7 +79,7 @@ export default {
   headerLogo:
     process.env.NUXT_PUBLIC_HEADER_LOGO ||
     process.env.LOGO ||
-    'https://cdn02.plentymarkets.com/f05ilw2rfpls/frontend/2019_Test/NEUE_STARTSEITE/---LOGO_HEADER.png',
+    'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-startseite/arizonas-logo.webp',
   storename: process.env.NAME || 'Arizona Shopping',
   font: process.env.NUXT_PUBLIC_FONT || 'Inter',
   verticalBlockSize: process.env.NUXT_PUBLIC_VERTICAL_BLOCK_SIZE || 'm',
