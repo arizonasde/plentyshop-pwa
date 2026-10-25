@@ -2,14 +2,13 @@
   <div>
     <label
       :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="leading-5 text-sm text-zinc-900"
+      class="block leading-5 text-base text-neutral-900 mb-3"
     >
-      <span>{{ productAttributeGetters.getAttributeName(attribute) }}</span>
-      <span v-if="value"
-        >: <b>{{ selectedAttributeValueName }}</b></span
-      >
+      <span class="font-semibold">{{ productAttributeGetters.getAttributeName(attribute) }}</span>
+      <span v-if="value">: {{ selectedAttributeValueName }}</span>
     </label>
-    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="w-full flex gap-4 flex-wrap">
+    <!-- Arizona: large photo tiles per colour, like on large fashion shops -->
+    <div :id="'attribute-' + productAttributeGetters.getAttributeId(attribute)" class="w-full flex gap-2 flex-wrap">
       <SfTooltip
         v-for="item in productAttributeGetters.getAttributeValues(attribute)"
         :key="productAttributeGetters.getAttributeValueId(item)"
@@ -18,22 +17,25 @@
         :show-arrow="true"
         placement="top"
       >
-        <div
-          class="p-1 w-14 h-14 flex items-center justify-center border border-zinc-300 rounded-md cursor-pointer hover:bg-[#3C3C4226]"
+        <button
+          type="button"
+          class="isolate w-[6.75rem] h-[6.75rem] flex items-center justify-center rounded-md bg-[#F3F3F3] border border-transparent cursor-pointer hover:border-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           :class="{
-            'text-zinc-300 border-dashed': productAttributeGetters.isAttributeValueDisabled(item),
-            '!border-primary-500 bg-zinc-100': value === productAttributeGetters.getAttributeValueId(item),
-            '!ring-negative-700 !border-negative-700 ring-1': Boolean(errors['selectedValue']),
+            'opacity-40': productAttributeGetters.isAttributeValueDisabled(item),
+            '!border-neutral-900': value === productAttributeGetters.getAttributeValueId(item),
+            '!border-negative-700': Boolean(errors['selectedValue']),
           }"
+          :aria-pressed="value === productAttributeGetters.getAttributeValueId(item)"
+          :aria-label="productAttributeGetters.getAttributeValueName(item)"
           @click="doUpdateValue(item)"
         >
           <NuxtImg
-            class="max-w-full max-h-full"
+            class="max-w-full max-h-full object-contain mix-blend-multiply py-1"
             :src="getImagePath(item)"
             :alt="productAttributeGetters.getAttributeValueName(item)"
             loading="lazy"
           />
-        </div>
+        </button>
       </SfTooltip>
     </div>
     <ErrorMessage as="span" name="selectedValue" class="flex text-negative-700 text-sm mt-2" />
@@ -64,7 +66,8 @@ const getLabel = (item: VariationMapProductAttributeValue): string => {
 };
 
 const getImagePath = (item: VariationMapProductAttributeValue): string => {
-  const path = productAttributeGetters.getAttributeValueImageUrl(item);
+  // the larger tiles need the sharper "middle" size instead of plentyONE's small preview image
+  const path = productAttributeGetters.getAttributeValueImageUrl(item).replace('/preview/', '/middle/');
   return path.startsWith('http') ? path : domain + path;
 };
 
