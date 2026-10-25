@@ -71,7 +71,7 @@
               <UiBadges :product="product" :use-availability="false" :use-tags="true" class="mb-2" />
             </template>
             <template v-if="key === 'availability' && configuration?.fields.availability">
-              <!-- Arizona: concrete delivery window instead of the availability "Lieferzeit 1-2 Werktage" -->
+              <!-- Arizona: concrete delivery window instead of the availability from plentyONE -->
               <ArizonaDeliveryDate v-if="productGetters.isSalable(product)" class="mb-2" />
               <UiBadges v-else :product="product" :use-availability="true" :use-tags="false" class="mb-2" />
             </template>

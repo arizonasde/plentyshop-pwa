@@ -36,7 +36,7 @@ import { SfIconExpandMore } from '@storefront-ui/vue';
 
 /**
  * Arizona: service and FAQ page. The answers mirror the shop's actual terms (DHL 4.90 EUR within Germany,
- * 1–2 working days, 60 days return, PayPal / SEPA / giropay) and are also published as FAQPage structured data.
+ * 1–3 working days, 60 days return, PayPal / SEPA / giropay) and are also published as FAQPage structured data.
  */
 definePageMeta({
   pageType: 'static',
@@ -55,7 +55,7 @@ const faqGroups = [
       },
       {
         question: 'Wie lange dauert die Lieferung?',
-        answer: 'In der Regel ist deine Bestellung in 1–2 Werktagen bei dir.',
+        answer: 'In der Regel ist deine Bestellung in 1–3 Werktagen bei dir.',
       },
       {
         question: 'Liefert ihr auch ins Ausland?',
@@ -113,7 +113,7 @@ const faqGroups = [
 
 useArizonaStaticPageHead(
   'Service & Hilfe',
-  'Antworten zu Versand (DHL, 4,90 €, 1–2 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, SEPA oder giropay und Größen.',
+  'Antworten zu Versand (DHL, 4,90 €, 1–3 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, SEPA oder giropay und Größen.',
 );
 
 useHead({

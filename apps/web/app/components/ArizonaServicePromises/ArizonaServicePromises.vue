@@ -12,7 +12,7 @@ import { SfIconCheck } from '@storefront-ui/vue';
 
 // Arizona service promises, shown next to every buying decision (product page, cart). The delivery promise names the
 // concrete days once the page runs in the browser.
-const deliveryPromise = ref('Lieferung in 1–2 Werktagen');
+const deliveryPromise = ref('Lieferung in 1–3 Werktagen');
 onMounted(() => (deliveryPromise.value = `Lieferung voraussichtlich ${formatArizonaDeliveryWindow()}`));
 
 const servicePromises = computed(() => [

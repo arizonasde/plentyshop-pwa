@@ -1,11 +1,11 @@
 /**
  * Arizona: shipping day and delivery window in German time.
  * Orders placed Monday to Friday before 12:00 leave the warehouse in Worms the same day, later orders on the next
- * working day. DHL delivers 1–2 days later (Monday to Saturday). Public holidays: nationwide ones plus those of
+ * working day. DHL delivers 1–3 days later (Monday to Saturday). Public holidays: nationwide ones plus those of
  * Rheinland-Pfalz (warehouse) for the shipping day, nationwide ones for the delivery day.
  */
 const CUTOFF_HOUR = 12;
-const TRANSIT_DAYS = { min: 1, max: 2 };
+const TRANSIT_DAYS = { min: 1, max: 3 };
 const WEEKDAYS_SHORT = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
 const MONTHS_SHORT = ['Jan', 'Feb', 'März', 'Apr', 'Mai', 'Juni', 'Juli', 'Aug', 'Sept', 'Okt', 'Nov', 'Dez'];
 

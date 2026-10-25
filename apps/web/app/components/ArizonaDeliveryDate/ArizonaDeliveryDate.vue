@@ -23,10 +23,10 @@
 <script setup lang="ts">
 /**
  * Arizona: concrete delivery window on the product page (e.g. "Di, 27. Okt – Mi, 28. Okt") instead of
- * "1–2 Werktage". Rendered with the generic wording on the server and replaced in the browser, where the time is
+ * "1–3 Werktage". Rendered with the generic wording on the server and replaced in the browser, where the time is
  * current.
  */
-const deliveryWindow = ref('in 1–2 Werktagen');
+const deliveryWindow = ref('in 1–3 Werktagen');
 let timer: ReturnType<typeof setInterval> | undefined;
 
 onMounted(() => {
