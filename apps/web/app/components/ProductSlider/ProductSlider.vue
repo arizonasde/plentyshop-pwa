@@ -1,5 +1,14 @@
 <template>
-  <div ref="sliderRootRef">
+  <div v-if="grid" class="grid grid-cols-2 @md:grid-cols-4 gap-4 @md:gap-6" data-testid="product-grid-wide">
+    <UiProductCard
+      v-for="(product, index) in items"
+      :key="productGetters.getId(product)"
+      :product="product"
+      :index="index"
+      :configuration="cardConfiguration"
+    />
+  </div>
+  <div v-else ref="sliderRootRef">
     <SfScrollable
       buttons-placement="floating"
       class="pb-4 scrollbar-hidden"

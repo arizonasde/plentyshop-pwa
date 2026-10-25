@@ -17,7 +17,8 @@ export type ProductRecommendedProductsContent = {
   cacheKey?: string;
   source: {
     // Arizona: 'variations' shows a fixed list of variations (e.g. the bestsellers of the last days)
-    type: 'category' | 'cross_selling' | 'last_seen' | 'variations';
+    // 'same_color': items of the product's main category in the same colour family
+    type: 'category' | 'cross_selling' | 'last_seen' | 'variations' | 'same_color';
     categoryId: string;
     itemId: string;
     crossSellingRelation: CrossSellingRelationType;

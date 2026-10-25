@@ -7,7 +7,7 @@ export interface UseProductRecommendedState {
 
 // Arizona: besides the facet sources, 'variations' loads a fixed, comma-separated list of variation ids
 export type ProductRecommendedParams = Omit<FacetSearchCriteria, 'type'> & {
-  type?: FacetSearchCriteria['type'] | 'variations';
+  type?: FacetSearchCriteria['type'] | 'variations' | 'same_color';
   variationIds?: string;
 };
 

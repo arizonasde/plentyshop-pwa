@@ -12,7 +12,7 @@ export type ContentAlignment = 'left' | 'center' | 'right';
 export type AddToCartStyle = 'primary' | 'secondary';
 export type WishlistSize = 'small' | 'large';
 // Arizona: 'variations' = fixed list of variations (set via the saved block data, not offered in the editor)
-export type SourceType = 'cross_selling' | 'category' | 'last_seen' | 'variations';
+export type SourceType = 'cross_selling' | 'category' | 'last_seen' | 'variations' | 'same_color';
 
 export type EditorTarget = {
   text?: {

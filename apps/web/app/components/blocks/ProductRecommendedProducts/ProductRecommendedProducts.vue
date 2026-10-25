@@ -8,13 +8,17 @@
       :title="getEditorTranslation('last-seen-hint-title')"
       :message="getEditorTranslation('last-seen-tracking-disabled-hint')"
     />
-    <ProductSlider v-if="shouldShowSlider" :items="recommendedProducts" />
+    <ProductSlider
+      v-if="shouldShowSlider"
+      :items="sliderProducts"
+      :grid="isVariations && sliderProducts.length <= 4"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import type { ProductRecommendedProductsProps } from './types';
-import { productGetters } from '@plentymarkets/shop-api';
+import { categoryTreeGetters, productGetters, type CategoryTreeItem } from '@plentymarkets/shop-api';
 
 const props = withDefaults(defineProps<ProductRecommendedProductsProps>(), { shouldLoad: undefined });
 
@@ -45,6 +49,7 @@ const { registerBlockVisibility } = useBlocksVisibility();
 const isCategory = computed(() => props.content.source?.type === 'category');
 const isProduct = computed(() => props.content.source?.type === 'cross_selling' && itemId.value);
 const isLastSeen = computed(() => props.content.source?.type === 'last_seen');
+const isSameColor = computed(() => props.content.source?.type === 'same_color' && !!sameColorFacet.value);
 const isVariations = computed(() => props.content.source?.type === 'variations' && !!props.content.source?.variationIds);
 
 const showLastSeenTrackingHint = computed(() => isLastSeen.value && isEditMode.value && !isLastSeenTrackingEnabled());
@@ -53,7 +58,7 @@ const shouldShowSlider = computed(
   () =>
     showLastSeenTrackingHint.value === false &&
     isNearViewport.value &&
-    !!recommendedProducts.value?.length &&
+    !!sliderProducts.value.length &&
     (shouldRender.value || shouldRenderAfterUpdate.value),
 );
 
@@ -62,14 +67,53 @@ const shouldFetch = computed(() => {
   return (
     isNearViewport.value &&
     shouldRender.value &&
-    (isCategory.value || isProduct.value || isLastSeen.value || isVariations.value)
+    (isCategory.value || isProduct.value || isLastSeen.value || isVariations.value || isSameColor.value)
   );
 });
+// Arizona: colour family of the current product and its main category (e.g. Damen) for 'same_color'
+const sameColorFacet = computed(() => {
+  if (!Object.keys(currentProduct.value).length) return undefined;
+  return getColorFamilyFacetValueId(getShoppingAttributeValue(currentProduct.value, 'color'));
+});
+// Category path of the current product, read from its URL (e.g. damenmode/kleider/…): [Damen, Kleider & Röcke, …]
+const productCategoryPath = computed(() => {
+  if (!Object.keys(currentProduct.value).length) return [];
+  const segments = productGetters.getUrlPath(currentProduct.value).split('/');
+  const path: CategoryTreeItem[] = [];
+  let level = categoryTree.value ?? [];
+  for (const segment of segments) {
+    const node = level.find((category) => categoryTreeGetters.getSlug(category) === segment);
+    if (!node) break;
+    path.push(node);
+    level = node.children ?? [];
+  }
+  return path;
+});
+const mainCategoryId = computed(() => String(productCategoryPath.value[0]?.id ?? categoryId ?? ''));
+// "similar" items come from the second level (e.g. Kleider & Röcke) – the deepest category is often very small
+const similarCategoryId = computed(() =>
+  String(productCategoryPath.value[1]?.id ?? productCategoryPath.value[0]?.id ?? categoryId ?? ''),
+);
+
 const contentSource = computed(() => ({
   ...props.content.source,
-  categoryId: props.content.source?.categoryId || (categoryId || firstCategoryId || '').toString(),
+  categoryId:
+    props.content.source?.type === 'same_color'
+      ? mainCategoryId.value
+      : props.content.source?.categoryId ||
+        (props.content.source?.type === 'category' && Object.keys(currentProduct.value).length
+          ? similarCategoryId.value
+          : (categoryId || firstCategoryId || '').toString()),
   itemId: itemId.value,
+  ...(props.content.source?.type === 'same_color' && sameColorFacet.value && { facets: String(sameColorFacet.value) }),
 }));
+
+// Arizona: the product the shopper is looking at does not appear in its own sliders
+const sliderProducts = computed(() =>
+  (recommendedProducts.value ?? []).filter(
+    (product) => !itemId.value || String(productGetters.getItemId(product)) !== String(itemId.value),
+  ),
+);
 
 watch(
   shouldFetch,
@@ -99,7 +143,8 @@ watch(
       ((props.content.source?.itemId && props.content.source?.type === 'cross_selling') ||
         (props.content.source?.categoryId && props.content.source?.type === 'category') ||
         props.content.source?.type === 'last_seen' ||
-        isVariations.value)
+        isVariations.value ||
+        isSameColor.value)
     ) {
       const products = await fetchProductRecommended(contentSource.value);
       registerBlockVisibility(props.meta.uuid, (products?.length ?? 0) > 0);

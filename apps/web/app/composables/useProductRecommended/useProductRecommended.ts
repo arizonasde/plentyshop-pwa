@@ -50,7 +50,9 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
     const common = {
       itemsPerPage: 20,
       sort: params.sort || 'sorting.price.avg_asc',
-      type: params.type as FacetSearchCriteria['type'],
+      // 'same_color' is an ordinary category request narrowed by the colour filter
+      type: (params.type === 'same_color' ? 'category' : params.type) as FacetSearchCriteria['type'],
+      ...(params.facets && { facets: params.facets }),
     };
 
     const payload =
@@ -63,7 +65,7 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
             categoryId: params.categoryId,
           };
 
-    const idForKey = params.type === 'cross_selling' ? params.itemId : params.categoryId;
+    const idForKey = params.type === 'cross_selling' ? params.itemId : `${params.categoryId}-${params.facets ?? ''}`;
 
     const { data, error } = await useAsyncData(
       `useProductRecommended-${params.type}-${idForKey}-${params.crossSellingRelation}-${params.sort ?? ''}`,
