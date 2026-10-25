@@ -15,7 +15,9 @@ const REDIRECTS: Record<string, string> = {
   '/hilfe': '/service',
   '/retoure': '/service',
   '/sizecharts': '/service',
-  '/black-friday': '/sale-und-outlet',
+  '/black-friday': '/',
+  // the SALE category is switched off
+  '/sale-und-outlet': '/',
   '/sold': '/',
   '/artikel-nicht-gefunden': '/',
 };

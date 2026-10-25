@@ -69,7 +69,7 @@ const faqGroups = [
     items: [
       {
         question: 'Wie lange kann ich Artikel zurückgeben?',
-        answer: 'Du hast 60 Tage Zeit, Artikel an uns zurückzuschicken.',
+        answer: 'Du hast 60 Tage Zeit, Artikel an uns zurückzuschicken. Die Rücksendung ist für dich kostenlos.',
       },
       {
         question: 'Wie widerrufe ich meine Bestellung?',
@@ -113,7 +113,7 @@ const faqGroups = [
 
 useArizonaStaticPageHead(
   'Service & Hilfe',
-  'Antworten zu Versand (DHL, 4,90 €, 1–2 Werktage), 60 Tagen Rückgabe, Zahlung mit PayPal, SEPA oder giropay und Größen.',
+  'Antworten zu Versand (DHL, 4,90 €, 1–2 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, SEPA oder giropay und Größen.',
 );
 
 useHead({

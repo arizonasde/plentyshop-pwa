@@ -15,6 +15,6 @@ const servicePromises = [
   'Versand mit DHL für 4,90 €',
   'Lieferung in 1–2 Werktagen',
   'Bezahlen mit PayPal, SEPA-Lastschrift oder giropay',
-  '60 Tage Rückgaberecht',
+  '60 Tage kostenlose Rückgabe',
 ];
 </script>

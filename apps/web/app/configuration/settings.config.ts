@@ -14,7 +14,7 @@ export default {
   ogImg: process.env.NUXT_PUBLIC_OG_IMG || process.env.OG_IMG || '/_nuxt-plenty/images/logo.svg',
   ogType: process.env.NUXT_PUBLIC_OG_TYPE || process.env.OG_TYPE || 'website',
   metaTitle: process.env.NUXT_PUBLIC_META_TITLE || process.env.METATITLE || 'Arizona Shopping – Mode für Damen und Herren',
-  metaDescription: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'Mode für Damen und Herren von ONLY, Jack & Jones, Vero Moda, Tom Tailor und Mavi. Versand mit DHL in 1–2 Werktagen, 60 Tage Rückgaberecht.',
+  metaDescription: process.env.NUXT_PUBLIC_META_DESCRIPTION || process.env.METADESC || 'Mode für Damen und Herren von ONLY, Jack & Jones, Vero Moda, Tom Tailor und Mavi. Versand mit DHL in 1–2 Werktagen, 60 Tage kostenlose Rückgabe.',
   metaKeywords: process.env.NUXT_PUBLIC_META_KEYWORDS || process.env.METAKEYWORDS || 'PlentyONE, plentyshop, pwa',
   passwordMinLength: Number(process.env.PASSWORD_MIN_LENGTH ?? 8),
   passwordMaxLength: Number(process.env.PASSWORD_MAX_LENGTH ?? 64),

@@ -131,7 +131,7 @@ export const buildCategoryTitle = (label: string, suffix: string, maxLength = 65
 
 export const buildCategoryDescription = (label: string): string => {
   const shipping = SHIPPING_RATES[0]?.value.toFixed(2).replace('.', ',');
-  return `${label} günstig bei Arizona Shopping kaufen. Versand mit DHL für ${shipping} €, Lieferung in 1–2 Werktagen, ${RETURN_DAYS} Tage Rückgaberecht.`;
+  return `${label} günstig bei Arizona Shopping kaufen. Versand mit DHL für ${shipping} €, Lieferung in 1–2 Werktagen, ${RETURN_DAYS} Tage kostenlose Rückgabe.`;
 };
 
 /**
