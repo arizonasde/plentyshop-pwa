@@ -247,6 +247,8 @@
               />
             </template>
           </template>
+          <!-- Arizona: overview image with all colours in the free space below the purchase area -->
+          <ArizonaProductOverviewImage :product="product" />
         </section>
       </div>
     </div>
