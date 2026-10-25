@@ -76,18 +76,18 @@ const imageAlt =
 const imageTitle =
   productImageGetters.getImageName(image.value) || productImageGetters.getCleanImageName(image.value) || '';
 
+// Arizona: real widths of the plentyONE image sizes in this system – "middle" is 485 px wide (700 px high),
+// "preview" only 139 px and "secondPreview" as large as the original, so only middle and full are offered.
+const MIDDLE_IMAGE_WIDTH = 485;
+
 const getSourceSet = (image: ImagesData) => {
-  const dpr = 1;
-  const secondPreview = productImageGetters.getImageUrlSecondPreview(image);
-  const preview = productImageGetters.getImageUrlPreview(image);
   const middle = productImageGetters.getImageUrlMiddle(image);
   const full = productImageGetters.getImageUrl(image);
+  const fullWidth = productImageGetters.getImageWidth(image) || 1600;
 
   return `
-    ${secondPreview} ${370 * dpr}w,
-    ${preview} ${700 * dpr}w,
-    ${middle} ${720 * dpr}w,
-    ${full} ${1400 * dpr}w
+    ${middle} ${MIDDLE_IMAGE_WIDTH}w,
+    ${full} ${fullWidth}w
   `;
 };
 
@@ -114,7 +114,8 @@ const nuxtImgProps = computed<Record<string, unknown>>(() => ({
   'data-zoom': imageUrl,
   quality: 80,
   srcset: getSourceSet(image.value),
-  sizes: '2xs:370px xs:720px sm:740px md:1400px',
+  // Arizona: real display width of the gallery (full width on phones, about half the page on large screens)
+  sizes: '2xs:100vw md:50vw xl:640px',
   draggable: 'false',
   loading: isFirstImage.value ? 'eager' : 'lazy',
   fetchpriority: isFirstImage.value ? 'high' : 'auto',
