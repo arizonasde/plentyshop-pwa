@@ -135,7 +135,7 @@ const gridClasses = computed(() =>
       tablet: props.content?.itemsPerRowTablet,
       desktop: props.content?.itemsPerRowDesktop,
     },
-    ['gap-4', '@md:gap-6', 'mb-10', '@md:mb-5'],
+    ['gap-x-2', 'gap-y-4', '@md:gap-x-3', '@md:gap-y-5', 'mb-10', '@md:mb-5'],
   ),
 );
 

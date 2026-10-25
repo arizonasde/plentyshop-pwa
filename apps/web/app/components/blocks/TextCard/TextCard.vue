@@ -1,6 +1,7 @@
 <template>
   <div
     data-testid="text-card"
+    :data-vertical-center="props.content.layout?.verticalAlignment === 'center' ? 'true' : undefined"
     :class="['w-full', 'flex', 'flex-col', 'space-y-4', textAlignmentClass]"
     :style="inlineStyle"
   >
@@ -35,3 +36,12 @@ const inlineStyle = computed(() => {
   };
 });
 </script>
+
+<style>
+/* Arizona: a vertically centred text card centres its whole grid column (the column has the row's full height) */
+[class~='group/col']:has([data-vertical-center='true']) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+</style>

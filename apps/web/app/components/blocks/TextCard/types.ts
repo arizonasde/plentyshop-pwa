@@ -31,6 +31,8 @@ export type TextCardContent = {
     paddingLeft?: string;
     paddingRight?: string;
     fullWidth?: boolean;
+    // Arizona: 'center' centres the text vertically in its grid column (e.g. next to a large image)
+    verticalAlignment?: 'top' | 'center';
   };
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="grid" class="grid grid-cols-2 @md:grid-cols-4 gap-4 @md:gap-6" data-testid="product-grid-wide">
+  <div v-if="grid" class="grid grid-cols-2 @md:grid-cols-4 gap-x-2 gap-y-4 @md:gap-x-3 @md:gap-y-5" data-testid="product-grid-wide">
     <UiProductCard
       v-for="(product, index) in items"
       :key="productGetters.getId(product)"
@@ -12,7 +12,7 @@
     <SfScrollable
       buttons-placement="floating"
       class="pb-4 scrollbar-hidden"
-      :wrapper-class="wrapperClass"
+      :wrapper-class="[wrapperClass, '!gap-2 @md:!gap-3']"
       data-testid="product-slider"
     >
       <UiProductCard

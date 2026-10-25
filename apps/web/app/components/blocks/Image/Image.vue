@@ -103,7 +103,8 @@ const breakpointConfig = computed(() => {
 
 const depth = getBlockDepth(props.meta.uuid);
 const wrapperStyle = computed(() => {
-  if (depth > 0) {
+  // Arizona: images inside a grid keep an aspect ratio set explicitly in the editor instead of the fixed height
+  if (depth > 0 && !props.content?.image?.aspectRatio) {
     return {
       position: 'relative' as const,
       height: '24rem',
