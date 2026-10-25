@@ -11,7 +11,8 @@ export type ItemCountPosition = 'left' | 'center' | 'right';
 export type ContentAlignment = 'left' | 'center' | 'right';
 export type AddToCartStyle = 'primary' | 'secondary';
 export type WishlistSize = 'small' | 'large';
-export type SourceType = 'cross_selling' | 'category' | 'last_seen';
+// Arizona: 'variations' = fixed list of variations (set via the saved block data, not offered in the editor)
+export type SourceType = 'cross_selling' | 'category' | 'last_seen' | 'variations';
 
 export type EditorTarget = {
   text?: {

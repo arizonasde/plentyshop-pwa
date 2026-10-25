@@ -45,6 +45,7 @@ const { registerBlockVisibility } = useBlocksVisibility();
 const isCategory = computed(() => props.content.source?.type === 'category');
 const isProduct = computed(() => props.content.source?.type === 'cross_selling' && itemId.value);
 const isLastSeen = computed(() => props.content.source?.type === 'last_seen');
+const isVariations = computed(() => props.content.source?.type === 'variations' && !!props.content.source?.variationIds);
 
 const showLastSeenTrackingHint = computed(() => isLastSeen.value && isEditMode.value && !isLastSeenTrackingEnabled());
 
@@ -58,7 +59,11 @@ const shouldShowSlider = computed(
 
 const shouldRender = computed(() => props.shouldLoad === undefined || props.shouldLoad === true);
 const shouldFetch = computed(() => {
-  return isNearViewport.value && shouldRender.value && (isCategory.value || isProduct.value || isLastSeen.value);
+  return (
+    isNearViewport.value &&
+    shouldRender.value &&
+    (isCategory.value || isProduct.value || isLastSeen.value || isVariations.value)
+  );
 });
 const contentSource = computed(() => ({
   ...props.content.source,
@@ -85,6 +90,7 @@ watch(
     () => props.content.source?.type,
     () => props.content.source?.crossSellingRelation,
     () => props.content.source?.sort,
+    () => props.content.source?.variationIds,
     () => locale.value,
   ],
   async () => {
@@ -92,7 +98,8 @@ watch(
       shouldFetch.value &&
       ((props.content.source?.itemId && props.content.source?.type === 'cross_selling') ||
         (props.content.source?.categoryId && props.content.source?.type === 'category') ||
-        props.content.source?.type === 'last_seen')
+        props.content.source?.type === 'last_seen' ||
+        isVariations.value)
     ) {
       const products = await fetchProductRecommended(contentSource.value);
       registerBlockVisibility(props.meta.uuid, (products?.length ?? 0) > 0);

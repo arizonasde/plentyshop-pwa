@@ -16,12 +16,15 @@ export type ProductRecommendedProductsContent = {
   index?: number;
   cacheKey?: string;
   source: {
-    type: 'category' | 'cross_selling' | 'last_seen';
+    // Arizona: 'variations' shows a fixed list of variations (e.g. the bestsellers of the last days)
+    type: 'category' | 'cross_selling' | 'last_seen' | 'variations';
     categoryId: string;
     itemId: string;
     crossSellingRelation: CrossSellingRelationType;
     // Arizona: optional sort order, e.g. 'variation.createdAt_desc' for "new in" sliders (default: price ascending)
     sort?: string;
+    // Arizona: comma-separated variation ids for type 'variations', shown in this order
+    variationIds?: string;
   };
   text: {
     pretitle?: string;

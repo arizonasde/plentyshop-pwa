@@ -85,7 +85,7 @@ export default {
   verticalBlockSize: process.env.NUXT_PUBLIC_VERTICAL_BLOCK_SIZE || 'm',
   horizontalBlockSize: process.env.NUXT_PUBLIC_HORIZONTAL_BLOCK_SIZE || 's',
   primaryColor: process.env.NUXT_PUBLIC_PRIMARY_COLOR || '#1A1A1A',
-  defaultSortingOption: process.env.NUXT_PUBLIC_DEFAULT_SORTING_OPTION ?? 'texts.name1_asc',
+  defaultSortingOption: process.env.NUXT_PUBLIC_DEFAULT_SORTING_OPTION ?? 'item.score',
   defaultSortingSearch: process.env.NUXT_PUBLIC_DEFAULT_SORTING_SEARCH ?? 'item.score',
   availableSortingOptions:
     process.env.NUXT_PUBLIC_AVAILABLE_SORTING_OPTIONS ||

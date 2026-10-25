@@ -5,7 +5,13 @@ export interface UseProductRecommendedState {
   loading: boolean;
 }
 
-export type FetchProductRecommended = (params: FacetSearchCriteria) => Promise<Product[]>;
+// Arizona: besides the facet sources, 'variations' loads a fixed, comma-separated list of variation ids
+export type ProductRecommendedParams = Omit<FacetSearchCriteria, 'type'> & {
+  type?: FacetSearchCriteria['type'] | 'variations';
+  variationIds?: string;
+};
+
+export type FetchProductRecommended = (params: ProductRecommendedParams) => Promise<Product[]>;
 
 export interface useProductRecommended {
   data: Readonly<Ref<UseProductRecommendedState['data']>>;
