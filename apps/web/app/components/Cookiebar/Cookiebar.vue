@@ -5,11 +5,8 @@
   >
     <div v-if="!furtherSettingsOn">
       <!-- cookie info -->
-      <!-- Arizona: friendly greeting above the cookie title -->
+      <!-- Arizona: friendly greeting instead of the cookie title -->
       <p class="text-center font-bold typography-text-lg" data-testid="cookiebar-greeting">Schön, dass Du hier bist!</p>
-      <div class="mt-1 text-center font-semibold">
-        {{ t(cookieJson?.barTitle) }}
-      </div>
       <div class="mt-1 max-h-[30vh] text-sm leading-normal overflow-y-auto @md:text-base">
         <i18n-t v-if="cookieJson.barDescription" :keypath="cookieJson.barDescription" scope="global">
           <template #legal

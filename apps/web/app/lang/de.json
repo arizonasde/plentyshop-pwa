@@ -497,8 +497,8 @@
   },
   "CookieBar": {
     "about": {
-      "description": "Wir verwenden Cookies und ähnliche Technologien, um unseren Shop bereitzustellen, Inhalte von Drittanbietern einzubinden und Zugriffe zu analysieren. Dabei verarbeiten wir personenbezogene Daten (z. B. IP-Adresse) und geben sie an die in den Einstellungen genannten Dritten weiter. Optionale Cookies setzen wir nur mit Ihrer Einwilligung. Sie können ablehnen und Ihre Wahl jederzeit ändern. Mehr im {legal} und in der {policy}.",
-      "label": "Ihre Privatsphäre ist uns wichtig"
+      "description": "Wir verwenden Cookies und ähnliche Technologien, um unseren Shop bereitzustellen, Inhalte von Drittanbietern einzubinden und Zugriffe zu analysieren. Dabei verarbeiten wir personenbezogene Daten (z. B. IP-Adresse) und geben sie an die in den Einstellungen genannten Dritten weiter. Optionale Cookies setzen wir nur mit deiner Einwilligung. Du kannst ablehnen und deine Wahl jederzeit ändern. Mehr im {legal} und in der {policy}.",
+      "label": "Deine Privatsphäre ist uns wichtig"
     },
     "Accept All": "Alles akzeptieren",
     "Accept Selection": "Auswahl akzeptieren",
@@ -553,7 +553,7 @@
       "Status": "Status"
     },
     "marketing": {
-      "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem Sie Besucher über Websites hinweg verfolgen.",
+      "description": "Marketing-Cookies werden von Drittanbietern und Publishern verwendet, um personalisierte Werbung anzuzeigen. Sie tun dies, indem sie Besucher über Websites hinweg verfolgen.",
       "label": "Marketing"
     },
     "More information": "Mehr Informationen",
