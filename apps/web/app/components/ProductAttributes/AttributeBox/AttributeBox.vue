@@ -11,13 +11,13 @@
     <!-- Arizona: size selection as a dropdown list with stock per size, like on Zalando -->
     <button
       type="button"
-      class="flex w-full min-h-14 items-center justify-between gap-3 rounded-md border-2 bg-white px-4 text-left hover:border-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+      class="flex w-full min-h-14 items-center justify-between gap-3 rounded-md border bg-white px-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
       :class="
         errors['selectedValue']
           ? 'border-negative-700'
           : selectedOption
             ? 'border-neutral-900'
-            : 'border-neutral-400'
+            : 'border-neutral-300'
       "
       :aria-expanded="open"
       :aria-labelledby="labelId"

@@ -19,11 +19,10 @@
       >
         <button
           type="button"
-          class="isolate w-[6.75rem] h-[6.75rem] flex items-center justify-center rounded-md bg-[#F3F3F3] border border-transparent cursor-pointer hover:border-neutral-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          class="isolate w-[6.75rem] h-[6.75rem] flex items-center justify-center rounded-md bg-[#F3F3F3] border border-transparent cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
           :class="{
             'opacity-40': productAttributeGetters.isAttributeValueDisabled(item),
-            // Arizona: the chosen colour gets a clear black frame
-            '!border-neutral-900 ring-2 ring-neutral-900 ring-offset-2': value === productAttributeGetters.getAttributeValueId(item),
+            '!border-neutral-900': value === productAttributeGetters.getAttributeValueId(item),
             '!border-negative-700': Boolean(errors['selectedValue']),
           }"
           :aria-pressed="value === productAttributeGetters.getAttributeValueId(item)"
