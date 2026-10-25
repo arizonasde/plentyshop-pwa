@@ -7,10 +7,23 @@
       :style="navigationContainerStyle"
       @mouseleave="onMouseLeave"
     >
-      <ul :class="navigationContainerClasses" class="flex-1 min-w-0" @focusout="onNavBlur">
+      <ul
+        ref="rowListRef"
+        :class="[navigationContainerClasses, { 'overflow-hidden': !rowMeasured }]"
+        class="flex-1 min-w-0"
+        @focusout="onNavBlur"
+      >
         <li v-if="rowItems.length === 0" class="h-10" />
 
-        <li v-for="(menuNode, index) in rowItems" v-else :key="menuNode.id" @mouseenter="onCategoryMouseEnter(menuNode)">
+        <li
+          v-for="(menuNode, index) in rowItems"
+          v-else
+          v-show="index < visibleRowCount"
+          :key="menuNode.id"
+          class="shrink-0"
+          data-nav-row-item
+          @mouseenter="onCategoryMouseEnter(menuNode)"
+        >
           <NuxtLink
             v-if="menuNode.childCount > 0"
             ref="triggerReference"
@@ -110,6 +123,42 @@
               </div>
             </template>
           </div>
+        </li>
+
+        <!-- Arizona: subcategories that do not fit into the row are collected under "Mehr" -->
+        <li
+          v-if="hiddenRowItems.length"
+          class="relative"
+          data-testid="navigation-more"
+          @mouseenter="openMoreMenu"
+          @mouseleave="isMoreOpen = false"
+        >
+          <button
+            type="button"
+            :class="categoryButtonClasses"
+            :style="categoryButtonStyle"
+            :aria-expanded="isMoreOpen ? 'true' : 'false'"
+            aria-haspopup="true"
+            @click="isMoreOpen ? (isMoreOpen = false) : openMoreMenu()"
+          >
+            Mehr
+            <SfIconChevronRight aria-hidden="true" size="sm" class="rotate-90 text-neutral-500" />
+          </button>
+          <ul
+            v-if="isMoreOpen"
+            class="absolute right-0 top-full z-dropdown min-w-56 rounded-lg bg-white p-2 shadow-lg ring-1 ring-neutral-200"
+          >
+            <li v-for="node in hiddenRowItems" :key="node.id">
+              <NuxtLink
+                :to="localePath(generateCategoryLink(node))"
+                class="block rounded-md px-3 py-2 text-sm nav-hover-bg"
+                :class="{ 'font-semibold': isActiveMainCategory(node) }"
+                @click="isMoreOpen = false"
+              >
+                {{ categoryTreeGetters.getName(node) }}
+              </NuxtLink>
+            </li>
+          </ul>
         </li>
       </ul>
       <UiSearch class="w-64 @xl:w-80 shrink-0" />
@@ -264,6 +313,42 @@ const { currentMainCategory } = useArizonaMainCategory();
 const rowItems = computed(
   () => categoryTree.value.find((node) => node.id === currentMainCategory.value?.id)?.children ?? categoryTree.value,
 );
+// Arizona: keep the subcategory row on one line – measure the items once and show as many as fit
+const MORE_BUTTON_WIDTH = 96;
+const rowListRef = ref<HTMLElement | null>(null);
+const rowItemWidths = ref<number[]>([]);
+const rowWidth = ref(0);
+const rowMeasured = ref(false);
+const isMoreOpen = ref(false);
+const visibleRowCount = computed(() => {
+  if (!rowMeasured.value) return rowItems.value.length;
+  const total = rowItemWidths.value.reduce((sum, width) => sum + width, 0);
+  if (total <= rowWidth.value) return rowItems.value.length;
+  let used = 0;
+  let count = 0;
+  for (const width of rowItemWidths.value) {
+    if (used + width > rowWidth.value - MORE_BUTTON_WIDTH) break;
+    used += width;
+    count++;
+  }
+  return count;
+});
+const hiddenRowItems = computed(() => (rowMeasured.value ? rowItems.value.slice(visibleRowCount.value) : []));
+const measureRow = async () => {
+  rowMeasured.value = false;
+  await nextTick();
+  const list = rowListRef.value;
+  if (!list) return;
+  rowItemWidths.value = [...list.querySelectorAll<HTMLElement>('[data-nav-row-item]')].map(
+    (item) => item.getBoundingClientRect().width,
+  );
+  rowWidth.value = list.clientWidth;
+  rowMeasured.value = true;
+};
+const openMoreMenu = () => {
+  close();
+  isMoreOpen.value = true;
+};
 const isActiveMainCategory = (node: CategoryTreeItem) => {
   const base = localePath(generateCategoryLink(node)).replace(/\/$/, '');
   return base.length > 1 && (route.path === base || route.path.startsWith(`${base}/`));
@@ -304,11 +389,11 @@ const navigationRootStyle = computed(() => ({
 const navigationContainerClasses = computed(() => {
   switch (resolvedContent.value.text.textAlignment) {
     case 'center':
-      return 'flex flex-wrap justify-center';
+      return 'flex flex-nowrap justify-center';
     case 'right':
-      return 'flex flex-wrap justify-end';
+      return 'flex flex-nowrap justify-end';
     default:
-      return 'flex flex-wrap justify-start';
+      return 'flex flex-nowrap justify-start';
   }
 });
 
@@ -484,14 +569,37 @@ const onCategoryClickCapture = (event: MouseEvent, menuNode: CategoryTreeItem) =
   tappedCategoryId.value = null;
 };
 
+// the row only exists on large screens, so measuring and watching its width starts whenever it appears
+let rowResizeObserver: ResizeObserver | undefined;
+watch(rowListRef, (list) => {
+  rowResizeObserver?.disconnect();
+  if (!list || !import.meta.client) return;
+  measureRow();
+  if (!('ResizeObserver' in window)) return;
+  rowResizeObserver = new ResizeObserver(() => updateRowWidth());
+  rowResizeObserver.observe(list);
+});
+const updateRowWidth = () => {
+  if (rowMeasured.value && rowListRef.value) rowWidth.value = rowListRef.value.clientWidth;
+};
 onMounted(() => {
+  window.addEventListener('resize', updateRowWidth);
   removeHook = router.afterEach(() => {
     close();
     tappedCategoryId.value = null;
   });
 });
 
-onBeforeUnmount(() => removeHook?.());
+onBeforeUnmount(() => {
+  removeHook?.();
+  rowResizeObserver?.disconnect();
+  window.removeEventListener('resize', updateRowWidth);
+});
+
+watch(rowItems, () => {
+  isMoreOpen.value = false;
+  measureRow();
+});
 
 onNuxtReady(async () => {
   if (props.categories.length > 0) return;
