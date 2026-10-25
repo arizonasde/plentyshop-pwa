@@ -132,7 +132,7 @@
                 v-if="product && productGetters.possibleUnitCombination(product).length > 1"
                 :product="product"
               />
-              <div ref="addToCartAreaRef" class="mt-6">
+              <div ref="addToCartAreaRef" class="mt-8 mb-2">
                 <div class="flex flex-col @md:flex-row flex-wrap gap-4">
                   <UiQuantitySelector
                     v-if="productGetters.isActiveVariationSalable(product)"
@@ -186,7 +186,7 @@
                   </div>
                 </div>
 
-                <div class="mt-4 typography-text-xs flex gap-1">
+                <div class="mt-6 typography-text-xs flex gap-1">
                   <span>{{ t('common.labels.asterisk') }}</span>
                   <span>{{ showNetPrices ? t('product.priceExclVAT') : t('product.priceInclVAT') }}</span>
                   <i18n-t keypath="shipping.excludedLabel" scope="global">

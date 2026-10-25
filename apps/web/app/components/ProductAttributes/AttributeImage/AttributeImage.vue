@@ -2,7 +2,7 @@
   <div>
     <label
       :for="'attribute-' + productAttributeGetters.getAttributeId(attribute)"
-      class="block leading-5 text-base text-neutral-900 mb-3 mt-2"
+      class="block leading-5 text-base text-neutral-900 mb-3"
     >
       <span class="font-bold">{{ productAttributeGetters.getAttributeName(attribute) }}</span>
       <span v-if="value" class="text-neutral-700">: {{ selectedAttributeValueName }}</span>

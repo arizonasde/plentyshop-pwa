@@ -1,6 +1,7 @@
 <template>
-  <div v-if="attributes.length > 0" data-testid="product-attributes" class="mb-2">
-    <div v-for="(attribute, index) in attributes" :key="index" class="mb-2">
+  <!-- Arizona: generous spacing around colour and size so they stand out -->
+  <div v-if="attributes.length > 0" data-testid="product-attributes" class="my-6 space-y-6">
+    <div v-for="(attribute, index) in attributes" :key="index">
       <Component
         :is="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
         v-if="componentsMapper[productAttributeGetters.getAttributeType(attribute)]"
