@@ -1,11 +1,15 @@
 <template>
   <div class="flex-1">
+    <div v-if="categoryName" class="flex flex-wrap items-baseline gap-x-3 mb-3" data-testid="category-headline-compact">
+      <h1 class="typography-headline-4 @md:typography-headline-3 font-bold">{{ categoryName }}</h1>
+      <span class="typography-text-sm text-neutral-600">{{ totalProducts }} Artikel</span>
+    </div>
     <ArizonaFilterBar
       v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
       :facets="productsCatalog.facets"
       class="mb-4"
     />
-    <template v-if="content?.showItemCount">
+    <template v-if="content?.showItemCount && !categoryName">
       <div
         class="flex items-center mb-6"
         :class="{
@@ -80,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-import { productGetters, type Product } from '@plentymarkets/shop-api';
+import { categoryGetters, productGetters, type Product } from '@plentymarkets/shop-api';
 import type { ItemGridProps } from '~/components/blocks/ItemGrid/types';
 
 const { getFacetsFromURL } = useCategoryFilter();
@@ -92,6 +96,10 @@ const { data: productsCatalog, productsPerPage } = useProducts();
 
 const props = defineProps<ItemGridProps>();
 const products = computed(() => productsCatalog.value.products || []);
+// Arizona: the category name sits compactly above the filters instead of in a large CategoryData block.
+const categoryName = computed(() =>
+  productsCatalog.value.category ? categoryGetters.getCategoryName(productsCatalog.value.category) : '',
+);
 
 // Arizona: every colour of an item is its own card; collect the siblings so each card can preview the other colours.
 const productsByItem = computed(() => {

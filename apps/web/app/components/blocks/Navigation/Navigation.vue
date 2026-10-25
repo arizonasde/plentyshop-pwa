@@ -10,8 +10,8 @@
             ref="triggerReference"
             :to="localePath(generateCategoryLink(menuNode))"
             data-testid="category-button"
-            :class="categoryButtonClasses"
-            :style="categoryButtonStyle"
+            :class="[categoryButtonClasses, isActiveMainCategory(menuNode) && activeButtonClasses]"
+            :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
             tabindex="0"
             aria-haspopup="true"
             :aria-expanded="isOpen && activeNode[0] === menuNode.id ? 'true' : 'false'"
@@ -27,8 +27,13 @@
             <span>{{ categoryTreeGetters.getName(menuNode) }}</span>
             <SfIconChevronRight
               aria-hidden="true"
-              class="rotate-90 text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900"
-              :style="categoryButtonStyle"
+              class="rotate-90"
+              :class="
+                isActiveMainCategory(menuNode)
+                  ? 'text-white'
+                  : 'text-neutral-500 group-hover:text-neutral-700 group-active:text-neutral-900'
+              "
+              :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
             />
           </NuxtLink>
 
@@ -37,8 +42,8 @@
             ref="triggerReference"
             :to="localePath(generateCategoryLink(menuNode))"
             data-testid="category-button"
-            :class="categoryButtonClasses"
-            :style="categoryButtonStyle"
+            :class="[categoryButtonClasses, isActiveMainCategory(menuNode) && activeButtonClasses]"
+            :style="isActiveMainCategory(menuNode) ? undefined : categoryButtonStyle"
             tabindex="0"
             @keydown.left="focusPreviousCategory(index)"
             @keydown.right="focusNextCategory(index)"
@@ -254,7 +259,14 @@ const triggerReference = ref();
 const tappedCategoryId = ref<number | null>(null);
 const TOUCH_DETECTION_THRESHOLD = 500;
 const categoryButtonClasses =
-  'inline-flex items-center justify-center gap-2 font-medium text-base rounded-md py-2 px-4 group mr-2 nav-hover-bg active:!bg-neutral-300';
+  'inline-flex items-center justify-center gap-2 font-semibold text-base rounded-full py-2 px-4 group mr-2 nav-hover-bg active:!bg-neutral-300';
+// Arizona: the main category the shopper is in is shown as a filled pill (like large fashion shops).
+const route = useRoute();
+const isActiveMainCategory = (node: CategoryTreeItem) => {
+  const base = localePath(generateCategoryLink(node)).replace(/\/$/, '');
+  return base.length > 1 && (route.path === base || route.path.startsWith(`${base}/`));
+};
+const activeButtonClasses = '!bg-neutral-900 !text-white hover:!bg-neutral-800';
 let removeHook: () => void;
 
 const trapFocusOptions = {

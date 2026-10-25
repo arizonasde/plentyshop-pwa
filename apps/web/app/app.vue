@@ -126,8 +126,11 @@ const { getAssetsOfType } = useCustomAssets();
 
 const isSafeMode = computed(() => customAssetsSafeMode());
 
+const { title: arizonaCategoryTitle, description: arizonaCategoryDescription } = useArizonaCategoryMeta();
+
 const getCategoryMetaTitle = () => {
   if (isCategoryPage.value) {
+    if (arizonaCategoryTitle.value) return arizonaCategoryTitle.value;
     const categoryMetaTitle = categoryGetters.getMetaTitle(category.value);
     if (categoryMetaTitle) return categoryMetaTitle;
   }
@@ -136,6 +139,7 @@ const getCategoryMetaTitle = () => {
 
 const getCategoryMetaDescription = () => {
   if (isCategoryPage.value) {
+    if (arizonaCategoryDescription.value) return arizonaCategoryDescription.value;
     const categoryMetaDescription = categoryGetters.getMetaDescription(category.value);
     if (categoryMetaDescription) return categoryMetaDescription;
   }
@@ -152,6 +156,7 @@ const getCategoryMetaKeywords = () => {
 
 const getCategoryOgTitle = () => {
   if (isCategoryPage.value) {
+    if (arizonaCategoryTitle.value) return arizonaCategoryTitle.value;
     const categoryMetaTitle = categoryGetters.getMetaTitle(category.value);
     if (categoryMetaTitle) return categoryMetaTitle;
   }

@@ -73,3 +73,52 @@ export const getCanonicalVariationId = (product: Product, groupAttributeId: numb
 
   return sameGroup.length > 0 ? Math.min(...sameGroup) : undefined;
 };
+
+// Main categories read better with a fashion term in titles ("Herrenmode" instead of "Herren").
+const MAIN_CATEGORY_LABELS: Record<string, string> = {
+  damen: 'Damenmode',
+  herren: 'Herrenmode',
+  kinder: 'Kindermode',
+  sport: 'Sportbekleidung',
+  sale: 'Sale',
+};
+
+const tidyCategoryName = (name: string): string => {
+  const trimmed = name.replace(/\s+/g, ' ').trim();
+  // "SALE" -> "Sale"; short all-caps names (e.g. "XXL") stay untouched
+  return trimmed.length > 3 && trimmed === trimmed.toUpperCase()
+    ? trimmed.charAt(0) + trimmed.slice(1).toLowerCase()
+    : trimmed;
+};
+
+/**
+ * Builds a readable category label from the category path (main category first),
+ * e.g. ["Herren"] -> "Herrenmode", ["Damen", "Jeans", "Slim Fit"] -> "Damen Jeans Slim Fit".
+ * Deep paths keep only the main category and the leaf when the full label gets too long.
+ */
+export const buildCategoryLabel = (path: string[], maxLength = 32): string => {
+  const names = path.map(tidyCategoryName).filter(Boolean);
+  const [main, ...rest] = names;
+  if (!main) return '';
+  if (rest.length === 0) return MAIN_CATEGORY_LABELS[main.toLowerCase()] ?? main;
+
+  const full = [main, ...rest.slice(-2)].join(' ');
+  return full.length <= maxLength ? full : `${main} ${rest.at(-1)}`;
+};
+
+/**
+ * Category title without the shop suffix (the title template appends it); the longest phrase that keeps the
+ * complete title within `maxLength` wins.
+ */
+export const buildCategoryTitle = (label: string, suffix: string, maxLength = 65): string => {
+  const tailLength = suffix ? ` | ${suffix}`.length : 0;
+  const phrase = [' günstig online kaufen', ' günstig kaufen'].find(
+    (candidate) => label.length + candidate.length + tailLength <= maxLength,
+  );
+  return `${label}${phrase ?? ''}`;
+};
+
+export const buildCategoryDescription = (label: string): string => {
+  const shipping = SHIPPING_RATES[0]?.value.toFixed(2).replace('.', ',');
+  return `${label} günstig bei Arizona Shopping kaufen. Versand mit DHL für ${shipping} €, Lieferung in 1–2 Werktagen, ${RETURN_DAYS} Tage Rückgaberecht.`;
+};

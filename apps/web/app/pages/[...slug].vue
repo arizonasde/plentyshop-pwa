@@ -89,15 +89,20 @@ watch(
   },
 );
 
+const { title: arizonaTitle, description: arizonaDescription } = useArizonaCategoryMeta();
+
 const headTitle = computed(() =>
   productsCatalog.value?.category
-    ? ((categoryGetters.getMetaTitle(productsCatalog.value.category) || process.env.METATITLE) ?? '')
+    ? arizonaTitle.value || categoryGetters.getMetaTitle(productsCatalog.value.category) || process.env.METATITLE || ''
     : (process.env.METATITLE ?? ''),
 );
 
 const descriptionContent = computed(() =>
   productsCatalog.value?.category
-    ? ((categoryGetters.getMetaDescription(productsCatalog.value.category) || process.env.METADESC) ?? '')
+    ? arizonaDescription.value ||
+      categoryGetters.getMetaDescription(productsCatalog.value.category) ||
+      process.env.METADESC ||
+      ''
     : (process.env.METADESC ?? ''),
 );
 
