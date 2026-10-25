@@ -17,7 +17,7 @@
       <circle cx="17" cy="18" r="2" />
     </svg>
     <span v-if="promise">
-      Lieferung voraussichtlich <strong>{{ promise.window }}</strong>.
+      Lieferung <strong>{{ promise.window }}</strong>.
       <span class="font-normal text-neutral-700">Bestellung innerhalb {{ promise.orderWithin }}</span>
     </span>
     <span v-else>Lieferung in 1–3 Werktagen</span>
@@ -29,7 +29,7 @@ import { getArizonaDeliveryPromise } from '~/utils/arizonaDelivery';
 
 /**
  * Arizona: expected delivery window with the time left to order for it on the product page, e.g.
- * "Lieferung voraussichtlich Di, 27. – Mi, 28. Oktober. Bestellung innerhalb 29 Min." (see utils/arizonaDelivery.ts). Rendered with the
+ * "Lieferung Di, 27. – Mi, 28. Oktober. Bestellung innerhalb 29 Min." (see utils/arizonaDelivery.ts). Rendered with the
  * generic wording on the server and replaced in the browser, where the time is current.
  */
 const promise = ref<ReturnType<typeof getArizonaDeliveryPromise>>();

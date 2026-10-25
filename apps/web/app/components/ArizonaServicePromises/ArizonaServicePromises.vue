@@ -17,7 +17,7 @@ const props = defineProps<ArizonaServicePromisesProps>();
 // Arizona service promises, shown next to every buying decision (product page, cart). The delivery promise names the
 // concrete days once the page runs in the browser.
 const deliveryPromise = ref('Lieferung in 1–3 Werktagen');
-onMounted(() => (deliveryPromise.value = `Lieferung voraussichtlich ${getArizonaDeliveryPromise().window}`));
+onMounted(() => (deliveryPromise.value = `Lieferung ${getArizonaDeliveryPromise().window}`));
 
 const servicePromises = computed(() => [
   'Versand mit DHL für 4,90 €',
