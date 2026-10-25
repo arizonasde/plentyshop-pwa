@@ -24,7 +24,15 @@
                 class="typography-text-lg font-semibold text-neutral-900 uppercase tracking-wide"
                 data-testid="product-brand"
               >
-                {{ brandName }}
+                <!-- Arizona: the brand links to its brand page when there is one -->
+                <NuxtLink
+                  v-if="brandPage"
+                  :to="localePath(`/marken/${brandPage.slug}`)"
+                  class="hover:underline underline-offset-4"
+                >
+                  {{ brandName }}
+                </NuxtLink>
+                <template v-else>{{ brandName }}</template>
               </p>
               <h1 class="font-normal typography-headline-5 text-neutral-700 break-word mb-2" data-testid="product-name">
                 {{ getDisplayName(product) }}
@@ -395,6 +403,7 @@ const renderTextBlock = (html: string): string =>
   );
 
 const brandName = computed(() => getBrandName(props.product));
+const brandPage = computed(() => (brandName.value ? findArizonaBrandByName(brandName.value) : undefined));
 
 
 const inlineStyle = computed(() => {
