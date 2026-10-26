@@ -22,6 +22,7 @@ import type {
   ItemAvailability,
   OfferItemCondition,
 } from 'schema-dts';
+import { getArizonaAvailability, getArizonaBrand, getArizonaGtin13 } from '~/utils/arizonaSchema';
 
 /**
  * @description Composable managing meta data
@@ -193,7 +194,8 @@ export const useStructuredData: useStructuredDataReturn = () => {
       price: Number(price.value),
       url: offerPath ? applyTrailingSlashToUrl(`${runtimeConfig.public.domain}${offerPath}`) : undefined,
       priceSpecification,
-      availability: productSeoSettingsGetters.getMappedAvailability(product) as ItemAvailability,
+      availability: (productSeoSettingsGetters.getMappedAvailability(product) ||
+        getArizonaAvailability(product)) as ItemAvailability,
       itemCondition: productSeoSettingsGetters.getConditionOfItem(product) as OfferItemCondition,
       ...(priceValidUntil !== '' && { priceValidUntil }),
       shippingDetails: buildShippingDetails(productGetters.getSpecialPriceCurrency(product), Number(price.value)),
@@ -242,10 +244,11 @@ export const useStructuredData: useStructuredDataReturn = () => {
     const weight = productGetters.getWeightG(product);
     if (Number(weight) > 0) metaObject.weight = { '@type': 'QuantitativeValue', value: weight, unitCode: 'GRM' };
 
-    const manufacturer = productSeoSettingsGetters.getSeoManufacturer(product);
+    // Arizona: plentyONE leaves seoSettings empty, so brand, manufacturer and GTIN-13 fall back to the product data
+    const manufacturer = productSeoSettingsGetters.getSeoManufacturer(product) || getArizonaBrand(product);
     if (manufacturer !== '') metaObject.manufacturer = { '@type': 'Organization', name: manufacturer };
 
-    const brand = productSeoSettingsGetters.getBrand(product);
+    const brand = productSeoSettingsGetters.getBrand(product) || getArizonaBrand(product);
     if (brand !== '') metaObject.brand = { '@type': 'Brand', name: brand };
 
     const sku = productSeoSettingsGetters.getSku(product);
@@ -257,7 +260,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
     const gtin8 = productSeoSettingsGetters.getGtin8(product);
     if (gtin8 !== '') metaObject.gtin8 = gtin8;
 
-    const gtin13 = productSeoSettingsGetters.getGtin13(product);
+    const gtin13 = productSeoSettingsGetters.getGtin13(product) || getArizonaGtin13(product);
     if (gtin13 !== '') metaObject.gtin13 = gtin13;
 
     const isbn = productSeoSettingsGetters.getIsbn(product);

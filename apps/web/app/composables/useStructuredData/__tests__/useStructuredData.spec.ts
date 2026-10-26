@@ -85,7 +85,9 @@ const getOffersPriceSpecification = (): Array<Record<string, unknown>> => {
   return (offers?.['priceSpecification'] as Array<Record<string, unknown>>) ?? [];
 };
 
-const isListPrice = (spec: Record<string, unknown>): boolean => spec['priceType'] === 'ListPrice';
+// Arizona: the former price is published as StrikethroughPrice
+const isListPrice = (spec: Record<string, unknown>): boolean =>
+  spec['priceType'] === 'https://schema.org/StrikethroughPrice';
 const getListPrice = (specs: Array<Record<string, unknown>>): Record<string, unknown> | undefined =>
   specs.find(isListPrice);
 
