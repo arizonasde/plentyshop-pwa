@@ -1,26 +1,35 @@
+import { productGetters, type Product } from '@plentymarkets/shop-api';
+
 /**
  * Arizona: "Angebote des Tages" from the file that tagesangebote.py puts into the webspace
- * ({ datum, ende, angebote: [{ itemId, variationId?, preis, statt }] }). The deal prices themselves come from
+ * ({ datum, ende, angebote: [{ itemId, variationId?, preis, statt, bereich?, unterkategorie? }] }). The deal prices themselves come from
  * plentyONE (sales price 53 "Webshop Tagesangebot", type specialOffer); the file only says which items are
  * today's deals and when the offer ends. Everything stays hidden when the file is missing, empty or expired.
  */
 const DEALS_URL = 'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-bestand/tagesangebote.json';
 
 export const useArizonaDailyDeals = () => {
-  const deals = useState<{ ende: string; angebote: { itemId: number; variationId?: number }[] } | null>(
-    'arizonaDailyDeals',
-    () => null,
-  );
+  const deals = useState<{
+    ende: string;
+    angebote: { itemId: number; variationId?: number; bereich?: string; unterkategorie?: string }[];
+  } | null>('arizonaDailyDeals', () => null);
   const loaded = useState('arizonaDailyDealsLoaded', () => false);
+  const finished = useState('arizonaDailyDealsFinished', () => false);
+  /** true once the deals file was read (or deals were set otherwise) */
+  const ready = computed(() => Boolean(deals.value) || finished.value);
+
   const now = ref(Date.now());
 
   const load = async () => {
-    if (!import.meta.client || loaded.value) return;
+    // deals that are already set (e.g. for a preview) are kept
+    if (!import.meta.client || loaded.value || deals.value) return;
     loaded.value = true;
     try {
       deals.value = await $fetch(DEALS_URL, { query: { v: Math.floor(Date.now() / 600_000) } });
     } catch {
-      deals.value = null;
+      // no file today: nothing is shown
+    } finally {
+      finished.value = true;
     }
   };
 
@@ -46,5 +55,41 @@ export const useArizonaDailyDeals = () => {
 
   const isDeal = (itemId: number | string) => offers.value.some((offer) => String(offer.itemId) === String(itemId));
 
-  return { offers, active, remaining, isDeal };
+  return { offers, active, ready, remaining, isDeal };
+};
+
+/**
+ * Loads the items of the given deals: by variation id in packages of 20, deals without a variation id one by one.
+ * Items that are no longer available are skipped. Keeps the order of the deals file.
+ */
+export const loadArizonaDealProducts = async (offers: { itemId: number; variationId?: number }[]) => {
+  const sdk = useSdk().plentysystems;
+  const withVariation = offers.filter((offer) => offer.variationId).map((offer) => Number(offer.variationId));
+  const packages: number[][] = [];
+  for (let index = 0; index < withVariation.length; index += 20) packages.push(withVariation.slice(index, index + 20));
+
+  const results = await Promise.all([
+    ...packages.map(async (variationIds) => {
+      try {
+        const { data } = await sdk.getProductsByIds({ variationIds });
+        return data?.products ?? [];
+      } catch {
+        return [];
+      }
+    }),
+    ...offers
+      .filter((offer) => !offer.variationId)
+      .map(async (offer) => {
+        try {
+          const { data } = await sdk.getProduct({ id: String(offer.itemId) });
+          return data ? [data as Product] : [];
+        } catch {
+          return [];
+        }
+      }),
+  ]);
+
+  const order = (product: Product) =>
+    offers.findIndex((offer) => String(offer.itemId) === String(productGetters.getItemId(product)));
+  return results.flat().sort((a, b) => order(a) - order(b));
 };

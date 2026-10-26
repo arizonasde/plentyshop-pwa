@@ -76,6 +76,16 @@
       </div>
     </div>
 
+    <!-- Arizona: today's deals, preselected for the current category when it has deals -->
+    <NuxtLink
+      v-if="dealsActive"
+      :to="dealsLink"
+      class="h-11 inline-flex items-center rounded-full bg-[#C8102E] px-4 typography-text-sm font-semibold text-white hover:bg-[#A50D26]"
+      data-testid="arizona-filter-bar-deals"
+    >
+      Tagesangebote
+    </NuxtLink>
+
     <button
       v-if="hasActiveFilters"
       type="button"
@@ -88,9 +98,10 @@
 </template>
 
 <script setup lang="ts">
-import { facetGetters, type FilterGroup } from '@plentymarkets/shop-api';
+import { categoryGetters, categoryTreeGetters, facetGetters, type FilterGroup } from '@plentymarkets/shop-api';
 import { SfCheckbox, SfIconExpandMore, SfInput } from '@storefront-ui/vue';
 import type { ArizonaFilterBarProps } from './types';
+import { useArizonaDailyDeals } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
 
 /**
  * Arizona: filters as pills above the product grid (large fashion shop pattern).
@@ -105,6 +116,22 @@ const panelClass =
 const route = useRoute();
 const { getFacetsFromURL, updateFilters, updatePrices, updateSorting } = useCategoryFilter();
 const { getJsonSetting: availableSortingOptions } = useSiteSettings('availableSortingOptions');
+
+const localePath = useLocalizedPath();
+const { data: productsCatalog } = useProducts();
+const { currentMainCategory } = useArizonaMainCategory();
+const { offers, active: dealsActive } = useArizonaDailyDeals();
+// on a category page the deals page opens on its area and, if it has deals today, its subcategory
+const dealsLink = computed(() => {
+  const category = productsCatalog.value?.category;
+  const main = currentMainCategory.value;
+  const area = category && main ? categoryTreeGetters.getName(main) : '';
+  const subcategory = category ? `${area} › ${categoryGetters.getCategoryName(category)}` : '';
+  const query: Record<string, string> = {};
+  if (offers.value.some((offer) => offer.bereich === area)) query.bereich = area;
+  if (offers.value.some((offer) => offer.unterkategorie === subcategory)) query.kategorie = subcategory;
+  return { path: localePath('/tagesangebote'), query };
+});
 
 const barRef = ref<HTMLElement | null>(null);
 const openKey = ref<string | null>(null);

@@ -7,11 +7,14 @@
         :product="product"
         :use-availability="isFromWishlist"
       />
-      <!-- Arizona: countdown badge for today's deals -->
-      <ArizonaDealCountdown
-        :item-id="productGetters.getItemId(product)"
-        class="pointer-events-none absolute bottom-2 left-2 z-raised"
-      />
+      <!-- Arizona: today's deals get a small red label instead of the percentage badge -->
+      <span
+        v-if="isDailyDeal"
+        class="pointer-events-none absolute top-2 left-2 z-raised rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white"
+        data-testid="product-card-daily-deal"
+      >
+        Tagesangebot
+      </span>
 
       <div ref="imageContainerRef" class="relative">
         <UiLink
@@ -73,7 +76,7 @@
       </div>
 
       <span
-        v-if="discountPercent"
+        v-if="discountPercent && !isDailyDeal"
         class="absolute bottom-2 left-2 rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white"
         data-testid="product-card-discount"
       >
@@ -237,6 +240,7 @@
               {{ format(crossedPrice) }}
             </span>
           </div>
+          <p v-if="isDailyDeal" class="-mt-1 pb-2 typography-text-xs font-medium text-[#C8102E]">Nur heute</p>
         </template>
         <template v-if="key === 'addToCart' && configuration?.fields?.addToCart">
           <UiButton
@@ -505,6 +509,9 @@ const addWithLoader = async (productId: number, quickCheckout = true) => {
 const differentPrices = (price: number, crossedPrice: number) => {
   return crossedPrice ? Math.round(price * 100) / 100 !== Math.round(crossedPrice * 100) / 100 : false;
 };
+
+const { isDeal } = useArizonaDailyDeals();
+const isDailyDeal = computed(() => isDeal(productGetters.getItemId(product.value)));
 
 const discountPercent = computed(() => {
   const current = price.value;
