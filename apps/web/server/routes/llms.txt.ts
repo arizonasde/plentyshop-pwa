@@ -19,6 +19,7 @@ const LLMS_TXT = `# Arizona Shopping
 - [Herrenmode](https://www.arizona-shopping.de/herrenmode): Jeans, Shorts, Hosen, Jogginghosen, Oberteile, Jacken & Mäntel, Accessoires, Schuhe
 - [Kindermode](https://www.arizona-shopping.de/kindermode): Baby, Mädchen, Jungen
 - [Sport](https://www.arizona-shopping.de/sport): Sportbekleidung für Damen und Herren
+- [Sale](https://www.arizona-shopping.de/sale-und-outlet): reduzierte Artikel
 - [Marken](https://www.arizona-shopping.de/marken): alle Marken im Shop, z. B. [Jack & Jones](https://www.arizona-shopping.de/marken/jack-and-jones), [Only](https://www.arizona-shopping.de/marken/only), [Vero Moda](https://www.arizona-shopping.de/marken/vero-moda), [Mavi](https://www.arizona-shopping.de/marken/mavi), [Tom Tailor](https://www.arizona-shopping.de/marken/tom-tailor)
 
 ## Service und Rechtliches
