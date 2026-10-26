@@ -212,3 +212,19 @@ export const findArizonaBrandByName = (name: string) => {
   const normalized = formatBrandName(name).toLowerCase();
   return ARIZONA_BRANDS.find((brand) => brand.name.toLowerCase() === normalized);
 };
+
+/** URL part of a brand name, e.g. "Jack & Jones" → "jack-and-jones", "!Solid" → "solid", "b.young" → "b-young". */
+export const slugifyArizonaBrand = (name: string) =>
+  formatBrandName(name)
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[äÄ]/g, 'ae')
+    .replace(/[öÖ]/g, 'oe')
+    .replace(/[üÜ]/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+/** Brand page of any brand name: the curated page if there is one, otherwise the generated one (/marken/<slug>). */
+export const arizonaBrandPath = (name: string) =>
+  `/marken/${findArizonaBrand(slugifyArizonaBrand(name))?.slug ?? findArizonaBrandByName(name)?.slug ?? slugifyArizonaBrand(name)}`;

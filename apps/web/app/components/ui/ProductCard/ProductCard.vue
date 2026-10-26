@@ -191,13 +191,15 @@
           </UiLink>
         </template>
         <template v-if="key === 'manufacturer' && configuration?.fields?.manufacturer">
-          <div
-            v-if="manufacturer"
-            class="typography-text-sm font-semibold text-neutral-900 truncate"
+          <!-- Arizona: the brand links to its brand page -->
+          <NuxtLink
+            v-if="manufacturer?.externalName"
+            :to="localePath(arizonaBrandPath(manufacturer.externalName))"
+            class="block typography-text-sm font-semibold text-neutral-900 truncate hover:underline underline-offset-4"
             data-testid="productcard-manufacturer"
           >
-            {{ formatBrandName(manufacturer.externalName ?? '') }}
-          </div>
+            {{ formatBrandName(manufacturer.externalName) }}
+          </NuxtLink>
         </template>
         <template v-if="key === 'rating' && configuration?.fields?.rating">
           <div class="flex items-center pt-1 gap-1 mb-2">

@@ -63,11 +63,11 @@ const localePath = useLocalizedPath();
 const runtimeConfig = useRuntimeConfig();
 const { setItemListMetaData } = useStructuredData();
 
-const found = findArizonaBrand(String(route.params.slug ?? ''));
-if (!found) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' });
-}
-const brand = found;
+const slug = String(route.params.slug ?? '');
+// Arizona: brands without a curated entry get a generated page – their items are found by searching the brand name
+// and keeping only items whose manufacturer really is this brand.
+const brand = findArizonaBrand(slug) ?? { slug, name: '', searchTerm: slug.replace(/-/g, ' '), intro: '' };
+const isGenerated = !findArizonaBrand(slug);
 
 const currentPage = computed(() => Number(route.query.page) || 1);
 
@@ -91,8 +91,26 @@ const { data } = await useAsyncData(
   { transform: trimListingProducts, watch: [currentPage] },
 );
 
-const products = computed(() => data.value?.data?.products ?? []);
-const total = computed(() => Number(data.value?.data?.pagination?.totals) || 0);
+const allProducts = computed(() => data.value?.data?.products ?? []);
+const products = computed(() =>
+  isGenerated
+    ? allProducts.value.filter(
+        (product) => slugifyArizonaBrand(productGetters.getManufacturer(product)?.externalName ?? '') === slug,
+      )
+    : allProducts.value,
+);
+// Generated pages count only the items on this page that belong to the brand, so the paging stays honest
+const total = computed(() =>
+  isGenerated && products.value.length < allProducts.value.length
+    ? products.value.length
+    : Number(data.value?.data?.pagination?.totals) || 0,
+);
+
+if (isGenerated) {
+  if (!products.value.length) throw createError({ statusCode: 404, statusMessage: 'Page not found' });
+  brand.name = formatBrandName(productGetters.getManufacturer(products.value[0]!)?.externalName ?? '');
+  brand.intro = `Mode von ${brand.name} bei Arizona Shopping – aktuelle Artikel der Marke auf einen Blick.`;
+}
 
 const breadcrumbs = computed(() => [
   { name: t('common.labels.home'), link: localePath('/') },
