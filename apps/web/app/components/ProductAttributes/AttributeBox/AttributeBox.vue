@@ -78,6 +78,14 @@
       </li>
     </ul>
 
+    <p
+      v-if="selectedOption?.lowStock && !open"
+      class="mt-2 flex items-center gap-2 typography-text-sm font-semibold text-[#EA580C]"
+      data-testid="low-stock-hint"
+    >
+      <span class="size-2 shrink-0 rounded-full bg-[#EA580C]" aria-hidden="true" />
+      {{ selectedOption.label }}
+    </p>
     <ArizonaBackInStock
       v-if="notifyOption"
       :key="notifyOption.id"
@@ -163,7 +171,9 @@ const options = computed(() =>
         variationId: variation?.variationId,
         soldOut,
         label,
-        labelClass: stock !== undefined && stock <= 2 ? 'text-[#C2410C] font-medium' : 'text-positive-700',
+        // Arizona: fewer than 3 pieces in stock is shown in orange
+        lowStock: stock !== undefined && stock > 0 && stock < 3,
+        labelClass: stock !== undefined && stock < 3 ? 'text-[#EA580C] font-semibold' : 'text-positive-700',
       };
     }),
 );
