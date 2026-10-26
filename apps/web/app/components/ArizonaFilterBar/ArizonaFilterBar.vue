@@ -119,8 +119,9 @@ const visibleFacets = computed(() =>
   props.facets.filter(
     (facet) =>
       SUPPORTED_TYPES.has(facetGetters.getType(facet)) &&
-      // the category facet is redundant next to the category tree in the sidebar
-      facetGetters.getName(facet).trim().toLowerCase() !== 'kategorie' &&
+      // the category facet is redundant next to the category tree in the sidebar – except in categories without
+      // subcategories (e.g. SALE), where it is the only way to narrow down by category
+      (props.showCategoryFacet || facetGetters.getName(facet).trim().toLowerCase() !== 'kategorie') &&
       (facetGetters.getType(facet) === 'price' || facetGetters.getFilters(facet).length > 0),
   ),
 );

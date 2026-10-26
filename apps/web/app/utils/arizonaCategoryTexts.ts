@@ -33,3 +33,6 @@ export const ARIZONA_CATEGORY_TEXTS: Record<number, string> = {
   528: 'Sportbekleidung für Damen – bequeme Shirts, Hoodies und mehr für Training und Freizeit.',
   489: 'Sportbekleidung für Herren – Shirts, Hoodies, Sweatjacken und Shorts für Training und Freizeit.',
 };
+
+/** Arizona: category "SALE" (/sale-und-outlet) – gets autumn deal banners and the category filter. */
+export const ARIZONA_SALE_CATEGORY_ID = 216;

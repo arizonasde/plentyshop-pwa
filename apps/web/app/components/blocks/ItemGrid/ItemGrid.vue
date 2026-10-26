@@ -7,9 +7,12 @@
     <p v-if="categoryText" class="typography-text-sm text-neutral-600 max-w-3xl mb-4" data-testid="category-intro-text">
       {{ categoryText }}
     </p>
+    <!-- Arizona: autumn deal banners on the SALE page -->
+    <ArizonaSaleBanners v-if="isSaleCategory" class="mb-5" />
     <ArizonaFilterBar
       v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
       :facets="productsCatalog.facets"
+      :show-category-facet="!categoryHasChildren"
       class="mb-4"
     />
     <template v-if="content?.showItemCount && !categoryName">
@@ -89,6 +92,7 @@
 <script setup lang="ts">
 import { categoryGetters, productGetters, type Product } from '@plentymarkets/shop-api';
 import type { ItemGridProps } from '~/components/blocks/ItemGrid/types';
+import { ARIZONA_SALE_CATEGORY_ID } from '~/utils/arizonaCategoryTexts';
 
 const { getFacetsFromURL } = useCategoryFilter();
 
@@ -103,6 +107,21 @@ const products = computed(() => productsCatalog.value.products || []);
 const categoryName = computed(() =>
   productsCatalog.value.category ? categoryGetters.getCategoryName(productsCatalog.value.category) : '',
 );
+
+// Arizona: categories without subcategories (e.g. SALE) get the category filter instead of a category tree
+const { data: categoryTree } = useCategoryTree();
+const categoryHasChildren = computed(() => {
+  const id = Number(productsCatalog.value.category?.id);
+  const find = (nodes: { id: number; children?: unknown[] }[]): { children?: unknown[] } | undefined => {
+    for (const node of nodes) {
+      if (node.id === id) return node;
+      const hit = find((node.children ?? []) as { id: number; children?: unknown[] }[]);
+      if (hit) return hit;
+    }
+  };
+  return Boolean(find((categoryTree.value ?? []) as { id: number; children?: unknown[] }[])?.children?.length);
+});
+const isSaleCategory = computed(() => Number(productsCatalog.value.category?.id) === ARIZONA_SALE_CATEGORY_ID);
 
 const categoryText = computed(() => {
   const id = productsCatalog.value.category?.id;
