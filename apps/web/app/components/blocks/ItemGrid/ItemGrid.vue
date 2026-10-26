@@ -7,8 +7,6 @@
     <p v-if="categoryText" class="typography-text-sm text-neutral-600 max-w-3xl mb-4" data-testid="category-intro-text">
       {{ categoryText }}
     </p>
-    <!-- Arizona: autumn deal banners on the SALE page -->
-    <ArizonaSaleBanners v-if="isSaleCategory" class="mb-5" />
     <ArizonaFilterBar
       v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
       :facets="productsCatalog.facets"
@@ -92,7 +90,6 @@
 <script setup lang="ts">
 import { categoryGetters, productGetters, type Product } from '@plentymarkets/shop-api';
 import type { ItemGridProps } from '~/components/blocks/ItemGrid/types';
-import { ARIZONA_SALE_CATEGORY_ID } from '~/utils/arizonaCategoryTexts';
 
 const { getFacetsFromURL } = useCategoryFilter();
 
@@ -121,7 +118,6 @@ const categoryHasChildren = computed(() => {
   };
   return Boolean(find((categoryTree.value ?? []) as { id: number; children?: unknown[] }[])?.children?.length);
 });
-const isSaleCategory = computed(() => Number(productsCatalog.value.category?.id) === ARIZONA_SALE_CATEGORY_ID);
 
 const categoryText = computed(() => {
   const id = productsCatalog.value.category?.id;

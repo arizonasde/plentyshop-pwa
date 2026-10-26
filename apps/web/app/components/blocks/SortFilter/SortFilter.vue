@@ -8,8 +8,10 @@
     <CategorySidebar class="sidebar w-full" :is-open="isOpen" @close="close">
       <template v-for="key in props.content?.filtersOrder" :key="key">
         <template v-if="key === 'category' && props.content?.fields.category">
+          <!-- Arizona: the SALE page shows an autumn deals banner instead of the category tree -->
+          <ArizonaSaleSideBanner v-if="isSaleCategory" />
           <CategoryTree
-            v-if="productsCatalog.category"
+            v-else-if="productsCatalog.category"
             :category="productsCatalog.category"
             :breadcrumbs="productsCatalog.breadcrumbs"
           />
@@ -91,11 +93,13 @@
 </template>
 
 <script setup lang="ts">
+import { ARIZONA_SALE_CATEGORY_ID } from '~/utils/arizonaCategoryTexts';
 import { facetGetters } from '@plentymarkets/shop-api';
 import type { SortFilterProps, SortFilterFieldsVisibility } from './types';
 import { SfIconTune, useDisclosure } from '@storefront-ui/vue';
 
 const { data: productsCatalog } = useProducts();
+const isSaleCategory = computed(() => Number(productsCatalog.value.category?.id) === ARIZONA_SALE_CATEGORY_ID);
 
 const props = defineProps<SortFilterProps>();
 
