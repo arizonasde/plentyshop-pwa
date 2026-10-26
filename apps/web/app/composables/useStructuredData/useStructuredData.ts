@@ -339,6 +339,11 @@ export const useStructuredData: useStructuredDataReturn = () => {
       robotsContent = 'noindex';
     }
 
+    // Arizona: allow large image previews in search results for indexable product pages
+    if (!robotsContent.includes('noindex')) {
+      robotsContent = robotsContent ? `${robotsContent}, max-image-preview:large` : 'max-image-preview:large';
+    }
+
     useHead({
       meta: [{ name: 'robots', content: robotsContent }],
     });

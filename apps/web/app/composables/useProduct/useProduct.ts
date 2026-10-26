@@ -95,7 +95,7 @@ export const useProduct: UseProductReturn = (slug) => {
 
     const title =
       productGetters.getTitle(state.value.data) ||
-      buildProductTitle(getDisplayName(state.value.data), titleSuffix, 75, {
+      buildProductTitle(getDisplayName(state.value.data), titleSuffix, 65, {
         brand: getBrandName(state.value.data),
         color: getShoppingAttributeValue(state.value.data, 'color').replace(/-\d+$/, ''),
       });
