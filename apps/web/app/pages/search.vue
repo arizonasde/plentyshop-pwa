@@ -75,6 +75,7 @@ import { SfIconTune, SfLoaderCircular, useDisclosure } from '@storefront-ui/vue'
 import type { Locale } from '#i18n';
 import { groupArizonaColorVariants } from '~/utils/arizonaColorVariants';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
+import { findArizonaSearchCategory } from '~/utils/arizonaSearchCategory';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
@@ -109,7 +110,20 @@ const gridClasses = gridClassFor({ mobile: 2, tablet: 3, desktop: 5 }, [
   '@md:mb-5',
 ]);
 
+// Arizona: queries that name a category ("jeans damen") open that category instead of the OR search
+const { data: categoryTree } = useCategoryTree();
+const { buildCategoryMenuLink } = useLocalization();
+const searchCategoryLink = () => {
+  const category = findArizonaSearchCategory(categoryTree.value ?? [], term.value);
+  return category ? localePath(buildCategoryMenuLink(category, categoryTree.value ?? [])) : '';
+};
+
 const handleQueryUpdate = async () => {
+  const categoryLink = searchCategoryLink();
+  if (categoryLink) {
+    await navigateTo(categoryLink, { replace: true });
+    return;
+  }
   await getSearch(getFacetsFromURL());
   setItemListMetaData(productsCatalog.value?.products || []);
 };
