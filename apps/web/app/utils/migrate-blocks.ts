@@ -145,9 +145,13 @@ export const migrateAllBlocks = (blocks: Block[]): void => {
         isHeaderContainerBlock(block)
       )
         continue;
+      // Arizona: product sliders never carry the page heading (on product pages the product name is the h1)
+      if (block.name === 'ProductRecommendedProducts') continue;
       if (TEXT_CONTENT_BLOCKS.has(block.name)) return block;
       if (Array.isArray(block.content)) {
-        const firstChild = block.content.find((child) => TEXT_CONTENT_BLOCKS.has(child.name));
+        const firstChild = block.content.find(
+          (child) => TEXT_CONTENT_BLOCKS.has(child.name) && child.name !== 'ProductRecommendedProducts',
+        );
         if (firstChild) return firstChild;
       }
     }
