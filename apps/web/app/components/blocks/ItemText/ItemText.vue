@@ -13,6 +13,8 @@
             {{ content.text.title }}
           </h2>
         </template>
+        <!-- Arizona: original logo of the manufacturer above the description -->
+        <ArizonaBrandLogo class="mb-4" />
         <div
           v-if="text"
           data-testid="item-text-innertext"
@@ -29,6 +31,7 @@
       <h2 class="font-bold text-lg leading-6 @md:text-2xl">
         {{ content.text.title }}
       </h2>
+      <ArizonaBrandLogo class="mb-4" />
       <div v-if="text" class="no-preflight [&>p:first-child]:mt-0 [&>p:last-child]:mb-0" v-html="text" />
       <p v-if="manufacturerNumber" class="mt-4 typography-text-sm" data-testid="item-text-manufacturer-number">
         <span class="font-semibold">Herstellernummer:</span> {{ manufacturerNumber }}
