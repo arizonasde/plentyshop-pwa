@@ -7,6 +7,11 @@
         :product="product"
         :use-availability="isFromWishlist"
       />
+      <!-- Arizona: countdown badge for today's deals -->
+      <ArizonaDealCountdown
+        :item-id="productGetters.getItemId(product)"
+        class="pointer-events-none absolute bottom-2 left-2 z-raised"
+      />
 
       <div ref="imageContainerRef" class="relative">
         <UiLink

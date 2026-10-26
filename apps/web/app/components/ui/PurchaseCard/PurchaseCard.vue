@@ -48,6 +48,8 @@
               </p>
             </template>
             <template v-if="key === 'price' && configuration?.fields.price">
+              <!-- Arizona: countdown for today's deals -->
+              <ArizonaDealCountdown :item-id="productGetters.getItemId(product)" class="mb-2" />
               <div class="flex space-x-2">
                 <Price :crossed-price="crossedPrice" :price="priceWithProperties" />
                 <div
