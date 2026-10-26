@@ -75,7 +75,7 @@ import { SfIconTune, SfLoaderCircular, useDisclosure } from '@storefront-ui/vue'
 import type { Locale } from '#i18n';
 import { groupArizonaColorVariants } from '~/utils/arizonaColorVariants';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
-import { findArizonaSearchCategory } from '~/utils/arizonaSearchCategory';
+import { resolveArizonaSearch } from '~/utils/arizonaSearchCategory';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
@@ -110,20 +110,42 @@ const gridClasses = gridClassFor({ mobile: 2, tablet: 3, desktop: 5 }, [
   '@md:mb-5',
 ]);
 
-// Arizona: queries that name a category ("jeans damen") open that category instead of the OR search
+// Arizona: the plentyONE search links words with OR. Each new query is turned into AND filters once
+// ("jeans blau" → Jeans + Blau) or leads to its category ("jeans damen blau" → Damen › Jeans + Blau).
+// Remembering the resolved term keeps filters the shopper removes afterwards from coming back.
 const { data: categoryTree } = useCategoryTree();
 const { buildCategoryMenuLink } = useLocalization();
-const searchCategoryLink = () => {
-  const category = findArizonaSearchCategory(categoryTree.value ?? [], term.value);
-  return category ? localePath(buildCategoryMenuLink(category, categoryTree.value ?? [])) : '';
+const resolvedTerm = useState<string>('arizonaResolvedSearchTerm', () => '');
+
+// returns true when the shopper was sent to a category page
+const resolveQuery = async () => {
+  if (!term.value || resolvedTerm.value === term.value) return false;
+  resolvedTerm.value = term.value;
+  await getSearch(getFacetsFromURL());
+  const tree = categoryTree.value ?? [];
+  const resolved = resolveArizonaSearch(term.value, productsCatalog.value?.facets ?? [], tree);
+  const current = getFacetsFromURL().facets?.split(',').filter(Boolean) ?? [];
+  const facets = [...new Set([...current, ...resolved.facetIds])].join(',');
+  if (resolved.category) {
+    await navigateTo(
+      { path: localePath(buildCategoryMenuLink(resolved.category, tree)), query: facets ? { facets } : {} },
+      { replace: true },
+    );
+    return true;
+  }
+  // after a server redirect the page loads fresh; a query that is already resolved needs no further redirect
+  if (facets !== current.join(',') || resolved.term !== term.value) {
+    resolvedTerm.value = resolved.term;
+    await navigateTo(
+      { query: { ...route.query, term: resolved.term, facets: facets || undefined, page: undefined } },
+      { replace: true },
+    );
+  }
+  return false;
 };
 
 const handleQueryUpdate = async () => {
-  const categoryLink = searchCategoryLink();
-  if (categoryLink) {
-    await navigateTo(categoryLink, { replace: true });
-    return;
-  }
+  if (await resolveQuery()) return;
   await getSearch(getFacetsFromURL());
   setItemListMetaData(productsCatalog.value?.products || []);
 };
