@@ -88,7 +88,8 @@
 </template>
 
 <script setup lang="ts">
-import { categoryGetters, productGetters, type Product } from '@plentymarkets/shop-api';
+import { categoryGetters, productGetters } from '@plentymarkets/shop-api';
+import { groupArizonaColorVariants } from '~/utils/arizonaColorVariants';
 import type { ItemGridProps } from '~/components/blocks/ItemGrid/types';
 
 const { getFacetsFromURL } = useCategoryFilter();
@@ -124,19 +125,8 @@ const categoryText = computed(() => {
   return id ? (ARIZONA_CATEGORY_TEXTS[Number(id)] ?? '') : '';
 });
 
-// Arizona: every colour of an item is its own card; collect the siblings so each card can preview the other colours.
-const productsByItem = computed(() => {
-  const groups = new Map<string, Product[]>();
-  for (const product of products.value) {
-    const itemId = String(productGetters.getItemId(product));
-    groups.set(itemId, [...(groups.get(itemId) ?? []), product]);
-  }
-  return groups;
-});
-const colorVariantsOf = (product: Product): Product[] =>
-  (productsByItem.value.get(String(productGetters.getItemId(product))) ?? []).filter(
-    (sibling) => productGetters.getVariationId(sibling) !== productGetters.getVariationId(product),
-  );
+// Arizona: every colour of an item is its own card; each card previews the other colours.
+const colorVariantsOf = computed(() => groupArizonaColorVariants(products.value));
 const totalProducts = computed(() => Number(productsCatalog.value.pagination?.totals) || 0);
 const itemsPerPage = computed(() => Number(productsPerPage.value) || 0);
 const maxVisiblePages = computed(() => (viewport.isGreaterOrEquals('lg') ? 5 : 2));

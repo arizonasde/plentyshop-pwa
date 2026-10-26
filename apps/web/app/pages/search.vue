@@ -2,27 +2,79 @@
   <NuxtLayout name="default">
     <div data-testid="search-results" class="relative" :class="{ 'pointer-events-none opacity-50': loading }">
       <SfLoaderCircular v-if="loading" class="fixed top-[50%] right-0 left-0 m-auto z-max" size="2xl" />
-      <CategoryPageContent
-        v-if="productsCatalog"
-        :title="t('search.searchResults', { phrase: route.query.term })"
-        :total-products="productsCatalog.pagination.totals"
-        :products="productsCatalog.products"
-        :items-per-page="Number(productsPerPage)"
-      >
-        <template #sidebar>
-          <CategorySorting />
-          <CategoryItemsPerPage class="mt-6" :total-products="productsCatalog.pagination.totals" />
-          <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
+      <!-- Arizona: search results look like the category pages (compact headline, filter pills, same product cards) -->
+      <NarrowContainer v-if="productsCatalog" class="px-4 mt-4 mb-20" data-testid="category-layout">
+        <div id="category-headline" class="flex flex-wrap items-baseline gap-x-3 mb-3">
+          <h1 class="typography-headline-4 @md:typography-headline-3 font-bold">„{{ term }}“</h1>
+          <span class="typography-text-sm text-neutral-600">{{ totalProducts.toLocaleString('de-DE') }} Artikel</span>
+        </div>
+
+        <ArizonaFilterBar
+          v-if="productsCatalog.facets?.length && viewport.isGreaterOrEquals('md')"
+          :facets="productsCatalog.facets"
+          show-category-facet
+          class="mb-4"
+        />
+        <template v-else-if="productsCatalog.facets?.length">
+          <CategorySidebar :is-open="isOpen" @close="close">
+            <CategorySorting class="mb-6" />
+            <CategoryFilters v-if="facetGetters.hasFilters(productsCatalog.facets)" :facets="productsCatalog.facets" />
+          </CategorySidebar>
+          <UiButton variant="tertiary" class="whitespace-nowrap !px-0 mb-3" @click="open">
+            <template #prefix>
+              <SfIconTune />
+            </template>
+            {{ t('common.labels.listSettings') }}
+          </UiButton>
         </template>
-      </CategoryPageContent>
+
+        <section v-if="products.length" :class="gridClasses" data-testid="category-grid">
+          <NuxtLazyHydrate v-for="(product, index) in products" :key="productGetters.getVariationId(product)" when-visible>
+            <UiProductCard
+              :product="product"
+              :configuration="ARIZONA_SEARCH_CARD"
+              :index="index"
+              :color-variants="colorVariantsOf(product)"
+            />
+          </NuxtLazyHydrate>
+        </section>
+        <LazyCategoryEmptyState v-else />
+
+        <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
+          <span>{{ t('common.labels.asterisk') }}</span>
+          <span v-if="showNetPrices">{{ t('product.priceExclVAT') }}</span>
+          <span v-else>{{ t('product.priceInclVAT') }}</span>
+          <i18n-t keypath="shipping.excludedLabel" scope="global">
+            <template #shipping>
+              <UiLink
+                :href="localePath(paths.shipping)"
+                target="_blank"
+                class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
+              >
+                {{ t('common.labels.delivery') }}
+              </UiLink>
+            </template>
+          </i18n-t>
+        </div>
+        <UiPagination
+          v-if="totalProducts > 0"
+          :key="`${totalProducts}-${productsPerPage}`"
+          :current-page="getFacetsFromURL().page ?? 1"
+          :total-items="totalProducts"
+          :page-size="Number(productsPerPage)"
+          :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
+        />
+      </NarrowContainer>
     </div>
   </NuxtLayout>
 </template>
 
 <script setup lang="ts">
-import { facetGetters } from '@plentymarkets/shop-api';
-import { SfLoaderCircular } from '@storefront-ui/vue';
+import { facetGetters, productGetters } from '@plentymarkets/shop-api';
+import { SfIconTune, SfLoaderCircular, useDisclosure } from '@storefront-ui/vue';
 import type { Locale } from '#i18n';
+import { groupArizonaColorVariants } from '~/utils/arizonaColorVariants';
+import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
@@ -37,8 +89,25 @@ definePageMeta({
 });
 
 const route = useRoute();
+const viewport = useViewport();
+const localePath = useLocalizedPath();
+const { showNetPrices } = useCart();
+const { isOpen, open, close } = useDisclosure();
 const { getSearch, data: productsCatalog, productsPerPage, loading } = useSearch();
 const { getFacetsFromURL } = useCategoryFilter();
+
+const term = computed(() => String(route.query.term ?? ''));
+const products = computed(() => productsCatalog.value?.products ?? []);
+const totalProducts = computed(() => Number(productsCatalog.value?.pagination?.totals) || 0);
+const colorVariantsOf = computed(() => groupArizonaColorVariants(products.value));
+const gridClasses = gridClassFor({ mobile: 2, tablet: 3, desktop: 5 }, [
+  'gap-x-2',
+  'gap-y-4',
+  '@md:gap-x-3',
+  '@md:gap-y-5',
+  'mb-10',
+  '@md:mb-5',
+]);
 
 const handleQueryUpdate = async () => {
   await getSearch(getFacetsFromURL());
