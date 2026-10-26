@@ -1,20 +1,21 @@
 import { productGetters, type Product } from '@plentymarkets/shop-api';
 import type { MerchantReturnPolicy, OfferShippingDetails } from 'schema-dts';
+import { ARIZONA_FREE_SHIPPING_FROM, ARIZONA_SHIPPING_COST } from '~/utils/arizonaShipping';
 
 /**
  * Shop-specific SEO rules for arizona-shopping.de.
- * Shipping and return terms mirror the checkout: DHL to Germany for 4.90 EUR (no free-shipping threshold;
- * items cannot be ordered to other countries), 60 days return window.
+ * Shipping and return terms mirror the checkout: DHL to Germany for 4.90 EUR, free from 99 EUR item value
+ * (see utils/arizonaShipping), 60 days return window.
  */
 
-const SHIPPING_RATES: { countries: string[]; value: number }[] = [{ countries: ['DE'], value: 4.9 }];
+const SHIPPING_RATES: { countries: string[]; value: number }[] = [{ countries: ['DE'], value: ARIZONA_SHIPPING_COST }];
 
 const RETURN_DAYS = 60;
 
-export const buildShippingDetails = (currency: string): OfferShippingDetails[] =>
+export const buildShippingDetails = (currency: string, price = 0): OfferShippingDetails[] =>
   SHIPPING_RATES.map(({ countries, value }) => ({
     '@type': 'OfferShippingDetails',
-    shippingRate: { '@type': 'MonetaryAmount', value, currency },
+    shippingRate: { '@type': 'MonetaryAmount', value: price >= ARIZONA_FREE_SHIPPING_FROM ? 0 : value, currency },
     shippingDestination: countries.map((addressCountry) => ({ '@type': 'DefinedRegion', addressCountry })),
     ...(countries.includes('DE') && {
       deliveryTime: {
@@ -130,8 +131,7 @@ export const buildCategoryTitle = (label: string, suffix: string, maxLength = 65
 };
 
 export const buildCategoryDescription = (label: string): string => {
-  const shipping = SHIPPING_RATES[0]?.value.toFixed(2).replace('.', ',');
-  return `${label} günstig bei Arizona Shopping kaufen. Versand mit DHL für ${shipping} €, Lieferung in 1–3 Werktagen, ${RETURN_DAYS} Tage kostenlose Rückgabe.`;
+  return `${label} günstig bei Arizona Shopping kaufen. Kostenloser Versand ab ${ARIZONA_FREE_SHIPPING_FROM} €, Lieferung in 1–3 Werktagen, ${RETURN_DAYS} Tage kostenlose Rückgabe.`;
 };
 
 /**

@@ -196,7 +196,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
       availability: productSeoSettingsGetters.getMappedAvailability(product) as ItemAvailability,
       itemCondition: productSeoSettingsGetters.getConditionOfItem(product) as OfferItemCondition,
       ...(priceValidUntil !== '' && { priceValidUntil }),
-      shippingDetails: buildShippingDetails(productGetters.getSpecialPriceCurrency(product)),
+      shippingDetails: buildShippingDetails(productGetters.getSpecialPriceCurrency(product), Number(price.value)),
       hasMerchantReturnPolicy: buildReturnPolicy(),
     };
 

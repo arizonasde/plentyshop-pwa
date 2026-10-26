@@ -17,6 +17,7 @@
         :class="{ 'pointer-events-none opacity-50': loading }"
       >
         <SfLoaderCircular v-if="loading" class="absolute top-[130px] right-0 left-0 m-auto z-loader" size="2xl" />
+        <ArizonaFreeShippingProgress :cart="cart" class="mb-4" />
         <OrderSummary :cart="cart">
           <Coupon v-if="viewport.isGreaterOrEquals('lg')" class="mb-5" />
           <UiButton

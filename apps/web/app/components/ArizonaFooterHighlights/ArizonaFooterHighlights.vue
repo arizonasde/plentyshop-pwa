@@ -41,8 +41,8 @@
  */
 const highlights = [
   {
-    title: 'Versand mit DHL',
-    text: '4,90 € pro Bestellung, in 1–3 Werktagen bei dir',
+    title: 'Kostenloser Versand ab 99 €',
+    text: 'Sonst 4,90 € mit DHL, in 1–3 Werktagen bei dir',
     dhl: true,
     // truck
     icon: [

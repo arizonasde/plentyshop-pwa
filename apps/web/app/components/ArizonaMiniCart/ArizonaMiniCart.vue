@@ -50,6 +50,7 @@
       </div>
 
       <div class="border-t border-neutral-200 px-4 pt-3 pb-4 text-sm">
+        <ArizonaFreeShippingProgress :cart="cart" class="mb-3" />
         <div class="flex justify-between">
           <span>Versand</span>
           <span>{{ shipping }}</span>

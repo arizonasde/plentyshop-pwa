@@ -119,7 +119,7 @@ const breadcrumbs = computed(() => [
 ]);
 
 const title = `${brand.name} online kaufen`;
-const description = `${brand.name} bei Arizona Shopping: ${brand.intro} Versand mit DHL für 4,90 €, 60 Tage kostenlose Rückgabe.`.slice(
+const description = `${brand.name} bei Arizona Shopping: ${brand.intro} Kostenloser Versand ab 99 €, 60 Tage kostenlose Rückgabe.`.slice(
   0,
   300,
 );

@@ -4,7 +4,7 @@
       <h1 class="typography-headline-3 @md:typography-headline-2 font-bold mb-2">Unsere Marken</h1>
       <p class="typography-text-sm text-neutral-600 max-w-3xl mb-6">
         Mode und Accessoires von {{ ARIZONA_BRANDS.length }} Marken – von Jack &amp; Jones, Only und Vero Moda bis zu
-        Mavi und Tom Tailor. Versand mit DHL für 4,90 €, 60 Tage kostenlose Rückgabe.
+        Mavi und Tom Tailor. Kostenloser Versand ab 99 €, 60 Tage kostenlose Rückgabe.
       </p>
       <ul class="grid grid-cols-2 @md:grid-cols-3 @lg:grid-cols-4 gap-3" data-testid="brand-list">
         <li v-for="brand in sortedBrands" :key="brand.slug">
@@ -45,7 +45,7 @@ const breadcrumbs = [
 
 useArizonaStaticPageHead(
   'Unsere Marken',
-  'Alle Marken bei Arizona Shopping: Jack & Jones, Only, Vero Moda, Vila, Name It, Mavi, Tom Tailor und mehr – mit DHL-Versand für 4,90 € und 60 Tagen kostenloser Rückgabe.',
+  'Alle Marken bei Arizona Shopping: Jack & Jones, Only, Vero Moda, Vila, Name It, Mavi, Tom Tailor und mehr – kostenlosem Versand ab 99 € und 60 Tagen kostenloser Rückgabe.',
 );
 useHead({ link: [{ rel: 'canonical', href: `${runtimeConfig.public.domain}${localePath('/marken')}` }] });
 </script>
