@@ -23,12 +23,10 @@
       <p class="text-7xl font-black leading-none tracking-tight">SALE</p>
       <p class="mt-3 text-xl font-semibold leading-snug">Reduzierte Lieblingsstücke für die kalte Jahreszeit</p>
       <p class="mt-2 typography-text-sm text-white/80">Jacken, Strick, Kleider und mehr zu reduzierten Preisen.</p>
-      <ul class="mt-5 space-y-2 typography-text-sm">
-        <li v-for="point in POINTS" :key="point" class="flex items-center gap-2">
-          <span class="size-1.5 shrink-0 rounded-full bg-[#C8102E]" aria-hidden="true" />
-          {{ point }}
-        </li>
-      </ul>
+      <p class="mt-5 flex items-center gap-2 typography-text-sm font-semibold">
+        <span class="size-1.5 shrink-0 rounded-full bg-[#C8102E]" aria-hidden="true" />
+        Nur solange der Vorrat reicht
+      </p>
     </div>
   </aside>
 </template>
@@ -40,5 +38,4 @@
  */
 const IMAGE =
   'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-startseite/arizona-jacken-sport-damen-1-600.webp';
-const POINTS = ['Nur solange der Vorrat reicht', 'Versand mit DHL für 4,90 €', '60 Tage kostenlose Rückgabe'];
 </script>
