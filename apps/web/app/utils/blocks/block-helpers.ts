@@ -37,7 +37,8 @@ const isBlockEmpty = (block: Block | null | undefined): boolean => {
 };
 
 const DEFAULT_PAGE_BLOCKS_MAP: Record<string, (identifier: string | number) => Block[]> = {
-  immutable: (identifier) => (identifier === HOMEPAGE_IDENTIFIER ? createHomepage() : []),
+  // Arizona: never fall back to the plentyShop demo homepage (tech/drone texts) when the saved blocks come back empty
+  immutable: () => [],
   category: (identifier) => (typeof identifier === 'number' && identifier > 0 ? [] : createCategory()),
   product: () => createProduct(),
 };

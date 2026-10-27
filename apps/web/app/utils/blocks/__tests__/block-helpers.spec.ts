@@ -100,12 +100,11 @@ describe('utils/block-helpers', () => {
       expect(result.Footer?.type).toBe('structure');
     });
 
-    it('should use homepage factory blocks when raw blocks are empty for immutable type', () => {
+    it('should not fall back to the demo homepage when raw blocks are empty for immutable type', () => {
       const raw = { blocks: [] } as unknown as GetBlocksResponse;
       const result = assembleBlocks(raw, 'immutable', 'index');
 
-      expect(result.blocks.length).toBeGreaterThan(0);
-      expect(result.blocks[0]?.name).toBe('Carousel');
+      expect(result.blocks).toEqual([]);
     });
 
     it('should use category factory blocks when identifier is not a positive number', () => {
@@ -151,8 +150,7 @@ describe('utils/block-helpers', () => {
 
       expect(result.HeaderContainer).toBeDefined();
       expect(result.Footer).toBeDefined();
-      expect(result.blocks.length).toBeGreaterThan(0);
-      expect(result.blocks[0]?.name).toBe('Carousel');
+      expect(result.blocks).toEqual([]);
     });
   });
 });
