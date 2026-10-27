@@ -6,12 +6,15 @@
     class="min-h-10 h-full w-full flex flex-wrap items-center justify-center gap-x-2 px-4 @md:px-14 py-1 bg-[#FDECEE] typography-text-sm text-neutral-900 hover:bg-[#FAD9DE]"
     data-testid="announcement-bar-deals"
   >
-    <span class="rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white">Tagesangebote</span>
-    <span>
-      Heute <b>{{ offers.length }} {{ offers.length === 1 ? 'Angebot' : 'Angebote' }}</b> · noch
-      <span class="tabular-nums">{{ remaining }}</span>
+    <span class="rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold uppercase tracking-wider text-white">
+      Nur heute
     </span>
-    <span class="hidden @md:inline font-semibold underline underline-offset-2">alle ansehen →</span>
+    <span>
+      <b>{{ offers.length }} ausgewählte {{ offers.length === 1 ? 'Angebot' : 'Angebote' }}</b>
+      <template v-if="maxDiscount >= 5"> bis −{{ maxDiscount }} %</template>
+      · endet in <span class="tabular-nums font-semibold text-[#C8102E]">{{ remaining }}</span>
+    </span>
+    <span class="hidden @md:inline font-semibold underline underline-offset-2">Jetzt sichern →</span>
   </NuxtLink>
   <div
     v-else
@@ -28,7 +31,7 @@ import type { AnnouncementBarProps } from './types';
 
 const props = defineProps<AnnouncementBarProps>();
 const localePath = useLocalizedPath();
-const { offers, active: dealsActive, remaining } = useArizonaDailyDeals();
+const { offers, active: dealsActive, remaining, maxDiscount } = useArizonaDailyDeals();
 
 const inlineStyle = computed(() => {
   return { backgroundColor: props.content.backgroundColor || '#FFFFFF' };

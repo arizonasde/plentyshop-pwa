@@ -11,7 +11,14 @@ const DEALS_URL = 'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-bes
 export const useArizonaDailyDeals = () => {
   const deals = useState<{
     ende: string;
-    angebote: { itemId: number; variationId?: number; bereich?: string; unterkategorie?: string }[];
+    angebote: {
+      itemId: number;
+      variationId?: number;
+      preis?: number;
+      statt?: number;
+      bereich?: string;
+      unterkategorie?: string;
+    }[];
   } | null>('arizonaDailyDeals', () => null);
   const loaded = useState('arizonaDailyDealsLoaded', () => false);
   const finished = useState('arizonaDailyDealsFinished', () => false);
@@ -55,7 +62,17 @@ export const useArizonaDailyDeals = () => {
 
   const isDeal = (itemId: number | string) => offers.value.some((offer) => String(offer.itemId) === String(itemId));
 
-  return { offers, active, ready, remaining, isDeal };
+  /** Highest discount of today's deals in percent (deal price against the regular price), rounded down */
+  const maxDiscount = computed(() =>
+    Math.max(
+      0,
+      ...offers.value.map((offer) =>
+        offer.preis && offer.statt ? Math.floor((1 - offer.preis / offer.statt) * 100) : 0,
+      ),
+    ),
+  );
+
+  return { offers, active, ready, remaining, isDeal, maxDiscount };
 };
 
 /**
