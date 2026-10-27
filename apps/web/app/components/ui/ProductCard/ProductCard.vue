@@ -134,8 +134,10 @@
     </div>
 
     <div
-      class="pt-3 pb-4 px-0.5 typography-text-sm flex flex-col flex-auto"
+      class="pt-3 px-0.5 typography-text-sm flex flex-col flex-auto"
       :class="{
+        'pb-1': isFromSlider,
+        'pb-4': !isFromSlider,
         'items-center': configuration?.contentAlignment === 'center',
         'items-end': configuration?.contentAlignment === 'right',
         'items-start': configuration?.contentAlignment === 'left',

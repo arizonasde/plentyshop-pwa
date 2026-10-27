@@ -1,11 +1,14 @@
 <template>
   <div>
     <EditableBlocks :identifier="HOMEPAGE_IDENTIFIER" :type="'immutable'" />
+    <!-- Arizona: one price note for all sliders on the home page -->
+    <ArizonaVatHint class="max-w-screen-3xl mx-auto px-4 @md:px-10 mb-6 text-neutral-500" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import type { Locale } from '#i18n';
+import ArizonaVatHint from '~/components/ArizonaVatHint/ArizonaVatHint.vue';
 
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],

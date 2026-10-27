@@ -11,7 +11,7 @@
   <div v-else ref="sliderRootRef">
     <SfScrollable
       buttons-placement="floating"
-      class="pb-4 scrollbar-hidden"
+      class="scrollbar-hidden"
       :wrapper-class="[wrapperClass, '!gap-2 @md:!gap-3']"
       data-testid="product-slider"
     >
@@ -27,30 +27,18 @@
       />
     </SfScrollable>
   </div>
-  <div class="mt-4 typography-text-xs flex gap-1">
-    <span>{{ t('common.labels.asterisk') }}</span>
-    <span v-if="showNetPrices">{{ t('product.priceExclVAT') }}</span>
-    <span v-else>{{ t('product.priceInclVAT') }}</span>
-    <i18n-t keypath="shipping.excludedLabel" scope="global">
-      <template #shipping>
-        <UiLink
-          :href="localePath(paths.shipping)"
-          target="_blank"
-          class="focus:outline focus:outline-offset-2 focus:outline-2 outline-secondary-600 rounded"
-        >
-          {{ t('common.labels.delivery') }}
-        </UiLink>
-      </template>
-    </i18n-t>
-  </div>
+  <!-- Arizona: on the home page the note is shown once at the bottom instead of under every slider -->
+  <ArizonaVatHint v-if="!isHomePage" class="mt-1" />
 </template>
 
 <script setup lang="ts">
 import { productGetters } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
 import type { ProductSliderProps } from '~/components/ProductSlider/types';
-const { showNetPrices } = useCart();
-const localePath = useLocalizedPath();
+import ArizonaVatHint from '~/components/ArizonaVatHint/ArizonaVatHint.vue';
+
+const route = useRoute();
+const isHomePage = computed(() => route.meta.identifier === HOMEPAGE_IDENTIFIER);
 
 defineProps<ProductSliderProps>();
 
