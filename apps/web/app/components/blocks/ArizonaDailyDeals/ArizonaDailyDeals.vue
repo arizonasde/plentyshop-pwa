@@ -4,7 +4,7 @@
     <NuxtLink
       v-if="active"
       :to="localePath('/tagesangebote')"
-      class="my-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-lg bg-[#FDECEE] px-4 py-3 typography-text-sm text-neutral-900 hover:bg-[#FAD9DE]"
+      class="mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 rounded-lg bg-[#FDECEE] px-4 py-3 typography-text-sm text-neutral-900 hover:bg-[#FAD9DE]"
       data-testid="arizona-daily-deals"
     >
       <span class="rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white">Tagesangebote</span>

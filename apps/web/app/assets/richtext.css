@@ -6,6 +6,13 @@
   margin: 1.25rem 0 0.5rem;
 }
 
+/* Arizona: in a text block the page heading is a section heading and matches the other headings (1.5rem) */
+[data-testid='text-card'] .rte-prose h1 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
 .rte-prose h2 {
   font-size: 1.5rem;
   font-weight: 700;
