@@ -76,14 +76,19 @@
       </div>
     </div>
 
-    <!-- Arizona: today's deals, preselected for the current category when it has deals -->
+    <!-- Arizona: today's deals as a switch on the right; off on entering a category, switching it on opens the deals of this category -->
     <NuxtLink
       v-if="dealsActive"
       :to="dealsLink"
-      class="h-11 inline-flex items-center rounded-full bg-[#C8102E] px-4 typography-text-sm font-semibold text-white hover:bg-[#A50D26]"
+      role="switch"
+      aria-checked="false"
+      class="order-last ml-auto h-11 inline-flex no-underline items-center gap-3 rounded-full border border-neutral-300 bg-white px-4 typography-text-sm font-medium hover:border-neutral-900"
       data-testid="arizona-filter-bar-deals"
     >
-      Tagesangebote
+      <span class="relative h-5 w-9 rounded-full bg-neutral-300" aria-hidden="true">
+        <span class="absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white shadow" />
+      </span>
+      <span>Nur <span class="text-[#C8102E] font-semibold">Tagesangebote</span></span>
     </NuxtLink>
 
     <button
