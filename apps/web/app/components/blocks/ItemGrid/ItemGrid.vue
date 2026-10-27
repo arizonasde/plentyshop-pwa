@@ -46,14 +46,18 @@
       />
     </template>
     <section v-if="products?.length" :class="gridClasses" data-testid="category-grid">
-      <NuxtLazyHydrate v-for="(product, index) in products" :key="productGetters.getVariationId(product)" when-visible>
-        <UiProductCard
+      <template v-for="(product, index) in products" :key="productGetters.getVariationId(product)">
+        <!-- Arizona: the matching magazine post sits in the grid as the fifth tile -->
+        <ArizonaMagazineTile v-if="index === Math.min(4, products.length - 1)" />
+        <NuxtLazyHydrate when-visible>
+          <UiProductCard
           :product="product"
           :configuration="content"
           :index="index"
           :color-variants="colorVariantsOf(product)"
         />
       </NuxtLazyHydrate>
+      </template>
     </section>
     <LazyCategoryEmptyState v-else />
     <div v-if="totalProducts > 0" class="mt-4 mb-4 typography-text-xs flex gap-1">
