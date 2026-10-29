@@ -19,7 +19,7 @@ describe('getArizonaPaymentDisplay', () => {
     expect(getArizonaPaymentDisplay(method(6033, 'Rechnungskauf'))).toEqual({
       title: 'Rechnung',
       description: 'Bezahlen Sie bequem per Rechnung.',
-      logo: '/images/payment/rechnung.svg',
+      logo: '/_nuxt-plenty/payment-logos/rechnung.svg',
     });
   });
 

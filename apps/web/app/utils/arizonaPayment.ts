@@ -9,19 +9,19 @@ export const ARIZONA_PAYMENT_DISPLAY: Record<number, { title: string; descriptio
   6033: {
     title: 'Rechnung',
     description: 'Bezahlen Sie bequem per Rechnung.',
-    logo: '/images/payment/rechnung.svg',
+    logo: '/_nuxt-plenty/payment-logos/rechnung.svg',
   },
   6001: { title: 'PayPal', description: 'Bezahlen Sie bequem mit PayPal.' },
   6059: {
     title: 'Kreditkartenzahlung',
     description: 'Bezahlen Sie bequem mit Kredit-/Debitkarte.',
-    logo: '/images/payment/kreditkarte.svg',
+    logo: '/_nuxt-plenty/payment-logos/kreditkarte.svg',
   },
   6074: { title: 'Klarna', description: 'Bezahlen Sie bequem mit Klarna.' },
   6057: {
     title: 'Vorkasse',
     description: 'Bezahlen Sie bequem per Vorkasse.',
-    logo: '/images/payment/vorkasse.svg',
+    logo: '/_nuxt-plenty/payment-logos/vorkasse.svg',
   },
   6044: { title: 'Google Pay', description: 'Bezahlen Sie bequem mit Google Pay.' },
   6045: { title: 'Apple Pay (PayPal)', description: '' },
