@@ -1,8 +1,11 @@
 <template>
   <fieldset class="@md:mx-4 my-6" data-testid="checkout-payment">
     <legend class="text-neutral-900 text-lg font-bold mb-4">{{ t('checkout.payment.heading') }}</legend>
-    <div v-if="paymentMethods?.list && paymentMethods.list.length > 0" class="grid gap-4 grid-cols-2">
-      <label v-for="paymentMethod in paymentMethods.list" :key="paymentMethod.id" class="relative">
+    <div
+      v-if="paymentMethods?.list && paymentMethods.list.length > 0"
+      class="rounded-md border border-neutral-200 divide-y divide-neutral-200 overflow-hidden"
+    >
+      <label v-for="paymentMethod in sortedPaymentMethods" :key="paymentMethod.id" class="relative block">
         <input
           type="radio"
           name="payment_method"
@@ -15,19 +18,38 @@
         />
         <span
           :class="{
-            'peer-focus:border-primary-50 peer-focus:bg-primary-50': !paymentProviderGetters.isPaymentMethodExcluded(
+            'peer-focus:bg-primary-50': !paymentProviderGetters.isPaymentMethodExcluded(
               selectedShippingMethod,
               paymentMethod.id,
             ),
           }"
-          class="h-20 flex flex-col items-center justify-center py-4 px-4 cursor-pointer rounded-md border border-neutral-200 -outline-offset-2 hover:border-primary-50 hover:bg-primary-50 active:border-primary-100 active:bg-primary-50 peer-checked:outline peer-checked:outline-2 peer-checked:outline-primary-500 peer-disabled:opacity-50 peer-disabled:bg-neutral-100 peer-disabled:border-neutral-200 peer-disabled:cursor-not-allowed peer-disabled:[&_img]:grayscale"
+          class="flex items-center gap-4 min-h-[64px] px-4 py-3 cursor-pointer hover:bg-neutral-50 peer-checked:bg-primary-50 peer-disabled:opacity-50 peer-disabled:bg-neutral-100 peer-disabled:cursor-not-allowed peer-disabled:[&_img]:grayscale"
         >
-          <span v-if="paymentMethod.id === -1">
-            <SfIconCreditCard class="mr-2" />
-            <span class="font-medium">{{ t('checkout.payment.creditCard') }}</span>
+          <span
+            class="shrink-0 size-5 rounded-full border-2 flex items-center justify-center"
+            :class="isPaymentMethodChecked(paymentMethod) ? 'border-primary-500' : 'border-neutral-400'"
+            aria-hidden="true"
+          >
+            <span v-if="isPaymentMethodChecked(paymentMethod)" class="size-2.5 rounded-full bg-primary-500" />
           </span>
-          <NuxtImg v-else :src="paymentMethod.icon" :alt="paymentMethod.name" class="!h-[40px]" loading="lazy" />
-          <span class="text-xs mt-2 text-neutral-500">{{ paymentMethod.name }}</span>
+          <span class="shrink-0 w-20 h-10 flex items-center justify-center rounded border border-neutral-200 bg-white">
+            <SfIconCreditCard v-if="paymentMethod.id === -1" />
+            <NuxtImg
+              v-else
+              :src="getArizonaPaymentDisplay(paymentMethod).logo"
+              :alt="getArizonaPaymentDisplay(paymentMethod).title"
+              class="max-h-8 max-w-[72px] object-contain"
+              loading="lazy"
+            />
+          </span>
+          <span class="flex flex-col">
+            <span class="font-bold text-neutral-900">
+              {{ paymentMethod.id === -1 ? t('checkout.payment.creditCard') : getArizonaPaymentDisplay(paymentMethod).title }}
+            </span>
+            <span v-if="getArizonaPaymentDisplay(paymentMethod).description" class="typography-text-sm text-neutral-600">
+              {{ getArizonaPaymentDisplay(paymentMethod).description }}
+            </span>
+          </span>
         </span>
       </label>
     </div>
@@ -48,6 +70,7 @@
 import { paymentProviderGetters, type PaymentMethod } from '@plentymarkets/shop-api';
 import { SfIconCreditCard, SfIconWarning } from '@storefront-ui/vue';
 import type { CheckoutPaymentEmits, CheckoutPaymentProps } from '~/components/CheckoutPayment/types';
+import { getArizonaPaymentDisplay, sortArizonaPaymentMethods } from '~/utils/arizonaPayment';
 
 const { disabled = false } = defineProps<CheckoutPaymentProps>();
 const emit = defineEmits<CheckoutPaymentEmits>();
@@ -57,6 +80,7 @@ const { data: cart } = useCart();
 const { selectedMethod: selectedShippingMethod } = useCartShippingMethods();
 const { fetchPaymentMethods } = usePaymentMethods();
 const { paymentMethods } = useCheckoutPagePaymentAndShipping();
+const sortedPaymentMethods = computed(() => sortArizonaPaymentMethods(paymentMethods.value?.list ?? []));
 const { on } = usePlentyEvent();
 
 const isPaymentMethodChecked = (paymentMethod: PaymentMethod): boolean =>
