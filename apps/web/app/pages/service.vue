@@ -36,7 +36,7 @@ import { SfIconExpandMore } from '@storefront-ui/vue';
 
 /**
  * Arizona: service and FAQ page. The answers mirror the shop's actual terms (DHL 4.90 EUR within Germany, free from 99 EUR,
- * 1–3 working days, 60 days return, PayPal / SEPA / giropay) and are also published as FAQPage structured data.
+ * 1–3 working days, 60 days return, invoice / PayPal / card / Klarna / prepayment / direct debit / pay by bank) and are also published as FAQPage structured data.
  */
 definePageMeta({
   pageType: 'static',
@@ -91,7 +91,8 @@ const faqGroups = [
     items: [
       {
         question: 'Welche Zahlungsarten gibt es?',
-        answer: 'Du kannst mit PayPal, per SEPA-Lastschrift oder mit giropay bezahlen.',
+        answer:
+          'Du kannst auf Rechnung, mit PayPal, Kreditkarte oder Klarna, per Vorkasse, Lastschrift oder Sofortüberweisung bezahlen.',
       },
       {
         question: 'Brauche ich ein Kundenkonto?',
@@ -115,7 +116,7 @@ const faqGroups = [
 
 useArizonaStaticPageHead(
   'Service & Hilfe',
-  'Antworten zu Versand (DHL, kostenlos ab 99 €, 1–3 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, SEPA oder giropay und Größen.',
+  'Antworten zu Versand (DHL, kostenlos ab 99 €, 1–3 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, Klarna, Kreditkarte oder Rechnung und Größen.',
 );
 
 useHead({

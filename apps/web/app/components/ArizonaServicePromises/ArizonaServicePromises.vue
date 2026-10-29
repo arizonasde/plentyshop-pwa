@@ -22,7 +22,7 @@ onMounted(() => (deliveryPromise.value = `Lieferung ${getArizonaDeliveryPromise(
 const servicePromises = computed(() => [
   'Kostenloser Versand ab 99 €, sonst 4,90 € mit DHL',
   ...(props.withoutDelivery ? [] : [deliveryPromise.value]),
-  'Bezahlen mit PayPal, SEPA-Lastschrift oder giropay',
+  'Bezahlen mit PayPal, Klarna, Kreditkarte oder auf Rechnung',
   '60 Tage kostenlose Rückgabe',
 ]);
 </script>
