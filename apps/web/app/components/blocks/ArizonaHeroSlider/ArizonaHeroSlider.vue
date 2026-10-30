@@ -30,7 +30,8 @@
           </div>
         </Transition>
 
-        <div class="flex items-center gap-1.5" role="tablist" aria-label="Folie wählen">
+        <!-- Arizona: each dot sits in a 24px high button so it is large enough to tap -->
+        <div class="flex items-center" role="tablist" aria-label="Folie wählen">
           <button
             v-for="(slide, i) in slides"
             :key="slide.title"
@@ -38,10 +39,14 @@
             role="tab"
             :aria-selected="i === active"
             :aria-label="`Folie ${i + 1}: ${slide.title}`"
-            class="h-1.5 rounded-full bg-white transition-all"
-            :class="i === active ? 'w-11' : 'w-1.5 opacity-60 hover:opacity-100'"
+            class="group flex h-6 min-w-6 items-center justify-center"
             @click="go(i)"
-          />
+          >
+            <span
+              class="block h-1.5 rounded-full bg-white transition-all"
+              :class="i === active ? 'w-11' : 'w-1.5 opacity-60 group-hover:opacity-100'"
+            />
+          </button>
         </div>
 
         <Transition name="arizona-hero-fade" mode="out-in">
@@ -53,6 +58,8 @@
               >
                 <img
                   :src="product.image"
+                  :srcset="getArizonaItemImageSrcset(product.image)"
+                  sizes="(min-width: 1024px) 8rem, 72px"
                   :alt="product.alt"
                   class="size-full object-contain mix-blend-multiply"
                   loading="lazy"
@@ -66,7 +73,9 @@
       </div>
 
       <!-- image side -->
-      <div class="order-1 @lg:order-2 relative overflow-hidden rounded-xl aspect-[3/2] @lg:aspect-auto @lg:min-h-[28rem]">
+      <div
+        class="order-1 @lg:order-2 relative overflow-hidden rounded-xl aspect-[3/2] @lg:aspect-auto @lg:min-h-[28rem]"
+      >
         <TransitionGroup name="arizona-hero-fade">
           <NuxtLink
             v-for="(slide, i) in slides"
@@ -121,6 +130,7 @@
 <script setup lang="ts">
 import { SfIconChevronLeft, SfIconChevronRight } from '@storefront-ui/vue';
 import type { ArizonaHeroSliderProps } from './types';
+import { getArizonaItemImageSrcset } from '~/utils/arizonaImage';
 
 /**
  * Arizona: hero slider for the home page in the style of large fashion shops – dark gradient with pill, title and
@@ -134,6 +144,17 @@ const slides = computed(() => props.content?.slides ?? []);
 const active = ref(0);
 const paused = ref(false);
 const current = computed(() => slides.value[active.value] ?? slides.value[0]!);
+
+// Arizona: the first photo of the first block is the LCP image – preload it so the browser fetches it right away.
+const firstImage = slides.value[0]?.image;
+if (props.index === 0 && firstImage) {
+  useHead({
+    link: [
+      { rel: 'preload', as: 'image', href: firstImage.mobile, media: '(max-width: 767px)', fetchpriority: 'high' },
+      { rel: 'preload', as: 'image', href: firstImage.desktop, media: '(min-width: 768px)', fetchpriority: 'high' },
+    ],
+  });
+}
 
 const go = (i: number) => {
   const count = slides.value.length;

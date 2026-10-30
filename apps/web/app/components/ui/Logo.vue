@@ -19,7 +19,7 @@
         :alt="`${storeName} logo`"
         :width="imgWidth"
         :height="imgHeight"
-        class="max-h-[40px] max-w-[200px] w-auto h-auto"
+        class="h-8 w-auto max-w-[200px] object-contain"
         preload
       />
     </template>
@@ -36,8 +36,9 @@ const storeName = runtimeConfig.public.storename;
 
 const imageExtension = computed(() => headerLogo.value.split('.').pop());
 const logo = ref<HTMLImageElement | null>(null);
-const imgWidth = ref<string>('');
-const imgHeight = ref<string>('');
+// Arizona: start with the size of our logo (200x32) so the server HTML reserves its space (no layout shift).
+const imgWidth = ref<string>('200');
+const imgHeight = ref<string>('32');
 onMounted(() => {
   if (logo.value) {
     imgWidth.value = logo.value.clientWidth + '';

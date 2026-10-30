@@ -31,5 +31,7 @@ export const appConfiguration = {
       { property: 'og:title', content: openGraph.title },
       { property: 'og:url', content: process.env.API_ENDPOINT },
     ],
+    // Arizona: all shop images (logo, slider, items) come from the plentyONE CDN – connect early for a faster LCP.
+    link: [{ rel: 'preconnect' as const, href: 'https://cdn02.plentyone.com' }],
   },
 };
