@@ -19,22 +19,21 @@
               />
             </template>
             <template v-if="key === 'itemName' && configuration?.fields.itemName">
-              <p
-                v-if="brandName"
-                class="typography-text-lg font-semibold text-neutral-900 uppercase tracking-wide"
-                data-testid="product-brand"
-              >
-                <!-- Arizona: the brand links to its brand page when there is one -->
-                <NuxtLink
+              <!-- Arizona: brand and Name 2 form one H1 ("Timezone Hose Regular Fit") for search engines -->
+              <h1 class="break-word mb-2">
+                <span
                   v-if="brandName"
-                  :to="localePath(arizonaBrandPath(brandName))"
-                  class="hover:underline underline-offset-4"
+                  class="block typography-text-lg font-semibold text-neutral-900 uppercase tracking-wide"
+                  data-testid="product-brand"
                 >
-                  {{ brandName }}
-                </NuxtLink>
-              </p>
-              <h1 class="font-normal typography-headline-5 text-neutral-700 break-word mb-2" data-testid="product-name">
-                {{ getDisplayName(product) }}
+                  <!-- Arizona: the brand links to its brand page when there is one -->
+                  <NuxtLink :to="localePath(arizonaBrandPath(brandName))" class="hover:underline underline-offset-4">
+                    {{ brandName }}
+                  </NuxtLink>
+                </span>
+                <span class="block font-normal typography-headline-5 text-neutral-700" data-testid="product-name">
+                  {{ getDisplayName(product) }}
+                </span>
               </h1>
             </template>
             <template v-if="key === 'variationNumber' && configuration?.fields.variationNumber">

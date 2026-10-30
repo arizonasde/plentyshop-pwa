@@ -101,11 +101,11 @@
             <span
               v-if="option.current"
               class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
-              :title="option.name"
+              :title="colorLabel(option.name)"
             >
               <NuxtImg
                 :src="option.imageUrl"
-                :alt="option.name"
+                :alt="colorLabel(option.name)"
                 width="48"
                 height="64"
                 loading="lazy"
@@ -115,12 +115,12 @@
             <NuxtLink
               v-else
               :to="option.path"
-              :title="option.name"
+              :title="colorLabel(option.name)"
               class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-500"
             >
               <NuxtImg
                 :src="option.imageUrl"
-                :alt="option.name"
+                :alt="colorLabel(option.name)"
                 width="48"
                 height="64"
                 loading="lazy"
@@ -153,11 +153,11 @@
           <span
             v-if="option.current"
             class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
-            :title="option.name"
+            :title="colorLabel(option.name)"
           >
             <NuxtImg
               :src="option.imageUrl"
-              :alt="option.name"
+              :alt="colorLabel(option.name)"
               width="32"
               height="43"
               loading="lazy"
@@ -167,12 +167,12 @@
           <NuxtLink
             v-else
             :to="option.path"
-            :title="option.name"
+            :title="colorLabel(option.name)"
             class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
           >
             <NuxtImg
               :src="option.imageUrl"
-              :alt="option.name"
+              :alt="colorLabel(option.name)"
               width="32"
               height="43"
               loading="lazy"
@@ -552,6 +552,8 @@ const colorOptions = computed<ColorPreview[]>(() => {
         }));
   return [...options.filter((option) => option.current), ...options.filter((option) => !option.current)];
 });
+// Arizona: colour names carry a counter for equal names in plentyONE ("Beige-3"); shoppers and alt texts get the plain colour
+const colorLabel = (name: string) => name.replace(/-\d+$/, '');
 const visibleColorOptions = computed(() => colorOptions.value.slice(0, MAX_COLOR_PREVIEWS));
 const hiddenColorCount = computed(() => Math.max(colorOptions.value.length - MAX_COLOR_PREVIEWS, 0));
 

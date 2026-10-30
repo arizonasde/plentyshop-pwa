@@ -100,13 +100,22 @@ export const useProduct: UseProductReturn = (slug) => {
         color: getShoppingAttributeValue(state.value.data, 'color').replace(/-\d+$/, ''),
       });
 
+    const description = productGetters.getMetaDescription(state.value.data) || process.env.METADESC;
+
+    // Arizona: share previews (and AI crawlers reading Open Graph) get the product instead of the shop defaults
+    useSeoMeta({
+      ogTitle: title,
+      ogDescription: description,
+      ogImage: productGetters.getGallery(state.value.data)[0]?.url || productGetters.getCoverImage(state.value.data),
+    });
+
     useHead({
       title,
       titleTemplate: '',
       meta: [
         {
           name: 'description',
-          content: productGetters.getMetaDescription(state.value.data) || process.env.METADESC,
+          content: description,
         },
         {
           name: 'keywords',

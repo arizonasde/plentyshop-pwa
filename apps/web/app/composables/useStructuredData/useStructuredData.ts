@@ -207,7 +207,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
     const metaObject: WithContext<SchemaProduct> = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      name: getDisplayName(product),
+      name: getBrandedDisplayName(product),
       category: productGetters.getCategoryName(product),
       image: fullSizeImage || productGetters.getCoverImage(product),
       identifier: productGetters.getId(product),
@@ -301,7 +301,7 @@ export const useStructuredData: useStructuredDataReturn = () => {
         '@type': 'ListItem',
         position: index + 1,
         url: `${runtimeConfig.public.domain}${productPath}`,
-        name: getDisplayName(product),
+        name: getBrandedDisplayName(product),
       });
 
       return result;

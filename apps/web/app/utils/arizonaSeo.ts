@@ -54,6 +54,11 @@ export const buildProductTitle = (
   const colorTail = color && !cleanName.toLowerCase().includes(color.toLowerCase()) ? ` – ${color}` : '';
   const tail = `${colorTail}${suffix ? ` | ${suffix}` : ''}`;
   if (head.length + cleanName.length + tail.length <= maxLength) return `${head}${cleanName}${tail}`;
+  // Arizona: rather drop the colour than cut the name in the middle of a word
+  const suffixTail = suffix ? ` | ${suffix}` : '';
+  if (colorTail && head.length + cleanName.length + suffixTail.length <= maxLength) {
+    return `${head}${cleanName}${suffixTail}`;
+  }
 
   const room = Math.max(maxLength - head.length - tail.length - 1, 10);
   const cut = cleanName.slice(0, room);

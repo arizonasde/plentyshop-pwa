@@ -34,6 +34,16 @@ export const getBrandName = (product: Product): string =>
   formatBrandName(productGetters.getManufacturer(product)?.externalName ?? '');
 
 /**
+ * Arizona: product name with the brand in front ("Timezone Hose Regular Fit") for title, H1 and structured data.
+ * Name 2 in plentyONE stays without the brand because the marketplaces use it; the shop adds the brand on output.
+ */
+export const getBrandedDisplayName = (product: Product): string => {
+  const name = getDisplayName(product);
+  const brand = getBrandName(product);
+  return brand && !name.toLowerCase().includes(brand.toLowerCase()) ? `${brand} ${name}` : name;
+};
+
+/**
  * Arizona: descriptive alternative text for product images instead of the file name,
  * e.g. "Noisy May Damen Kleid Lang Rundhals Langarm Regular Fit – Dunkelgrau, Bild 2".
  * A real alternative text maintained in plentyONE (not a file name) is kept.

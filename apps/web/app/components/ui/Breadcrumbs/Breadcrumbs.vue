@@ -69,8 +69,10 @@ import { SfDropdown, SfIconMoreHoriz } from '@storefront-ui/vue';
 import type { BreadcrumbsProps } from '~/components/ui/Breadcrumbs/types';
 import type { WithContext, BreadcrumbList as SchemaBreadcrumbList, ListItem as SchemaListItem } from 'schema-dts';
 
-defineProps<BreadcrumbsProps>();
+const props = defineProps<BreadcrumbsProps>();
 
+const domain = String(useRuntimeConfig().public?.domain ?? '');
+const { applyToUrl: applyTrailingSlashToUrl } = useUrlTrailingSlash();
 const localePath = useLocalizedPath();
 const dropdownOpened = ref(false);
 const close = () => {
@@ -83,7 +85,25 @@ const toggle = () => {
 const NuxtLink = resolveComponent('NuxtLink');
 const route = useRoute();
 
+// Arizona: Google shows the breadcrumb names in the result snippet, so use the visible names and absolute URLs
+// instead of the URL slugs. The last crumb (the current page) links to itself.
+const visibleBreadcrumbList = (): WithContext<SchemaBreadcrumbList> => ({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: props.breadcrumbs.map((crumb, index) => {
+    const isLast = index === props.breadcrumbs.length - 1;
+    const path = isLast || !crumb.link || crumb.link === '#' ? route.path : localePath(crumb.link);
+    return {
+      '@type': 'ListItem',
+      position: index + 1,
+      item: { '@type': 'WebPage', '@id': applyTrailingSlashToUrl(`${domain}${path}`), name: crumb.name },
+    };
+  }),
+});
+
 const structuredData = computed<WithContext<SchemaBreadcrumbList>>(() => {
+  if (props.breadcrumbs.length > 1) return visibleBreadcrumbList();
+
   const segments = route.path.split('/').filter(Boolean);
 
   const itemListElement: SchemaListItem[] = [

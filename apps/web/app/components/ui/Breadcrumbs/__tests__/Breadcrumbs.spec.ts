@@ -28,6 +28,8 @@ const getCapturedJsonLd = (): Record<string, unknown> => {
 
 const getListItemId = (listItem: Record<string, unknown>): unknown =>
   (listItem['item'] as Record<string, unknown>)['@id'];
+const getListItemName = (listItem: Record<string, unknown>): unknown =>
+  (listItem['item'] as Record<string, unknown>)['name'];
 const getListItemPosition = (listItem: Record<string, unknown>): unknown => listItem['position'];
 
 describe('<Breadcrumbs />', () => {
@@ -67,6 +69,30 @@ describe('<Breadcrumbs />', () => {
       const positions = itemListElement.map(getListItemPosition);
 
       expect(positions).toEqual([1, 2, 3, 4]);
+    });
+
+    it('should use the visible names for the crumbs and the current page for the last one', () => {
+      routeRef.path = '/herrenmode/hosen/hose_5184_148102';
+
+      mount(UiBreadcrumbs, {
+        props: {
+          breadcrumbs: [
+            { name: 'Home', link: '/' },
+            { name: 'Herrenmode', link: '/herrenmode' },
+            { name: 'Hosen', link: '/herrenmode/hosen' },
+            { name: 'Hose Regular Fit', link: '#' },
+          ],
+        },
+      });
+
+      const itemListElement = getCapturedJsonLd()['itemListElement'] as Array<Record<string, unknown>>;
+      const names = itemListElement.map(getListItemName);
+      const ids = itemListElement.map(getListItemId) as string[];
+
+      expect(names).toEqual(['Home', 'Herrenmode', 'Hosen', 'Hose Regular Fit']);
+      expect(itemListElement.map(getListItemPosition)).toEqual([1, 2, 3, 4]);
+      expect(ids[1]).toMatch(/\/herrenmode\/?$/);
+      expect(ids[3]).toMatch(/\/herrenmode\/hosen\/hose_5184_148102\/?$/);
     });
 
     it('should only list the Home item for the root path', () => {

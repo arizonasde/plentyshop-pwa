@@ -26,13 +26,13 @@
             '!border-negative-700': Boolean(errors['selectedValue']),
           }"
           :aria-pressed="value === productAttributeGetters.getAttributeValueId(item)"
-          :aria-label="productAttributeGetters.getAttributeValueName(item)"
+          :aria-label="getColorName(item)"
           @click="doUpdateValue(item)"
         >
           <NuxtImg
             class="max-w-full max-h-full object-contain mix-blend-multiply py-1"
             :src="getImagePath(item)"
-            :alt="productAttributeGetters.getAttributeValueName(item)"
+            :alt="getColorName(item)"
             loading="lazy"
           />
         </button>
@@ -59,10 +59,14 @@ const selectedAttributeValueName = ref<string>('');
 const runtimeConfig = useRuntimeConfig();
 const domain = runtimeConfig.public?.domain ?? '';
 
+// Arizona: colour names carry a counter for equal names in plentyONE ("Beige-3"); show the plain colour
+const getColorName = (item: VariationMapProductAttributeValue): string =>
+  productAttributeGetters.getAttributeValueName(item).replace(/-\d+$/, '');
+
 const getLabel = (item: VariationMapProductAttributeValue): string => {
   return productAttributeGetters.isAttributeValueDisabled(item)
     ? t('product.attributes.seeAvailableOptions')
-    : productAttributeGetters.getAttributeValueName(item);
+    : getColorName(item);
 };
 
 const getImagePath = (item: VariationMapProductAttributeValue): string => {
