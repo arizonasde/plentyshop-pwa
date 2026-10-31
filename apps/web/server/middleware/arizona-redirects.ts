@@ -18,6 +18,8 @@ const REDIRECTS: Record<string, string> = {
   '/black-friday': '/sale-und-outlet',
   '/sold': '/',
   '/artikel-nicht-gefunden': '/',
+  '/startseite': '/',
+  '/newsletter/newsletter-abmelden': '/newsletter/unsubscribe',
 };
 
 export default defineEventHandler((event) => {
