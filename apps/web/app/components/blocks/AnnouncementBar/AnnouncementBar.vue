@@ -10,18 +10,24 @@
       :tabindex="showDeals ? undefined : -1"
       data-testid="announcement-bar-deals"
     >
-      <span class="rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold uppercase tracking-wider text-white">
+      <span
+        class="rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold uppercase tracking-wider text-white"
+      >
         Nur heute
       </span>
       <span class="whitespace-nowrap">
-        <b>{{ offers.length }}<span class="hidden @md:inline"> ausgewählte</span> {{ offers.length === 1 ? 'Angebot' : 'Angebote' }}</b>
+        <b
+          >{{ offers.length }}<span class="hidden @md:inline"> ausgewählte</span>
+          {{ offers.length === 1 ? 'Angebot' : 'Angebote' }}</b
+        >
         <template v-if="maxDiscount >= 5"> bis −{{ maxDiscount }} %</template>
-        · <span class="hidden @md:inline">endet in </span><span class="tabular-nums font-semibold text-[#C8102E]">{{ remaining }}</span>
+        · <span class="hidden @md:inline">endet in </span
+        ><span class="tabular-nums font-semibold text-[#C8102E]">{{ remaining }}</span>
       </span>
       <span class="hidden @md:inline font-semibold underline underline-offset-2">Jetzt sichern →</span>
     </NuxtLink>
     <div
-      class="[grid-area:1/1] min-h-10 flex items-center px-4 @md:px-14 [&_.rte-prose]:text-sm @md:[&_.rte-prose]:text-base motion-safe:transition-opacity motion-safe:duration-500"
+      class="arizona-announcement-text [grid-area:1/1] min-h-10 flex items-center px-4 @md:px-14 motion-safe:transition-opacity motion-safe:duration-500"
       :class="showDeals ? 'opacity-0 pointer-events-none' : 'opacity-100'"
       :aria-hidden="showDeals"
     >
@@ -56,3 +62,20 @@ const textContentProps = computed(() => ({
   textAlignment: 'center' as const,
 }));
 </script>
+
+<style scoped>
+/*
+ * Arizona: text size of the bar text. Not as Tailwind classes [&_.rte-prose]:text-sm – critters drops these selectors
+ * from the inlined critical CSS, so the bar first rendered 48px high and the whole page jumped up 8px (layout shift).
+ */
+.arizona-announcement-text :deep(.rte-prose) {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@container (min-width: 768px) {
+  .arizona-announcement-text :deep(.rte-prose) {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+</style>

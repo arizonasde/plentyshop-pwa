@@ -1,6 +1,7 @@
 <template>
+  <!-- Arizona: shown only after the web fonts have loaded – otherwise the font swap changes its height (layout shift) -->
   <div
-    v-if="visible"
+    v-if="visible && fontsReady"
     class="@max-sm:flex @max-sm:flex-col @max-sm:justify-between z-cookiebar w-full @xl:w-3/5 shadow-2xl p-3 bg-white rounded overflow-auto fixed @xl:right-2 bottom-0 @max-md:bottom-[3.9rem] end-0 @sm:top-auto"
   >
     <div v-if="!furtherSettingsOn">
@@ -136,7 +137,11 @@
       <UiLink tag="button" class="min-h-11 inline-flex items-center text-sm" @click="setConsent()">
         {{ t('CookieBar.Accept Selection') }}
       </UiLink>
-      <UiLink tag="button" class="min-h-11 inline-flex items-center text-sm" @click="furtherSettingsOn = !furtherSettingsOn">
+      <UiLink
+        tag="button"
+        class="min-h-11 inline-flex items-center text-sm"
+        @click="furtherSettingsOn = !furtherSettingsOn"
+      >
         {{ furtherSettingsOn ? t('CookieBar.Back') : t('CookieBar.Further Settings') }}
       </UiLink>
     </div>
@@ -183,6 +188,13 @@ const {
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalizedPath();
 const furtherSettingsOn = ref(false);
+
+const fontsReady = ref(false);
+onMounted(() => {
+  const show = () => (fontsReady.value = true);
+  if (document.fonts?.ready) document.fonts.ready.then(show, show);
+  else show();
+});
 
 const privacyPolicy = computed(() => localePath(paths.privacyPolicy));
 const legalDisclosure = computed(() => localePath(paths.legalDisclosure));
