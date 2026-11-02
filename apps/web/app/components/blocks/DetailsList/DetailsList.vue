@@ -63,6 +63,31 @@ const itemLabel = (block: Block, index: number) => getDetailsListItemLabel(block
     "detailsList": {
       "itemLabel": "Element"
     }
+  },
+  "fr": {
+    "detailsList": {
+      "itemLabel": "Article"
+    }
+  },
+  "it": {
+    "detailsList": {
+      "itemLabel": "Elemento"
+    }
+  },
+  "es": {
+    "detailsList": {
+      "itemLabel": "Elemento"
+    }
+  },
+  "nl": {
+    "detailsList": {
+      "itemLabel": "Item"
+    }
+  },
+  "pl": {
+    "detailsList": {
+      "itemLabel": "Element"
+    }
   }
 }
 </i18n>

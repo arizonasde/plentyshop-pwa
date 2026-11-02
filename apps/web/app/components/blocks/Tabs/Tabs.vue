@@ -176,6 +176,31 @@ watch(
     "tabs": {
       "ariaLabel": "Tabs"
     }
+  },
+  "fr": {
+    "tabs": {
+      "ariaLabel": "Onglets"
+    }
+  },
+  "it": {
+    "tabs": {
+      "ariaLabel": "Schede"
+    }
+  },
+  "es": {
+    "tabs": {
+      "ariaLabel": "Pestañas"
+    }
+  },
+  "nl": {
+    "tabs": {
+      "ariaLabel": "Tabs"
+    }
+  },
+  "pl": {
+    "tabs": {
+      "ariaLabel": "Zakładki"
+    }
   }
 }
 </i18n>

@@ -1,1 +1,1408 @@
-{}
+{
+  "notifyMe": {
+    "notifyButtonTooltip": "Ti avviseremo non appena il prodotto sarà di nuovo disponibile",
+    "notifyButton": "Avvisami",
+    "form": {
+      "subTitle": "Inserisci il tuo indirizzo e-mail e ti avviseremo non appena questo articolo sarà di nuovo disponibile.",
+      "emailLabel": "Indirizzo e-mail",
+      "emailPlaceholder": "La tua e-mail",
+      "turnstileFailed": "Convalida Turnstile non riuscita",
+      "successCheckEmail": "Controlla la tua casella di posta! Ti abbiamo inviato un'e-mail di conferma."
+    },
+    "aria": {
+      "openForm": "Apri il modulo di notifica",
+      "closeForm": "Chiudi il modulo di notifica",
+      "formLabel": "Modulo per la notifica di disponibilità",
+      "privacyPolicyLink": "Informativa sulla privacy (si apre in una nuova scheda)",
+      "securityVerification": "Verifica di sicurezza",
+      "subscribeButton": "Iscriviti alla notifica di disponibilità"
+    },
+    "notifyMeOptInMessage": "La tua notifica è stata confermata con successo. Riceverai un'e-mail non appena l'articolo sarà di nuovo disponibile.",
+    "notifyMeOptInMessageError": "Non è stato possibile confermare la tua notifica. Riprova oppure contatta il nostro servizio clienti.",
+    "notifyMeUnsubscribeMessage": "La tua iscrizione alle notifiche è stata annullata con successo.",
+    "notifyMeUnsubscribeMessageError": "Non è stato possibile annullare l'iscrizione alle notifiche. Riprova oppure contatta il nostro servizio clienti.",
+    "outOfStock": "L'articolo al momento non è disponibile",
+    "readAndAccepted": "Ho letto e accetto la {privacyPolicy}"
+  },
+  "account": {
+    "accountSettings": {
+      "billingDetails": {
+        "billingAddress": "Indirizzo di fatturazione",
+        "newAddress": "Nuovo indirizzo di fatturazione"
+      },
+      "delete": "Elimina",
+      "edit": "Modifica",
+      "heading": "Impostazioni account",
+      "makeDefault": "Imposta come predefinito",
+      "noAddresses": "Non ci sono ancora indirizzi.",
+      "personalData": {
+        "change": "Modifica",
+        "changePassword": "Modifica password",
+        "contactInformation": "Informazioni di contatto",
+        "currentPassword": "Password attuale",
+        "edit": "Modifica",
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "newPassword": "Nuova password",
+        "newPasswordAgain": "Ripeti la nuova password",
+        "passwordChange": "Modifica password",
+        "passwordHelp": "Almeno 8 caratteri e deve contenere almeno una lettera e un numero",
+        "passwordsDoNotMatch": "Le password non coincidono.",
+        "yourName": "Il tuo nome",
+        "yourPassword": "La tua password"
+      },
+      "section": {
+        "billingDetails": "Indirizzi di fatturazione",
+        "personalData": "Dati personali",
+        "shippingDetails": "Indirizzi di spedizione"
+      },
+      "shippingDetails": {
+        "newAddress": "Nuovo indirizzo di spedizione",
+        "shippingAddress": "Indirizzo di spedizione"
+      }
+    },
+    "back": "Indietro",
+    "heading": "Il mio account",
+    "logout": "Esci",
+    "navBottomHeadingAccount": "Account",
+    "navBottomHeadingLogin": "Accedi",
+    "ordersAndReturns": {
+      "actions": "Azioni",
+      "amount": "Quantità",
+      "continue": "Continua gli acquisti",
+      "details": "Dettagli",
+      "heading": "Ordini e resi",
+      "listOfOrders": "Elenco ordini",
+      "more": "Mostra altro",
+      "myOrders": "I miei ordini",
+      "noOrders": "Non hai ancora acquistato da noi",
+      "noOrdersAltText": "Nessun ordine",
+      "noReturns": "Non ci sono ancora resi.",
+      "orderAgain": {
+        "addToCart": "Aggiungi al carrello",
+        "buyAgain": "Acquista di nuovo",
+        "cancel": "Annulla",
+        "heading": "Acquista di nuovo",
+        "headingChanges": "Modifiche agli articoli",
+        "notAvailable": "Non disponibile",
+        "orderPropertyNotAvailableOrChanged": "Caratteristiche dell'articolo modificate o non più disponibili",
+        "priceDown": "Prezzo ridotto",
+        "priceUp": "Prezzo aumentato",
+        "stockLimitation": "solo {stock} articoli disponibili",
+        "subtext": "Puoi acquistare di nuovo gli articoli di questo ordine.",
+        "subtextChanges": "Dall'ultimo ordine sono state apportate delle modifiche"
+      },
+      "orderDate": "Data dell'ordine",
+      "orderDetails": {
+        "bankDetails": {
+          "accountOwner": "Intestatario del conto",
+          "bank": "Banca",
+          "bic": "BIC/SWIFT",
+          "heading": "Coordinate bancarie",
+          "iban": "IBAN"
+        },
+        "billingAddress": "Indirizzo di fatturazione",
+        "delivery": "Spedizione",
+        "estimatedTax": "IVA",
+        "heading": "Riepilogo ordine",
+        "itemsSubtotal": "Subtotale articoli",
+        "orderDate": "Data dell'ordine",
+        "orderId": "ID ordine",
+        "paymentAmount": "Importo totale",
+        "paymentMethod": "Metodo di pagamento",
+        "price": "Prezzo",
+        "priceFrom": "da",
+        "product": "Articolo",
+        "quantity": "Quantità",
+        "shippingAddress": "Indirizzo di spedizione",
+        "showDetails": "Mostra dettagli articolo",
+        "status": "Stato",
+        "subtotal": "Subtotale",
+        "tableCaption": "Riepilogo ordine",
+        "total": "Totale"
+      },
+      "orderId": "ID ordine",
+      "orderNumber": "Numero ordine",
+      "paymentSummary": {
+        "heading": "Riepilogo pagamento",
+        "paymentStatus": "Stato del pagamento",
+        "changePaymentMethod": "modifica"
+      },
+      "changePaymentMethod": {
+        "heading": "Modifica metodo di pagamento",
+        "subHeading": "Qui puoi modificare il metodo di pagamento. Il metodo di pagamento attuale è: {paymentMethod}",
+        "success": "Il metodo di pagamento è stato modificato correttamente.",
+        "change": "Modifica",
+        "cancel": "Annulla",
+        "notChangeableAfterHint": "Dopo il passaggio a questo metodo di pagamento, non sarà più possibile modificarlo."
+      },
+      "returnDate": "Data del reso",
+      "returnId": "ID reso",
+      "returnsAltText": "Nessun reso",
+      "returnsDescription": "Non hai ancora restituito alcun articolo",
+      "returnsHeading": "Resi",
+      "section": {
+        "myOrders": "I miei ordini",
+        "returns": "Resi"
+      },
+      "shippingDate": "Data di consegna",
+      "shippingSummary": {
+        "heading": "Riepilogo spedizione",
+        "shippingMethod": "Metodo di spedizione",
+        "shipTo": "Spedire a"
+      },
+      "status": "Status"
+    },
+    "wishlist": {
+      "heading": "Lista dei desideri",
+      "section": {
+        "myWishlist": "La mia lista dei desideri"
+      },
+      "notifications": {
+        "add": "L'articolo è stato aggiunto alla lista dei desideri.",
+        "delete": "L'articolo è stato rimosso dalla lista dei desideri."
+      }
+    }
+  },
+  "address": {
+    "billingRequired": "Selezioni un indirizzo di fatturazione.",
+    "edit": "Modifica indirizzo",
+    "manage": "Gestisca i suoi indirizzi",
+    "newBillingAddress": "Nuovo indirizzo di fatturazione",
+    "newShippingAddress": "Nuovo indirizzo di spedizione",
+    "pickSavedAddress": "Indirizzi salvati",
+    "pickSavedSubtitle": "Scelga uno dei suoi indirizzi salvati o ne crei uno nuovo",
+    "savedBillingAddresses": "Indirizzi di fatturazione salvati",
+    "savedShippingAddresses": "Indirizzi di spedizione salvati",
+    "shippingAddress": "Indirizzo di spedizione",
+    "shippingRequired": "Selezioni un indirizzo di spedizione.",
+    "unsavedWarning": "L'indirizzo inserito non è stato ancora salvato.",
+    "sameAsShippingAddress": "Uguale all'indirizzo di spedizione"
+  },
+  "authentication": {
+    "login": {
+      "createAccount": "Non ha ancora un account?",
+      "createAccountLater": "Nessun problema. Può creare un account dopo il suo ordine",
+      "createAccountLinkLabel": "Si registri ora!",
+      "forgotPasswordLabel": "Ha dimenticato la password?",
+      "heading": "Acceda al suo account",
+      "headingSuccess": "Password reimpostata con successo",
+      "loginAndContinue": "Accedi e continua",
+      "openLoginForm": "Apri il modulo di accesso",
+      "rememberMeLabel": "Ricordami",
+      "submitLabel": "Accedi",
+      "success": "Ha effettuato l'accesso con successo."
+    },
+    "resetPassword": {
+      "anotherEmail": "Devo provare un altro indirizzo e-mail",
+      "backToLogin": "Torna al login",
+      "continue": "Continua",
+      "email": "E-mail",
+      "emailSent": "Controlli la sua e-mail: le abbiamo inviato le istruzioni per reimpostare la password.",
+      "heading": "Ha dimenticato la password?",
+      "info": "Inserisca l'indirizzo e-mail usato al momento della registrazione. Le invieremo un link per reimpostare la password. Con il link potrà impostare una nuova password per il suo account.",
+      "resetPassword": "Reimposta password",
+      "subHeading": "Nessun problema, le invieremo via e-mail una guida per reimpostare la password",
+      "thankYou": "Grazie, se esiste un account registrato con {0}, dovrebbe ricevere il link per reimpostare la password nella sua casella di posta.",
+      "title": "Password reimpostata con successo"
+    },
+    "setNewPassword": {
+      "button": "Salva nuova password",
+      "description": "Inserisca la password che desidera usare in futuro per accedere al suo account.",
+      "heading": "Reimposta password",
+      "help": "Tra {min} e {max} caratteri con una combinazione di lettere, numeri e simboli.",
+      "password": "Nuova password",
+      "passwordsNotMatching": "Le password non coincidono",
+      "rememberPassword": "Ricorda la sua password?",
+      "repeatPassword": "Ripeta la nuova password",
+      "resetSucceded": "La sua password è stata reimpostata con successo. Ora è autenticato con la sua nuova password."
+    },
+    "signup": {
+      "alreadyHaveAccount": "Ha già un account?",
+      "benefits": {
+        "orderHistory": "La sua cronologia ordini completa in un unico posto",
+        "orderTracking": "Tenga sotto controllo i suoi ordini",
+        "saveAddresses": "Salvi più indirizzi",
+        "wishlist": "Salvi i suoi articoli per dopo"
+      },
+      "emailAlreadyExists": "Questo indirizzo e-mail è già registrato.",
+      "heading": "Crea account",
+      "logInLinkLabel": "Accedi invece",
+      "passwordValidation": {
+        "characters": "La password deve avere tra {min} e {max} caratteri.",
+        "letters": "La password deve contenere almeno una lettera.",
+        "numbers": "La password deve contenere almeno un numero.",
+        "invalidPassword": "Almeno 8 caratteri e deve contenere almeno una lettera e un numero."
+      },
+      "subheading": "Si registri ora per approfittare di grandi vantaggi",
+      "submitLabel": "Crea account",
+      "success": "Il suo account è stato creato con successo."
+    }
+  },
+  "availabilities": {
+    "availabilityBackOrder": "Disponibile su ordinazione (BackOrder)",
+    "availabilityDiscontinued": "Fuori produzione (Discontinued)",
+    "availabilityInStock": "Disponibile (InStock)",
+    "availabilityInStoreOnly": "Disponibile solo in negozio (InStoreOnly)",
+    "availabilityLimitedAvailability": "Disponibilità limitata (LimitedAvailability)",
+    "availabilityNotSet": "Selezioni la disponibilità",
+    "availabilityOnlineOnly": "Disponibile solo online (OnlineOnly)",
+    "availabilityOutOfStock": "Esaurito (OutOfStock)",
+    "availabilityPreOrder": "Preordinabile (PreOrder)",
+    "availabilityPreSale": "Prevendita (PreSale)",
+    "availabilitySoldOut": "Esaurito (SoldOut)"
+  },
+  "billing": {
+    "addButton": "Aggiungi indirizzo di fatturazione",
+    "description": "Aggiunga un indirizzo di fatturazione. Riceverà la fattura all'indirizzo e-mail indicato sopra.",
+    "heading": "Indirizzo di fatturazione",
+    "methodChanged": "Il metodo di pagamento selezionato non è più disponibile."
+  },
+  "cart": {
+    "empty": "Il suo carrello è vuoto",
+    "emptyImageAlt": "Immagine di un carrello vuoto",
+    "emptyNotification": "Non ha articoli nel carrello",
+    "emptyWishlist": "La sua lista dei desideri è vuota",
+    "itemAdded": "Articolo aggiunto al carrello",
+    "itemCount": "(Articoli: {count})",
+    "itemRemoved": "Articolo rimosso dal carrello",
+    "myCart": "Il mio carrello",
+    "numberInCart": "{count} articoli nel carrello",
+    "numberInWishlist": "{count} articoli nella lista dei desideri"
+  },
+  "category": {
+    "sorting": {
+      "default": {
+        "recommended_sorting": "Consigliati"
+      },
+      "item": {
+        "feedbackDecimal_asc": "Valutazione clienti ⬆",
+        "feedbackDecimal_desc": "Valutazione clienti ⬇",
+        "manufacturer": {
+          "externalName_asc": "Produttore A-Z",
+          "externalName_desc": "Produttore Z-A"
+        },
+        "score": "Rilevanza"
+      },
+      "sorting": {
+        "price": {
+          "avg_asc": "Prezzo ⬆",
+          "avg_desc": "Prezzo ⬇"
+        }
+      },
+      "texts": {
+        "name1_asc": "Nome A-Z",
+        "name1_desc": "Nome Z-A"
+      },
+      "variation": {
+        "availability": {
+          "averageDays_asc": "Disponibilità ⬆",
+          "averageDays_desc": "Disponibilità ⬇"
+        },
+        "createdAt_asc": "Articoli più vecchi",
+        "createdAt_desc": "Articoli più recenti",
+        "number_asc": "Numero variante ⬆",
+        "number_desc": "Numero variante ⬇",
+        "position_asc": "Articoli più venduti ⬆",
+        "position_desc": "Articoli più venduti ⬇",
+        "updatedAt_asc": "Ultimo aggiornamento",
+        "updatedAt_desc": "Primo aggiornamento"
+      }
+    }
+  },
+  "checkout": {
+    "backToCheckout": "Torna al checkout",
+    "continueAsGuest": "Continua come ospite",
+    "exportDeliveryNotice": "Con questo ordine prendo atto che la spedizione avviene dal paese {shopCountry} verso il paese di destinazione {deliveryCountry}. L'IVA locale, i costi di sdoganamento e i dazi non sono inclusi nel totale finale dell'ordine e saranno da pagare a terzi. Sono a mio carico.",
+    "fields": {
+      "customerReference": "Il suo riferimento",
+      "customerReferencePlaceholder": "Inserisca qui il suo riferimento.",
+      "customerWish": "Note e richieste",
+      "customerWishMessage": "Inserisca qui il suo messaggio per noi."
+    },
+    "guestCheckout": "Checkout ospite",
+    "loginFastCheckout": "Acceda per completare il checkout più velocemente",
+    "payment": {
+      "birthdateError": "Inserisca una data di nascita valida.",
+      "birthdateLabel": "Data di nascita",
+      "comingSoon": "Presto disponibile",
+      "countrySearch": "Cerca un Paese",
+      "creditCard": "Carta di credito",
+      "heading": "Metodo di pagamento",
+      "noMethodsAvailable": "Nessun metodo di pagamento disponibile. Contatti il gestore del webshop.",
+      "payUponInvoice": "Paga con fattura",
+      "phoneError": "Inserisca un numero di telefono valido.",
+      "phoneLabel": "Numero di telefono"
+    },
+    "googlePay": {
+      "paymentInProgress": "Pagamento in corso..."
+    },
+    "guaranteeNotice": "I suoi diritti legali di garanzia"
+  },
+  "guaranteeLabels": {
+    "area": {
+      "close": "Chiudi i dettagli della garanzia sulla durata",
+      "open": "Apri i dettagli della garanzia sulla durata"
+    }
+  },
+  "customAssets": {
+    "assetDeletedSuccessfully": "Asset eliminato con successo",
+    "failedToDeleteAsset": "Impossibile eliminare l'asset",
+    "duplicateAssetError": "Esiste già un asset con questo tipo e nome. Utilizzi una combinazione univoca."
+  },
+  "common": {
+    "actions": {
+      "add": "Aggiungi",
+      "addProductToWishlist": "Aggiungi {label} alla wishlist",
+      "addToCart": "Aggiungi al carrello",
+      "addToWishlist": "Aggiungi alla wishlist",
+      "apply": "Applica",
+      "back": "Indietro",
+      "browseProducts": "Sfoglia i prodotti",
+      "buy": "Acquista",
+      "pay": "Paga",
+      "cancelOrder": "Annulla acquisto",
+      "clear": "Azzera",
+      "clearAll": "Azzera tutto",
+      "cancel": "Annulla",
+      "continueShopping": "Continua gli acquisti",
+      "edit": "Modifica",
+      "goToCheckout": "Vai alla cassa",
+      "goToHomepage": "Vai alla home page",
+      "next": "Successivo",
+      "placeOrder": "Effettua l'ordine e paga",
+      "previous": "Precedente",
+      "readLess": "Leggi meno",
+      "readMore": "Leggi di più",
+      "reloadPage": "Ricarica",
+      "removeFromWishlist": "Rimuovi dalla wishlist",
+      "removeItemFromBasket": "Rimuovi articolo dal carrello",
+      "removeProductFromWishlist": "Rimuovi {label} dalla wishlist",
+      "resetSearch": "Reimposta la ricerca",
+      "saveAddress": "Salva indirizzo",
+      "save": "Salva",
+      "scrollTop": "Scorri in alto",
+      "search": "Cerca",
+      "showLess": "Mostra meno",
+      "showMore": "Mostra di più",
+      "showOptions": "Mostra opzioni",
+      "showProducts": "Mostra articoli",
+      "viewCart": "Visualizza carrello"
+    },
+    "labels": {
+      "address": "Indirizzi",
+      "asterisk": "*",
+      "basePrice": "Prezzo base",
+      "cart": "Carrello",
+      "category": "Categoria",
+      "checkout": "Cassa",
+      "content": "Contenuto",
+      "delivery": "Spese di spedizione",
+      "email": "E-mail",
+      "estimatedTax": "IVA",
+      "excludedTax": "IVA esclusa",
+      "filters": "Filtri",
+      "grossPrice": "Lordo",
+      "home": "Home",
+      "includedTax": "IVA inclusa",
+      "itemsSubtotal": "Subtotale articoli",
+      "listSettings": "Impostazioni elenco",
+      "max": "Max.",
+      "min": "Min.",
+      "mostPopular": "Più popolari",
+      "netPrice": "Netto",
+      "or": "oppure",
+      "orderNumber": "ID ordine",
+      "orderSummary": "Riepilogo ordine",
+      "pagination": "Navigazione paginata",
+      "perPage": "Per pagina",
+      "phone": "Numero di telefono",
+      "products": "Articoli",
+      "quantitySelector": "Inserimento quantità",
+      "returnNumber": "ID reso",
+      "sale": "Saldi",
+      "sortBy": "Ordina per",
+      "technicalData": "Dati tecnici",
+      "tomorrow": "Domani",
+      "total": "Totale",
+      "wishlist": "Wishlist"
+    },
+    "messages": {
+      "offline": "Sembra che al momento sia offline. Controlli la connessione a Internet"
+    },
+    "reloadPWA": {
+      "ariaLabel": "È disponibile una nuova versione dell'app. Faccia clic qui per aggiornare la pagina.",
+      "newVersionAvailable": "È disponibile una nuova versione dell'app.",
+      "refresh": "Aggiorna"
+    },
+    "navigation": {
+      "breadcrumbsDropdown": "Mostra altri breadcrumb",
+      "closeAddressForm": "Chiudi modifica indirizzo",
+      "closeAuthentication": "Chiudi finestra di autenticazione",
+      "closeDialog": "Chiudi finestra di dialogo",
+      "closeDrawer": "Chiudi drawer",
+      "closeListSettings": "Chiudi impostazioni elenco",
+      "closeMenu": "Chiudi menu",
+      "openMenu": "Apri menu",
+      "showSubcategories": "Mostra sottocategorie",
+      "closeNeutralAlert": "Chiudi notifica",
+      "closePickSavedAddress": "Chiudi selezione indirizzo",
+      "currentPage": "La pagina attuale è {page}",
+      "goToPage": "Vai alla pagina {page}",
+      "languageSelector": "Apri selezione lingua",
+      "nextAriaLabel": "Vai alla pagina successiva",
+      "openConfigurationDrawer": "Apri drawer di configurazione",
+      "openSearchModal": "Apri ricerca",
+      "previousAriaLabel": "Vai alla pagina precedente",
+      "socialLabel": "Vai a {label}"
+    },
+    "accessibility": {
+      "viewDetails": "Mostra dettagli per {name}"
+    }
+  },
+  "contact": {
+    "label": "Contatto",
+    "clearAll": "Cancella tutto",
+    "contact": "Contatto",
+    "contactSend": "Invia richiesta",
+    "contactShopMessage": "Ha una domanda o una richiesta? Ci contatti. Compili semplicemente il modulo e elaboreremo la sua richiesta il prima possibile.",
+    "form": {
+      "asterixHint": "i campi contrassegnati sono obbligatori",
+      "emailLabel": "E-mail",
+      "message": "Messaggio",
+      "message-placeholder": "Il suo messaggio",
+      "nameLabel": "Nome",
+      "order-id": "ID ordine",
+      "subjectLabel": "Oggetto"
+    },
+    "misConfigured": "Il nostro modulo di contatto è temporaneamente disattivato a causa di una configurazione mancante. La preghiamo di riprovare più tardi oppure di contattarci tramite un altro canale.",
+    "privacyPolicy": "Confermo di aver letto la {privacyPolicy}.",
+    "success": "Messaggio inviato con successo",
+    "info": {
+      "heading": "Informazioni di contatto",
+      "email": "E-mail"
+    }
+  },
+  "cancellationForm": {
+    "orderId": "Numero ordine",
+    "name": "Nome e cognome",
+    "email": "E-mail di contatto",
+    "reason": "Motivo del recesso",
+    "submit": "Conferma recesso",
+    "asterixHint": "i campi contrassegnati sono obbligatori",
+    "orderIdInvalid": "Inserisca un numero ordine valido.",
+    "misConfigured": "Il nostro modulo di recesso è temporaneamente disattivato a causa di una configurazione mancante. La preghiamo di riprovare più tardi oppure di contattarci tramite un altro canale.",
+    "success": "Il Suo recesso è stato inviato con successo. Le abbiamo appena inviato un'e-mail di conferma con tutti i dettagli a {email}.",
+    "privacyPolicy": "Si applica la nostra {privacyPolicy}."
+  },
+  "CookieBar": {
+    "about": {
+      "description": "Utilizziamo cookie e tecnologie simili per fornire il nostro shop, integrare contenuti di terze parti e analizzare gli accessi. A tal fine trattiamo dati personali (ad es. indirizzo IP) e li comunichiamo alle terze parti indicate nelle impostazioni. I cookie opzionali vengono impostati solo con il Suo consenso. Può rifiutare e modificare la Sua scelta in qualsiasi momento. Maggiori informazioni nella {legal} e nella {policy}.",
+      "label": "La Sua privacy è importante per noi"
+    },
+    "Accept All": "Accetta tutto",
+    "Accept Selection": "Accetta la selezione",
+    "Back": "Indietro",
+    "Cookie Settings": "Impostazioni cookie",
+    "group": {
+      "externalMedia": "Media esterni",
+      "functional": "Funzionali",
+      "marketing": "Marketing (consigliato)",
+      "necessary": "Essenziali"
+    },
+    "essentials": {
+      "cookies": {
+        "cloudflareTurnstile": {
+          "name": "Cloudflare Turnstile",
+          "provider": "Cloudflare",
+          "status": "Necessario per il servizio Turnstile di Cloudflare."
+        },
+        "consentCookie": {
+          "name": "consent-cookie",
+          "provider": "PlentyONE GmbH",
+          "status": "Salva la selezione del consenso."
+        },
+        "payPal": {
+          "name": "paypal",
+          "provider": "PayPal (Europe) S.à r.l. et Cie, S.C.A.",
+          "status": "Necessario per l'elaborazione del pagamento tramite PayPal."
+        },
+        "plentyId": {
+          "name": "plentyID",
+          "provider": "PlentyONE GmbH",
+          "status": "Salva informazioni sulla sessione attuale, ad es. se l'utente ha effettuato l'accesso."
+        }
+      },
+      "description": "I cookie essenziali consentono funzioni di base e sono necessari per il corretto funzionamento del sito.",
+      "label": "Essenziali"
+    },
+    "externalMedia": {
+      "description": "I contenuti di piattaforme video e social media sono bloccati per impostazione predefinita. Se i cookie dei media esterni vengono accettati, l'accesso a tali contenuti non richiede più un consenso manuale.",
+      "label": "Media esterni"
+    },
+    "functional": {
+      "description": "Questi cookie consentono di salvare le scelte effettuate dagli utenti e le impostazioni preferite (ad es. la disattivazione del reindirizzamento linguistico).",
+      "label": "Funzionali"
+    },
+    "Further Settings": "Altre impostazioni",
+    "keys": {
+      "Lifespan": "Durata",
+      "PrivacyPolicy": "Informativa sulla privacy",
+      "Provider": "Fornitore",
+      "script": "Script",
+      "Status": "Stato"
+    },
+    "marketing": {
+      "description": "I cookie di marketing vengono utilizzati da terze parti ed editori per mostrare pubblicità personalizzata. Lo fanno tracciando i visitatori tra i diversi siti web.",
+      "label": "Marketing"
+    },
+    "More information": "Maggiori informazioni",
+    "Privacy Settings": "Impostazioni privacy",
+    "legalDisclosure": "Note legali",
+    "privacyPolicy": "Informativa sulla privacy",
+    "Reject All": "Rifiuta tutto",
+    "Show less": "Mostra meno"
+  },
+  "coupon": {
+    "apply": "Utilizza",
+    "couponApplied": "Il coupon è stato utilizzato con successo.",
+    "couponInvalid": "Il coupon è già stato utilizzato oppure non è valido.",
+    "couponRemoved": "Il coupon è stato rimosso con successo.",
+    "enterCode": "Inserisci il codice coupon",
+    "name": "Coupon",
+    "pleaseProvideCoupon": "Inserisca un codice coupon valido.",
+    "remove": "Rimuovi",
+    "title": "Ha un codice coupon?"
+  },
+  "documents": {
+    "correctionDocuments": "Documento di correzione",
+    "Credit Note": "Nota di credito",
+    "Delivery Note": "Bolla di consegna",
+    "downloadFailed": "Il download del documento non è riuscito. La preghiamo di riprovare.",
+    "Dunning Letter": "Sollecito",
+    "Invoice": "Fattura",
+    "Invoice External": "Fattura esterna",
+    "Offer": "Offerta",
+    "Order Confirmation": "Conferma d'ordine",
+    "Pickup Delivery": "Consegna per il ritiro",
+    "Pro Forma Invoice": "Fattura pro forma",
+    "Receipt": "Ricevuta",
+    "Return Note": "Modulo di reso",
+    "Reversal Document": "Documento di storno",
+    "Success Confirmation": "Conferma di ricezione"
+  },
+  "editMode": {
+    "clearJson": "Elimina template",
+    "edit": "Modifica",
+    "editJsonPlaceholder": "Inserire il template JSON...",
+    "formatJson": "Formatta template",
+    "minifyJson": "Minimizza template",
+    "publish": "Pubblica",
+    "save": "Salva",
+    "stopEdit": "Annulla"
+  },
+  "error": {
+    "accessKeyMailFailed": "Non è stato possibile inviare l'e-mail, contatti il gestore dello shop.",
+    "accessKeyMailSent": "E-mail inviata.",
+    "consentReCaptchaCookieNotSet": "Lo script reCAPTCHA non è stato accettato. reCAPTCHA non può essere eseguito. Di conseguenza, alcuni moduli potrebbero non essere inviati.",
+    "couponAlreadyUsedOrInvalidCouponCode": "Il coupon è già stato utilizzato oppure non è valido.",
+    "couponCampaignExpired": "Purtroppo il coupon è scaduto.",
+    "couponExpired": "Purtroppo il coupon è scaduto.",
+    "couponMinOrderValueNotReached": "Il coupon è stato purtroppo rimosso perché il valore minimo richiesto del carrello non è stato raggiunto. Inserisca nuovamente il codice quando il valore richiesto sarà stato raggiunto.",
+    "couponRemoveFailure": "Non è stato possibile rimuovere il coupon.",
+    "csrfTokenMismatch": "Per motivi di sicurezza è stato disconnesso. Verrà reindirizzato alla pagina di accesso.",
+    "errorActionIsNotExecuted": "Non è stato possibile eseguire l'azione.",
+    "errorBasketItemMaximumQuantityReachedForItem": "È stata superata la quantità massima ordinabile per questo articolo.",
+    "errorBasketItemMaximumQuantityReachedForVariation": "È stata superata la quantità massima ordinabile per questa variante.",
+    "errorBasketItemMinimumQuantityNotReachedForVariation": "Non è stata raggiunta la quantità minima ordinabile per questa variante.",
+    "errorBasketItemNotEnoughStockForVariation": "La quantità selezionata non può essere aggiunta al carrello perché supera la disponibilità di magazzino. :stock disponibili al momento.",
+    "errorBasketItemVariationNotFound": "La variante non è disponibile.",
+    "errorCreateOrderRetryTimeNotReached": "Si è verificato un errore durante la creazione dell'ordine. La preghiamo di riprovare tra 30 secondi.",
+    "errorGiftCardReturnQuantity": "Non è stato possibile creare il reso. Tutti i buoni regalo inclusi nell'ordine devono essere restituiti insieme.",
+    "errorOccured": "Ops! Si è verificato un errore!",
+    "errorPlain": "Errore",
+    "errorVatNumberValidation": "Il numero di partita IVA non è valido. Rimuova tutti gli spazi e i caratteri speciali.",
+    "errorVatService": "Non è stato possibile confermare il numero di partita IVA. La preghiamo di contattare il gestore dello shop.",
+    "errorVatServiceFallback": "Non è stato possibile confermare il numero di partita IVA. L'ordine verrà controllato nuovamente.",
+    "newsletterOptInMessage": "Il Suo indirizzo e-mail è stato confermato.",
+    "newsletterOptOutSuccessMessage": "La disiscrizione dalla newsletter è avvenuta con successo.",
+    "notificationRemoveCouponMinimumOrderValueIsNotReached": "Il coupon utilizzato è stato rimosso. L'importo minimo d'ordine non è più raggiunto.",
+    "notificationsBasketItemsRemoved": "Alcuni articoli sono stati rimossi dal Suo carrello perché al momento non sono disponibili.",
+    "notificationsBasketItemsRemovedForContactClass": "Alcuni articoli sono stati rimossi dal Suo carrello perché non sono disponibili per questo account cliente.",
+    "notificationsBasketItemsRemovedForCurrency": "Alcuni articoli sono stati rimossi dal Suo carrello perché non sono disponibili nella valuta selezionata.",
+    "notificationsBasketItemsRemovedForLanguage": "Sono stati rimossi articoli dal suo carrello perché non sono disponibili nella lingua selezionata.",
+    "notificationsBasketItemsRemovedForShippingCountry": "Sono stati rimossi articoli dal suo carrello perché non sono disponibili per il Paese di consegna selezionato.",
+    "notificationsCalculateShippingFailed": "Si è verificato un errore nel calcolo delle spese di spedizione. La preghiamo di avvisare il gestore.",
+    "notificationsCheckPassword": "Le password non coincidono.",
+    "notificationsInvalidResetPasswordUrl": "L'URL indicato non è valido o è scaduto.",
+    "notificationsItemBundleSplitted": "Il pacchetto articoli è stato suddiviso.",
+    "notificationsItemNotAdded": "L'articolo non è stato aggiunto",
+    "notificationsItemOutOfStock": "Disponibilità insufficiente",
+    "notificationsNoEmailEntered": "Inserisca un indirizzo e-mail valido.",
+    "notificationsNotEnoughStockItem": "La quantità selezionata non può essere aggiunta al carrello perché supera la disponibilità. :stock sono attualmente disponibili.",
+    "notificationsWarningOverselling": "La quantità selezionata supera la disponibilità. :stock sono attualmente disponibili; :oversellingAmount verranno consegnati in seguito.",
+    "pageNotFound": "Pagina non trovata",
+    "pageNotFoundSubtitle": "Ci dispiace! Usate la ricerca o la selezione della categoria per trovare ciò che state cercando.",
+    "pageNotFoundTitle": "Non siamo riusciti a trovare questa pagina.",
+    "somethingWentWrongImageAlt": "Immagine che spiega che qualcosa è andato storto",
+    "checkout": {
+      "missingAddress": "Inserisca il suo indirizzo per continuare con il pagamento.",
+      "missingBillingAddress": "Inserisca il suo indirizzo di fatturazione per continuare con il pagamento."
+    },
+    "contact": {
+      "messageRequired": "Il messaggio è obbligatorio.",
+      "nameRequired": "Il nome è obbligatorio.",
+      "subjectRequired": "L'oggetto è obbligatorio.",
+      "termsRequired": "Accetti l'informativa sulla privacy",
+      "turnstileRequired": "Selezioni la casella per confermare di non essere un bot."
+    },
+    "decimalNumber": "Inserisca un numero decimale.",
+    "editor": {
+      "add": {
+        "disabledNotCompatibleWithLayouts": "This block can't be placed inside a layout.",
+        "disabledOneInstancePerPage": "You can only have 1 instance of this block type on a page.",
+        "disabledTooDeeplyNested": "Layouts support a maximum of two levels. Select a content block instead."
+      },
+      "categories": {
+        "deleteError": "Non è stato possibile eliminare la pagina {pageName} (ID categoria: {id}). {errorMessage}",
+        "deleteSuccess": "La pagina {pageName} (ID categoria: {id}) è stata eliminata.",
+        "error": "Errore durante il salvataggio delle categorie.",
+        "success": "Categorie salvate con successo."
+      },
+      "save": {
+        "error": "Non è stato possibile salvare le modifiche. Se la sessione corrente è scaduta, avvii una nuova sessione. A tal fine riapra l'editor.",
+        "settings": "Per applicare le modifiche alle impostazioni, aggiorni il suo shop.",
+        "success": "Le modifiche sono state salvate."
+      }
+    },
+    "email": {
+      "required": "L'e-mail è obbligatoria.",
+      "valid": "In questo campo deve essere inserito un indirizzo e-mail valido."
+    },
+    "maxCharacters": "Inserisca al massimo {max} caratteri.",
+    "missingOrWrongProperties": "I seguenti campi sono obbligatori o compilati in modo errato:",
+    "newsletter": {
+      "firstNameRequired": "Il nome è obbligatorio.",
+      "lastNameRequired": "Il cognome è obbligatorio.",
+      "termsRequired": "Accetti l'informativa sulla privacy.",
+      "turnstileRequired": "Selezioni la casella per confermare di non essere un bot."
+    },
+    "orderId": {
+      "required": "Il numero d'ordine è obbligatorio."
+    },
+    "password": {
+      "match": "Le password non coincidono.",
+      "maxLength": "La password può contenere al massimo {max} caratteri.",
+      "minLength": "La password deve contenere almeno {min} caratteri.",
+      "required": "La password è obbligatoria.",
+      "valid": "La password deve contenere almeno una lettera e un numero."
+    },
+    "paymentCancelled": "Il pagamento è stato annullato. Riprovi.",
+    "paymentFailed": "Il pagamento non è riuscito. Riprovi.",
+    "pleaseFillOutAllFields": "Compili tutti questi campi.",
+    "requiredField": "Questo campo è obbligatorio.",
+    "turnstileRequired": "Selezioni la casella per confermare di non essere un bot.",
+    "wholeNumber": "Inserisca un numero intero."
+  },
+  "footer": {
+    "legal": {
+      "label": "Note legali"
+    },
+    "services": {
+      "label": "Contatti"
+    },
+    "contact": {
+      "label": "Contatti"
+    },
+    "register": {
+      "label": "Registrati"
+    }
+  },
+  "form": {
+    "addCompany": "+ aggiungi dati aziendali",
+    "asterixHint": "* le autorizzazioni contrassegnate sono obbligatorie",
+    "cityLabel": "Città",
+    "companyLabel": "Azienda",
+    "countryLabel": "Paese",
+    "emailLabel": "E-mail",
+    "firstNameLabel": "Nome",
+    "lastNameLabel": "Cognome",
+    "optional": "facoltativo",
+    "passwordLabel": "Password",
+    "passwordVisibility": "Visibilità della password",
+    "phoneLabel": "Telefono",
+    "postalCodeLabel": "CAP",
+    "privacyPolicyLabel": "Confermo di aver letto la {privacyPolicy}.",
+    "removeCompany": "- rimuovi dati aziendali",
+    "repeatPasswordLabel": "Ripeti password",
+    "required": "*",
+    "selectPlaceholder": "-- Selezionare --",
+    "stateLabel": "Provincia",
+    "streetNameLabel": "Via",
+    "streetNumberLabel": "Numero civico",
+    "useAsBillingLabel": "Usa come indirizzo di fatturazione",
+    "useAsShippingLabel": "Usa come indirizzo di consegna",
+    "vatIdLabel": "Partita IVA"
+  },
+  "gallery": {
+    "count": "{current} di {total}",
+    "image": "Immagine {index}",
+    "next": "Successiva",
+    "prev": "Precedente",
+    "thumb": "Vai all'immagine {index}"
+  },
+  "homepage": {
+    "background": "Nuove cuffie Wireless Pro dal design elegante e funzioni moderne",
+    "banner": {
+      "ariaLabelNextSlide": "Slide successiva",
+      "ariaLabelPreviousSlide": "Slide precedente",
+      "ariaLabelSlideControls": "Controlli delle slide",
+      "ariaLabelSlidePosition": "Slide {current} di {total}",
+      "ariaRoleDescriptionCarousel": "Carosello",
+      "ariaRoleDescriptionSlide": "Slide",
+      "moto1": "Senti la musica",
+      "moto2": "Nuove Wireless Pro",
+      "moto3": "Audio spaziale. Padiglioni regolabili. Controllo dei dispositivi. Batteria per tutto il giorno.",
+      "orderNow": "Ordina ora",
+      "showMore": "Mostra di più"
+    },
+    "displayDetails": {
+      "detail1": {
+        "alt": "Entri con stile - collezione di occhiali da sole per un look alla moda",
+        "buttonText": "Scopri ora",
+        "description": "Entri con stile con la nostra collezione di occhiali da sole",
+        "subtitle": "Lasciati ispirare",
+        "title": "Entra con stile"
+      },
+      "detail2": {
+        "alt": "Mettilo in valigia - scopri il mondo outdoor con la nostra collezione di zaini",
+        "buttonText": "Scopri ora",
+        "description": "Esplora la natura con i nostri zaini",
+        "subtitle": "Sii attivo",
+        "title": "Mettilo in valigia"
+      },
+      "detail3": {
+        "alt": "Fresco e audace - aggiungi colore al tuo outfit",
+        "buttonText": "Scopri ora",
+        "description": "Aggiungi un tocco di colore al tuo outfit",
+        "subtitle": "Nuova collezione",
+        "title": "Fresco e audace"
+      }
+    },
+    "emptyBlock": {
+      "headline": "Aggiungi qui la prima sezione."
+    },
+    "headPhones": "Nuove cuffie Wireless Pro con audio spaziale e batteria per tutto il giorno",
+    "kid": "Bambini",
+    "kidHomepageCategory": "Categoria bambini in home page",
+    "men": "Uomini",
+    "menHomepageCategory": "Categoria uomini in home page",
+    "title": "Home",
+    "women": "Donne",
+    "womenHomepageCategory": "Categoria Donne nella homepage"
+  },
+  "lang": {
+    "bg": "Bulgaro",
+    "cn": "Cinese",
+    "cs": "Ceco",
+    "cz": "Ceco",
+    "da": "Danese",
+    "de": "Tedesco",
+    "dk": "Danese",
+    "ee": "Estone",
+    "en": "Inglese",
+    "es": "Spagnolo",
+    "et": "Estone",
+    "fi": "Finlandese",
+    "fr": "Francese",
+    "ga": "Irlandese",
+    "hr": "Croato",
+    "hu": "Ungherese",
+    "ie": "Irlandese",
+    "it": "Italiano",
+    "lt": "Lituano",
+    "lv": "Lettone",
+    "nl": "Olandese",
+    "nn": "Norvegese",
+    "pl": "Polacco",
+    "pt": "Portoghese",
+    "ro": "Rumeno",
+    "ru": "Russo",
+    "se": "Svedese",
+    "sk": "Slovacco",
+    "sv": "Svedese",
+    "tr": "Turco",
+    "vi": "Vietnamita",
+    "vn": "Vietnamita",
+    "zh": "Cinese"
+  },
+  "legal": {
+    "cancellationRights": "Diritto di recesso",
+    "details": "Note legali – Clicchi qui per maggiori informazioni",
+    "privacyPolicy": "Informativa sulla privacy",
+    "privacyPolicyRequired": "Confermi la casella relativa all'informativa sulla privacy.",
+    "termsAndConditions": "Condizioni generali di vendita",
+    "termsInfo": "Si applicano le nostre {terms}. La preghiamo di prendere visione del nostro {cancellationRights} e della {privacyPolicy}. *",
+    "termsRequired": "Confermi la casella relativa a Condizioni generali di vendita, diritto di recesso e informativa sulla privacy.",
+    "cancellationForm": "Modulo di recesso",
+    "declarationOfAccessibility": "Dichiarazione di accessibilità",
+    "legalDisclosure": "Note legali",
+    "withdrawButton": "Recedi dal contratto"
+  },
+  "manufacturer": {
+    "contactUrl": "Modulo di contatto",
+    "euResponsibleTabName": "Responsabile UE",
+    "fax": "Fax",
+    "header": "Dati del produttore",
+    "homepage": "Homepage",
+    "logoAlt": "Logo del produttore",
+    "manufacturerTabName": "Produttore",
+    "noInformation": "Non sono disponibili informazioni sul produttore.",
+    "noResponsibleInformation": "Non sono disponibili informazioni sul Responsabile UE.",
+    "responsibleContactUrl": "Modulo di contatto del responsabile UE",
+    "responsibleHeader": "Soggetto responsabile nell'UE",
+    "responsibleSubtitle": "Un operatore economico con sede nell'UE che garantisce che l'articolo sia conforme a tutte le normative necessarie.",
+    "subtitle": "Le informazioni sul produttore comprendono l'indirizzo e altri dati sul produttore dell'articolo."
+  },
+  "newsletter": {
+    "email": "E-mail",
+    "firstName": "Nome",
+    "heading": "Iscriviti alla nostra newsletter",
+    "info": "Scopra promozioni ed eventi in arrivo. Riceva regali e offerte speciali!",
+    "lastName": "Cognome",
+    "policy": "Confermo di aver letto la {privacyPolicy}. Posso revocare il mio consenso in qualsiasi momento.",
+    "subscribe": "Iscriviti alla newsletter",
+    "success": "Grazie per l'iscrizione! Controlli la sua casella e-mail e faccia clic sul link di conferma nel nostro messaggio per iscriversi alla newsletter.",
+    "confirmation": {
+      "newsletterOptInMessage": "Il suo indirizzo e-mail è stato confermato.",
+      "newsletterOptInMessageError": "Si è verificato un errore durante la conferma della sua e-mail."
+    },
+    "unsubscribe": {
+      "label": "Disiscriviti dalla newsletter",
+      "heading": "Disiscrizione dalla newsletter",
+      "info": "Inserisca il suo indirizzo e-mail per disiscriversi dalla newsletter.",
+      "submit": "Disiscriviti",
+      "success": "Si è disiscritto con successo dalla newsletter."
+    }
+  },
+  "offers": {
+    "acceptOffer": "Accetta offerta",
+    "cancel": "Annulla",
+    "declineDialogSubline": "Ci aiuti a migliorare dicendoci perché ha rifiutato l'offerta.",
+    "declineOffer": "Rifiuta offerta",
+    "inputPlaceholder": "Ci comunichi i motivi del rifiuto...",
+    "missingEmail": "Non è stato inserito alcun indirizzo e-mail.",
+    "offer": "Offerta",
+    "offerValidUntil": "Offerta valida fino al: {date}"
+  },
+  "order": {
+    "errorMessage": "Qualcosa è andato storto. Riprovi più tardi.",
+    "errorProvider": "Risposta sconosciuta dal fornitore di servizi di pagamento: {paymentType}",
+    "failedHeader": "Ci dispiace.",
+    "failedMessage": "Non è stato possibile completare il suo ordine.",
+    "searchResults": "Risultati per \"{phrase}\"",
+    "successHeader": "Grazie per il suo ordine!",
+    "successImageAlt": "Immagine che indica che l'ordine è andato a buon fine",
+    "successMessage": "Il suo ordine è stato completato con successo.",
+    "successReturnHeader": "Grazie per il suo reso!",
+    "rebate": "Sconto"
+  },
+  "orderConfirmation": {
+    "confirmationSendTo": "Una conferma con tutti i dettagli è stata inviata a {email}",
+    "createAccountForBenefits": "Crei un account per approfittare di tutti i vantaggi!",
+    "sameAsShippingAddress": "Corrisponde all'indirizzo di consegna",
+    "saveOrderToAccount": "Salvi questo ordine nel suo account",
+    "shipping": "Costi di spedizione",
+    "signUp": "Registrati",
+    "subTotal": "Subtotale",
+    "total": "Totale",
+    "trackingOrder": "Traccia ordine",
+    "vat": "IVA",
+    "softLogin": {
+      "check": "Verificare",
+      "fullName": "Cognome o ragione sociale",
+      "titleFullName": "Inserisca il cognome o la ragione sociale indicati nell'ordine per visualizzare i dettagli.",
+      "titleLogin": "Acceda al suo account per consultare il suo ordine",
+      "titlePostcode": "Inserisca il CAP di un indirizzo indicato nell'ordine per visualizzare i dettagli."
+    }
+  },
+  "orderConfirmationPaymentStatus": {
+    "fullyPaid": "Pagato",
+    "overpaid": "Pagato in eccesso",
+    "partlyPaid": "Parzialmente pagato",
+    "prepaid": "Pagato anticipatamente",
+    "unknown": "Errore nel recupero dello stato del pagamento",
+    "unpaid": "Non pagato"
+  },
+  "orderProperties": {
+    "additionalCostsPerItem": "Costi aggiuntivi (prezzo per articolo)",
+    "hasRequiredFields": "Si tratta di un campo obbligatorio.",
+    "noSelection": "Nessuna selezione",
+    "select": "Seleziona",
+    "upload": {
+      "acceptedFormats": "Formati di file accettati",
+      "dragAndDropFileHereOrUpload": "Trascini e rilasci il file qui oppure {uploadFile}",
+      "maximumFileSize": "Dimensione massima consentita del file",
+      "orderPropertyTypeFile": "Tipo: file",
+      "unSupportedFileType": "Il file caricato non è supportato",
+      "uploaded": "caricato",
+      "uploadError": "Non è stato possibile caricare il file. Verifichi la dimensione massima consentita del file e il formato.",
+      "uploadFile": "Carica file",
+      "uploading": "caricamento in corso"
+    },
+    "vat": {
+      "excl": "IVA escl.",
+      "incl": "IVA incl.",
+      "plus": "più"
+    }
+  },
+  "paypalPayment": {
+    "errorMessageCreditCard": "I dati inseriti non sono validi. Verifichi i campi numero della carta, codice di sicurezza (CVV), data di scadenza.",
+    "expressNotAvailable": "PayPal non è disponibile per il paese di consegna. Modifichi l'indirizzo di conseguenza oppure proceda al checkout per completare l'ordine con un altro metodo di pagamento.",
+    "invalidOrder": "Non è stato possibile completare l'ordine. Riprovi.",
+    "puiBankDataAvailable": "Trasferisca l'importo ai dati bancari indicati. Può trovare i dati bancari anche nella sua fattura.",
+    "puiBankDataNotAvailable": "I dati bancari per il bonifico sono in fase di recupero e saranno disponibili a breve. I dati saranno disponibili qui oppure potranno essere consultati nella sua fattura.",
+    "puiDesignedUse": "Causale",
+    "unbrandedCancel": "Annulla",
+    "unbrandedCardNumber": "Numero della carta",
+    "unbrandedCvv": "Codice di sicurezza",
+    "unbrandedExpirationDate": "Data di scadenza",
+    "unbrandedNameOnCard": "Intestatario della carta",
+    "unbrandedPay": "Paga",
+    "methodNotSupported": "Il metodo di pagamento selezionato non è attualmente supportato. Scelga un altro metodo di pagamento."
+  },
+  "PreferredDelivery": {
+    "general": {
+      "additionalCharge": "Supplemento",
+      "apply": "Applica",
+      "assistantName": "Consegna preferita DHL",
+      "invalidPostalCodeMessage": "Controlli il CAP inserito. È previsto un valore numerico di 5 cifre, ad esempio '34117'.",
+      "preferredDropOffLocation": "Indichi il luogo di deposito preferito",
+      "preferredLocationAlertMessage": "Inserire il luogo di deposito.",
+      "preferredNeigbourMaxCharViolation": "È stato superato il numero massimo di caratteri (100).",
+      "preferredNeighbourAddress": "Inserisca l'indirizzo completo del vicino preferito",
+      "preferredNeighbourAddressMessage": "Vicino: inserire via, numero civico, CAP e località.",
+      "preferredNeighbourFullName": "Inserisca il nome completo del vicino preferito",
+      "preferredNeighbourNameAlertMessage": "Vicino: inserire cognome e nome.",
+      "submitWunschpaketServices": "Impostazioni per i servizi di consegna preferita applicate.",
+      "wunschnachbarExampleAddress": "Via, numero civico, CAP e località",
+      "wunschnachbarExampleName": "Cognome, nome",
+      "wunschnachbarTitle": "Vicino: consegna al vicino di sua scelta",
+      "wunschnachbarTooltip": "Scelga una persona nelle sue immediate vicinanze presso cui possiamo consegnare il pacco. Dovrebbe abitare nello stesso edificio, di fronte o accanto.",
+      "wunschortExample": "ad es. garage, terrazza",
+      "wunschortTitle": "Luogo di deposito: consegna nel luogo desiderato",
+      "wunschortTooltip": "Definisca un luogo riparato dalle intemperie e non visibile sulla sua proprietà, dove possiamo lasciare il pacco durante la sua assenza.",
+      "wunschpaketAdditionalCharge": "Per questo servizio è previsto un supplemento di {additionalCharge} {currency}.*",
+      "wunschpaketIntroduction": "Con i servizi di Consegna preferita DHL decide quando e dove ricevere i suoi pacchi.",
+      "wunschpaketOptions": "Selezioni l'opzione di consegna preferita:",
+      "wunschpaketTitle": "Consegna preferita DHL",
+      "wunschtagNone": "Nessuno",
+      "wunschtagTitle": "Giorno di consegna: consegna nel giorno desiderato",
+      "wunschtagTooltip": "Ha la possibilità di scegliere uno dei giorni mostrati come giorno di consegna per la sua merce. Altri giorni non sono attualmente possibili a causa dei processi di consegna."
+    },
+    "packstation": {
+      "cityLabel": "Città",
+      "cityPlaceholder": "Località",
+      "containerTextInfo": "Inserisca un indirizzo e selezioni un filtro per il punto di ritiro. Faccia poi clic su uno dei risultati della ricerca per selezionare questo punto di ritiro.",
+      "days": {
+        "Friday": "venerdì",
+        "Monday": "lunedì",
+        "Saturday": "sabato",
+        "Sunday": "domenica",
+        "Thursday": "giovedì",
+        "Tuesday": "martedì",
+        "Wednesday": "mercoledì"
+      },
+      "dropDownValues": {
+        "packstation": "Packstation",
+        "postfilial": "Ufficio postale"
+      },
+      "nameInfo": "Il nome viene preso dall'indirizzo di fatturazione. Il numero postale e l'indirizzo della Packstation/Ufficio postale vengono utilizzati come indirizzo di consegna.",
+      "noResult2": "Inserisca almeno il CAP o la località.",
+      "packstationAddedSuccessMessage": "La Packstation/Ufficio postale è stata inserita come indirizzo di consegna.",
+      "postNumberLabel": "Inserisca il suo numero postale",
+      "postNumberPlaceholder": "Numero postale",
+      "postnumberRequired": "Il numero postale è obbligatorio. Inserisca il suo numero postale DHL.",
+      "search": "Cerca",
+      "setPackstation": "Applica",
+      "streetLabel": "Inserisca la sua via ",
+      "streetPlaceholder": "Via",
+      "title": "DHL Packstation / Ufficio postale",
+      "zipcodeInvalid": "Inserisca un CAP valido.",
+      "zipcodeLabel": "CAP",
+      "zipcodePlaceholder": "CAP"
+    }
+  },
+  "previewModeBar": {
+    "configId": "ID configurazione:",
+    "exitEditor": "Esci dall'editor e passa allo shop live",
+    "exitPreviewMode": "Esci dalla modalità anteprima",
+    "exitWithoutSaving": "Esci senza salvare",
+    "editorLabel": "Controlli per l'editor",
+    "previewLabel": "Controlli per l'anteprima",
+    "saveAndExit": "Salva ed esci",
+    "title": "Uscire dall'editor e passare allo shop live?",
+    "unsavedChangesWarning": "Ci sono modifiche non salvate."
+  },
+  "product": {
+    "allFromCategory": "Tutti i {name}",
+    "allProducts": "Tutti gli articoli",
+    "allProductsLink": "Sfoglia articoli",
+    "averageRating": "Valutazione media",
+    "basedOnRatings": "Basato su {count} valutazione/i",
+    "bundleSavings": "Risparmia il {percent} % con questo bundle",
+    "createReview": "Lascia una recensione",
+    "customerReviews": "Recensioni dei clienti",
+    "decreaseQuantity": "Riduci la quantità",
+    "details": "Dettagli articolo",
+    "doubleTapZoom": "Tocca due volte per ingrandire",
+    "estimatedDelivery": "Tempi di consegna stimati",
+    "imageOf": "Immagine di {name}",
+    "increaseQuantity": "Aumenta la quantità",
+    "legalDetails": "Informazioni legali",
+    "lowestPrice": "Prezzo più basso degli ultimi 30 giorni: {price}",
+    "minimumQuantity": "Quantità minima ordinabile: {count}",
+    "moreFromCategory": "Altri articoli in questa categoria",
+    "noReviews": "Nessuno ha ancora lasciato una recensione per questo articolo",
+    "noReviewsShort": "Nessuna recensione",
+    "notAvailable": "L'articolo non è disponibile",
+    "outOfStock": "Esaurito",
+    "priceExclVAT": "IVA escl.",
+    "priceInclVAT": "IVA incl.",
+    "reviewsCount": "{Anzahl} recensioni",
+    "showAllReviews": "Mostra tutte le recensioni",
+    "showAll": "tutti i filtri",
+    "graduatedPrices": {
+      "discount": "SCONTO",
+      "price": "PREZZO",
+      "quantity": "QUANTITÀ",
+      "title": "Acquista di più, paga meno"
+    },
+    "attributes": {
+      "notValidVariation": "Selezioni una variante valida.",
+      "productNameMissing": "Nome articolo mancante",
+      "seeAvailableOptions": "Mostra le opzioni disponibili"
+    }
+  },
+  "quickCheckout": {
+    "cartContains": "Il suo carrello contiene {count} articoli",
+    "checkYourCart": "Controlla il carrello",
+    "close": "Chiudi conferma carrello",
+    "heading": "Aggiunto al carrello",
+    "quantity": "Quantità",
+    "subTotal": "Subtotale"
+  },
+  "returns": {
+    "areYouSure": "È sicura di voler restituire questi articoli?",
+    "cancel": "Annulla",
+    "commentOptional": "Commento (facoltativo)",
+    "confirmReturn": "Conferma reso",
+    "detailsHeading": "Riepilogo del reso",
+    "initiateReturn": "Avvia reso",
+    "orderDate": "Data ordine",
+    "quantity": "Quantità",
+    "return": "Restituire",
+    "returnForOrder": "Reso per l’ordine",
+    "returnItems": "Restituire articoli",
+    "returnNumber": "Numero reso",
+    "returnReason": "Motivo del reso",
+    "selectAll": "Seleziona tutto",
+    "selectQuantities": "Selezioni le quantità da restituire",
+    "selectReason": "Selezioni il motivo del reso",
+    "selectReturnReason": "Seleziona motivo del reso",
+    "successConfirmationMessage": "Abbiamo registrato il Suo reso. La informeremo sulle prossime fasi.",
+    "tellUsMore": "Ci dica di più sul motivo per cui desidera restituire questi articoli.."
+  },
+  "review": {
+    "anonymous": "Anonimo",
+    "answer": "Rispondi",
+    "answerAreYouSure": "È sicura di voler eliminare la risposta?",
+    "areYouSure": "È sicura di voler eliminare la recensione?",
+    "cancel": "Annulla",
+    "createAnswerFormTitle": "Invia una risposta",
+    "createReviewFormTitle": "Scrivi una recensione",
+    "createSuccess": "La recensione è stata inviata",
+    "deleteAnswer": "Eliminare la risposta?",
+    "deleteReview": "Eliminare la recensione?",
+    "deleteReviewConfirmation": "Elimina",
+    "editReplyFormTitle": "Modifica risposta",
+    "editReviewFormTitle": "Modifica recensione",
+    "hideAnswers": "Nascondi risposte",
+    "notification": {
+      "answerSuccess": "La Sua risposta è stata inviata.",
+      "success": "La Sua recensione è stata inviata."
+    },
+    "reviewAuthor": "Il Suo nome (facoltativo)",
+    "reviewText": "Recensione del prodotto (facoltativa)",
+    "saveAnswer": "Invia risposta",
+    "showAnswers": "Mostra risposte",
+    "submitReview": "Invia recensione",
+    "title": "Titolo",
+    "tooltipVisibilityOff": "Questa recensione è attualmente in verifica",
+    "tooltipVisibilityOn": "Questa recensione è visibile",
+    "validation": {
+      "ratingRequired": "Aggiungi una valutazione alla recensione.",
+      "textareaMaxLength": "La lunghezza massima consentita è di 500 caratteri.",
+      "textareaRequired": "Inserisci un messaggio per la recensione.",
+      "titleRequired": "Inserisci un titolo per la recensione."
+    },
+    "verifiedPurchase": "Acquisto verificato",
+    "yourAnswer": "La Sua risposta",
+    "yourRating": "La Sua valutazione:"
+  },
+  "search": {
+    "clearFilters": "Cancella tutti i filtri",
+    "emptyStateImageAlt": "Immagine che indica che non sono stati trovati articoli",
+    "emptyStateText": "Non abbiamo altri articoli in questa categoria.",
+    "emptyStateText2": "Non ha trovato quello che cercava?",
+    "numberOfProducts": "{count} articoli su {total} articoli",
+    "searchResults": "Risultati di ricerca per \"{phrase}\""
+  },
+  "searchBar": {
+    "searchSuggestions": "Suggerimenti di ricerca",
+    "productSuggestions": "Suggerimenti di prodotto",
+    "matchingCategories": "Categorie corrispondenti",
+    "showAllResults": "Mostra tutti i risultati per „{searchTerm}“ ({hitsCount})",
+    "noResultsFound": "Non sono stati trovati risultati."
+  },
+  "sessionLifetime": {
+    "oneDay": "Un giorno, anche se il browser viene chiuso",
+    "oneHour": "Un’ora, anche se il browser viene chiuso",
+    "oneHundredDays": "Cento giorni, anche se il browser viene chiuso",
+    "untilBrowserClosed": "Fino alla chiusura del browser"
+  },
+  "shipping": {
+    "addButton": "Aggiungi indirizzo di spedizione",
+    "description": "Aggiunga un indirizzo di spedizione per visualizzare le informazioni di spedizione.",
+    "excludedLabel": "più {shipping}",
+    "heading": "Indirizzo di spedizione",
+    "methodChanged": "Il metodo di spedizione selezionato non è più disponibile.",
+    "noShippingMessage": "Nessuna informazione di spedizione disponibile",
+    "noShippingMethodsNoAddress": "Inserisca il Suo indirizzo di spedizione per vedere i metodi di spedizione disponibili.",
+    "method": {
+      "description": "Non disponibile finché non viene specificato un indirizzo di spedizione.",
+      "free": "Gratis",
+      "heading": "Metodo di spedizione",
+      "maxDeliveryDays": "Consegna in {days} giorni",
+      "noMethodsAvailable": "Non sono disponibili metodi di spedizione. Contatti il fornitore del webshop.",
+      "showDataPrivacyAgreementHint": "Acconsento che il mio indirizzo e-mail o il mio numero di telefono vengano comunicati a {parcelServiceInformation}, in modo che il corriere possa contattarmi via e-mail o telefono prima della consegna della merce per concordare una data di consegna, oppure inviarmi informazioni sullo stato della spedizione. Posso revocare in qualsiasi momento il consenso prestato in merito"
+    }
+  },
+  "sortingAndPagination": {
+    "recommendedSorting": {
+      "description": "Può definire autonomamente come viene composto il valore \"Consigliato\". Selezioni tre criteri di ordinamento. Il primo criterio ha la priorità più alta nell’ordinamento, il secondo la seconda priorità più alta, e così via.",
+      "firstSortingOptionLabel": "Primo criterio di ordinamento",
+      "options": {
+        "sortDataRandom": "Casuale",
+        "sortingPriorityCategoryAvailabilityAsc": "Disponibilità ⬆",
+        "sortingPriorityCategoryAvailabilityDesc": "Disponibilità ⬇",
+        "sortingPriorityCategoryItemIdAsc": "ID articolo ⬆",
+        "sortingPriorityCategoryItemIdDesc": "ID articolo ⬇",
+        "sortingPriorityCategoryManufacturerAsc": "Produttore A-Z",
+        "sortingPriorityCategoryManufacturerDesc": "Produttore Z-A",
+        "sortingPriorityCategoryManufacturerPositionAsc": "Posizione produttore ⬆",
+        "sortingPriorityCategoryManufacturerPositionDesc": "Posizione produttore ⬇",
+        "sortingPriorityCategoryNameAsc": "Nome articolo A-Z",
+        "sortingPriorityCategoryNameDesc": "Nome articolo Z-A",
+        "sortingPriorityCategoryNotSelected": "Nessuna selezione",
+        "sortingPriorityCategoryPriceAsc": "Prezzo ⬆",
+        "sortingPriorityCategoryPriceDesc": "Prezzo ⬇",
+        "sortingPriorityCategoryStockAsc": "Disponibilità ⬆",
+        "sortingPriorityCategoryStockDesc": "Disponibilità ⬇",
+        "sortingPriorityCategoryVariationCreatedAtAsc": "Prima la variante più datata",
+        "sortingPriorityCategoryVariationCreatedAtDesc": "Prima la variante più recente",
+        "sortingPriorityCategoryVariationIdAsc": "ID variante ⬆",
+        "sortingPriorityCategoryVariationIdDesc": "ID variante ⬇",
+        "sortingPriorityCategoryVariationNumberAsc": "Numero variante ⬆",
+        "sortingPriorityCategoryVariationNumberDesc": "Numero variante ⬇",
+        "sortingPriorityCategoryVariationPositionAsc": "Posizione variante ⬆",
+        "sortingPriorityCategoryVariationPositionDesc": "Posizione variante ⬇",
+        "sortingPriorityCategoryVariationUpdatedAtAsc": "Prima la variante aggiornata più di recente",
+        "sortingPriorityCategoryVariationUpdatedAtDesc": "Prima la variante aggiornata per ultima"
+      },
+      "secondSortingOptionLabel": "Secondo criterio di ordinamento",
+      "thirdSortingOptionLabel": "Terzo criterio di ordinamento",
+      "title": "Ordinamento consigliato"
+    }
+  },
+  "storefrontError": {
+    "cancellation": {
+      "recipientNotConfigured": "Il modulo di recesso non è configurato. Contatti l’amministratore del sito.",
+      "submitFailed": "L’invio del recesso non è riuscito. Riprovi più tardi."
+    },
+    "address": {
+      "createFailed": "Salvataggio dell’indirizzo non riuscito.",
+      "deleteFailed": "Eliminazione dell’indirizzo non riuscita.",
+      "validationFailed": "L’indirizzo non è valido.",
+      "vatInvalid": "La partita IVA non è valida.",
+      "vatServerBusy": "Impossibile confermare la partita IVA. Contatti il gestore del negozio.",
+      "vatServerFallback": "Impossibile confermare la partita IVA. L’ordine verrà controllato nuovamente."
+    },
+    "blocks": {
+      "base64NotAllowed": "L'immagine non è stata caricata correttamente. Riprova a caricarla."
+    },
+    "cart": {
+      "addToBasket": {
+        "itemSetComponentMismatch": "C'è una discrepanza nei componenti del set di articoli e non può quindi essere aggiunto al carrello.",
+        "maxItemQuantityReached": "È stata raggiunta la quantità massima per questo articolo e non può quindi essere aggiunto al carrello.",
+        "maxVariationQuantityReached": "È stata raggiunta la quantità massima per questa variante e non può quindi essere aggiunto al carrello.",
+        "minVariationQuantityNotReached": "Non è stata raggiunta la quantità minima per questa variante e non può quindi essere aggiunto al carrello.",
+        "notEnoughStockForVariation": "Non è disponibile una quantità sufficiente di questa variante.",
+        "unknownError": "Si è verificato un errore sconosciuto durante l'aggiunta dell'articolo. Riprova.",
+        "variationNotFound": "La variante selezionata non è stata trovata e non può quindi essere aggiunta al carrello."
+      },
+      "failedToRemoveItem": "Impossibile rimuovere l'articolo.",
+      "reachedMaximumQuantity": "È stata superata la quantità massima ordinabile per questo articolo."
+    },
+    "contact": {
+      "emailAlreadyExists": "L'indirizzo e-mail esiste già.",
+      "missingContactOrUnexpectedFormat": "Dati di contatto mancanti o formato non previsto.",
+      "passwordInvalid": "La password non soddisfa i requisiti di sicurezza richiesti.",
+      "unauthorizedPasswordReset": "Impossibile reimpostare la password. Il link potrebbe essere scaduto o già utilizzato.",
+      "unexpectedAddressFormat": "Formato dell'indirizzo non previsto."
+    },
+    "contactMail": {
+      "emailInvalid": "L'indirizzo e-mail non è valido.",
+      "failed": "Impossibile inviare il messaggio.",
+      "messageInvalid": "Il messaggio non è valido.",
+      "nameInvalid": "Il nome non è valido.",
+      "orderIdInvalid": "Il numero ordine non è valido.",
+      "subjectInvalid": "L'oggetto non è valido."
+    },
+    "coupon": {
+      "applyFailed": "Impossibile riscattare il coupon."
+    },
+    "editor": {
+      "invalidEditorHash": "La sessione dell'editor non è valida."
+    },
+    "feedback": {
+      "notAllowedWithoutPurchase": "Devi acquistare questo articolo prima di poter lasciare una recensione."
+    },
+    "login": {
+      "loginFailed": "Dati di accesso non validi",
+      "userIsBlocked": "L'utente è bloccato"
+    },
+    "newsletter": {
+      "createFailed": "Impossibile iscriversi alla newsletter."
+    },
+    "offer": {
+      "alreadyTaken": "Questa offerta è già stata utilizzata e non può essere usata di nuovo.",
+      "expired": "Questa offerta è scaduta.",
+      "itemOutOfStock": "Almeno un articolo dell'offerta non è più disponibile.",
+      "openUnauthorized": "Non sei autorizzato ad aprire questa offerta."
+    },
+    "order": {
+      "additionalAuthenticationRequired": "Per questo ordine è necessaria un'autenticazione aggiuntiva.",
+      "additionalAuthenticationRequiredLogin": "Per questo ordine è necessario effettuare nuovamente l'accesso.",
+      "additionalAuthenticationRequiredPostcode": "Per questo ordine è necessaria la conferma del codice postale utilizzato.",
+      "additionalAuthRequiredName": "Per questo ordine è necessaria la conferma del cognome utilizzato.",
+      "assignPaymentFailed": "Impossibile assegnare il pagamento.",
+      "createFailed": "Impossibile creare l'ordine.",
+      "loadOrdersFailed": "Impossibile caricare gli ordini.",
+      "migrateUnauthorized": "Impossibile aggiungere l'ordine al tuo account.",
+      "notFound": "L'ordine non esiste.",
+      "softLoginFailed": "I dati inseriti non sono validi.",
+      "paymentMethodCantSwitch": "Per questo ordine non è possibile cambiare il metodo di pagamento.",
+      "paymentMethodNotExist": "Il metodo di pagamento selezionato non esiste più. Seleziona un altro metodo di pagamento.",
+      "paymentMethodSwitchFailed": "Si è verificato un errore durante la modifica del metodo di pagamento.",
+      "paymentMethodSwitchDisabled": "La possibilità di modificare il metodo di pagamento è disattivata."
+    },
+    "security": {
+      "invalidCsrfToken": "Per motivi di sicurezza questa azione è stata negata. Ricarica la pagina e riprova.",
+      "tooManyRequests": "Sono state inviate troppe richieste. Attendi un momento e riprova."
+    },
+    "turnstile": {
+      "invalid": "Verifica non riuscita. Riprova tra qualche minuto.",
+      "misConfigured": "La verifica non è attualmente disponibile. Contatta l'amministratore del sito."
+    },
+    "notifyMe": {
+      "alreadySubscribed": "Sei già registrato per questo articolo"
+    },
+    "unknownError": "Si è verificato un errore sconosciuto."
+  },
+  "defaultTemplate": {
+    "category": {
+      "categoryData": {
+        "name": "Nome categoria"
+      }
+    },
+    "product": {
+      "itemText": {
+        "title": "Dettagli articolo"
+      },
+      "technicalData": {
+        "title": "Dati tecnici"
+      },
+      "customerReview": {
+        "title": "Recensioni dei clienti"
+      },
+      "productLegalInformation": {
+        "title": "Dettagli legali dell'articolo",
+        "linkText": "Persona responsabile nell'UE - clicca per i dettagli"
+      }
+    },
+    "homepage": {
+      "carousel": {
+        "banner1": {
+          "pretitle": "Goditi suoni cristallini",
+          "title": "Il tuo audio al massimo livello",
+          "description": "Le nostre cuffie all'avanguardia: progettate per offrire l'esperienza d'ascolto definitiva, soddisfano anche le esigenze più elevate. Scopri il mix perfetto di stile, comfort e qualità del suono che porta il tuo piacere musicale a un livello completamente nuovo.",
+          "buttonLabel": "Scopri Capybara"
+        },
+        "banner2": {
+          "pretitle": "Il futuro della fotografia aerea",
+          "title": "Drone Omega",
+          "description": "Omega è un drone leggero progettato per riprese aeree mozzafiato. Con una fotocamera ad alta risoluzione su un gimbal a 3 assi e un'autonomia fino a 45 minuti, garantisce video stabili e fluidi. Il volo stazionario assistito dal GPS, l'evitamento degli ostacoli e la facilità di trasporto rendono il Drone il compagno perfetto per le tue riprese.",
+          "buttonLabel": "Scopri Omega"
+        }
+      },
+      "textcard": {
+        "welcome": {
+          "pretitle": "Benvenuti nel vostro nuovo shop preferito",
+          "title": "Scopri tecnologia & stile",
+          "subtitle": "Tecnologia innovativa incontra moda moderna",
+          "paragraph1": "Benvenuti nel nostro shop, dove appassionati di tecnologia e amanti della moda trovano ciò che cercano! Dalle cuffie di alta qualità e dai droni ad alte prestazioni fino agli abiti più stilosi, da noi trovate tutto ciò che rende la vostra quotidianità più smart e il vostro look unico.",
+          "paragraph2": "Il nostro obiettivo è offrirvi una selezione di prodotti di prima qualità che uniscono qualità, innovazione e design. Che stiate cercando un nuovo speaker per un suono perfetto o una felpa comoda che rispecchi il vostro stile, abbiamo ciò che vi serve.",
+          "buttonLabel": "Approfitta subito"
+        }
+      },
+      "multigrid": {
+        "textcard": {
+          "title": "Scoprite tecnologia e stile",
+          "subtitle": "La tecnologia innovativa incontra la moda moderna",
+          "paragraph": "La nostra collezione di cuffie stabilisce nuovi standard in termini di precisione audio. Con bassi profondi, alti nitidi e un suono coinvolgente, queste cuffie offrono un'esperienza d'ascolto unica per ogni genere musicale. Con un design moderno, il massimo comfort e la tecnologia più recente, sono la scelta perfetta per chi non vuole scendere a compromessi sulla qualità del suono.",
+          "feature1": "Suono premium in qualità da studio",
+          "feature2": "Vestibilità comoda per ascolti prolungati",
+          "feature3": "Lunga durata della batteria",
+          "feature4": "Connessione wireless senza interruzioni",
+          "buttonLabel": "Alle nostre cuffie"
+        },
+        "image": {
+          "alt": "Cuffie"
+        }
+      },
+      "productRecommended": {
+        "fashion": {
+          "pretitle": "Più di semplice tecnologia",
+          "title": "Scoprite la nostra collezione moda",
+          "subtitle": "Moda sportiva e accessori per tutti.",
+          "linkText": "Alla nostra collezione completa.",
+          "linkUrl": "https://plentyshop.plentymarkets.com/kleidung"
+        }
+      },
+      "newsletter": {
+        "title": "Iscriviti alla nostra newsletter",
+        "description": "Scoprite le prossime promozioni ed eventi. Ricevete regali e offerte speciali!",
+        "buttonLabel": "Iscriviti alla newsletter"
+      }
+    },
+    "footer": {
+      "column1": {
+        "title": "Informazioni legali"
+      },
+      "column2": {
+        "title": "Servizi"
+      }
+    }
+  }
+}

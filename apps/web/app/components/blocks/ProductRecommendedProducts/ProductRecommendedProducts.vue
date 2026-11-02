@@ -8,11 +8,7 @@
       :title="getEditorTranslation('last-seen-hint-title')"
       :message="getEditorTranslation('last-seen-tracking-disabled-hint')"
     />
-    <ProductSlider
-      v-if="shouldShowSlider"
-      :items="sliderProducts"
-      :grid="isVariations && sliderProducts.length <= 4"
-    />
+    <ProductSlider v-if="shouldShowSlider" :items="sliderProducts" :grid="isVariations && sliderProducts.length <= 4" />
   </div>
 </template>
 
@@ -50,7 +46,9 @@ const isCategory = computed(() => props.content.source?.type === 'category');
 const isProduct = computed(() => props.content.source?.type === 'cross_selling' && itemId.value);
 const isLastSeen = computed(() => props.content.source?.type === 'last_seen');
 const isSameColor = computed(() => props.content.source?.type === 'same_color' && !!sameColorFacet.value);
-const isVariations = computed(() => props.content.source?.type === 'variations' && !!props.content.source?.variationIds);
+const isVariations = computed(
+  () => props.content.source?.type === 'variations' && !!props.content.source?.variationIds,
+);
 
 const showLastSeenTrackingHint = computed(() => isLastSeen.value && isEditMode.value && !isLastSeenTrackingEnabled());
 
@@ -174,6 +172,26 @@ watch(
   "de": {
     "last-seen-hint-title": "Last seen products",
     "last-seen-tracking-disabled-hint": "The \"Track last seen products\" setting is disabled. Enable it under General » Privacy so this block can show recommendations."
+  },
+  "fr": {
+    "last-seen-hint-title": "Derniers produits consultés",
+    "last-seen-tracking-disabled-hint": "Le réglage « Suivi des produits consultés » est désactivé. Activez-le dans Général » Confidentialité pour afficher des recommandations dans ce bloc."
+  },
+  "it": {
+    "last-seen-hint-title": "Ultimi prodotti visualizzati",
+    "last-seen-tracking-disabled-hint": "L'impostazione \"Traccia ultimi prodotti visualizzati\" è disattivata. Attivala in Generale » Privacy per visualizzare i consigli in questo blocco."
+  },
+  "es": {
+    "last-seen-hint-title": "Últimos productos vistos",
+    "last-seen-tracking-disabled-hint": "La opción \"Rastrear los últimos productos vistos\" está desactivada. Actívela en General » Privacidad para que este bloque pueda mostrar recomendaciones."
+  },
+  "nl": {
+    "last-seen-hint-title": "Recent bekeken producten",
+    "last-seen-tracking-disabled-hint": "De instelling \"Laatst bekeken producten volgen\" is uitgeschakeld. Schakel deze in onder Algemeen » Privacy, zodat dit blok aanbevelingen kan tonen."
+  },
+  "pl": {
+    "last-seen-hint-title": "Ostatnio oglądane produkty",
+    "last-seen-tracking-disabled-hint": "Ustawienie „Śledź ostatnio oglądane produkty” jest wyłączone. Włącz je w sekcji Ogólne » Prywatność, aby ten blok mógł wyświetlać rekomendacje."
   }
 }
 </i18n>

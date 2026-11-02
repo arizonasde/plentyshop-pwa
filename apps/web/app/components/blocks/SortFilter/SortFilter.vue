@@ -132,6 +132,21 @@ watch(
   },
   "de": {
     "no-sorting-or-filter-text": "You do not have any sorting or filter options enabled"
+  },
+  "fr": {
+    "no-sorting-or-filter-text": "Vous n’avez activé aucune option de tri ou de filtre"
+  },
+  "it": {
+    "no-sorting-or-filter-text": "Non hai attivato opzioni di ordinamento o filtro"
+  },
+  "es": {
+    "no-sorting-or-filter-text": "No tienes activadas opciones de ordenación o filtro"
+  },
+  "nl": {
+    "no-sorting-or-filter-text": "U heeft geen sorteer- of filteropties ingeschakeld"
+  },
+  "pl": {
+    "no-sorting-or-filter-text": "Nie masz włączonych żadnych opcji sortowania ani filtrowania"
   }
 }
 </i18n>

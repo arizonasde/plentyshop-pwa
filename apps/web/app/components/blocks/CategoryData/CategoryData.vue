@@ -168,6 +168,21 @@ const categoryDataContentClass = computed(() => {
   },
   "de": {
     "no-text-fields-selected": "No text fields are selected."
+  },
+  "fr": {
+    "no-text-fields-selected": "Aucun champ de texte n’est sélectionné."
+  },
+  "it": {
+    "no-text-fields-selected": "Nessun campo di testo selezionato."
+  },
+  "es": {
+    "no-text-fields-selected": "No hay campos de texto seleccionados."
+  },
+  "nl": {
+    "no-text-fields-selected": "Er zijn geen tekstvelden geselecteerd."
+  },
+  "pl": {
+    "no-text-fields-selected": "Nie wybrano żadnych pól tekstowych."
   }
 }
 </i18n>

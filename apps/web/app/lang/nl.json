@@ -1,1 +1,1408 @@
-{}
+{
+  "notifyMe": {
+    "notifyButtonTooltip": "We laten u weten zodra het product weer beschikbaar is",
+    "notifyButton": "Stuur mij een bericht",
+    "form": {
+      "subTitle": "Voer uw e-mailadres in en wij laten u weten zodra dit artikel weer op voorraad is.",
+      "emailLabel": "E-mailadres",
+      "emailPlaceholder": "Uw e-mailadres",
+      "turnstileFailed": "Turnstile-validatie mislukt",
+      "successCheckEmail": "Controleer uw inbox! We hebben u een bevestigingsmail gestuurd."
+    },
+    "aria": {
+      "openForm": "Meldingsformulier openen",
+      "closeForm": "Meldingsformulier sluiten",
+      "formLabel": "Formulier voor voorraadmelding",
+      "privacyPolicyLink": "Privacyverklaring (opent in een nieuw tabblad)",
+      "securityVerification": "Beveiligingscontrole",
+      "subscribeButton": "Aanmelden voor voorraadmelding"
+    },
+    "notifyMeOptInMessage": "Uw melding is succesvol bevestigd. U ontvangt een e-mail zodra het artikel weer beschikbaar is.",
+    "notifyMeOptInMessageError": "Het bevestigen van uw melding is mislukt. Probeer het opnieuw of neem contact op met onze klantenservice.",
+    "notifyMeUnsubscribeMessage": "U bent succesvol afgemeld voor meldingen.",
+    "notifyMeUnsubscribeMessageError": "Afmelden voor meldingen is mislukt. Probeer het opnieuw of neem contact op met onze klantenservice.",
+    "outOfStock": "Dit artikel is momenteel niet op voorraad",
+    "readAndAccepted": "Ik heb het {privacyPolicy} gelezen en ga ermee akkoord"
+  },
+  "account": {
+    "accountSettings": {
+      "billingDetails": {
+        "billingAddress": "Factuuradres",
+        "newAddress": "Nieuw factuuradres"
+      },
+      "delete": "Verwijderen",
+      "edit": "Bewerken",
+      "heading": "Accountinstellingen",
+      "makeDefault": "Als standaard instellen",
+      "noAddresses": "Er zijn nog geen adressen aanwezig.",
+      "personalData": {
+        "change": "Wijzigen",
+        "changePassword": "Wachtwoord wijzigen",
+        "contactInformation": "Contactgegevens",
+        "currentPassword": "Huidig wachtwoord",
+        "edit": "Bewerken",
+        "firstName": "Voornaam",
+        "lastName": "Achternaam",
+        "newPassword": "Nieuw wachtwoord",
+        "newPasswordAgain": "Herhaal nieuw wachtwoord",
+        "passwordChange": "Wachtwoord wijzigen",
+        "passwordHelp": "Minimaal 8 tekens en moet minstens één letter en één cijfer bevatten",
+        "passwordsDoNotMatch": "De wachtwoorden komen niet overeen.",
+        "yourName": "Uw naam",
+        "yourPassword": "Uw wachtwoord"
+      },
+      "section": {
+        "billingDetails": "Factuuradressen",
+        "personalData": "Persoonlijke gegevens",
+        "shippingDetails": "Leveradressen"
+      },
+      "shippingDetails": {
+        "newAddress": "Nieuw leveradres",
+        "shippingAddress": "Leveradres"
+      }
+    },
+    "back": "Terug",
+    "heading": "Mijn account",
+    "logout": "Uitloggen",
+    "navBottomHeadingAccount": "Account",
+    "navBottomHeadingLogin": "Inloggen",
+    "ordersAndReturns": {
+      "actions": "Acties",
+      "amount": "Aantal",
+      "continue": "Verder winkelen",
+      "details": "Details",
+      "heading": "Bestellingen & retouren",
+      "listOfOrders": "Bestellijst",
+      "more": "Meer tonen",
+      "myOrders": "Mijn bestellingen",
+      "noOrders": "U heeft nog niet bij ons gewinkeld",
+      "noOrdersAltText": "Geen bestellingen",
+      "noReturns": "Er zijn nog geen retouren.",
+      "orderAgain": {
+        "addToCart": "In winkelmand",
+        "buyAgain": "Opnieuw kopen",
+        "cancel": "Annuleren",
+        "heading": "Opnieuw kopen",
+        "headingChanges": "Wijzigingen van artikelen",
+        "notAvailable": "Niet beschikbaar",
+        "orderPropertyNotAvailableOrChanged": "Artikeleigenschappen gewijzigd of niet meer beschikbaar",
+        "priceDown": "Prijs verlaagd",
+        "priceUp": "Prijs verhoogd",
+        "stockLimitation": "nog maar {stock} artikel(en) beschikbaar",
+        "subtext": "U kunt de artikelen uit deze bestelling opnieuw kopen.",
+        "subtextChanges": "Sinds uw laatste bestelling zijn er wijzigingen doorgevoerd"
+      },
+      "orderDate": "Besteldatum",
+      "orderDetails": {
+        "bankDetails": {
+          "accountOwner": "Rekeninghouder",
+          "bank": "Bank",
+          "bic": "BIC/SWIFT",
+          "heading": "Bankgegevens",
+          "iban": "IBAN"
+        },
+        "billingAddress": "Factuuradres",
+        "delivery": "Verzending",
+        "estimatedTax": "Btw",
+        "heading": "Besteloverzicht",
+        "itemsSubtotal": "Subtotaal artikelen",
+        "orderDate": "Besteldatum",
+        "orderId": "Bestelnummer",
+        "paymentAmount": "Totaalbedrag",
+        "paymentMethod": "Betaalmethode",
+        "price": "Prijs",
+        "priceFrom": "vanaf",
+        "product": "Artikel",
+        "quantity": "Aantal",
+        "shippingAddress": "Leveradres",
+        "showDetails": "Artikeldetails tonen",
+        "status": "Status",
+        "subtotal": "Subtotaal",
+        "tableCaption": "Besteloverzicht",
+        "total": "Totaalbedrag"
+      },
+      "orderId": "Bestelnummer",
+      "orderNumber": "Bestelnummer",
+      "paymentSummary": {
+        "heading": "Betalingsoverzicht",
+        "paymentStatus": "Betalingsstatus",
+        "changePaymentMethod": "wijzigen"
+      },
+      "changePaymentMethod": {
+        "heading": "Betaalmethode wijzigen",
+        "subHeading": "U kunt hier de betaalmethode wijzigen. De huidige betaalmethode is: {paymentMethod}",
+        "success": "De betaalmethode is succesvol gewijzigd.",
+        "change": "Wijzigen",
+        "cancel": "Annuleren",
+        "notChangeableAfterHint": "Na een wijziging naar deze betaalmethode kan de betaalmethode niet meer worden gewijzigd."
+      },
+      "returnDate": "Retourdatum",
+      "returnId": "Retournummer",
+      "returnsAltText": "Geen retouren",
+      "returnsDescription": "U heeft nog geen artikelen geretourneerd",
+      "returnsHeading": "Retouren",
+      "section": {
+        "myOrders": "Mijn bestellingen",
+        "returns": "Retouren"
+      },
+      "shippingDate": "Leverdatum",
+      "shippingSummary": {
+        "heading": "Verzendoverzicht",
+        "shippingMethod": "Verzendmethode",
+        "shipTo": "Verzenden naar"
+      },
+      "status": "Status"
+    },
+    "wishlist": {
+      "heading": "Verlanglijst",
+      "section": {
+        "myWishlist": "Mijn verlanglijst"
+      },
+      "notifications": {
+        "add": "Het artikel is toegevoegd aan de verlanglijst.",
+        "delete": "Het artikel is verwijderd uit de verlanglijst."
+      }
+    }
+  },
+  "address": {
+    "billingRequired": "Selecteer een factuuradres.",
+    "edit": "Adres bewerken",
+    "manage": "Beheer uw adressen",
+    "newBillingAddress": "Nieuw factuuradres",
+    "newShippingAddress": "Nieuw afleveradres",
+    "pickSavedAddress": "Opgeslagen adressen",
+    "pickSavedSubtitle": "Kies een van uw opgeslagen adressen of maak een nieuwe aan",
+    "savedBillingAddresses": "Opgeslagen factuuradressen",
+    "savedShippingAddresses": "Opgeslagen afleveradressen",
+    "shippingAddress": "Afleveradres",
+    "shippingRequired": "Selecteer een afleveradres.",
+    "unsavedWarning": "Het ingevulde adres is nog niet opgeslagen.",
+    "sameAsShippingAddress": "Zelfde als afleveradres"
+  },
+  "authentication": {
+    "login": {
+      "createAccount": "Heeft u nog geen account?",
+      "createAccountLater": "Geen zorgen. U kunt na uw bestelling een account aanmaken",
+      "createAccountLinkLabel": "Nu aanmelden!",
+      "forgotPasswordLabel": "Wachtwoord vergeten?",
+      "heading": "Log in op uw account",
+      "headingSuccess": "Wachtwoord succesvol opnieuw ingesteld",
+      "loginAndContinue": "Inloggen en doorgaan",
+      "openLoginForm": "Log in-formulier openen",
+      "rememberMeLabel": "Onthoud mij",
+      "submitLabel": "Inloggen",
+      "success": "U bent succesvol ingelogd."
+    },
+    "resetPassword": {
+      "anotherEmail": "Ik wil een ander e-mailadres proberen",
+      "backToLogin": "Terug naar inloggen",
+      "continue": "Doorgaan",
+      "email": "E-mail",
+      "emailSent": "Controleer uw e-mail: we hebben u instructies gestuurd om uw wachtwoord opnieuw in te stellen.",
+      "heading": "Wachtwoord vergeten?",
+      "info": "Voer het e-mailadres in dat u bij het aanmelden hebt gebruikt. We sturen u een link om uw wachtwoord opnieuw in te stellen. Met die link kunt u een nieuw wachtwoord voor uw account instellen.",
+      "resetPassword": "Wachtwoord opnieuw instellen",
+      "subHeading": "Geen zorgen, we sturen u per e-mail instructies om uw wachtwoord opnieuw in te stellen",
+      "thankYou": "Bedankt, als er een account met {0} is geregistreerd, ontvangt u de link om uw wachtwoord opnieuw in te stellen in uw inbox.",
+      "title": "Wachtwoord succesvol opnieuw ingesteld"
+    },
+    "setNewPassword": {
+      "button": "Nieuw wachtwoord opslaan",
+      "description": "Voer het wachtwoord in dat u voortaan wilt gebruiken om in te loggen op uw account.",
+      "heading": "Wachtwoord opnieuw instellen",
+      "help": "Tussen {min} en {max} tekens, met een combinatie van letters, cijfers en symbolen.",
+      "password": "Nieuw wachtwoord",
+      "passwordsNotMatching": "Wachtwoorden komen niet overeen",
+      "rememberPassword": "Uw wachtwoord onthouden?",
+      "repeatPassword": "Nieuw wachtwoord herhalen",
+      "resetSucceded": "Uw wachtwoord is succesvol opnieuw ingesteld. U bent nu geauthenticeerd met uw nieuwe wachtwoord."
+    },
+    "signup": {
+      "alreadyHaveAccount": "Heeft u al een account?",
+      "benefits": {
+        "orderHistory": "Uw complete bestelgeschiedenis op één plek",
+        "orderTracking": "Houd uw bestellingen in het oog",
+        "saveAddresses": "Sla meerdere adressen op",
+        "wishlist": "Bewaar uw artikelen voor later"
+      },
+      "emailAlreadyExists": "Dit e-mailadres is al geregistreerd.",
+      "heading": "Account aanmaken",
+      "logInLinkLabel": "In plaats daarvan inloggen",
+      "passwordValidation": {
+        "characters": "Het wachtwoord moet tussen {min} en {max} tekens lang zijn.",
+        "letters": "Het wachtwoord moet minimaal één letter bevatten.",
+        "numbers": "Het wachtwoord moet minimaal één cijfer bevatten.",
+        "invalidPassword": "Minimaal 8 tekens lang en moet minimaal één letter en één cijfer bevatten."
+      },
+      "subheading": "Registreer u nu en profiteer van geweldige voordelen",
+      "submitLabel": "Account aanmaken",
+      "success": "Uw account is succesvol aangemaakt."
+    }
+  },
+  "availabilities": {
+    "availabilityBackOrder": "Nabestelling (BackOrder)",
+    "availabilityDiscontinued": "Uit productie (Discontinued)",
+    "availabilityInStock": "Op voorraad (InStock)",
+    "availabilityInStoreOnly": "Alleen beschikbaar in de winkel (InStoreOnly)",
+    "availabilityLimitedAvailability": "Beperkte beschikbaarheid (LimitedAvailability)",
+    "availabilityNotSet": "Beschikbaarheid kiezen",
+    "availabilityOnlineOnly": "Alleen online beschikbaar (OnlineOnly)",
+    "availabilityOutOfStock": "Niet op voorraad (OutOfStock)",
+    "availabilityPreOrder": "Te reserveren (PreOrder)",
+    "availabilityPreSale": "Voorverkoop (PreSale)",
+    "availabilitySoldOut": "Uitverkocht (SoldOut)"
+  },
+  "billing": {
+    "addButton": "Factuuradres toevoegen",
+    "description": "Voeg een factuuradres toe. U ontvangt de factuur op het hierboven opgegeven e-mailadres.",
+    "heading": "Factuuradres",
+    "methodChanged": "De door u geselecteerde betaalmethode is niet meer beschikbaar."
+  },
+  "cart": {
+    "empty": "Uw winkelwagen is leeg",
+    "emptyImageAlt": "Afbeelding van een lege winkelwagen",
+    "emptyNotification": "U heeft geen artikelen in uw winkelwagen",
+    "emptyWishlist": "Uw verlanglijst is leeg",
+    "itemAdded": "Artikel toegevoegd aan winkelwagen",
+    "itemCount": "(Artikelen: {count})",
+    "itemRemoved": "Artikel verwijderd uit de winkelwagen",
+    "myCart": "Mijn winkelwagen",
+    "numberInCart": "{count} artikelen in de winkelwagen",
+    "numberInWishlist": "{count} artikelen op de verlanglijst"
+  },
+  "category": {
+    "sorting": {
+      "default": {
+        "recommended_sorting": "Aanbevolen"
+      },
+      "item": {
+        "feedbackDecimal_asc": "Klantbeoordeling ⬆",
+        "feedbackDecimal_desc": "Klantbeoordeling ⬇",
+        "manufacturer": {
+          "externalName_asc": "Fabrikant A-Z",
+          "externalName_desc": "Fabrikant Z-A"
+        },
+        "score": "Relevantie"
+      },
+      "sorting": {
+        "price": {
+          "avg_asc": "Prijs ⬆",
+          "avg_desc": "Prijs ⬇"
+        }
+      },
+      "texts": {
+        "name1_asc": "Naam A-Z",
+        "name1_desc": "Naam Z-A"
+      },
+      "variation": {
+        "availability": {
+          "averageDays_asc": "Beschikbaarheid ⬆",
+          "averageDays_desc": "Beschikbaarheid ⬇"
+        },
+        "createdAt_asc": "Oudste artikelen",
+        "createdAt_desc": "Nieuwste artikelen",
+        "number_asc": "Variantnummer ⬆",
+        "number_desc": "Variantnummer ⬇",
+        "position_asc": "Meest verkochte artikelen ⬆",
+        "position_desc": "Meest verkochte artikelen ⬇",
+        "updatedAt_asc": "Laatste update",
+        "updatedAt_desc": "Eerste update"
+      }
+    }
+  },
+  "checkout": {
+    "backToCheckout": "Terug naar afrekenen",
+    "continueAsGuest": "Doorgaan als gast",
+    "exportDeliveryNotice": "Met deze bestelling ga ik ermee akkoord dat de verzending plaatsvindt vanuit het land {shopCountry} naar het land van bestemming {deliveryCountry}. De lokale btw, inklaringskosten en invoerrechten zijn niet inbegrepen in het totaalbedrag van de bestelling en moeten aan derden worden betaald. Deze kosten zijn voor mijn rekening.",
+    "fields": {
+      "customerReference": "Uw referentie",
+      "customerReferencePlaceholder": "Voer hier uw referentie in.",
+      "customerWish": "Opmerkingen en wensen",
+      "customerWishMessage": "Voer hier uw bericht aan ons in."
+    },
+    "guestCheckout": "Afrekenen als gast",
+    "loginFastCheckout": "Inloggen om sneller af te rekenen",
+    "payment": {
+      "birthdateError": "Voer een geldige geboortedatum in.",
+      "birthdateLabel": "Geboortedatum",
+      "comingSoon": "Binnenkort beschikbaar",
+      "countrySearch": "Zoek een land",
+      "creditCard": "Creditcard",
+      "heading": "Betaalmethode",
+      "noMethodsAvailable": "Er zijn geen betaalmethoden beschikbaar. Neem contact op met de webshopbeheerder.",
+      "payUponInvoice": "Betaal per factuur",
+      "phoneError": "Voer een geldig telefoonnummer in.",
+      "phoneLabel": "Telefoonnummer"
+    },
+    "googlePay": {
+      "paymentInProgress": "Betaling wordt verwerkt..."
+    },
+    "guaranteeNotice": "Uw wettelijke garantie- en conformiteitsrechten"
+  },
+  "guaranteeLabels": {
+    "area": {
+      "close": "Details over de houdbaarheidsgarantie sluiten",
+      "open": "Details over de houdbaarheidsgarantie openen"
+    }
+  },
+  "customAssets": {
+    "assetDeletedSuccessfully": "Asset succesvol verwijderd",
+    "failedToDeleteAsset": "Asset kon niet worden verwijderd",
+    "duplicateAssetError": "Er bestaat al een asset met dit type en deze naam. Gebruik een unieke combinatie."
+  },
+  "common": {
+    "actions": {
+      "add": "Toevoegen",
+      "addProductToWishlist": "{label} toevoegen aan verlanglijst",
+      "addToCart": "In winkelwagen",
+      "addToWishlist": "Toevoegen aan verlanglijst",
+      "apply": "Toepassen",
+      "back": "Terug",
+      "browseProducts": "Producten bekijken",
+      "buy": "Kopen",
+      "pay": "Betalen",
+      "cancelOrder": "Aankoop annuleren",
+      "clear": "Wissen",
+      "clearAll": "Alles wissen",
+      "cancel": "Annuleren",
+      "continueShopping": "Verder winkelen",
+      "edit": "Bewerken",
+      "goToCheckout": "Naar afrekenen",
+      "goToHomepage": "Naar de startpagina",
+      "next": "Volgende",
+      "placeOrder": "Bestelling plaatsen en betalen",
+      "previous": "Vorige",
+      "readLess": "Minder lezen",
+      "readMore": "Meer lezen",
+      "reloadPage": "Opnieuw laden",
+      "removeFromWishlist": "Verwijderen van verlanglijst",
+      "removeItemFromBasket": "Artikel uit winkelwagen verwijderen",
+      "removeProductFromWishlist": "{label} van de verlanglijst verwijderen",
+      "resetSearch": "Zoekopdracht opnieuw instellen",
+      "saveAddress": "Adres opslaan",
+      "save": "Opslaan",
+      "scrollTop": "Naar boven scrollen",
+      "search": "Zoeken",
+      "showLess": "Minder weergeven",
+      "showMore": "Meer weergeven",
+      "showOptions": "Opties weergeven",
+      "showProducts": "Artikelen weergeven",
+      "viewCart": "Winkelwagen bekijken"
+    },
+    "labels": {
+      "address": "Adressen",
+      "asterisk": "*",
+      "basePrice": "Basisprijs",
+      "cart": "Winkelwagen",
+      "category": "Categorie",
+      "checkout": "Afrekenen",
+      "content": "Inhoud",
+      "delivery": "Verzendkosten",
+      "email": "E-mail",
+      "estimatedTax": "Btw.",
+      "excludedTax": "excl. btw",
+      "filters": "Filters",
+      "grossPrice": "Bruto",
+      "home": "Startpagina",
+      "includedTax": "incl. btw",
+      "itemsSubtotal": "Subtotaal van artikelen",
+      "listSettings": "Lijstinstellingen",
+      "max": "Max.",
+      "min": "Min.",
+      "mostPopular": "Meest populair",
+      "netPrice": "Netto",
+      "or": "of",
+      "orderNumber": "Bestelnummer",
+      "orderSummary": "Besteloverzicht",
+      "pagination": "Genummerde navigatie",
+      "perPage": "Per pagina",
+      "phone": "Telefoonnummer",
+      "products": "Artikelen",
+      "quantitySelector": "Hoeveelheid invoeren",
+      "returnNumber": "Retournummer",
+      "sale": "Aanbieding",
+      "sortBy": "Sorteren op",
+      "technicalData": "Technische gegevens",
+      "tomorrow": "Morgen",
+      "total": "Totaal",
+      "wishlist": "Verlanglijst"
+    },
+    "messages": {
+      "offline": "Het lijkt erop dat u momenteel offline bent. Controleer uw internetverbinding"
+    },
+    "reloadPWA": {
+      "ariaLabel": "Er is een nieuwe versie van de app beschikbaar. Klik hier om de pagina te vernieuwen.",
+      "newVersionAvailable": "Er is een nieuwe versie van de app beschikbaar.",
+      "refresh": "Vernieuwen"
+    },
+    "navigation": {
+      "breadcrumbsDropdown": "Meer breadcrumbs weergeven",
+      "closeAddressForm": "Adresbewerking sluiten",
+      "closeAuthentication": "Authenticatiemodal sluiten",
+      "closeDialog": "Dialoogvenster sluiten",
+      "closeDrawer": "Drawer sluiten",
+      "closeListSettings": "Lijstinstellingen sluiten",
+      "closeMenu": "Menu sluiten",
+      "openMenu": "Menu openen",
+      "showSubcategories": "Subcategorieën weergeven",
+      "closeNeutralAlert": "Melding sluiten",
+      "closePickSavedAddress": "Adresselectie sluiten",
+      "currentPage": "De huidige pagina is {page}",
+      "goToPage": "Naar pagina {page} gaan",
+      "languageSelector": "Taalkeuze openen",
+      "nextAriaLabel": "Naar de volgende pagina gaan",
+      "openConfigurationDrawer": "Configuratiedrawer openen",
+      "openSearchModal": "Zoeken openen",
+      "previousAriaLabel": "Naar de vorige pagina gaan",
+      "socialLabel": "Ga naar {label}"
+    },
+    "accessibility": {
+      "viewDetails": "Details weergeven voor {name}"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "clearAll": "Alles wissen",
+    "contact": "Contact",
+    "contactSend": "Aanvraag versturen",
+    "contactShopMessage": "Heeft u een vraag of een opmerking? Neem dan contact met ons op. Vul gewoon het formulier in en wij behandelen uw aanvraag zo snel mogelijk.",
+    "form": {
+      "asterixHint": "gemarkeerde velden zijn verplicht",
+      "emailLabel": "E-mail",
+      "message": "Bericht",
+      "message-placeholder": "Uw bericht",
+      "nameLabel": "Naam",
+      "order-id": "Bestel-ID",
+      "subjectLabel": "Onderwerp"
+    },
+    "misConfigured": "Ons contactformulier is tijdelijk uitgeschakeld door een ontbrekende configuratie. Probeer het later opnieuw of neem contact met ons op via een andere manier.",
+    "privacyPolicy": "Hierbij bevestig ik dat ik het {privacyPolicy} heb gelezen.",
+    "success": "Bericht succesvol verzonden",
+    "info": {
+      "heading": "Contactgegevens",
+      "email": "E-mail"
+    }
+  },
+  "cancellationForm": {
+    "orderId": "Bestelnummer",
+    "name": "Volledige naam",
+    "email": "Contact-e-mail",
+    "reason": "Reden voor herroeping",
+    "submit": "Herroeping bevestigen",
+    "asterixHint": "gemarkeerde velden zijn verplichte velden",
+    "orderIdInvalid": "Voer een geldig bestelnummer in.",
+    "misConfigured": "Ons herroepingsformulier is tijdelijk uitgeschakeld door een ontbrekende configuratie. Probeer het later opnieuw of neem contact met ons op via een andere manier.",
+    "success": "Uw herroeping is succesvol verzonden. We hebben zojuist een bevestigingsmail met alle details naar {email} gestuurd.",
+    "privacyPolicy": "Ons {privacyPolicy} is van toepassing."
+  },
+  "CookieBar": {
+    "about": {
+      "description": "We gebruiken cookies en vergelijkbare technologieën om onze shop aan te bieden, content van derden te integreren en bezoeken te analyseren. Daarbij verwerken we persoonsgegevens (bijv. IP-adres) en delen we deze met derden die in de instellingen worden genoemd. Optionele cookies plaatsen we alleen met uw toestemming. U kunt weigeren en uw keuze op elk moment wijzigen. Meer informatie vindt u in het {legal} en in de {policy}.",
+      "label": "Uw privacy is belangrijk voor ons"
+    },
+    "Accept All": "Alles accepteren",
+    "Accept Selection": "Selectie accepteren",
+    "Back": "Terug",
+    "Cookie Settings": "Cookie-instellingen",
+    "group": {
+      "externalMedia": "Externe media",
+      "functional": "Functioneel",
+      "marketing": "Marketing (aanbevolen)",
+      "necessary": "Essentieel"
+    },
+    "essentials": {
+      "cookies": {
+        "cloudflareTurnstile": {
+          "name": "Cloudflare Turnstile",
+          "provider": "Cloudflare",
+          "status": "Vereist voor de Turnstile-service van Cloudflare."
+        },
+        "consentCookie": {
+          "name": "consent-cookie",
+          "provider": "PlentyONE GmbH",
+          "status": "Slaat de toestemmingskeuze op."
+        },
+        "payPal": {
+          "name": "paypal",
+          "provider": "PayPal (Europe) S.à r.l. et Cie, S.C.A.",
+          "status": "Vereist voor de betalingsverwerking via PayPal."
+        },
+        "plentyId": {
+          "name": "plentyID",
+          "provider": "PlentyONE GmbH",
+          "status": "Slaat informatie over de huidige sessie op, bijvoorbeeld of de gebruiker is ingelogd."
+        }
+      },
+      "description": "Essentiële cookies zorgen voor basisfuncties en zijn nodig voor het correct functioneren van de website.",
+      "label": "Essentieel"
+    },
+    "externalMedia": {
+      "description": "Content van videoplatforms en socialmediaplatforms wordt standaard geblokkeerd. Als cookies van externe media worden geaccepteerd, is handmatige toestemming voor deze content niet meer nodig.",
+      "label": "Externe media"
+    },
+    "functional": {
+      "description": "Met deze cookies kunnen keuzes en voorkeuren van gebruikers worden opgeslagen, zoals het uitschakelen van de taaldoorverwijzing.",
+      "label": "Functioneel"
+    },
+    "Further Settings": "Meer instellingen",
+    "keys": {
+      "Lifespan": "Levensduur",
+      "PrivacyPolicy": "Privacybeleid",
+      "Provider": "Aanbieder",
+      "script": "Script",
+      "Status": "Status"
+    },
+    "marketing": {
+      "description": "Marketingcookies worden gebruikt door derden en uitgevers om gepersonaliseerde advertenties te tonen. Daarbij volgen zij bezoekers over verschillende websites.",
+      "label": "Marketing"
+    },
+    "More information": "Meer informatie",
+    "Privacy Settings": "Privacy-instellingen",
+    "legalDisclosure": "Colofon",
+    "privacyPolicy": "Privacybeleid",
+    "Reject All": "Alles weigeren",
+    "Show less": "Minder tonen"
+  },
+  "coupon": {
+    "apply": "Inwisselen",
+    "couponApplied": "De voucher is succesvol ingewisseld.",
+    "couponInvalid": "De voucher is al gebruikt of ongeldig.",
+    "couponRemoved": "De voucher is succesvol verwijderd.",
+    "enterCode": "Vouchercode invoeren",
+    "name": "Voucher",
+    "pleaseProvideCoupon": "Voer een geldige vouchercode in.",
+    "remove": "Verwijderen",
+    "title": "Heeft u een vouchercode?"
+  },
+  "documents": {
+    "correctionDocuments": "Correctiebewijs",
+    "Credit Note": "Creditnota",
+    "Delivery Note": "Pakbon",
+    "downloadFailed": "Het downloaden van het document is mislukt. Probeer het opnieuw.",
+    "Dunning Letter": "Aanmaning",
+    "Invoice": "Factuur",
+    "Invoice External": "Externe factuur",
+    "Offer": "Offerte",
+    "Order Confirmation": "Orderbevestiging",
+    "Pickup Delivery": "Afhaallevering",
+    "Pro Forma Invoice": "Proformafactuur",
+    "Receipt": "Kassabon",
+    "Return Note": "Retourbon",
+    "Reversal Document": "Annuleringsbewijs",
+    "Success Confirmation": "Ontvangstbevestiging"
+  },
+  "editMode": {
+    "clearJson": "Template verwijderen",
+    "edit": "Bewerken",
+    "editJsonPlaceholder": "JSON-template invoeren...",
+    "formatJson": "Template opmaken",
+    "minifyJson": "Template minimaliseren",
+    "publish": "Publiceren",
+    "save": "Opslaan",
+    "stopEdit": "Annuleren"
+  },
+  "error": {
+    "accessKeyMailFailed": "De e-mail kon niet worden verzonden. Neem contact op met de webshopbeheerder.",
+    "accessKeyMailSent": "E-mail is verzonden.",
+    "consentReCaptchaCookieNotSet": "Het reCAPTCHA-script is niet geaccepteerd. reCAPTCHA kan niet worden uitgevoerd. Hierdoor kunnen formulieren mogelijk niet worden verzonden.",
+    "couponAlreadyUsedOrInvalidCouponCode": "De voucher is al gebruikt of ongeldig.",
+    "couponCampaignExpired": "De voucher is helaas verlopen.",
+    "couponExpired": "De voucher is helaas verlopen.",
+    "couponMinOrderValueNotReached": "De voucher is helaas weer verwijderd, omdat het vereiste bestelbedrag niet is gehaald. Voer de code opnieuw in zodra het vereiste bestelbedrag is bereikt.",
+    "couponRemoveFailure": "De voucher kon niet worden verwijderd.",
+    "csrfTokenMismatch": "U bent om veiligheidsredenen uitgelogd. U wordt doorgestuurd naar de inlogpagina.",
+    "errorActionIsNotExecuted": "De actie kon niet worden uitgevoerd.",
+    "errorBasketItemMaximumQuantityReachedForItem": "De maximale bestelhoeveelheid voor dit artikel is overschreden.",
+    "errorBasketItemMaximumQuantityReachedForVariation": "De maximale bestelhoeveelheid voor deze variant is overschreden.",
+    "errorBasketItemMinimumQuantityNotReachedForVariation": "De minimale bestelhoeveelheid voor deze variant is niet bereikt.",
+    "errorBasketItemNotEnoughStockForVariation": "De gekozen hoeveelheid kon niet aan het winkelmandje worden toegevoegd, omdat deze de beschikbare voorraad overschrijdt. :stock zijn momenteel op voorraad.",
+    "errorBasketItemVariationNotFound": "De variant is niet beschikbaar.",
+    "errorCreateOrderRetryTimeNotReached": "Er is een fout opgetreden bij het aanmaken van de bestelling. Probeer het over 30 seconden opnieuw.",
+    "errorGiftCardReturnQuantity": "Retour kon niet worden aangemaakt. Alle vouchers in de bestelling moeten samen worden geretourneerd.",
+    "errorOccured": "Oeps! Er is een fout opgetreden!",
+    "errorPlain": "Fout",
+    "errorVatNumberValidation": "Het btw-იდენტificatienummer is ongeldig. Verwijder alle spaties en speciale tekens.",
+    "errorVatService": "Het btw-identificatienummer kon niet worden bevestigd. Neem contact op met de shopbeheerder.",
+    "errorVatServiceFallback": "Het btw-identificatienummer kon niet worden bevestigd. De bestelling wordt opnieuw gecontroleerd.",
+    "newsletterOptInMessage": "Uw e-mailadres is bevestigd.",
+    "newsletterOptOutSuccessMessage": "U bent succesvol afgemeld voor de nieuwsbrief.",
+    "notificationRemoveCouponMinimumOrderValueIsNotReached": "De ingewisselde voucher is verwijderd. Het minimale bestelbedrag wordt niet meer gehaald.",
+    "notificationsBasketItemsRemoved": "Er zijn artikelen uit uw winkelmandje verwijderd, omdat deze momenteel niet beschikbaar zijn.",
+    "notificationsBasketItemsRemovedForContactClass": "Er zijn artikelen uit uw winkelmandje verwijderd, omdat deze niet beschikbaar zijn voor dit klantaccount.",
+    "notificationsBasketItemsRemovedForCurrency": "Er zijn artikelen uit uw winkelmandje verwijderd, omdat deze niet beschikbaar zijn in de geselecteerde valuta.",
+    "notificationsBasketItemsRemovedForLanguage": "Er zijn artikelen uit uw winkelwagen verwijderd, omdat deze niet beschikbaar zijn in de geselecteerde taal.",
+    "notificationsBasketItemsRemovedForShippingCountry": "Er zijn artikelen uit uw winkelwagen verwijderd, omdat deze niet beschikbaar zijn voor het geselecteerde land van levering.",
+    "notificationsCalculateShippingFailed": "Er is een fout opgetreden bij het berekenen van de verzendkosten. Neem contact op met de beheerder.",
+    "notificationsCheckPassword": "De wachtwoorden komen niet overeen.",
+    "notificationsInvalidResetPasswordUrl": "De opgegeven URL is ongeldig of verlopen.",
+    "notificationsItemBundleSplitted": "Artikelenbundel is opgesplitst.",
+    "notificationsItemNotAdded": "Het artikel kon niet worden toegevoegd",
+    "notificationsItemOutOfStock": "Niet voldoende voorraad beschikbaar",
+    "notificationsNoEmailEntered": "Voer een geldig e-mailadres in.",
+    "notificationsNotEnoughStockItem": "De gekozen hoeveelheid kon niet aan de winkelwagen worden toegevoegd, omdat deze de beschikbare voorraad overschrijdt. :stock zijn momenteel op voorraad.",
+    "notificationsWarningOverselling": "De gekozen hoeveelheid overschrijdt de beschikbare voorraad. :stock zijn momenteel op voorraad; :oversellingAmount worden nageleverd.",
+    "pageNotFound": "Pagina niet gevonden",
+    "pageNotFoundSubtitle": "Sorry! Gebruik de zoekfunctie of categorieën om te vinden wat u zoekt.",
+    "pageNotFoundTitle": "We konden deze pagina niet vinden.",
+    "somethingWentWrongImageAlt": "Afbeelding die uitlegt dat er iets mis is gegaan",
+    "checkout": {
+      "missingAddress": "Voer uw adres in om door te gaan met afrekenen.",
+      "missingBillingAddress": "Voer uw factuuradres in om door te gaan met afrekenen."
+    },
+    "contact": {
+      "messageRequired": "Bericht is verplicht.",
+      "nameRequired": "Naam is verplicht.",
+      "subjectRequired": "Onderwerp is verplicht.",
+      "termsRequired": "Accepteer de privacyvoorwaarden.",
+      "turnstileRequired": "Vink het selectievakje aan om te bevestigen dat u geen bot bent."
+    },
+    "decimalNumber": "Voer een decimaal getal in.",
+    "editor": {
+      "add": {
+        "disabledNotCompatibleWithLayouts": "This block can't be placed inside a layout.",
+        "disabledOneInstancePerPage": "You can only have 1 instance of this block type on a page.",
+        "disabledTooDeeplyNested": "Layouts support a maximum of two levels. Select a content block instead."
+      },
+      "categories": {
+        "deleteError": "De pagina {pageName} (categorie-ID: {id}) kon niet worden verwijderd. {errorMessage}",
+        "deleteSuccess": "De pagina {pageName} (categorie-ID: {id}) is verwijderd.",
+        "error": "Fout bij het opslaan van de categorieën.",
+        "success": "Categorieën succesvol opgeslagen."
+      },
+      "save": {
+        "error": "De wijzigingen konden niet worden opgeslagen. Als uw huidige sessie is verlopen, start dan een nieuwe sessie. Open hiervoor de editor opnieuw.",
+        "settings": "Werk uw shop bij om wijzigingen in de instellingen toe te passen.",
+        "success": "De wijzigingen zijn opgeslagen."
+      }
+    },
+    "email": {
+      "required": "E-mail is verplicht.",
+      "valid": "Dit veld moet een geldig e-mailadres bevatten."
+    },
+    "maxCharacters": "Voer maximaal {max} tekens in.",
+    "missingOrWrongProperties": "De volgende velden zijn verplicht of onjuist ingevuld:",
+    "newsletter": {
+      "firstNameRequired": "Voornaam is verplicht.",
+      "lastNameRequired": "Achternaam is verplicht.",
+      "termsRequired": "Accepteer de privacyvoorwaarden.",
+      "turnstileRequired": "Vink het selectievakje aan om te bevestigen dat u geen bot bent."
+    },
+    "orderId": {
+      "required": "Het bestelnummer is verplicht."
+    },
+    "password": {
+      "match": "Wachtwoorden komen niet overeen.",
+      "maxLength": "Het wachtwoord mag maximaal {max} tekens lang zijn.",
+      "minLength": "Het wachtwoord moet minimaal {min} tekens lang zijn.",
+      "required": "Wachtwoord is verplicht.",
+      "valid": "Het wachtwoord moet minstens één letter en één cijfer bevatten."
+    },
+    "paymentCancelled": "De betaling is geannuleerd. Probeer het opnieuw.",
+    "paymentFailed": "De betaling is mislukt. Probeer het opnieuw.",
+    "pleaseFillOutAllFields": "Vul al deze velden in.",
+    "requiredField": "Dit veld is verplicht.",
+    "turnstileRequired": "Vink het selectievakje aan om te bevestigen dat u geen bot bent.",
+    "wholeNumber": "Voer een geheel getal in."
+  },
+  "footer": {
+    "legal": {
+      "label": "Juridisch"
+    },
+    "services": {
+      "label": "Contact"
+    },
+    "contact": {
+      "label": "Contact"
+    },
+    "register": {
+      "label": "Registreren"
+    }
+  },
+  "form": {
+    "addCompany": "+ bedrijfsgegevens toevoegen",
+    "asterixHint": "* gemarkeerde toestemmingen zijn verplicht",
+    "cityLabel": "Stad",
+    "companyLabel": "Bedrijf",
+    "countryLabel": "Land",
+    "emailLabel": "E-mail",
+    "firstNameLabel": "Voornaam",
+    "lastNameLabel": "Achternaam",
+    "optional": "optioneel",
+    "passwordLabel": "Wachtwoord",
+    "passwordVisibility": "Wachtwoordzichtbaarheid",
+    "phoneLabel": "Telefoon",
+    "postalCodeLabel": "Postcode",
+    "privacyPolicyLabel": "Hiermee bevestig ik dat ik de {privacyPolicy} heb gelezen.",
+    "removeCompany": "- bedrijfsgegevens verwijderen",
+    "repeatPasswordLabel": "Wachtwoord herhalen",
+    "required": "*",
+    "selectPlaceholder": "-- Selecteren --",
+    "stateLabel": "Provincie",
+    "streetNameLabel": "Straat",
+    "streetNumberLabel": "Nummer",
+    "useAsBillingLabel": "Gebruiken als factuuradres",
+    "useAsShippingLabel": "Gebruiken als verzendadres",
+    "vatIdLabel": "btw-nummer"
+  },
+  "gallery": {
+    "count": "{current} van {total}",
+    "image": "Afbeelding {index}",
+    "next": "Volgende",
+    "prev": "Vorige",
+    "thumb": "Naar afbeelding {index}"
+  },
+  "homepage": {
+    "background": "Nieuwe Wireless Pro koptelefoon met elegant design en moderne functies",
+    "banner": {
+      "ariaLabelNextSlide": "Volgende slide",
+      "ariaLabelPreviousSlide": "Vorige slide",
+      "ariaLabelSlideControls": "Bedieningselementen voor de slides",
+      "ariaLabelSlidePosition": "Slide {current} van {total}",
+      "ariaRoleDescriptionCarousel": "Carrousel",
+      "ariaRoleDescriptionSlide": "Slide",
+      "moto1": "Voel de muziek",
+      "moto2": "Nieuwe Wireless Pro",
+      "moto3": "Ruimtelijk geluid. Verstelbare oorschelpen. Bediening op het apparaat. Batterij voor de hele dag.",
+      "orderNow": "Nu bestellen",
+      "showMore": "Meer tonen"
+    },
+    "displayDetails": {
+      "detail1": {
+        "alt": "Stap in stijl - zonnebrillencollectie voor een modieuze look",
+        "buttonText": "Nu ontdekken",
+        "description": "Ga stijlvol op pad met onze zonnebrillencollectie",
+        "subtitle": "Laat u inspireren",
+        "title": "Stap stijlvol naar buiten"
+      },
+      "detail2": {
+        "alt": "Pak het in - ontdek de buitenwereld met onze rugzakcollectie",
+        "buttonText": "Nu ontdekken",
+        "description": "Ontdek de natuur met onze rugzakken",
+        "subtitle": "Blijf actief",
+        "title": "Pak het in"
+      },
+      "detail3": {
+        "alt": "Fris en gedurfd - breng kleur in uw outfit",
+        "buttonText": "Nu ontdekken",
+        "description": "Voeg een vleugje kleur toe aan uw outfit",
+        "subtitle": "Nieuwe collectie",
+        "title": "Fris en gedurfd"
+      }
+    },
+    "emptyBlock": {
+      "headline": "Voeg hier het eerste onderdeel toe."
+    },
+    "headPhones": "Nieuwe Wireless Pro koptelefoon met ruimtelijk geluid en batterij voor de hele dag",
+    "kid": "Kinderen",
+    "kidHomepageCategory": "Categorie kinderen op de homepage",
+    "men": "Heren",
+    "menHomepageCategory": "Categorie heren op de homepage",
+    "title": "Home",
+    "women": "Dames",
+    "womenHomepageCategory": "Categorie dames op de homepage"
+  },
+  "lang": {
+    "bg": "Bulgaars",
+    "cn": "Chinees",
+    "cs": "Tsjechisch",
+    "cz": "Tsjechisch",
+    "da": "Deens",
+    "de": "Duits",
+    "dk": "Deens",
+    "ee": "Ests",
+    "en": "Engels",
+    "es": "Spaans",
+    "et": "Ests",
+    "fi": "Fins",
+    "fr": "Frans",
+    "ga": "Iers",
+    "hr": "Kroatisch",
+    "hu": "Hongaars",
+    "ie": "Iers",
+    "it": "Italiaans",
+    "lt": "Litouws",
+    "lv": "Lets",
+    "nl": "Nederlands",
+    "nn": "Noors",
+    "pl": "Pools",
+    "pt": "Portugees",
+    "ro": "Roemeens",
+    "ru": "Russisch",
+    "se": "Zweeds",
+    "sk": "Slowaaks",
+    "sv": "Zweeds",
+    "tr": "Turks",
+    "vi": "Vietnamees",
+    "vn": "Vietnamees",
+    "zh": "Chinees"
+  },
+  "legal": {
+    "cancellationRights": "Herroepingsrecht",
+    "details": "Juridische informatie – klik hier voor meer informatie",
+    "privacyPolicy": "Privacyverklaring",
+    "privacyPolicyRequired": "Bevestig alstublieft het selectievakje voor de privacyverklaring.",
+    "termsAndConditions": "Algemene voorwaarden",
+    "termsInfo": "Onze {terms} zijn van toepassing. Lees ook ons {cancellationRights} en onze {privacyPolicy}. *",
+    "termsRequired": "Bevestig alstublieft het selectievakje voor de algemene voorwaarden, het herroepingsrecht en de privacyverklaring.",
+    "cancellationForm": "Herroepingsformulier",
+    "declarationOfAccessibility": "Toegankelijkheidsverklaring",
+    "legalDisclosure": "Colofon",
+    "withdrawButton": "Contract herroepen"
+  },
+  "manufacturer": {
+    "contactUrl": "Contactformulier",
+    "euResponsibleTabName": "EU-verantwoordelijke persoon",
+    "fax": "Fax",
+    "header": "Gegevens van de fabrikant",
+    "homepage": "Homepage",
+    "logoAlt": "Fabrikantenlogo",
+    "manufacturerTabName": "Fabrikant",
+    "noInformation": "Er zijn geen gegevens over de fabrikant beschikbaar.",
+    "noResponsibleInformation": "Er zijn geen gegevens over de EU-verantwoordelijke persoon beschikbaar.",
+    "responsibleContactUrl": "Contactformulier EU-verantwoordelijke",
+    "responsibleHeader": "Verantwoordelijke partij in de EU",
+    "responsibleSubtitle": "Een in de EU gevestigde marktdeelnemer die ervoor zorgt dat het artikel aan alle vereiste voorschriften voldoet.",
+    "subtitle": "De fabrikantinformatie bevat het adres en andere gegevens van de producent van het artikel."
+  },
+  "newsletter": {
+    "email": "E-mail",
+    "firstName": "Voornaam",
+    "heading": "Abonneer u op onze nieuwsbrief",
+    "info": "Blijf op de hoogte van aankomende acties en evenementen. Ontvang cadeaus en speciale aanbiedingen!",
+    "lastName": "Achternaam",
+    "policy": "Ik bevestig hierbij dat ik de {privacyPolicy} heb gelezen. Ik kan mijn toestemming op elk moment intrekken.",
+    "subscribe": "Abonneren op nieuwsbrief",
+    "success": "Bedankt voor uw aanmelding! Controleer uw e-mail en klik op de bevestigingslink in ons bericht om u te abonneren op de nieuwsbrief.",
+    "confirmation": {
+      "newsletterOptInMessage": "Uw e-mailadres is bevestigd.",
+      "newsletterOptInMessageError": "Er is een fout opgetreden bij het bevestigen van uw e-mailadres."
+    },
+    "unsubscribe": {
+      "label": "Nieuwsbrief afmelden",
+      "heading": "Nieuwsbrief afmelden",
+      "info": "Voer uw e-mailadres in om u af te melden voor de nieuwsbrief.",
+      "submit": "Afmelden",
+      "success": "U bent succesvol afgemeld voor de nieuwsbrief."
+    }
+  },
+  "offers": {
+    "acceptOffer": "Aanbod accepteren",
+    "cancel": "Annuleren",
+    "declineDialogSubline": "Help ons verbeteren door ons te laten weten waarom u het aanbod hebt afgewezen.",
+    "declineOffer": "Aanbod afwijzen",
+    "inputPlaceholder": "Laat ons weten waarom u het aanbod afwijst...",
+    "missingEmail": "Er is geen e-mailadres opgeslagen.",
+    "offer": "Aanbod",
+    "offerValidUntil": "Aanbod geldig tot: {date}"
+  },
+  "order": {
+    "errorMessage": "Er is iets misgegaan. Probeer het later opnieuw.",
+    "errorProvider": "Onbekend antwoord van de betaalprovider: {paymentType}",
+    "failedHeader": "Het spijt ons.",
+    "failedMessage": "Uw bestelling kon niet worden afgerond.",
+    "searchResults": "Resultaten voor \"{phrase}\"",
+    "successHeader": "Bedankt voor uw bestelling!",
+    "successImageAlt": "Afbeelding die uitlegt dat de bestelling succesvol was",
+    "successMessage": "Uw bestelling is succesvol afgerond.",
+    "successReturnHeader": "Bedankt voor uw retour!",
+    "rebate": "Korting"
+  },
+  "orderConfirmation": {
+    "confirmationSendTo": "Een bevestiging met alle details is verzonden naar {email}",
+    "createAccountForBenefits": "Maak een account aan om van alle voordelen te profiteren!",
+    "sameAsShippingAddress": "Komt overeen met het afleveradres",
+    "saveOrderToAccount": "Sla deze bestelling op in uw account",
+    "shipping": "Verzendkosten",
+    "signUp": "Registreren",
+    "subTotal": "Subtotaal",
+    "total": "Totaal",
+    "trackingOrder": "Bestelling volgen",
+    "vat": "Btw",
+    "softLogin": {
+      "check": "Controleren",
+      "fullName": "Achternaam of bedrijfsnaam",
+      "titleFullName": "Voer de achternaam of de bedrijfsnaam in die bij de bestelling is opgegeven om de bestelgegevens te bekijken.",
+      "titleLogin": "Log in op uw account om toegang te krijgen tot uw bestelling",
+      "titlePostcode": "Voer de postcode in van een adres dat bij de bestelling is opgegeven om de bestelgegevens te bekijken."
+    }
+  },
+  "orderConfirmationPaymentStatus": {
+    "fullyPaid": "Betaald",
+    "overpaid": "Te veel betaald",
+    "partlyPaid": "Gedeeltelijk betaald",
+    "prepaid": "Vooraf betaald",
+    "unknown": "Fout bij het ophalen van de betalingsstatus",
+    "unpaid": "Niet betaald"
+  },
+  "orderProperties": {
+    "additionalCostsPerItem": "Extra kosten (prijs per artikel)",
+    "hasRequiredFields": "Dit is een verplicht veld.",
+    "noSelection": "Geen selectie",
+    "select": "Selecteren",
+    "upload": {
+      "acceptedFormats": "Geaccepteerde bestandsformaten",
+      "dragAndDropFileHereOrUpload": "Sleep een bestand hierheen of {uploadFile}",
+      "maximumFileSize": "Toegestane bestandsgrootte",
+      "orderPropertyTypeFile": "Type: bestand",
+      "unSupportedFileType": "Het geüploade bestand wordt niet ondersteund",
+      "uploaded": "geüpload",
+      "uploadError": "Het bestand kon niet worden geüpload. Controleer de maximaal toegestane bestandsgrootte en het bestandsformaat.",
+      "uploadFile": "Bestand uploaden",
+      "uploading": "wordt geüpload"
+    },
+    "vat": {
+      "excl": "excl.",
+      "incl": "incl.",
+      "plus": "plus"
+    }
+  },
+  "paypalPayment": {
+    "errorMessageCreditCard": "De ingevoerde gegevens zijn ongeldig. Controleer de velden kaartnummer, kaartveiligheidscode (CVV) en vervaldatum.",
+    "expressNotAvailable": "PayPal is niet beschikbaar voor het land van levering. Pas uw adres aan of ga naar de kassa om de bestelling met een andere betaalmethode af te ronden.",
+    "invalidOrder": "De bestelling kon niet worden afgerond. Probeer het opnieuw.",
+    "puiBankDataAvailable": "Maak het bedrag over naar de opgegeven bankgegevens. U vindt de bankgegevens ook op uw factuur.",
+    "puiBankDataNotAvailable": "De bankgegevens voor de overboeking worden opgehaald en zijn binnenkort beschikbaar. U vindt ze dan hier of op uw factuur.",
+    "puiDesignedUse": "Omschrijving",
+    "unbrandedCancel": "Annuleren",
+    "unbrandedCardNumber": "Kaartnummer",
+    "unbrandedCvv": "Kaartveiligheidscode",
+    "unbrandedExpirationDate": "Vervaldatum",
+    "unbrandedNameOnCard": "Naam op kaart",
+    "unbrandedPay": "Betalen",
+    "methodNotSupported": "De geselecteerde betaalmethode wordt momenteel niet ondersteund. Kies een andere betaalmethode."
+  },
+  "PreferredDelivery": {
+    "general": {
+      "additionalCharge": "Meerprijs",
+      "apply": "Toepassen",
+      "assistantName": "DHL Wenslevering",
+      "invalidPostalCodeMessage": "Controleer de invoer van de postcode. Er wordt een numerieke waarde van 5 cijfers verwacht - bijvoorbeeld '34117'.",
+      "preferredDropOffLocation": "Geef uw gewenste afleverlocatie op",
+      "preferredLocationAlertMessage": "Geef een afleverlocatie op.",
+      "preferredNeigbourMaxCharViolation": "Maximaal aantal tekens (100) overschreden.",
+      "preferredNeighbourAddress": "Geef het volledige adres van uw gewenste buur op",
+      "preferredNeighbourAddressMessage": "Buur: straat, huisnummer, postcode en plaats invullen.",
+      "preferredNeighbourFullName": "Geef de volledige naam van uw gewenste buur op",
+      "preferredNeighbourNameAlertMessage": "Buur: achternaam, voornaam invullen.",
+      "submitWunschpaketServices": "Instellingen voor Wenslevering opgeslagen.",
+      "wunschnachbarExampleAddress": "Straat, huisnummer, postcode en plaats",
+      "wunschnachbarExampleName": "Achternaam, voornaam",
+      "wunschnachbarTitle": "Buur: levering bij een buur naar keuze",
+      "wunschnachbarTooltip": "Kies een persoon in uw directe buurt bij wie wij uw pakket mogen afleveren. Diegene woont bij voorkeur in hetzelfde huis, recht tegenover of naast u.",
+      "wunschortExample": "bijv. garage, terras",
+      "wunschortTitle": "Afleverlocatie: levering op de gewenste plek",
+      "wunschortTooltip": "Kies een beschutte en niet-zichtbare plek op uw terrein waar wij het pakket tijdens uw afwezigheid mogen achterlaten.",
+      "wunschpaketAdditionalCharge": "Voor deze service geldt een meerprijs van {additionalCharge} {currency}.*",
+      "wunschpaketIntroduction": "Met de services van DHL Wenslevering bepaalt u wanneer en waar u uw pakketten ontvangt.",
+      "wunschpaketOptions": "Kies uw gewenste leveroptie:",
+      "wunschpaketTitle": "DHL Wenslevering",
+      "wunschtagNone": "Geen",
+      "wunschtagTitle": "Leverdagen: levering op de gewenste dag",
+      "wunschtagTooltip": "U kunt een van de weergegeven dagen kiezen als leverdag voor uw bestelling. Andere dagen zijn momenteel niet mogelijk vanwege de leverprocessen."
+    },
+    "packstation": {
+      "cityLabel": "Stad/plaats",
+      "cityPlaceholder": "Plaats",
+      "containerTextInfo": "Voer een adres in en kies een filter voor het afhaalpunt. Klik vervolgens op een van de zoekresultaten om dit afhaalpunt te selecteren.",
+      "days": {
+        "Friday": "vrijdag",
+        "Monday": "maandag",
+        "Saturday": "zaterdag",
+        "Sunday": "zondag",
+        "Thursday": "donderdag",
+        "Tuesday": "dinsdag",
+        "Wednesday": "woensdag"
+      },
+      "dropDownValues": {
+        "packstation": "Packstation",
+        "postfilial": "Postkantoor"
+      },
+      "nameInfo": "De naam wordt overgenomen uit het factuuradres. Het postnummer en het adres van de Packstation/Postfiliale worden als afleveradres overgenomen.",
+      "noResult2": "Voer ten minste de postcode of plaats in.",
+      "packstationAddedSuccessMessage": "De Packstation/Postfiliale is als afleveradres overgenomen.",
+      "postNumberLabel": "Voer uw postnummer in",
+      "postNumberPlaceholder": "Postnummer",
+      "postnumberRequired": "Het postnummer is verplicht. Voer uw DHL postnummer in.",
+      "search": "Zoeken",
+      "setPackstation": "Toepassen",
+      "streetLabel": "Voer uw straat in ",
+      "streetPlaceholder": "Straat",
+      "title": "DHL Packstation / Postfiliale",
+      "zipcodeInvalid": "Voer een geldige postcode in.",
+      "zipcodeLabel": "Postcode",
+      "zipcodePlaceholder": "Postcode"
+    }
+  },
+  "previewModeBar": {
+    "configId": "Configuratie-ID:",
+    "exitEditor": "Editor verlaten en naar de liveshop gaan",
+    "exitPreviewMode": "Voorbeeldmodus beëindigen",
+    "exitWithoutSaving": "Verlaten zonder op te slaan",
+    "editorLabel": "Besturingselementen voor de editor",
+    "previewLabel": "Besturingselementen voor de preview",
+    "saveAndExit": "Opslaan en verlaten",
+    "title": "Editor verlaten en naar de liveshop gaan?",
+    "unsavedChangesWarning": "Er zijn niet-opgeslagen wijzigingen."
+  },
+  "product": {
+    "allFromCategory": "Alle {name}",
+    "allProducts": "Alle artikelen",
+    "allProductsLink": "Artikelen bekijken",
+    "averageRating": "Gemiddelde beoordeling",
+    "basedOnRatings": "Gebaseerd op {count} beoordeling(en)",
+    "bundleSavings": "U bespaart {percent} % met deze bundel",
+    "createReview": "Beoordeling plaatsen",
+    "customerReviews": "Klantbeoordelingen",
+    "decreaseQuantity": "Hoeveelheid verlagen",
+    "details": "Productdetails",
+    "doubleTapZoom": "Dubbeltikken om in te zoomen",
+    "estimatedDelivery": "Verwachte levertijd",
+    "imageOf": "Afbeelding van {name}",
+    "increaseQuantity": "Hoeveelheid verhogen",
+    "legalDetails": "Juridische informatie",
+    "lowestPrice": "Laagste prijs van de laatste 30 dagen: {price}",
+    "minimumQuantity": "Minimale bestelhoeveelheid: {count}",
+    "moreFromCategory": "Meer artikelen in deze categorie",
+    "noReviews": "Nog niemand heeft een beoordeling voor dit artikel geplaatst",
+    "noReviewsShort": "Geen beoordelingen",
+    "notAvailable": "Het artikel is niet beschikbaar",
+    "outOfStock": "Niet op voorraad",
+    "priceExclVAT": "excl. btw",
+    "priceInclVAT": "incl. btw",
+    "reviewsCount": "{Anzahl} beoordelingen",
+    "showAllReviews": "Alle beoordelingen tonen",
+    "showAll": "alle filters",
+    "graduatedPrices": {
+      "discount": "KORTING",
+      "price": "PRIJS",
+      "quantity": "AANTAL",
+      "title": "Meer kopen, minder betalen"
+    },
+    "attributes": {
+      "notValidVariation": "Kies een geldige variant.",
+      "productNameMissing": "Artikelnaam ontbreekt",
+      "seeAvailableOptions": "Beschikbare opties tonen"
+    }
+  },
+  "quickCheckout": {
+    "cartContains": "Uw winkelwagen bevat {count} artikelen",
+    "checkYourCart": "Winkelwagen controleren",
+    "close": "Winkelwagenbevestiging sluiten",
+    "heading": "Aan winkelwagen toegevoegd",
+    "quantity": "Aantal",
+    "subTotal": "Subtotaal"
+  },
+  "returns": {
+    "areYouSure": "Weet u zeker dat u deze artikelen wilt retourneren?",
+    "cancel": "Annuleren",
+    "commentOptional": "Opmerking (optioneel)",
+    "confirmReturn": "Retour bevestigen",
+    "detailsHeading": "Overzicht van de retour",
+    "initiateReturn": "Retour starten",
+    "orderDate": "Besteldatum",
+    "quantity": "Aantal",
+    "return": "Retourneren",
+    "returnForOrder": "Retour voor bestelling",
+    "returnItems": "Artikelen retourneren",
+    "returnNumber": "Retournummer",
+    "returnReason": "Retourreden",
+    "selectAll": "Alles selecteren",
+    "selectQuantities": "Selecteer de retouraantallen",
+    "selectReason": "Selecteer de retourreden",
+    "selectReturnReason": "Retourreden selecteren",
+    "successConfirmationMessage": "We hebben uw retour geregistreerd. We informeren u over het verdere verloop.",
+    "tellUsMore": "Vertel ons meer over waarom u deze artikelen wilt retourneren.."
+  },
+  "review": {
+    "anonymous": "Anoniem",
+    "answer": "Antwoorden",
+    "answerAreYouSure": "Weet u zeker dat u het antwoord wilt verwijderen?",
+    "areYouSure": "Weet u zeker dat u de beoordeling wilt verwijderen?",
+    "cancel": "Annuleren",
+    "createAnswerFormTitle": "Een antwoord geven",
+    "createReviewFormTitle": "Beoordeling schrijven",
+    "createSuccess": "Beoordeling is verzonden",
+    "deleteAnswer": "Antwoord verwijderen?",
+    "deleteReview": "Beoordeling verwijderen?",
+    "deleteReviewConfirmation": "Verwijderen",
+    "editReplyFormTitle": "Antwoord bewerken",
+    "editReviewFormTitle": "Beoordeling bewerken",
+    "hideAnswers": "Antwoorden verbergen",
+    "notification": {
+      "answerSuccess": "Uw antwoord is verzonden.",
+      "success": "Uw beoordeling is verzonden."
+    },
+    "reviewAuthor": "Uw naam (optioneel)",
+    "reviewText": "Artikelbeoordeling (optioneel)",
+    "saveAnswer": "Antwoord verzenden",
+    "showAnswers": "Antwoorden tonen",
+    "submitReview": "Beoordeling verzenden",
+    "title": "Titel",
+    "tooltipVisibilityOff": "Deze beoordeling wordt momenteel gecontroleerd",
+    "tooltipVisibilityOn": "Deze beoordeling is zichtbaar",
+    "validation": {
+      "ratingRequired": "Voeg een beoordeling toe.",
+      "textareaMaxLength": "De maximaal toegestane lengte is 500 tekens.",
+      "textareaRequired": "Voer een bericht voor de beoordeling in.",
+      "titleRequired": "Voer een titel voor de beoordeling in."
+    },
+    "verifiedPurchase": "Geverifieerde aankoop",
+    "yourAnswer": "Uw antwoord",
+    "yourRating": "Uw beoordeling:"
+  },
+  "search": {
+    "clearFilters": "Alle filters wissen",
+    "emptyStateImageAlt": "Afbeelding die aangeeft dat er geen artikelen zijn gevonden",
+    "emptyStateText": "We hebben geen artikelen meer in deze categorie.",
+    "emptyStateText2": "Heeft u niet gevonden wat u zoekt?",
+    "numberOfProducts": "{count} artikelen van {total} artikelen",
+    "searchResults": "Zoekresultaten voor \"{phrase}\""
+  },
+  "searchBar": {
+    "searchSuggestions": "Zoeksuggesties",
+    "productSuggestions": "Productsuggesties",
+    "matchingCategories": "Passende categorieën",
+    "showAllResults": "Alle resultaten voor „{searchTerm}“ tonen ({hitsCount})",
+    "noResultsFound": "Er zijn geen resultaten gevonden."
+  },
+  "sessionLifetime": {
+    "oneDay": "Eén dag, ook als de browser wordt gesloten",
+    "oneHour": "Eén uur, ook als de browser wordt gesloten",
+    "oneHundredDays": "Honderd dagen, ook als de browser wordt gesloten",
+    "untilBrowserClosed": "Tot de browser wordt gesloten"
+  },
+  "shipping": {
+    "addButton": "Bezorgadres toevoegen",
+    "description": "Voeg een bezorgadres toe om verzendinformatie te bekijken.",
+    "excludedLabel": "plus {shipping}",
+    "heading": "Bezorgadres",
+    "methodChanged": "De door u gekozen verzendmethode is niet meer beschikbaar.",
+    "noShippingMessage": "Geen verzendinformatie beschikbaar",
+    "noShippingMethodsNoAddress": "Voer uw bezorgadres in om de beschikbare verzendmethoden te zien.",
+    "method": {
+      "description": "Niet beschikbaar zolang er geen bezorgadres is opgegeven.",
+      "free": "Gratis",
+      "heading": "Verzendmethode",
+      "maxDeliveryDays": "Levering binnen {days} dagen",
+      "noMethodsAvailable": "Er zijn geen verzendmethoden beschikbaar. Neem contact op met de webshopaanbieder.",
+      "showDataPrivacyAgreementHint": "Ik ga ermee akkoord dat mijn e-mailadres en/of telefoonnummer wordt doorgegeven aan {parcelServiceInformation}, zodat de pakketdienstverlener vóór de levering van de goederen contact met mij kan opnemen per e-mail of telefoon om een leverdatum af te stemmen en/of statusinformatie over de bezorging te verstrekken. Ik kan deze toestemming te allen tijde intrekken"
+    }
+  },
+  "sortingAndPagination": {
+    "recommendedSorting": {
+      "description": "U kunt zelf bepalen hoe de waarde \"Aanbevolen\" wordt samengesteld. Kies drie sorteervelden. Het eerste sorteerveld heeft de hoogste prioriteit bij het sorteren, het tweede veld de op één na hoogste, enzovoort.",
+      "firstSortingOptionLabel": "Eerste sorteerveld",
+      "options": {
+        "sortDataRandom": "Willekeurig",
+        "sortingPriorityCategoryAvailabilityAsc": "Beschikbaarheid ⬆",
+        "sortingPriorityCategoryAvailabilityDesc": "Beschikbaarheid ⬇",
+        "sortingPriorityCategoryItemIdAsc": "Artikel-ID ⬆",
+        "sortingPriorityCategoryItemIdDesc": "Artikel-ID ⬇",
+        "sortingPriorityCategoryManufacturerAsc": "Fabrikant A-Z",
+        "sortingPriorityCategoryManufacturerDesc": "Fabrikant Z-A",
+        "sortingPriorityCategoryManufacturerPositionAsc": "Fabrikantspositie ⬆",
+        "sortingPriorityCategoryManufacturerPositionDesc": "Fabrikantspositie ⬇",
+        "sortingPriorityCategoryNameAsc": "Artikelnaam A-Z",
+        "sortingPriorityCategoryNameDesc": "Artikelnaam Z-A",
+        "sortingPriorityCategoryNotSelected": "Geen selectie",
+        "sortingPriorityCategoryPriceAsc": "Prijs ⬆",
+        "sortingPriorityCategoryPriceDesc": "Prijs ⬇",
+        "sortingPriorityCategoryStockAsc": "Voorraad ⬆",
+        "sortingPriorityCategoryStockDesc": "Voorraad ⬇",
+        "sortingPriorityCategoryVariationCreatedAtAsc": "Oudste variant eerst",
+        "sortingPriorityCategoryVariationCreatedAtDesc": "Nieuwste variant eerst",
+        "sortingPriorityCategoryVariationIdAsc": "Variant-ID ⬆",
+        "sortingPriorityCategoryVariationIdDesc": "Variant-ID ⬇",
+        "sortingPriorityCategoryVariationNumberAsc": "Variantnummer ⬆",
+        "sortingPriorityCategoryVariationNumberDesc": "Variantnummer ⬇",
+        "sortingPriorityCategoryVariationPositionAsc": "Variantpositie ⬆",
+        "sortingPriorityCategoryVariationPositionDesc": "Variantpositie ⬇",
+        "sortingPriorityCategoryVariationUpdatedAtAsc": "Meest recent bijgewerkte variant eerst",
+        "sortingPriorityCategoryVariationUpdatedAtDesc": "Eerst bijgewerkte variant eerst"
+      },
+      "secondSortingOptionLabel": "Tweede sorteerveld",
+      "thirdSortingOptionLabel": "Derde sorteerveld",
+      "title": "Aanbevolen sortering"
+    }
+  },
+  "storefrontError": {
+    "cancellation": {
+      "recipientNotConfigured": "Het herroepingsformulier is niet geconfigureerd. Neem contact op met de beheerder van de site.",
+      "submitFailed": "De herroeping kon niet worden verzonden. Probeer het later opnieuw."
+    },
+    "address": {
+      "createFailed": "Het opslaan van het adres is mislukt.",
+      "deleteFailed": "Het verwijderen van het adres is mislukt.",
+      "validationFailed": "Het adres is ongeldig.",
+      "vatInvalid": "Het btw-nummer is ongeldig.",
+      "vatServerBusy": "Het btw-nummer kon niet worden bevestigd. Neem contact op met de shopbeheerder.",
+      "vatServerFallback": "Het btw-nummer kon niet worden bevestigd. De bestelling wordt opnieuw gecontroleerd."
+    },
+    "blocks": {
+      "base64NotAllowed": "De afbeelding is niet correct geüpload. Probeer het opnieuw te uploaden."
+    },
+    "cart": {
+      "addToBasket": {
+        "itemSetComponentMismatch": "Er is een mismatch tussen de componenten van de artikelset, waardoor deze niet aan de winkelwagen kan worden toegevoegd.",
+        "maxItemQuantityReached": "De maximale hoeveelheid voor dit artikel is bereikt en kan daarom niet aan de winkelwagen worden toegevoegd.",
+        "maxVariationQuantityReached": "De maximale hoeveelheid voor deze variant is bereikt en kan daarom niet aan de winkelwagen worden toegevoegd.",
+        "minVariationQuantityNotReached": "De minimale hoeveelheid voor deze variant is niet bereikt en kan daarom niet aan de winkelwagen worden toegevoegd.",
+        "notEnoughStockForVariation": "Er is niet genoeg voorraad beschikbaar voor deze variant.",
+        "unknownError": "Er is een onbekende fout opgetreden bij het toevoegen van het artikel. Probeer het opnieuw.",
+        "variationNotFound": "De geselecteerde variant is niet gevonden en kan daarom niet aan de winkelwagen worden toegevoegd."
+      },
+      "failedToRemoveItem": "Het artikel kon niet worden verwijderd.",
+      "reachedMaximumQuantity": "De maximale bestelhoeveelheid van dit artikel is overschreden."
+    },
+    "contact": {
+      "emailAlreadyExists": "Het e-mailadres bestaat al.",
+      "missingContactOrUnexpectedFormat": "Ontbrekende contactgegevens of onverwacht formaat.",
+      "passwordInvalid": "Het wachtwoord voldoet niet aan de vereiste beveiligingsnormen.",
+      "unauthorizedPasswordReset": "Het wachtwoord kan niet worden gereset. De link is mogelijk verlopen of al gebruikt.",
+      "unexpectedAddressFormat": "Onverwacht adresformaat."
+    },
+    "contactMail": {
+      "emailInvalid": "Het e-mailadres is ongeldig.",
+      "failed": "Bericht kon niet worden verzonden.",
+      "messageInvalid": "Het bericht is ongeldig.",
+      "nameInvalid": "De naam is ongeldig.",
+      "orderIdInvalid": "Het bestelnummer is ongeldig.",
+      "subjectInvalid": "Het onderwerp is ongeldig."
+    },
+    "coupon": {
+      "applyFailed": "De coupon kon niet worden ingewisseld."
+    },
+    "editor": {
+      "invalidEditorHash": "De editorsessie is ongeldig."
+    },
+    "feedback": {
+      "notAllowedWithoutPurchase": "U moet dit artikel kopen voordat u een beoordeling kunt plaatsen."
+    },
+    "login": {
+      "loginFailed": "Inloggegevens ongeldig",
+      "userIsBlocked": "Gebruiker is geblokkeerd"
+    },
+    "newsletter": {
+      "createFailed": "De nieuwsbrief kon niet worden geabonneerd."
+    },
+    "offer": {
+      "alreadyTaken": "Deze aanbieding is al gebruikt en kan niet opnieuw worden gebruikt.",
+      "expired": "Deze aanbieding is verlopen.",
+      "itemOutOfStock": "Minstens één artikel van de aanbieding is niet meer op voorraad.",
+      "openUnauthorized": "U bent niet gemachtigd om deze aanbieding te openen."
+    },
+    "order": {
+      "additionalAuthenticationRequired": "Voor deze bestelling is extra verificatie nodig.",
+      "additionalAuthenticationRequiredLogin": "Voor deze bestelling moet u opnieuw inloggen.",
+      "additionalAuthenticationRequiredPostcode": "Voor deze bestelling moet de gebruikte postcode worden bevestigd.",
+      "additionalAuthRequiredName": "Voor deze bestelling is bevestiging van de gebruikte achternaam vereist.",
+      "assignPaymentFailed": "De betaling kon niet worden toegewezen.",
+      "createFailed": "De bestelling kon niet worden aangemaakt.",
+      "loadOrdersFailed": "De bestellingen konden niet worden geladen.",
+      "migrateUnauthorized": "De bestelling kon niet aan uw account worden toegevoegd.",
+      "notFound": "De bestelling bestaat niet.",
+      "softLoginFailed": "De opgegeven gegevens zijn ongeldig.",
+      "paymentMethodCantSwitch": "De betaalmethode voor deze bestelling kan niet worden gewijzigd.",
+      "paymentMethodNotExist": "De gekozen betaalmethode bestaat niet meer. Kies een andere betaalmethode.",
+      "paymentMethodSwitchFailed": "Er is een fout opgetreden bij het wijzigen van de betaalmethode.",
+      "paymentMethodSwitchDisabled": "De mogelijkheid om de betaalmethode te wijzigen is uitgeschakeld."
+    },
+    "security": {
+      "invalidCsrfToken": "Om veiligheidsredenen is deze actie geweigerd. Laad de pagina opnieuw en probeer het opnieuw.",
+      "tooManyRequests": "Er zijn te veel verzoeken verzonden. Wacht even en probeer het daarna opnieuw."
+    },
+    "turnstile": {
+      "invalid": "Verificatie mislukt. Probeer het over een paar minuten opnieuw.",
+      "misConfigured": "De verificatie is momenteel niet beschikbaar. Neem contact op met de websitebeheerder."
+    },
+    "notifyMe": {
+      "alreadySubscribed": "U bent al aangemeld voor dit artikel"
+    },
+    "unknownError": "Er is een onbekende fout opgetreden."
+  },
+  "defaultTemplate": {
+    "category": {
+      "categoryData": {
+        "name": "Categorienaam"
+      }
+    },
+    "product": {
+      "itemText": {
+        "title": "Artikeldetails"
+      },
+      "technicalData": {
+        "title": "Technische gegevens"
+      },
+      "customerReview": {
+        "title": "Klantbeoordelingen"
+      },
+      "productLegalInformation": {
+        "title": "Wettelijke artikeldetails",
+        "linkText": "Verantwoordelijke persoon in de EU - klik voor details"
+      }
+    },
+    "homepage": {
+      "carousel": {
+        "banner1": {
+          "pretitle": "Geniet van kristalhelder geluid",
+          "title": "Uw geluid op het hoogste niveau",
+          "description": "Onze geavanceerde koptelefoons: ontwikkeld voor de ultieme luisterervaring en geschikt voor zelfs de hoogste eisen. Ontdek de perfecte mix van stijl, comfort en geluidskwaliteit die van uw muziekbeleving een geheel nieuw niveau maakt.",
+          "buttonLabel": "Capybara ontdekken"
+        },
+        "banner2": {
+          "pretitle": "De toekomst van luchtfotografie",
+          "title": "Drone Omega",
+          "description": "Omega is een lichte drone, ontwikkeld voor adembenemende luchtbeelden. Met een camera in hoge resolutie op een 3-assige gimbal en een vliegtijd tot 45 minuten zorgt hij voor stabiele, vloeiende video's. GPS-ondersteunde hovermodus, obstakelvermijding en eenvoudig meenemen maken de Drone tot de perfecte metgezel voor uw opnames.",
+          "buttonLabel": "Omega ontdekken"
+        }
+      },
+      "textcard": {
+        "welcome": {
+          "pretitle": "Welkom in uw nieuwe favoriete shop",
+          "title": "Ontdek techniek & style",
+          "subtitle": "Innovatieve technologie ontmoet moderne mode",
+          "paragraph1": "Welkom in onze shop, waar techliefhebbers en modeliefhebbers allebei hun slag slaan! Van hoogwaardige koptelefoons en krachtige drones tot stijlvolle kleding: bij ons vindt u alles om uw dagelijkse leven slimmer en uw look unieker te maken.",
+          "paragraph2": "Ons doel is u een eersteklas selectie producten te bieden waarin kwaliteit, innovatie en design samenkomen. Of u nu op zoek bent naar een nieuwe speaker voor het perfecte geluid of een casual hoodie die bij uw stijl past – wij hebben wat u nodig hebt.",
+          "buttonLabel": "Nu scoren"
+        }
+      },
+      "multigrid": {
+        "textcard": {
+          "title": "Ontdek techniek en stijl",
+          "subtitle": "Innovatieve technologie ontmoet moderne fashion",
+          "paragraph": "Onze koptelefooncollectie zet nieuwe maatstaven op het gebied van audioprecisie. Met diepe bas, heldere hoge tonen en een indrukwekkend geluid bieden deze koptelefoons een unieke luisterervaring voor elk muziekgenre. Dankzij de combinatie van modern design, hoog comfort en de nieuwste technologie zijn ze de perfecte keuze voor iedereen die geen compromissen wil sluiten op het gebied van geluidskwaliteit.",
+          "feature1": "Premium sound in studiokwaliteit",
+          "feature2": "Comfortabele pasvorm voor langer luisteren",
+          "feature3": "Lange batterijduur",
+          "feature4": "Naadloze draadloze verbinding",
+          "buttonLabel": "Naar onze koptelefoons"
+        },
+        "image": {
+          "alt": "Koptelefoons"
+        }
+      },
+      "productRecommended": {
+        "fashion": {
+          "pretitle": "Meer dan alleen techniek",
+          "title": "Ontdek onze modecollectie",
+          "subtitle": "Sportieve mode en accessoires voor iedereen.",
+          "linkText": "Naar onze complete collectie.",
+          "linkUrl": "https://plentyshop.plentymarkets.com/kleidung"
+        }
+      },
+      "newsletter": {
+        "title": "Abonneer u op onze nieuwsbrief",
+        "description": "Blijf op de hoogte van aankomende acties en evenementen. Ontvang cadeaus en speciale aanbiedingen!",
+        "buttonLabel": "Nieuwsbrief abonneren"
+      }
+    },
+    "footer": {
+      "column1": {
+        "title": "Juridisch"
+      },
+      "column2": {
+        "title": "Services"
+      }
+    }
+  }
+}
