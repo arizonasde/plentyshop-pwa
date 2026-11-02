@@ -10,7 +10,11 @@ export const usePageTitle = () => {
   const { getSetting: getMetaTitle } = useSiteSettings('metaTitle');
   const { getSetting: getOgTitle } = useSiteSettings('ogTitle');
 
-  const defaultTitle = computed(() => getMetaTitle() || runtimeConfig.metaTitle || metaDefaults.title);
+  const { title: arizonaShopTitle } = useArizonaShopMeta();
+
+  const defaultTitle = computed(
+    () => arizonaShopTitle.value || getMetaTitle() || runtimeConfig.metaTitle || metaDefaults.title,
+  );
 
   const titleSuffix = computed(() => getOgTitle() || runtimeConfig.ogTitle || openGraph.title);
 
