@@ -1,8 +1,8 @@
 /**
  * Arizona: brands with their own landing page under /marken/<slug>.
- * `facetValueId` is the value of the brand filter ("Marke") in plentyONE; brands without that filter value (Faera) are
+ * `facetValueId` is the value of the brand filter ("Marke") in plentyONE; brands without that filter value are
  * listed via `searchTerm` instead. Only brands with at least four items
- * in the shop are listed (as of 25.10.2026). The intros only state what is known about the brand or visible in
+ * in the shop are listed (as of 02.11.2026). The intros only state what is known about the brand or visible in
  * the assortment – no claims about materials, production or prices.
  */
 export const ARIZONA_BRANDS: ({ slug: string; name: string; intro: string } & (
@@ -19,7 +19,7 @@ export const ARIZONA_BRANDS: ({ slug: string; name: string; intro: string } & (
   {
     slug: 'faera',
     name: 'Faera',
-    searchTerm: 'Faera',
+    facetValueId: 143,
     intro:
       'Faera steht bei uns für Schals und Mützen für Damen: Dreieckstücher und Karoschals mit Fransen, leichte Tücher mit Print und gerippte Strickmützen – in vielen Farben.',
   },
@@ -202,6 +202,75 @@ export const ARIZONA_BRANDS: ({ slug: string; name: string; intro: string } & (
     name: 'Only Play',
     facetValueId: 133,
     intro: 'Only Play ist die Sportlinie von ONLY aus der dänischen Bestseller-Gruppe – Sportbekleidung für Training und Freizeit.',
+  },
+  {
+    slug: 'carlo-colucci',
+    name: 'Carlo Colucci',
+    facetValueId: 140,
+    intro:
+      'Carlo Colucci bietet bei uns Herrenmode für die Freizeit: Sweatshirts, Hoodies, Strickpullover und T-Shirts, dazu Caps und Übergangsjacken.',
+  },
+  {
+    slug: 'timezone',
+    name: 'Timezone',
+    facetValueId: 141,
+    intro:
+      'Timezone steht bei uns vor allem für Herrenhosen: Cargohosen und Jeans in Slim und Regular Fit, Jeans- und Cargo-Shorts, dazu Übergangsjacken.',
+  },
+  {
+    slug: 'hummel',
+    name: 'hummel',
+    facetValueId: 142,
+    intro:
+      'hummel bietet Sport- und Freizeitbekleidung für Damen, Herren und Kinder: Trainingsanzüge, Hoodies, Sweatshirts, T-Shirts, Tops und Socken im Set.',
+  },
+  {
+    slug: 'dada-supreme',
+    name: 'DADA Supreme',
+    facetValueId: 144,
+    intro:
+      'DADA Supreme bietet bei uns Herrenmode im Streetwear-Stil: Jeans in Regular und Loose Fit, Hoodies, T-Shirts, Jogginghosen und High-Top-Sneaker.',
+  },
+  {
+    slug: 'humy',
+    name: 'HUMY',
+    facetValueId: 145,
+    intro:
+      'HUMY bietet Herrenmode: Winterjacken mit Kapuze, Cargo-Bermudas und Jeans-Shorts, Cargo-Jogger, Hoodies und Slim-Fit-Jeans.',
+  },
+  {
+    slug: 'new-era',
+    name: 'New Era',
+    facetValueId: 146,
+    intro:
+      'New Era steht bei uns für Caps: Snapbacks und Baseball-Caps, viele davon mit Team-Logos wie New York Yankees oder Atlanta Braves.',
+  },
+  {
+    slug: 'alpha-industries',
+    name: 'Alpha Industries',
+    facetValueId: 147,
+    intro:
+      'Alpha Industries bietet bei uns Herrenmode: Hoodies, Cargo- und Sweat-Shorts, Cargohosen sowie Übergangs- und Winterjacken.',
+  },
+  {
+    slug: 'jako',
+    name: 'JAKO',
+    facetValueId: 148,
+    intro:
+      'JAKO bietet Sportbekleidung für Herren und Jungen: Sportjacken, Trikot-Sets, kurze Sporthosen, Sweatjacken und Socken im Set.',
+  },
+  {
+    slug: 'eight2nine',
+    name: 'Eight2Nine',
+    facetValueId: 64,
+    intro:
+      'Eight2Nine bietet Mode für Damen und Herren: Hoodies, Übergangsjacken, Freizeitkleider und Shorts für Damen, Hemden und Hosen für Herren.',
+  },
+  {
+    slug: 'fresh-made',
+    name: 'Fresh Made',
+    facetValueId: 84,
+    intro: 'Fresh Made bietet bei uns Damenmode für den Sommer: Bermudas, Stoff-Shorts, T-Shirts und Tops.',
   },
 ];
 
