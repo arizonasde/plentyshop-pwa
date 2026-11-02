@@ -1,9 +1,10 @@
-const DEFAULT_ITEMS_PER_PAGE = 50;
+// Arizona: 48 instead of 50 – plentyONE kept serving a days-old getFacet answer for itemsPerPage 50 (02.11.2026).
+const DEFAULT_ITEMS_PER_PAGE = 48;
 const DEFAULT_FEEDBACK_ITEMS_PER_PAGE = 10;
 const DEFAULT_PAGE = 1;
 const DEFAULT_FEEDBACK_PAGE = 1;
 const DEFAULT_QUICK_CHECKOUT_TIMER = 10;
-const PER_PAGE_STEPS: number[] = [10, 20, 50, 100];
+const PER_PAGE_STEPS: number[] = [12, 24, 48, 96];
 const ESSENTIAL_COOKIES_INDEX = 0;
 const REPLY_CHARACTER_LIMIT = 500;
 const PREVIEW_COOKIE: string = 'pwa';
