@@ -231,6 +231,19 @@ describe('useStructuredData', () => {
     });
   });
 
+  describe('setLogoMeta', () => {
+    it('should describe the shop as OnlineStore with imprint data and the return policy', () => {
+      useStructuredData().setLogoMeta();
+
+      const organization = getCapturedJsonLd();
+      expect(organization['@type']).toBe('OnlineStore');
+      expect(organization['legalName']).toBe('ARIZONAS GmbH');
+      expect((organization['address'] as Record<string, unknown>)['addressLocality']).toBe('Worms');
+      expect((organization['contactPoint'] as Record<string, unknown>)['email']).toBe('info@arizona-shopping.de');
+      expect((organization['hasMerchantReturnPolicy'] as Record<string, unknown>)['merchantReturnDays']).toBe(60);
+    });
+  });
+
   describe('setItemListMetaData', () => {
     it('should generate ItemList JSON-LD with product list URLs', () => {
       const productWithItemId = buildProductWithItemId(2);

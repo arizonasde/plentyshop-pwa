@@ -74,11 +74,22 @@ export const useStructuredData: useStructuredDataReturn = () => {
     const shopName = getOgTitle() || String(runtimeConfig.public.ogTitle ?? '');
     const structuredData: WithContext<SchemaOrganization> = {
       '@context': 'https://schema.org',
-      '@type': 'Organization',
+      // Arizona: OnlineStore (an Organization) with imprint data and the return policy for the whole shop
+      '@type': 'OnlineStore',
       ...(shopName && { name: shopName }),
       url: runtimeConfig.public.domain,
       // Arizona: the shop's own logo (PNG version of the header logo, readable for every crawler)
       logo: 'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-startseite/arizonas-logo.png',
+      ...ARIZONA_COMPANY,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        email: ARIZONA_COMPANY.email,
+        telephone: ARIZONA_COMPANY.telephone,
+        areaServed: 'DE',
+        availableLanguage: 'de',
+      },
+      hasMerchantReturnPolicy: buildReturnPolicy(),
     };
     // Arizona: WebSite with search action, so search engines and AI assistants know the shop name and its search
     const webSite: WithContext<SchemaWebSite> = {

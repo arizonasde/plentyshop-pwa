@@ -36,6 +36,24 @@ export const buildReturnPolicy = (): MerchantReturnPolicy => ({
 });
 
 /**
+ * Company details from the imprint (/legal-disclosure) for the Organization schema, so search engines and
+ * AI assistants can tell who runs the shop and how to reach it. Keep in line with the imprint.
+ */
+export const ARIZONA_COMPANY = {
+  legalName: 'ARIZONAS GmbH',
+  email: 'info@arizona-shopping.de',
+  telephone: '+49 6241 5003701',
+  vatID: 'DE310100460',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Im Winkel 7',
+    postalCode: '67547',
+    addressLocality: 'Worms',
+    addressCountry: 'DE',
+  },
+} as const;
+
+/**
  * Builds the document title: brand, product name and colour plus a short shop suffix,
  * e.g. "NOISY MAY Damen Kleid Lang Rundhals – Dunkelgrau | Arizona Shopping".
  * Drops a leading "[Paket]" marker; when too long only the name is shortened (at a word boundary),
