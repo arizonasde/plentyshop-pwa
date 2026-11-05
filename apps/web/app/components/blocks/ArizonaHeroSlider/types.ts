@@ -10,6 +10,8 @@ export type ArizonaHeroSliderSlide = {
   /** Upper-case line above the title, e.g. "ENTDECKE DIE KOLLEKTION" */
   eyebrow: string;
   title: string;
+  /** Button text, defaults to "Jetzt entdecken" */
+  cta?: string;
   link: string;
   image: { desktop: string; mobile: string; alt: string };
   products: ArizonaHeroSliderProduct[];
