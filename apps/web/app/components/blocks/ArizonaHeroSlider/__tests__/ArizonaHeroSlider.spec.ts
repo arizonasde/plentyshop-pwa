@@ -25,6 +25,11 @@ describe('<ArizonaHeroSlider />', () => {
     dots.forEach((dot) => expect(dot.classes()).toEqual(expect.arrayContaining(['h-6', 'min-w-6'])));
   });
 
+  it('shows a call-to-action button with default text', () => {
+    const wrapper = mountSlider();
+    expect(wrapper.find('[data-testid="arizona-hero-cta"]').text()).toContain('Jetzt entdecken');
+  });
+
   it('offers the small preview image for the product tiles', () => {
     const wrapper = mountSlider();
     const tile = wrapper.find('[data-testid="arizona-hero-products"] img');

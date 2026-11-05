@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="slides.length"
-    class="relative overflow-hidden bg-gradient-to-r from-[#3B3632] via-[#6E6762] to-[#B9B3AE] text-white"
+    class="relative overflow-hidden bg-gradient-to-r from-[#EFE7DC] via-[#F6F1EA] to-white text-neutral-900"
     :aria-roledescription="'Karussell'"
     aria-label="Aktuelle Kollektionen"
     data-testid="arizona-hero-slider"
@@ -16,7 +16,7 @@
         <Transition name="arizona-hero-fade" mode="out-in">
           <div :key="active" class="flex flex-col gap-3">
             <span
-              class="w-fit rounded-full bg-white px-3 py-1 text-[0.7rem] @md:text-xs font-semibold uppercase tracking-wide text-neutral-900"
+              class="w-fit rounded-full bg-neutral-900 px-3 py-1 text-[0.7rem] @md:text-xs font-semibold uppercase tracking-wide text-white"
             >
               {{ current.pill }}
             </span>
@@ -26,6 +26,15 @@
               class="text-3xl @md:text-5xl font-bold leading-tight hover:underline underline-offset-4"
             >
               {{ current.title }}
+            </NuxtLink>
+            <!-- Arizona: call to action, leads to the same page as title and photo -->
+            <NuxtLink
+              :to="localePath(current.link)"
+              class="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-neutral-900 px-6 py-3 text-sm @md:text-base font-semibold text-white transition-colors hover:bg-neutral-700"
+              data-testid="arizona-hero-cta"
+            >
+              {{ current.cta || 'Jetzt entdecken' }}
+              <SfIconChevronRight size="sm" />
             </NuxtLink>
           </div>
         </Transition>
@@ -43,7 +52,7 @@
             @click="go(i)"
           >
             <span
-              class="block h-1.5 rounded-full bg-white transition-all"
+              class="block h-1.5 rounded-full bg-neutral-900 transition-all"
               :class="i === active ? 'w-11' : 'w-1.5 opacity-60 group-hover:opacity-100'"
             />
           </button>
@@ -54,7 +63,7 @@
             <li v-for="product in current.products.slice(0, 4)" :key="product.link">
               <NuxtLink
                 :to="localePath(product.link)"
-                class="block aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] transition-transform hover:-translate-y-0.5"
+                class="block aspect-[3/4] overflow-hidden rounded bg-white transition-transform hover:-translate-y-0.5"
               >
                 <img
                   :src="product.image"
@@ -133,8 +142,8 @@ import type { ArizonaHeroSliderProps } from './types';
 import { getArizonaItemImageSrcset } from '~/utils/arizonaImage';
 
 /**
- * Arizona: hero slider for the home page in the style of large fashion shops – dark gradient with pill, title and
- * four product tiles on the left, a large photo on the right. Slides change automatically (paused while the
+ * Arizona: hero slider for the home page in the style of large fashion shops – light sand gradient with pill, title,
+ * call-to-action button and four product tiles on the left, a large photo on the right. Slides change automatically (paused while the
  * pointer or keyboard focus is inside) and by dots or arrows.
  */
 const props = defineProps<ArizonaHeroSliderProps>();
