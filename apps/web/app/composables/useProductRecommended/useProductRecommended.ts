@@ -1,5 +1,23 @@
 import type { FacetSearchCriteria, Product } from '@plentymarkets/shop-api';
 
+const LISTS_URL = 'https://cdn02.plentyone.com/f05ilw2rfpls/frontend/arizona-bestand/';
+
+/**
+ * Arizona: variation ids of a list file in the webspace ({ varianten: number[] }), e.g. the daily
+ * "Gerade besonders beliebt" list. Empty when the file is missing or unreadable.
+ */
+const readArizonaVariationList = async (name: string): Promise<number[]> => {
+  if (!/^[a-z0-9-]+$/.test(name)) return [];
+  try {
+    const list = await $fetch<{ varianten?: number[] }>(`${LISTS_URL}${name}.json`, {
+      query: { v: Math.floor(Date.now() / 600_000) },
+    });
+    return (list?.varianten ?? []).map(Number).filter((id) => id > 0);
+  } catch {
+    return [];
+  }
+};
+
 /**
  * Composable for managing recommended products data
  * @param categoryId Product slug
@@ -26,12 +44,14 @@ export const useProductRecommended: UseProductRecommendedReturn = (categoryId: s
   const fetchProductRecommended: FetchProductRecommended = async (params) => {
     state.value.loading = true;
 
-    // Arizona: fixed list of variations, kept in the given order
+    // Arizona: fixed list of variations, kept in the given order; a list file from the webspace takes precedence
     if (params.type === 'variations') {
-      const ids = (params.variationIds ?? '')
+      const listed = params.variationList ? await readArizonaVariationList(params.variationList) : [];
+      const fixed = (params.variationIds ?? '')
         .split(',')
         .map((id) => Number(id.trim()))
         .filter((id) => id > 0);
+      const ids = listed.length ? listed : fixed;
       if (ids.length === 0) {
         state.value.loading = false;
         return state.value.data;

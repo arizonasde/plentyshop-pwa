@@ -8,7 +8,7 @@
       :title="getEditorTranslation('last-seen-hint-title')"
       :message="getEditorTranslation('last-seen-tracking-disabled-hint')"
     />
-    <ProductSlider v-if="shouldShowSlider" :items="sliderProducts" :grid="isVariations && sliderProducts.length <= 4" />
+    <ProductSlider v-if="shouldShowSlider" :items="sliderProducts" :grid="isVariations" />
   </div>
 </template>
 
@@ -110,11 +110,15 @@ const contentSource = computed(() => ({
 // product stays in the state after leaving the page and must not be hidden elsewhere (e.g. on the home page).
 const route = useRoute();
 const isProductPage = computed(() => route.meta?.type === 'product');
+// Arizona: a fixed list may carry spare variations – sold-out ones drop out, the first 8 available are shown
+const MAX_FIXED_VARIATIONS = 8;
 const sliderProducts = computed(() =>
-  (recommendedProducts.value ?? []).filter(
-    (product) =>
-      !isProductPage.value || !itemId.value || String(productGetters.getItemId(product)) !== String(itemId.value),
-  ),
+  (recommendedProducts.value ?? [])
+    .filter(
+      (product) =>
+        !isProductPage.value || !itemId.value || String(productGetters.getItemId(product)) !== String(itemId.value),
+    )
+    .slice(0, isVariations.value ? MAX_FIXED_VARIATIONS : undefined),
 );
 
 watch(

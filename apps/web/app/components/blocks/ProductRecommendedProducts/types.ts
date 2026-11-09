@@ -26,6 +26,9 @@ export type ProductRecommendedProductsContent = {
     sort?: string;
     // Arizona: comma-separated variation ids for type 'variations', shown in this order
     variationIds?: string;
+    // Arizona: name of a list file in the webspace (e.g. 'beliebt', written daily by shop_bestseller.py) whose
+    // variation ids replace variationIds while the file has entries
+    variationList?: string;
   };
   text: {
     pretitle?: string;

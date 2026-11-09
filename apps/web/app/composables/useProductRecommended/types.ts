@@ -9,6 +9,7 @@ export interface UseProductRecommendedState {
 export type ProductRecommendedParams = Omit<FacetSearchCriteria, 'type'> & {
   type?: FacetSearchCriteria['type'] | 'variations' | 'same_color';
   variationIds?: string;
+  variationList?: string;
 };
 
 export type FetchProductRecommended = (params: ProductRecommendedParams) => Promise<Product[]>;
