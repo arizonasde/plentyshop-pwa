@@ -1,11 +1,41 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <NarrowContainer class="px-4 pb-10">
-      <div class="flex flex-wrap items-baseline gap-x-3 mb-2">
-        <h1 class="typography-headline-3 @md:typography-headline-2 font-bold">{{ brand.name }}</h1>
-        <span v-if="total" class="typography-text-sm text-neutral-600">{{ total }} Artikel</span>
-      </div>
-      <p class="typography-text-sm text-neutral-600 max-w-3xl mb-6" data-testid="brand-intro">{{ brand.intro }}</p>
+      <!-- Arizona: brands with a portrait get a dark header with claim and key facts -->
+      <header
+        v-if="story"
+        class="mb-8 overflow-hidden rounded-2xl bg-neutral-950 px-6 py-8 text-white @md:px-10 @md:py-12"
+        data-testid="brand-story-header"
+      >
+        <p class="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#7CFC9A]">Markenporträt</p>
+        <h1 class="text-4xl font-black tracking-tight @md:text-6xl">{{ brand.name }}</h1>
+        <p class="mt-3 max-w-3xl text-xl font-semibold leading-snug @md:text-2xl">{{ story.claim }}</p>
+        <p class="mt-4 max-w-3xl typography-text-sm text-white/75 @md:typography-text-base" data-testid="brand-intro">
+          {{ brand.intro }}
+        </p>
+        <dl class="mt-8 grid grid-cols-2 gap-3 @md:grid-cols-4">
+          <div v-for="fact in story.facts" :key="fact.label" class="rounded-xl border border-white/15 bg-white/5 px-4 py-3">
+            <dt class="text-lg font-bold text-[#7CFC9A] @md:text-2xl">{{ fact.value }}</dt>
+            <dd class="typography-text-xs text-white/70 @md:typography-text-sm">{{ fact.label }}</dd>
+          </div>
+        </dl>
+        <a
+          href="#marke-serien"
+          class="mt-8 inline-flex rounded-full bg-white px-5 py-2.5 typography-text-sm font-semibold !text-neutral-950 !no-underline hover:bg-neutral-200"
+        >
+          Zu den Serien
+        </a>
+      </header>
+      <template v-else>
+        <div class="flex flex-wrap items-baseline gap-x-3 mb-2">
+          <h1 class="typography-headline-3 @md:typography-headline-2 font-bold">{{ brand.name }}</h1>
+          <span v-if="total" class="typography-text-sm text-neutral-600">{{ total }} Artikel</span>
+        </div>
+        <p class="typography-text-sm text-neutral-600 max-w-3xl mb-6" data-testid="brand-intro">{{ brand.intro }}</p>
+      </template>
+      <h2 v-if="story && products.length" class="typography-headline-4 font-bold mb-4">
+        {{ brand.name }} bei uns <span class="typography-text-sm font-normal text-neutral-600">{{ total }} Artikel</span>
+      </h2>
 
       <section
         v-if="products.length"
@@ -20,6 +50,13 @@
           :configuration="ARIZONA_CARD_CONFIGURATION"
         />
       </section>
+      <p
+        v-else-if="story"
+        class="mb-8 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 typography-text-sm"
+        data-testid="brand-coming-soon"
+      >
+        {{ story.comingSoon }}
+      </p>
       <p v-else class="mb-8">Zurzeit sind keine Artikel dieser Marke verfügbar.</p>
 
       <UiPagination
@@ -31,6 +68,36 @@
         :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
       />
 
+      <template v-if="story">
+        <section v-for="section in story.sections" :key="section.title" class="mt-10 max-w-3xl">
+          <h2 class="typography-headline-4 font-bold mb-3">{{ section.title }}</h2>
+          <p v-for="(paragraph, index) in section.paragraphs" :key="index" class="mb-3 text-neutral-700 leading-relaxed">
+            {{ paragraph }}
+          </p>
+        </section>
+
+        <section id="marke-serien" class="mt-12 scroll-mt-24" data-testid="brand-series">
+          <h2 class="typography-headline-4 font-bold mb-2">{{ story.seriesTitle }}</h2>
+          <p class="mb-6 max-w-3xl text-neutral-700">{{ story.seriesIntro }}</p>
+          <div v-for="group in story.seriesGroups" :key="group.title" class="mb-8">
+            <h3 class="mb-3 flex flex-wrap items-baseline gap-x-3">
+              <span class="rounded-full bg-neutral-950 px-3 py-1 typography-text-sm font-bold text-white">{{ group.title }}</span>
+              <span class="typography-text-sm text-neutral-600">{{ group.text }}</span>
+            </h3>
+            <ul class="grid grid-cols-1 gap-3 @md:grid-cols-2 @lg:grid-cols-3">
+              <li v-for="series in group.series" :key="series.name">
+                <div class="flex h-full flex-col rounded-xl border border-neutral-200 px-4 py-3">
+                  <span class="font-semibold">{{ series.name }}</span>
+                  <span class="typography-text-xs text-neutral-500">Serie {{ series.models }}</span>
+                  <span class="mt-1 typography-text-sm text-neutral-700">{{ series.text }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <p class="typography-text-xs text-neutral-500">{{ story.footnote }}</p>
+        </section>
+      </template>
+
       <p class="mt-8 typography-text-sm">
         <NuxtLink :to="localePath('/marken')" class="underline underline-offset-2">Alle Marken ansehen</NuxtLink>
       </p>
@@ -41,6 +108,7 @@
 <script setup lang="ts">
 import { productGetters } from '@plentymarkets/shop-api';
 import type { Locale } from '#i18n';
+import { ARIZONA_BRAND_STORIES } from '~/utils/arizonaBrandStories';
 
 /**
  * Arizona: landing page of one brand (e.g. /marken/only) with all its items across the shop's categories,
@@ -68,6 +136,7 @@ const slug = String(route.params.slug ?? '');
 // and keeping only items whose manufacturer really is this brand.
 const brand = findArizonaBrand(slug) ?? { slug, name: '', searchTerm: slug.replace(/-/g, ' '), intro: '' };
 const isGenerated = !findArizonaBrand(slug);
+const story = ARIZONA_BRAND_STORIES[brand.slug];
 
 const currentPage = computed(() => Number(route.query.page) || 1);
 

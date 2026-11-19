@@ -272,6 +272,14 @@ export const ARIZONA_BRANDS: ({ slug: string; name: string; intro: string } & (
     facetValueId: 84,
     intro: 'Fresh Made bietet bei uns Damenmode für den Sommer: Bermudas, Stoff-Shorts, T-Shirts und Tops.',
   },
+  {
+    // plentyONE manufacturer 134; no value in the brand filter yet, so the items are found by name
+    slug: 'luminox',
+    name: 'Luminox',
+    searchTerm: 'Luminox',
+    intro:
+      'Luminox baut seit 1989 Schweizer Sport- und Taucheruhren, deren Zeiger und Indizes dank selbstleuchtender Gasröhrchen bis zu 25 Jahre lang leuchten – ohne Aufladen. Bekannt wurde die Marke durch ihre Uhren für die U.S. Navy SEALs.',
+  },
 ];
 
 export const findArizonaBrand = (slug: string) => ARIZONA_BRANDS.find((brand) => brand.slug === slug);
