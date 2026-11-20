@@ -83,15 +83,12 @@
 import { productGetters, type Product } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { Locale } from '#i18n';
-import {
-  loadArizonaDealProducts,
-  sortArizonaDealsByDiscount,
-  useArizonaDailyDeals,
-} from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
+import { loadArizonaDealProducts } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
+import { useArizonaBlackFridayDeals } from '~/composables/useArizonaBlackFridayDeals/useArizonaBlackFridayDeals';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
 import { arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
 
-// Arizona: the Black Friday deals (the deals of tagesangebote.json during the Black Week), highest discount first
+// Arizona: the Black Friday deals (today's deals plus strongly reduced items), highest discount first
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
@@ -104,8 +101,7 @@ definePageMeta({
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalizedPath();
 const route = useRoute();
-const { offers: dailyOffers, ready, maxDiscount } = useArizonaDailyDeals();
-const offers = computed(() => sortArizonaDealsByDiscount(dailyOffers.value));
+const { deals: offers, ready, maxDiscount } = useArizonaBlackFridayDeals();
 
 const now = ref(Date.now());
 const mounted = ref(false);

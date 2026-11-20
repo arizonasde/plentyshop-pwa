@@ -134,6 +134,8 @@ export default defineNuxtConfig({
       domain: validateApiUrl(process.env.API_URL) ?? process.env.API_ENDPOINT,
       apiEndpoint: process.env.API_ENDPOINT,
       activeLanguages: process.env.LANGUAGELIST || 'en,de',
+      // Arizona: local copy of black-friday-extra.json for a preview (only used in dev)
+      arizonaBfExtraUrl: process.env.ARIZONA_BF_EXTRA_URL ?? '',
       disabledEditorSettings: process.env?.ENABLE_ALL_EDITOR_SETTINGS === '1' ? [] : [],
       cookieGroups: cookieConfig,
       turnstileSiteKey: process.env?.CLOUDFLARETURNSTILEAPISITEKEY ?? '',

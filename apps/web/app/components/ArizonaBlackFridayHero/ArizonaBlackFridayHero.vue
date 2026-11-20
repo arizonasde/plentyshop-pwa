@@ -102,23 +102,21 @@
 <script setup lang="ts">
 import { productGetters, type Product } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
-import {
-  loadArizonaDealProducts,
-  sortArizonaDealsByDiscount,
-  useArizonaDailyDeals,
-} from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
+import { loadArizonaDealProducts } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
+import { useArizonaBlackFridayDeals } from '~/composables/useArizonaBlackFridayDeals/useArizonaBlackFridayDeals';
 import { arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
 
 /**
  * Arizona: Black Friday banner at the very top of the home page (Black Week, see arizonaBlackFriday.ts).
- * Shows the highest discount, a countdown to the end of Cyber Monday and today's deals (tagesangebote.json) as a
- * slider (highest discount first) over a faint far-away thunderstorm; the main button leads to /black-friday-deals. Disappears by itself after the Black Week.
+ * Shows the highest discount, a countdown to the end of Cyber Monday and the Black Friday deals (today's deals plus
+ * strongly reduced items, see useArizonaBlackFridayDeals) as a slider over a faint far-away thunderstorm; the main
+ * button leads to /black-friday-deals. Disappears by itself after the Black Week.
  */
 const SLIDER_ITEMS = 12;
 
 const localePath = useLocalizedPath();
-const { offers, maxDiscount } = useArizonaDailyDeals();
+const { deals: offers, mixed, maxDiscount } = useArizonaBlackFridayDeals();
 
 const now = ref(Date.now());
 let timer: ReturnType<typeof setInterval> | undefined;
@@ -134,12 +132,17 @@ const blackWeek = computed(() => isArizonaBlackWeek(now.value));
 const countdown = computed(() => (mounted.value ? arizonaBlackWeekRemaining(now.value) : '\u00A0'));
 
 const products = ref<Product[]>([]);
+// strongly reduced items and today's deals in turn; only reload when the items change
 watch(
-  offers,
-  async (list) => {
-    products.value = list.length
-      ? await loadArizonaDealProducts(sortArizonaDealsByDiscount(list).slice(0, SLIDER_ITEMS))
-      : [];
+  mixed,
+  async (list, previous) => {
+    const ids = (deals: { itemId: number }[]) =>
+      deals
+        .slice(0, SLIDER_ITEMS)
+        .map((deal) => deal.itemId)
+        .join();
+    if (previous && ids(list) === ids(previous)) return;
+    products.value = list.length ? await loadArizonaDealProducts(list.slice(0, SLIDER_ITEMS)) : [];
   },
   { immediate: true },
 );
