@@ -8,22 +8,17 @@
         </div>
         <p
           v-if="active"
-          class="flex items-center gap-2 rounded-full px-4 py-1.5 font-semibold"
-          :class="blackWeek ? 'bg-neutral-950 text-white' : 'bg-[#C8102E] text-white'"
+          class="flex items-center gap-2 rounded-full bg-[#C8102E] px-4 py-1.5 font-semibold text-white"
           data-testid="arizona-deals-countdown"
         >
-          <span class="typography-text-sm">{{ blackWeek ? 'Black Week · endet in' : 'Nur heute · endet in' }}</span>
-          <span class="tabular-nums">{{ blackWeek ? blackWeekRemaining : remaining }}</span>
+          <span class="typography-text-sm">Nur heute · endet in</span>
+          <span class="tabular-nums">{{ remaining }}</span>
         </p>
       </div>
 
       <template v-if="active">
         <p class="typography-text-sm text-neutral-600 max-w-3xl mb-4">
-          {{
-            blackWeek
-              ? 'Alle Black-Friday-Angebote auf einen Blick – bis Cyber Monday und solange der Vorrat reicht.'
-              : 'Jeden Tag neue Sonderpreise aus allen Bereichen – nur heute und solange der Vorrat reicht.'
-          }}
+          Jeden Tag neue Sonderpreise aus allen Bereichen – nur heute und solange der Vorrat reicht.
         </p>
 
         <div v-if="areas.length > 1" class="flex flex-wrap gap-2 mb-2" data-testid="arizona-deals-areas">
@@ -85,7 +80,6 @@ import {
   useArizonaDailyDeals,
 } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
-import { arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
 
 // Arizona: all of today's deals (tagesangebote.py chooses two per subcategory), filterable by area and subcategory.
 defineI18nRoute({
@@ -102,14 +96,8 @@ const localePath = useLocalizedPath();
 const route = useRoute();
 const { offers, active, ready, remaining } = useArizonaDailyDeals();
 
-// Arizona: during the Black Week the page is the collection of all Black Friday deals
-const now = ref(Date.now());
-let blackWeekTimer: ReturnType<typeof setInterval> | undefined;
-onMounted(() => (blackWeekTimer = setInterval(() => (now.value = Date.now()), 1000)));
-onBeforeUnmount(() => clearInterval(blackWeekTimer));
-const blackWeek = computed(() => isArizonaBlackWeek(now.value));
-const blackWeekRemaining = computed(() => arizonaBlackWeekRemaining(now.value));
-const heading = computed(() => (blackWeek.value ? 'Black-Friday-Angebote' : 'Tagesangebote'));
+// Arizona: the Black Friday deals have their own page (/black-friday-deals), this one stays "Tagesangebote"
+const heading = 'Tagesangebote';
 
 const breadcrumbs = [
   { name: t('common.labels.home'), link: localePath('/') },
