@@ -75,6 +75,14 @@ export const useArizonaDailyDeals = () => {
   return { offers, active, ready, remaining, isDeal, maxDiscount };
 };
 
+/** Discount of one deal in percent (deal price against the regular price), 0 when unknown */
+export const arizonaDealDiscount = (offer: { preis?: number; statt?: number }) =>
+  offer.preis && offer.statt ? 1 - offer.preis / offer.statt : 0;
+
+/** Deals with the highest discount first (Black Friday deals) */
+export const sortArizonaDealsByDiscount = <T extends { preis?: number; statt?: number }>(offers: T[]) =>
+  [...offers].sort((a, b) => arizonaDealDiscount(b) - arizonaDealDiscount(a));
+
 /**
  * Loads the items of the given deals: by variation id in packages of 20, deals without a variation id one by one.
  * Items that are no longer available are skipped. Keeps the order of the deals file.

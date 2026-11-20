@@ -7,20 +7,18 @@
           class="pointer-events-none absolute -right-24 -top-24 size-80 rounded-full bg-[#C8102E] opacity-40 blur-3xl"
           aria-hidden="true"
         />
+        <ArizonaBlackFridayStorm />
         <div class="relative flex flex-wrap items-end justify-between gap-4">
           <div>
             <p class="mb-2 inline-flex rounded-full bg-[#C8102E] px-3 py-1 text-xs font-bold uppercase tracking-widest">
               Black Week bei Arizona
             </p>
             <h1 class="text-4xl font-black uppercase leading-none tracking-tight @md:text-6xl">Black Friday Deals</h1>
-            <p v-if="maxDiscount" class="mt-4 flex items-center gap-2">
-              <ArizonaBlackFridayBolt class="h-12 w-8 @md:h-16 @md:w-10" />
-              <span class="text-lg font-semibold leading-none">bis zu</span>
-              <span class="text-4xl font-black leading-none text-[#F5C400] @md:text-6xl">−{{ maxDiscount }}&nbsp;%</span>
-            </p>
-            <p class="mt-3 max-w-2xl typography-text-sm text-white/80 @md:typography-text-base">
-              Unsere stärksten Rabatte<template v-if="minDiscount"> – jeder Artikel mindestens −{{ minDiscount }} %</template>,
-              die höchsten zuerst. Nur bis Cyber Monday und solange der Vorrat reicht.
+            <p class="mt-3 max-w-2xl text-lg font-semibold leading-snug">
+              <template v-if="maxDiscount"
+                >Bis zu <span class="text-[#F5C400]">−{{ maxDiscount }} %</span> –
+              </template>
+              die stärksten Rabatte zuerst. Nur bis Cyber Monday und solange der Vorrat reicht.
             </p>
           </div>
           <p
@@ -34,8 +32,12 @@
         </div>
       </div>
 
-      <template v-if="blackWeek && deals.length">
-        <div v-if="areas.length > 1" class="mb-4 flex flex-wrap items-center gap-2" data-testid="arizona-bf-deals-areas">
+      <template v-if="blackWeek && offers.length">
+        <div
+          v-if="areas.length > 1"
+          class="mb-4 flex flex-wrap items-center gap-2"
+          data-testid="arizona-bf-deals-areas"
+        >
           <button
             v-for="area in ['', ...areas]"
             :key="area || 'alle'"
@@ -81,12 +83,15 @@
 import { productGetters, type Product } from '@plentymarkets/shop-api';
 import { SfLoaderCircular } from '@storefront-ui/vue';
 import type { Locale } from '#i18n';
-import { loadArizonaDealProducts } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
-import { useArizonaBlackFridayDeals } from '~/composables/useArizonaBlackFridayDeals/useArizonaBlackFridayDeals';
+import {
+  loadArizonaDealProducts,
+  sortArizonaDealsByDiscount,
+  useArizonaDailyDeals,
+} from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
 import { arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
 
-// Arizona: the most reduced items of the shop for the Black Week (black-friday-deals.json, highest discount first)
+// Arizona: the Black Friday deals (the deals of tagesangebote.json during the Black Week), highest discount first
 defineI18nRoute({
   locales: process.env.LANGUAGELIST?.split(',') as Locale[],
 });
@@ -99,7 +104,8 @@ definePageMeta({
 const NuxtLink = resolveComponent('NuxtLink');
 const localePath = useLocalizedPath();
 const route = useRoute();
-const { deals, maxDiscount, minDiscount, ready } = useArizonaBlackFridayDeals();
+const { offers: dailyOffers, ready, maxDiscount } = useArizonaDailyDeals();
+const offers = computed(() => sortArizonaDealsByDiscount(dailyOffers.value));
 
 const now = ref(Date.now());
 const mounted = ref(false);
@@ -118,14 +124,16 @@ const breadcrumbs = [
 ];
 useArizonaStaticPageHead(
   'Black Friday Deals',
-  'Black Friday bei Arizona Shopping: unsere stärksten Rabatte für Damen, Herren und Kinder – nur bis Cyber Monday.',
+  'Black Friday bei Arizona Shopping: reduzierte Mode für Damen, Herren und Kinder – nur bis Cyber Monday.',
 );
 
 const products = ref<Product[]>([]);
 const loading = ref(false);
 watch(
-  deals,
-  async (list) => {
+  offers,
+  async (list, previous) => {
+    // the deals list is recomputed every second (countdown); only reload when the items change
+    if (previous && list.map((o) => o.itemId).join() === previous.map((o) => o.itemId).join()) return;
     if (!list.length) return (products.value = []);
     loading.value = true;
     products.value = await loadArizonaDealProducts(list);
@@ -134,13 +142,13 @@ watch(
   { immediate: true },
 );
 
-const dealOf = (product: Product) =>
-  deals.value.find((deal) => String(deal.itemId) === String(productGetters.getItemId(product)));
-// areas in the order of their best deal, a link can preselect one (?bereich=Damen)
-const areas = computed(() => [...new Set(deals.value.map((deal) => deal.bereich).filter(Boolean))] as string[]);
+const offerOf = (product: Product) =>
+  offers.value.find((offer) => String(offer.itemId) === String(productGetters.getItemId(product)));
+// a link can preselect an area (?bereich=Damen)
+const areas = computed(() => [...new Set(offers.value.map((offer) => offer.bereich).filter(Boolean))] as string[]);
 const selectedArea = ref(String(route.query.bereich ?? ''));
 const filtered = computed(() =>
-  products.value.filter((product) => !selectedArea.value || dealOf(product)?.bereich === selectedArea.value),
+  products.value.filter((product) => !selectedArea.value || offerOf(product)?.bereich === selectedArea.value),
 );
 
 const pillClass = (selected: boolean) => [
