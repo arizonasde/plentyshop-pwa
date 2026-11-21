@@ -8,6 +8,8 @@
       :images="addModernImageExtensionForGallery(productGetters.getGallery(currentProduct))"
       :configuration="content"
     />
+    <!-- Arizona: KI-Produktvideo auf dem Handy unter der Bildergalerie -->
+    <ArizonaProductVideo class="mt-2" />
   </section>
 </template>
 

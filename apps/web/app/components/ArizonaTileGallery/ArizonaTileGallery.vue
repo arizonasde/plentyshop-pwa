@@ -12,24 +12,26 @@
       >
         <SfIconChevronLeft size="sm" />
       </button>
+      <template v-for="(image, index) in images" :key="productImageGetters.getImageUrl(image)">
       <button
-        v-for="(image, index) in images"
-        :key="productImageGetters.getImageUrl(image)"
         type="button"
         class="relative overflow-hidden bg-[#F3F3F3] cursor-zoom-in focus-visible:outline focus-visible:outline-2"
-        :class="index < 2 ? 'col-span-3' : 'col-span-2'"
+        :class="index < bigCount ? 'col-span-3' : 'col-span-2'"
         :aria-label="`${altOf(image, index)} – Großansicht öffnen`"
         @click="openViewer(index)"
       >
         <NuxtImg
-          :src="index < 2 ? productImageGetters.getImageUrlSecondPreview(image) : productImageGetters.getImageUrlMiddle(image)"
+          :src="index < bigCount ? productImageGetters.getImageUrlSecondPreview(image) : productImageGetters.getImageUrlMiddle(image)"
           :alt="altOf(image, index)"
-          :loading="index < 2 ? 'eager' : 'lazy'"
+          :loading="index < bigCount ? 'eager' : 'lazy'"
           class="aspect-[3/4] w-full object-cover mix-blend-multiply transition-transform duration-300 hover:scale-[1.03]"
-          :width="index < 2 ? 800 : 485"
-          :height="index < 2 ? 1067 : 647"
+          :width="index < bigCount ? 800 : 485"
+          :height="index < bigCount ? 1067 : 647"
         />
       </button>
+      <!-- Arizona: KI-Produktvideo als zweite große Kachel, falls für die Variante vorhanden -->
+      <ArizonaProductVideo v-if="index === 0 && hasVideo" class="col-span-3" />
+      </template>
     </div>
 
     <Teleport to="body">
@@ -111,6 +113,14 @@ const props = defineProps<ArizonaTileGalleryProps>();
 
 const { currentProduct } = useProducts();
 const viewerIndex = ref<number | null>(null);
+
+const { load: loadVideos, videoFor } = useArizonaProductVideo();
+onMounted(loadVideos);
+const hasVideo = computed(() =>
+  Boolean(Object.keys(currentProduct.value ?? {}).length && videoFor(productGetters.getVariationId(currentProduct.value))),
+);
+// two large tiles in the first row – one of them is the video when there is one
+const bigCount = computed(() => (hasVideo.value ? 1 : 2));
 
 const altOf = (image: ImagesData, index: number) =>
   Object.keys(currentProduct.value).length
