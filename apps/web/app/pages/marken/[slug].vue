@@ -18,7 +18,10 @@
               class="h-full w-full object-cover object-[70%_45%] @md:object-[60%_50%]"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/0 via-40% to-neutral-950/0 @md:bg-gradient-to-r @md:from-neutral-950 @md:via-neutral-950/30 @md:via-30%"
+              class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/0 via-40% to-neutral-950/0 @md:hidden"
+            />
+            <div
+              class="absolute inset-0 hidden bg-gradient-to-r from-neutral-950 via-neutral-950/30 via-30% to-neutral-950/0 @md:block"
             />
           </div>
           <div
