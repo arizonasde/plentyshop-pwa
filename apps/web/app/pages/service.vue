@@ -52,7 +52,7 @@ const faqGroups = [
       {
         question: 'Was kostet der Versand?',
         answer:
-          'Wir versenden mit DHL. Innerhalb Deutschlands ist der Versand ab 99 € Bestellwert kostenlos, darunter kostet er 4,90 €, die Versandkosten ins Ausland siehst du im Warenkorb.',
+          'Ab 99 € Bestellwert liefern wir dir innerhalb Deutschlands versandkostenfrei mit DHL – darunter zahlst du nur 4,90 €. Bestellst du aus dem Ausland, siehst du die Versandkosten für dein Land direkt im Warenkorb.',
       },
       {
         question: 'Wie lange dauert die Lieferung?',
