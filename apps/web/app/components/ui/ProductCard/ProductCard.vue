@@ -1,5 +1,5 @@
 <template>
-  <div ref="cardRef" class="group/card flex flex-col" data-testid="product-card">
+  <div ref="cardRef" class="group/card flex flex-col" data-testid="product-card" @mouseleave="previewColor()">
     <div class="relative overflow-hidden rounded-lg bg-[#F3F3F3]">
       <UiBadges
         :use-tags="useTagsOnCategoryPage"
@@ -7,7 +7,7 @@
         :product="product"
         :use-availability="isFromWishlist"
       />
-      <!-- Arizona: today's deals get a small red label instead of the percentage badge -->
+      <!-- Arizona: today's deals get a small red label on top; the percentage badge stays at the bottom -->
       <span
         v-if="isDailyDeal"
         class="pointer-events-none absolute top-2 left-2 z-raised rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white"
@@ -71,12 +71,22 @@
               @load="onHoverImageLoad"
               @error="onHoverImageError"
             />
+
+            <!-- Arizona: hovering a colour thumbnail previews that colour in the big image -->
+            <span
+              v-if="colorPreviewUrl"
+              class="absolute inset-0 bg-[#F3F3F3] isolate"
+              aria-hidden="true"
+              data-testid="product-card-color-preview"
+            >
+              <img :src="colorPreviewUrl" alt="" class="w-full h-full object-contain mix-blend-multiply" />
+            </span>
           </div>
         </UiLink>
       </div>
 
       <span
-        v-if="discountPercent && !isDailyDeal"
+        v-if="discountPercent"
         class="absolute bottom-2 left-2 rounded bg-[#C8102E] px-2 py-0.5 typography-text-xs font-semibold text-white"
         data-testid="product-card-discount"
       >
@@ -96,12 +106,13 @@
         data-testid="product-card-colors-hover"
       >
         <p class="typography-text-xs text-neutral-700">In {{ colorOptions.length }} Farben erhältlich</p>
-        <nav class="flex items-center gap-1.5" aria-label="Weitere Farben">
+        <nav class="flex items-center gap-1.5" aria-label="Weitere Farben" @mouseleave="previewColor()">
           <template v-for="option in visibleColorOptions" :key="option.key">
             <span
               v-if="option.current"
               class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
               :title="colorLabel(option.name)"
+              @mouseenter="previewColor()"
             >
               <NuxtImg
                 :src="option.imageUrl"
@@ -117,6 +128,9 @@
               :to="option.path"
               :title="colorLabel(option.name)"
               class="w-12 aspect-[3/4] overflow-hidden rounded-md bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-500"
+              @mouseenter="previewColor(option)"
+              @focus="previewColor(option)"
+              @blur="previewColor()"
             >
               <NuxtImg
                 :src="option.imageUrl"
@@ -148,12 +162,14 @@
         class="flex items-center gap-1 mb-2 [@media(hover:hover)]:hidden"
         aria-label="Weitere Farben"
         data-testid="product-card-colors"
+        @mouseleave="previewColor()"
       >
         <template v-for="option in visibleColorOptions" :key="option.key">
           <span
             v-if="option.current"
             class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] ring-1 ring-neutral-900 isolate"
             :title="colorLabel(option.name)"
+            @mouseenter="previewColor()"
           >
             <NuxtImg
               :src="option.imageUrl"
@@ -169,6 +185,9 @@
             :to="option.path"
             :title="colorLabel(option.name)"
             class="w-8 aspect-[3/4] overflow-hidden rounded bg-[#F3F3F3] isolate hover:ring-1 hover:ring-neutral-400"
+            @mouseenter="previewColor(option)"
+            @focus="previewColor(option)"
+            @blur="previewColor()"
           >
             <NuxtImg
               :src="option.imageUrl"
@@ -552,6 +571,15 @@ const colorOptions = computed<ColorPreview[]>(() => {
         }));
   return [...options.filter((option) => option.current), ...options.filter((option) => !option.current)];
 });
+// Arizona: hovering (or focusing) a colour thumbnail shows that colour in the big image; leaving restores the cover.
+// The thumbnail URL is upgraded to the larger "middle" size of the same image when it carries a size folder.
+const colorPreviewUrl = ref('');
+const previewColor = (option?: ColorPreview) => {
+  colorPreviewUrl.value =
+    option && !option.current && option.imageUrl
+      ? option.imageUrl.replace(/\/(preview|small|thumbnail|full|secondPreview)\//, '/middle/')
+      : '';
+};
 // Arizona: colour names carry a counter for equal names in plentyONE ("Beige-3"); shoppers and alt texts get the plain colour
 const colorLabel = (name: string) => name.replace(/-\d+$/, '');
 const visibleColorOptions = computed(() => colorOptions.value.slice(0, MAX_COLOR_PREVIEWS));
