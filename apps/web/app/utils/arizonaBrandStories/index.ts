@@ -8,27 +8,52 @@ import type { ArizonaBrandStory } from './types';
 const IMG = '/_nuxt-plenty/images/marken/luminox';
 
 const LUMINOX: ArizonaBrandStory = {
-  claim: 'Entwickelt für die Navy SEALs. Gebaut in der Schweiz.',
-  hero: {
-    eyebrow: 'Navy SEALs · Swiss Made · seit 1989',
-    title: 'Luminox',
-    desktop: {
-      src: `${IMG}/seil-quer-1400.webp`,
-      width: 1398,
-      height: 933,
-      alt: 'Mann klettert am Seil, am Handgelenk die Luminox Navy SEAL Chronograph 3590',
+  claim: 'Entwickelt für die Navy SEALs.\nGebaut in der Schweiz.',
+  showcase: {
+    eyebrow: 'Offizieller Lizenzpartner der U.S. Navy SEALs',
+    text: 'Seit 1992 baut Luminox Uhren für Einsätze bei Nacht und unter Wasser – mit Leuchtröhrchen, die bis zu 25 Jahre von selbst leuchten*. Jede Uhr ist Swiss Made.',
+    day: {
+      src: `${IMG}/tag-1000.webp`,
+      width: 1000,
+      height: 1385,
+      alt: 'Luminox Navy SEAL Chronograph XS.3587 bei Tageslicht',
     },
+    night: {
+      src: `${IMG}/nacht-1000.webp`,
+      width: 1000,
+      height: 1385,
+      alt: 'Dieselbe Luminox Navy SEAL XS.3587 im Dunkeln: Zeiger und Indizes leuchten grün und orange',
+    },
+    daySmall: `${IMG}/tag-560.webp`,
+    nightSmall: `${IMG}/nacht-560.webp`,
+    caption: 'Zieh den Regler: So sieht dieselbe Uhr im Dunkeln aus – ohne Aufladen, ohne Knopfdruck.',
     badges: [
-      { label: 'Seit 1992 für die U.S. Navy SEALs', icon: 'trident' },
+      { label: 'U.S. Navy SEALs', icon: 'trident' },
       { label: 'Swiss Made', icon: 'swiss' },
     ],
   },
   facts: [
     { value: '1992', label: 'erste Uhr für die Navy SEALs' },
-    { value: 'seit 2016', label: 'offizieller Lizenzpartner der Navy SEALs' },
     { value: 'Swiss Made', label: 'nach dem Gesetz von 2017' },
-    { value: 'bis 25 Jahre', label: 'Leuchtdauer ohne Aufladen*' },
+    { value: '25 Jahre', label: 'Leuchtdauer ohne Aufladen*' },
+    { value: '300 m', label: 'wasserdicht, je nach Modell' },
   ],
+  mission: {
+    kicker: 'Die Geschichte',
+    title: 'Seit 1992 am Handgelenk der Navy SEALs.',
+    image: {
+      src: `${IMG}/seil-quer-1400.webp`,
+      width: 1398,
+      height: 933,
+      alt: 'Mann klettert am Seil, am Handgelenk die Luminox Navy SEAL Chronograph 3590',
+    },
+    steps: [
+      { year: '1989', text: 'Barry Cohen gründet Luminox – Sportuhren, die man bei jedem Licht ablesen kann.' },
+      { year: '1992', text: 'Mit Nick North entsteht die Uhr für die U.S. Navy SEALs – für Nacht- und Taucheinsätze.' },
+      { year: '2016', text: 'Luminox wird offizieller Lizenzpartner der Navy SEALs.' },
+      { year: '2020', text: 'Luminox gehört zur Schweizer Mondaine Group.' },
+    ],
+  },
   pillars: [
     {
       id: 'navy-seals',
@@ -36,8 +61,8 @@ const LUMINOX: ArizonaBrandStory = {
       kicker: 'U.S. Navy SEALs',
       title: 'Die Uhr der Navy SEALs',
       paragraphs: [
-        'Anfang der 1990er suchten die U.S. Navy SEALs eine Uhr, die man bei Nachteinsätzen und unter Wasser jederzeit ablesen kann – ohne Knopfdruck und ohne Licht, das den Träger verrät. Gründer Barry Cohen entwickelte sie 1992 gemeinsam mit Nick North für die Spezialeinheit. Aus diesem Auftrag wurde die Navy SEAL Serie, mit der Luminox bekannt wurde.',
-        'Seit 2016 ist Luminox offizieller Lizenzpartner der Navy SEALs. Auf dem Gehäuseboden vieler Navy-SEAL-Modelle sitzt das Abzeichen der Einheit mit Adler und Dreizack. Mit den NSF-Sondermodellen unterstützt Luminox außerdem die Navy SEAL Foundation, die sich um SEALs und ihre Familien kümmert.',
+        'Die Navy SEALs brauchten eine Uhr, die man bei Nachteinsätzen und unter Wasser jederzeit ablesen kann – ohne Knopfdruck und ohne Licht, das den Träger verrät. Daraus wurde die Navy SEAL Serie: leicht, robust und immer sichtbar.',
+        'Auf dem Gehäuseboden vieler Navy-SEAL-Modelle sitzt das Abzeichen der Einheit mit Adler und Dreizack. Mit den NSF-Sondermodellen unterstützt Luminox außerdem die Navy SEAL Foundation, die sich um SEALs und ihre Familien kümmert.',
       ],
       points: [
         'Leicht, robust und bei jedem Licht ablesbar',
@@ -73,20 +98,6 @@ const LUMINOX: ArizonaBrandStory = {
       },
     },
   ],
-  feature: {
-    kicker: 'Luminox Light Technology',
-    title: 'Always visible: Leuchten ohne Aufladen',
-    paragraphs: [
-      'Normale Leuchtfarbe muss erst Licht tanken und verblasst nach einigen Stunden. Luminox setzt stattdessen winzige gasgefüllte Glasröhrchen (Tritium) ein, die von selbst leuchten – ohne Batterie, ohne Knopfdruck und ohne vorher Licht abzubekommen.',
-      'Nach Angaben von Luminox leuchten die Röhrchen bis zu 25 Jahre. Grün und Orange erkennt das Auge im Dunkeln am besten, deshalb kombinieren viele Modelle beide Farben.',
-    ],
-    image: {
-      src: `${IMG}/leuchten-900.webp`,
-      width: 900,
-      height: 900,
-      alt: 'Luminox Navy SEAL Chronograph XS.3587 im Dunkeln mit grün und orange leuchtenden Zeigern und Indizes',
-    },
-  },
   sections: [
     {
       title: 'Gebaut für harte Einsätze',

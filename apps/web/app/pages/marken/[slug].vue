@@ -1,245 +1,154 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <NarrowContainer class="px-4 pb-10">
-      <!-- Arizona: brands with a photo header (e.g. Luminox) – full-width image, claim, badges and key facts -->
-      <template v-if="story?.hero">
-        <header
-          class="relative isolate mb-3 overflow-hidden rounded-2xl bg-neutral-950 text-white"
-          data-testid="brand-story-hero"
-        >
-          <!-- Phone: photo on top, text below. From @md: photo on the right, fading into the dark text side. -->
-          <div class="relative h-64 @sm:h-80 @md:absolute @md:inset-y-0 @md:right-0 @md:-z-10 @md:h-auto @md:w-[62%]">
-            <img
-              :src="story.hero.desktop.src"
-              :width="story.hero.desktop.width"
-              :height="story.hero.desktop.height"
-              :alt="story.hero.desktop.alt"
-              fetchpriority="high"
-              class="h-full w-full object-cover object-[70%_45%] @md:object-[60%_50%]"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/0 via-40% to-neutral-950/0 @md:hidden"
-            />
-            <div
-              class="absolute inset-0 hidden bg-gradient-to-r from-neutral-950 via-neutral-950/30 via-30% to-neutral-950/0 @md:block"
-            />
-          </div>
-          <div
-            class="relative -mt-6 flex flex-col px-5 pb-7 @md:mt-0 @md:min-h-[560px] @md:max-w-[50%] @md:justify-center @md:px-12 @md:py-14"
+      <!-- Arizona: brands with a showcase (Luminox) get their own full page layout -->
+      <ArizonaBrandShowcase v-if="story?.showcase" :story="story" :brand-name="brand.name">
+        <template #products>
+          <h2 class="mb-4 text-3xl font-black tracking-tight @md:text-4xl">
+            Die Uhren
+            <span v-if="products.length" class="ml-1 align-middle typography-text-sm font-normal text-neutral-600">
+              {{ total }} {{ total === 1 ? 'Modell' : 'Modelle' }} lieferbar
+            </span>
+          </h2>
+          <section
+            v-if="products.length"
+            class="grid grid-cols-2 gap-x-2 gap-y-4 @md:grid-cols-3 @md:gap-x-3 @md:gap-y-5 @lg:grid-cols-4"
+            data-testid="brand-grid"
           >
-            <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#7CFC9A] @md:tracking-[0.25em]">
-              {{ story.hero.eyebrow }}
-            </p>
-            <h1 class="mt-2 text-4xl font-black uppercase tracking-tight @md:text-7xl">{{ brand.name }}</h1>
-            <p class="mt-2 text-xl font-bold leading-tight @md:mt-3 @md:text-4xl" data-testid="brand-claim">
-              {{ story.claim }}
-            </p>
-            <p class="mt-4 hidden max-w-xl text-white/80 @md:block @md:typography-text-base" data-testid="brand-intro">
-              {{ brand.intro }}
-            </p>
-            <ul class="mt-5 flex flex-wrap gap-2 @md:mt-6">
-              <li
-                v-for="badge in story.hero.badges"
-                :key="badge.label"
-                class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/40 px-3 py-1.5 typography-text-sm font-semibold backdrop-blur"
-              >
-                <ArizonaBrandIcon :name="badge.icon" :size="18" class="text-[#7CFC9A]" />
-                {{ badge.label }}
-              </li>
-            </ul>
-            <div class="mt-6 flex flex-wrap gap-3 @md:mt-7">
-              <a
-                href="#marke-uhren"
-                class="inline-flex rounded-full bg-white px-5 py-2.5 typography-text-sm font-semibold !text-neutral-950 !no-underline transition-transform duration-150 ease-out hover:bg-neutral-200 active:scale-[0.97]"
-              >
-                Uhren ansehen
-              </a>
-              <a
-                :href="`#${story.pillars?.[0]?.id ?? 'marke-serien'}`"
-                class="inline-flex rounded-full border border-white/40 px-5 py-2.5 typography-text-sm font-semibold !text-white !no-underline transition-transform duration-150 ease-out hover:bg-white/10 active:scale-[0.97]"
-              >
-                Die Geschichte
-              </a>
-            </div>
-          </div>
-        </header>
-        <dl class="mb-10 grid grid-cols-2 gap-2 @md:grid-cols-4 @md:gap-3" data-testid="brand-facts">
-          <div v-for="fact in story.facts" :key="fact.label" class="rounded-xl bg-neutral-950 px-4 py-3 text-white">
-            <dt class="text-lg font-bold text-[#7CFC9A] @md:text-2xl">{{ fact.value }}</dt>
-            <dd class="typography-text-xs text-white/70 @md:typography-text-sm">{{ fact.label }}</dd>
-          </div>
-        </dl>
-
-        <section
-          v-for="(pillar, index) in story.pillars"
-          :id="pillar.id"
-          :key="pillar.id"
-          :class="index % 2 ? '@lg:grid-cols-[7fr_5fr]' : '@lg:grid-cols-[5fr_7fr]'"
-          class="mb-12 grid scroll-mt-24 items-center gap-6 @lg:gap-12"
-          :data-testid="`brand-pillar-${pillar.id}`"
-        >
-          <img
-            :src="pillar.image.src"
-            :width="pillar.image.width"
-            :height="pillar.image.height"
-            :alt="pillar.image.alt"
-            loading="lazy"
-            class="aspect-square w-full rounded-2xl bg-neutral-100 object-cover"
-            :class="index % 2 ? '@lg:order-2' : ''"
-          />
-          <div>
-            <p
-              class="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em]"
-              :class="pillar.icon === 'swiss' ? 'text-[#DA291C]' : 'text-neutral-950'"
-            >
-              <ArizonaBrandIcon :name="pillar.icon" :size="22" />
-              {{ pillar.kicker }}
-            </p>
-            <h2 class="mt-3 text-3xl font-black leading-tight @md:text-4xl">{{ pillar.title }}</h2>
-            <p v-for="(paragraph, p) in pillar.paragraphs" :key="p" class="mt-4 text-neutral-700 leading-relaxed">
-              {{ paragraph }}
-            </p>
-            <ul class="mt-5 space-y-2">
-              <li v-for="point in pillar.points" :key="point" class="flex gap-2 typography-text-sm font-medium">
-                <span
-                  class="mt-1.5 h-2 w-2 shrink-0 rounded-full"
-                  :class="pillar.icon === 'swiss' ? 'bg-[#DA291C]' : 'bg-[#2BB24C]'"
-                />
-                {{ point }}
-              </li>
-            </ul>
-          </div>
-        </section>
-      </template>
-      <!-- Arizona: brands with a portrait get a dark header with claim and key facts -->
-      <!-- Arizona: brands with a portrait get a dark header with claim and key facts -->
-      <header
-        v-else-if="story"
-        class="mb-8 overflow-hidden rounded-2xl bg-neutral-950 px-6 py-8 text-white @md:px-10 @md:py-12"
-        data-testid="brand-story-header"
-      >
-        <p class="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#7CFC9A]">Markenporträt</p>
-        <h1 class="text-4xl font-black tracking-tight @md:text-6xl">{{ brand.name }}</h1>
-        <p class="mt-3 max-w-3xl text-xl font-semibold leading-snug @md:text-2xl">{{ story.claim }}</p>
-        <p class="mt-4 max-w-3xl typography-text-sm text-white/75 @md:typography-text-base" data-testid="brand-intro">
-          {{ brand.intro }}
-        </p>
-        <dl class="mt-8 grid grid-cols-2 gap-3 @md:grid-cols-4">
-          <div
-            v-for="fact in story.facts"
-            :key="fact.label"
-            class="rounded-xl border border-white/15 bg-white/5 px-4 py-3"
-          >
-            <dt class="text-lg font-bold text-[#7CFC9A] @md:text-2xl">{{ fact.value }}</dt>
-            <dd class="typography-text-xs text-white/70 @md:typography-text-sm">{{ fact.label }}</dd>
-          </div>
-        </dl>
-        <a
-          href="#marke-serien"
-          class="mt-8 inline-flex rounded-full bg-white px-5 py-2.5 typography-text-sm font-semibold !text-neutral-950 !no-underline hover:bg-neutral-200"
-        >
-          Zu den Serien
-        </a>
-      </header>
-      <template v-else>
-        <div class="flex flex-wrap items-baseline gap-x-3 mb-2">
-          <h1 class="typography-headline-3 @md:typography-headline-2 font-bold">{{ brand.name }}</h1>
-          <span v-if="total" class="typography-text-sm text-neutral-600">{{ total }} Artikel</span>
-        </div>
-        <p class="typography-text-sm text-neutral-600 max-w-3xl mb-6" data-testid="brand-intro">{{ brand.intro }}</p>
-      </template>
-      <h2 v-if="story && products.length" id="marke-uhren" class="typography-headline-4 font-bold mb-4 scroll-mt-24">
-        {{ brand.name }}-Uhren bei uns
-        <span class="typography-text-sm font-normal text-neutral-600">{{ total }} Artikel</span>
-      </h2>
-
-      <section
-        v-if="products.length"
-        class="grid grid-cols-2 @md:grid-cols-3 @lg:grid-cols-4 gap-x-2 gap-y-4 @md:gap-x-3 @md:gap-y-5 mb-8"
-        data-testid="brand-grid"
-      >
-        <UiProductCard
-          v-for="(product, index) in products"
-          :key="productGetters.getVariationId(product)"
-          :product="product"
-          :index="index"
-          :configuration="ARIZONA_CARD_CONFIGURATION"
-        />
-      </section>
-      <p
-        v-else-if="story"
-        id="marke-uhren"
-        class="mb-8 scroll-mt-24 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 typography-text-sm"
-        data-testid="brand-coming-soon"
-      >
-        {{ story.comingSoon }}
-      </p>
-      <p v-else class="mb-8">Zurzeit sind keine Artikel dieser Marke verfügbar.</p>
-
-      <UiPagination
-        v-if="total > PAGE_SIZE"
-        :key="`${brand.slug}-${total}`"
-        :current-page="currentPage"
-        :total-items="total"
-        :page-size="PAGE_SIZE"
-        :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
-      />
-
-      <template v-if="story">
-        <section
-          v-if="story.feature"
-          class="mt-12 grid items-center overflow-hidden rounded-2xl bg-black text-white @lg:grid-cols-2"
-          data-testid="brand-feature"
-        >
-          <div class="order-2 px-6 py-8 @lg:order-1 @lg:px-12 @lg:py-12">
-            <p class="text-xs font-bold uppercase tracking-[0.25em] text-[#7CFC9A]">{{ story.feature.kicker }}</p>
-            <h2 class="mt-3 text-3xl font-black leading-tight @md:text-4xl">{{ story.feature.title }}</h2>
-            <p v-for="(paragraph, p) in story.feature.paragraphs" :key="p" class="mt-4 text-white/75 leading-relaxed">
-              {{ paragraph }}
-            </p>
-          </div>
-          <img
-            :src="story.feature.image.src"
-            :width="story.feature.image.width"
-            :height="story.feature.image.height"
-            :alt="story.feature.image.alt"
-            loading="lazy"
-            class="order-1 aspect-square w-full object-cover @lg:order-2"
-          />
-        </section>
-        <section v-for="section in story.sections" :key="section.title" class="mt-10 max-w-3xl">
-          <h2 class="typography-headline-4 font-bold mb-3">{{ section.title }}</h2>
+            <UiProductCard
+              v-for="(product, index) in products"
+              :key="productGetters.getVariationId(product)"
+              :product="product"
+              :index="index"
+              :configuration="ARIZONA_CARD_CONFIGURATION"
+            />
+          </section>
           <p
-            v-for="(paragraph, index) in section.paragraphs"
-            :key="index"
-            class="mb-3 text-neutral-700 leading-relaxed"
+            v-else
+            class="rounded-2xl border border-neutral-200 bg-neutral-50 px-5 py-4 typography-text-sm"
+            data-testid="brand-coming-soon"
           >
-            {{ paragraph }}
+            {{ story.comingSoon }}
           </p>
-        </section>
-
-        <section id="marke-serien" class="mt-12 scroll-mt-24" data-testid="brand-series">
-          <h2 class="typography-headline-4 font-bold mb-2">{{ story.seriesTitle }}</h2>
-          <p class="mb-6 max-w-3xl text-neutral-700">{{ story.seriesIntro }}</p>
-          <div v-for="group in story.seriesGroups" :key="group.title" class="mb-8">
-            <h3 class="mb-3 flex flex-wrap items-baseline gap-x-3">
-              <span class="rounded-full bg-neutral-950 px-3 py-1 typography-text-sm font-bold text-white">{{
-                group.title
-              }}</span>
-              <span class="typography-text-sm text-neutral-600">{{ group.text }}</span>
-            </h3>
-            <ul class="grid grid-cols-1 gap-3 @md:grid-cols-2 @lg:grid-cols-3">
-              <li v-for="series in group.series" :key="series.name">
-                <div class="flex h-full flex-col rounded-xl border border-neutral-200 px-4 py-3">
-                  <span class="font-semibold">{{ series.name }}</span>
-                  <span class="typography-text-xs text-neutral-500">Serie {{ series.models }}</span>
-                  <span class="mt-1 typography-text-sm text-neutral-700">{{ series.text }}</span>
-                </div>
-              </li>
-            </ul>
+          <UiPagination
+            v-if="total > PAGE_SIZE"
+            :key="`${brand.slug}-${total}`"
+            class="mt-6"
+            :current-page="currentPage"
+            :total-items="total"
+            :page-size="PAGE_SIZE"
+            :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
+          />
+        </template>
+      </ArizonaBrandShowcase>
+      <template v-else>
+        <!-- Arizona: brands with a portrait get a dark header with claim and key facts -->
+        <header
+          v-if="story"
+          class="mb-8 overflow-hidden rounded-2xl bg-neutral-950 px-6 py-8 text-white @md:px-10 @md:py-12"
+          data-testid="brand-story-header"
+        >
+          <p class="mb-2 text-xs font-bold uppercase tracking-[0.25em] text-[#7CFC9A]">Markenporträt</p>
+          <h1 class="text-4xl font-black tracking-tight @md:text-6xl">{{ brand.name }}</h1>
+          <p class="mt-3 max-w-3xl text-xl font-semibold leading-snug @md:text-2xl">{{ story.claim }}</p>
+          <p class="mt-4 max-w-3xl typography-text-sm text-white/75 @md:typography-text-base" data-testid="brand-intro">
+            {{ brand.intro }}
+          </p>
+          <dl class="mt-8 grid grid-cols-2 gap-3 @md:grid-cols-4">
+            <div
+              v-for="fact in story.facts"
+              :key="fact.label"
+              class="rounded-xl border border-white/15 bg-white/5 px-4 py-3"
+            >
+              <dt class="text-lg font-bold text-[#7CFC9A] @md:text-2xl">{{ fact.value }}</dt>
+              <dd class="typography-text-xs text-white/70 @md:typography-text-sm">{{ fact.label }}</dd>
+            </div>
+          </dl>
+          <a
+            href="#marke-serien"
+            class="mt-8 inline-flex rounded-full bg-white px-5 py-2.5 typography-text-sm font-semibold !text-neutral-950 !no-underline hover:bg-neutral-200"
+          >
+            Zu den Serien
+          </a>
+        </header>
+        <template v-else>
+          <div class="flex flex-wrap items-baseline gap-x-3 mb-2">
+            <h1 class="typography-headline-3 @md:typography-headline-2 font-bold">{{ brand.name }}</h1>
+            <span v-if="total" class="typography-text-sm text-neutral-600">{{ total }} Artikel</span>
           </div>
-          <p class="typography-text-xs text-neutral-500">{{ story.footnote }}</p>
+          <p class="typography-text-sm text-neutral-600 max-w-3xl mb-6" data-testid="brand-intro">{{ brand.intro }}</p>
+        </template>
+        <h2 v-if="story && products.length" class="typography-headline-4 font-bold mb-4">
+          {{ brand.name }} bei uns
+          <span class="typography-text-sm font-normal text-neutral-600">{{ total }} Artikel</span>
+        </h2>
+
+        <section
+          v-if="products.length"
+          class="grid grid-cols-2 @md:grid-cols-3 @lg:grid-cols-4 gap-x-2 gap-y-4 @md:gap-x-3 @md:gap-y-5 mb-8"
+          data-testid="brand-grid"
+        >
+          <UiProductCard
+            v-for="(product, index) in products"
+            :key="productGetters.getVariationId(product)"
+            :product="product"
+            :index="index"
+            :configuration="ARIZONA_CARD_CONFIGURATION"
+          />
         </section>
+        <p
+          v-else-if="story"
+          class="mb-8 rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 typography-text-sm"
+          data-testid="brand-coming-soon"
+        >
+          {{ story.comingSoon }}
+        </p>
+        <p v-else class="mb-8">Zurzeit sind keine Artikel dieser Marke verfügbar.</p>
+
+        <UiPagination
+          v-if="total > PAGE_SIZE"
+          :key="`${brand.slug}-${total}`"
+          :current-page="currentPage"
+          :total-items="total"
+          :page-size="PAGE_SIZE"
+          :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
+        />
+
+        <template v-if="story">
+          <section v-for="section in story.sections" :key="section.title" class="mt-10 max-w-3xl">
+            <h2 class="typography-headline-4 font-bold mb-3">{{ section.title }}</h2>
+            <p
+              v-for="(paragraph, index) in section.paragraphs"
+              :key="index"
+              class="mb-3 text-neutral-700 leading-relaxed"
+            >
+              {{ paragraph }}
+            </p>
+          </section>
+
+          <section id="marke-serien" class="mt-12 scroll-mt-24" data-testid="brand-series">
+            <h2 class="typography-headline-4 font-bold mb-2">{{ story.seriesTitle }}</h2>
+            <p class="mb-6 max-w-3xl text-neutral-700">{{ story.seriesIntro }}</p>
+            <div v-for="group in story.seriesGroups" :key="group.title" class="mb-8">
+              <h3 class="mb-3 flex flex-wrap items-baseline gap-x-3">
+                <span class="rounded-full bg-neutral-950 px-3 py-1 typography-text-sm font-bold text-white">{{
+                  group.title
+                }}</span>
+                <span class="typography-text-sm text-neutral-600">{{ group.text }}</span>
+              </h3>
+              <ul class="grid grid-cols-1 gap-3 @md:grid-cols-2 @lg:grid-cols-3">
+                <li v-for="series in group.series" :key="series.name">
+                  <div class="flex h-full flex-col rounded-xl border border-neutral-200 px-4 py-3">
+                    <span class="font-semibold">{{ series.name }}</span>
+                    <span class="typography-text-xs text-neutral-500">Serie {{ series.models }}</span>
+                    <span class="mt-1 typography-text-sm text-neutral-700">{{ series.text }}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <p class="typography-text-xs text-neutral-500">{{ story.footnote }}</p>
+          </section>
+        </template>
       </template>
 
       <p class="mt-8 typography-text-sm">

@@ -6,14 +6,24 @@ export type ArizonaBrandStory = {
   /** One-line claim in the dark header */
   claim: string;
   facts: { value: string; label: string }[];
-  /** Optional photo header (landscape photo: on top on phones, on the right from md) instead of the plain dark header */
-  hero?: {
+  /**
+   * Optional showcase header with a day/night comparison of the same watch (two pixel-identical photos,
+   * the night one shows the self-luminous tubes). Brands with a showcase get the ArizonaBrandShowcase layout.
+   */
+  showcase?: {
     eyebrow: string;
-    title: string;
-    desktop: ArizonaBrandImage;
+    text: string;
+    day: ArizonaBrandImage;
+    night: ArizonaBrandImage;
+    /** Same photos in a smaller width for phones */
+    daySmall: string;
+    nightSmall: string;
+    caption: string;
     badges: { label: string; icon: 'trident' | 'swiss' }[];
   };
-  /** Optional large image-and-text blocks right below the header (what the brand stands for) */
+  /** Optional photo band with a short timeline (the brand's origin story) */
+  mission?: { kicker: string; title: string; image: ArizonaBrandImage; steps: { year: string; text: string }[] };
+  /** Optional large image-and-text blocks (what the brand stands for) */
   pillars?: {
     id: string;
     icon: 'trident' | 'swiss';
@@ -23,8 +33,6 @@ export type ArizonaBrandStory = {
     points: string[];
     image: ArizonaBrandImage;
   }[];
-  /** Optional dark band about the brand's signature technology */
-  feature?: { kicker: string; title: string; paragraphs: string[]; image: ArizonaBrandImage };
   sections: { title: string; paragraphs: string[] }[];
   seriesTitle: string;
   seriesIntro: string;
