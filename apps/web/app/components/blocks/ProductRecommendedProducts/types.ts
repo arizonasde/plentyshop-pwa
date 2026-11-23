@@ -40,6 +40,8 @@ export type ProductRecommendedProductsContent = {
   };
   layout?: {
     fullWidth?: boolean;
+    // Arizona: show a fixed variation list as a slider instead of the wide grid (home page)
+    slider?: boolean;
   };
 };
 export type TextAlign = 'left' | 'center' | 'right';

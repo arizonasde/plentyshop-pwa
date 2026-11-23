@@ -8,7 +8,7 @@
       :title="getEditorTranslation('last-seen-hint-title')"
       :message="getEditorTranslation('last-seen-tracking-disabled-hint')"
     />
-    <ProductSlider v-if="shouldShowSlider" :items="sliderProducts" :grid="isVariations" />
+    <ProductSlider v-if="shouldShowSlider" :items="sliderProducts" :grid="isVariations && !props.content.layout?.slider" />
   </div>
 </template>
 

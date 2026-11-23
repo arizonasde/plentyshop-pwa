@@ -1,110 +1,111 @@
 /**
- * Arizona: content of the German home page (components/ArizonaHomepage). The page is built in code since 23.11.2026;
- * other languages and the shop editor still show the editor blocks. Images live on the plentyONE CDN
- * (frontend/arizona-startseite), the same files the editor blocks used before.
+ * Arizona: content of the German home page (components/ArizonaHomepage). The page is built in code since 11/2026;
+ * other languages and the shop editor still show the editor blocks. Images live on the plentyONE CDN.
  */
 const CDN = 'https://cdn02.plentyone.com/f05ilw2rfpls';
+const item = (path: string) => `${CDN}/item/images/${path}`;
+const stage = (name: string) => `${CDN}/frontend/arizona-startseite/${name}`;
 
+/** Big stage tile, crossfading */
 export const ARIZONA_HOME_SLIDES = [
   {
-    pill: 'Faera · Mützen',
-    title: 'Warm eingepackt\nin den Winter',
-    text: 'Strickmützen mit Bommel, Smiley oder Fleecefutter – in Farben, die gute Laune machen.',
+    kicker: 'Faera · Mützen',
+    title: 'Winter\nMood',
     link: '/damenmode/accessoires/kopfbedeckungen/muetzen',
-    cta: 'Mützen entdecken',
+    cta: 'Mützen shoppen',
     image: {
-      desktop: `${CDN}/frontend/arizona-startseite/arizona-slider-faera-muetzen-1400.webp`,
-      mobile: `${CDN}/frontend/arizona-startseite/arizona-slider-faera-muetzen-800.webp`,
+      desktop: stage('arizona-slider-faera-muetzen-1400.webp'),
+      mobile: stage('arizona-slider-faera-muetzen-800.webp'),
       alt: 'Frau mit brauner Faera Strickmütze mit Smiley auf einer Holzbank vor einem Café, daneben eine rosa Bommelmütze und eine bordeauxrote Mütze mit Herz',
     },
-    products: [
-      {
-        alt: 'Faera Strickmütze mit Rippbündchen',
-        image: `${CDN}/item/images/9405/middle/-14-0.jpg`,
-        link: '/damenmode/accessoires/kopfbedeckungen/muetzen/gemusterte-strickmuetze-mit-rippbuendchen-dezenter-stickerei_9405_224538',
-      },
-      {
-        alt: 'Faera Strickmütze mit Smiley',
-        image: `${CDN}/item/images/9411/middle/11-0.jpg`,
-        link: '/damenmode/accessoires/kopfbedeckungen/muetzen/strickmuetze-mit-smiley-stickerei_9411_225898',
-      },
-      {
-        alt: 'Faera Beanie mit Bommel in Rosa',
-        image: `${CDN}/item/images/8136/middle/Rosa--1-.jpg`,
-        link: '/damenmode/accessoires/kopfbedeckungen/muetzen/warme-beanie-strickmuetze-mit-fleece-innenfutter-und-bommel_8136_203287',
-      },
-    ],
   },
   {
-    pill: 'Faera · Schals',
-    title: 'Karo, Print\nund ganz viel Kuschel',
-    text: 'Karoschals mit Fransen, Dreieckstücher und weiche Colorblock-Schals für jeden Mantel.',
+    kicker: 'Faera · Schals',
+    title: 'Wrap\nit up',
     link: '/damenmode/accessoires/schals',
-    cta: 'Schals entdecken',
+    cta: 'Schals shoppen',
     image: {
-      desktop: `${CDN}/frontend/arizona-startseite/arizona-slider-faera-schals-1400.webp`,
-      mobile: `${CDN}/frontend/arizona-startseite/arizona-slider-faera-schals-800.webp`,
+      desktop: stage('arizona-slider-faera-schals-1400.webp'),
+      mobile: stage('arizona-slider-faera-schals-800.webp'),
       alt: 'Frau mit Faera Karoschal in Rosa und Grau und weißer Strickmütze in einer hellen Boutique, daneben Karoschals in weiteren Farben',
     },
-    products: [
-      {
-        alt: 'Faera Colorblock-Schal',
-        image: `${CDN}/item/images/9429/middle/6-0.jpg`,
-        link: '/damenmode/accessoires/schals/schal-colorblock-modern-warm-mehrfarbig_9429_224768',
-      },
-      {
-        alt: 'Faera Dreieckstuch mit Animalprint',
-        image: `${CDN}/item/images/10020/middle/810405-305.jpg`,
-        link: '/damenmode/accessoires/schals/damen-schal-animalprint-dreieckstuch_10020_237516',
-      },
-      {
-        alt: 'Faera Schal im Kaschmir-Look',
-        image: `${CDN}/item/images/9408/middle/600-00.jpg`,
-        link: '/damenmode/accessoires/schals/trendiger-kaschmir-schal-warmes-herbstaccessoire_9408_224510',
-      },
-    ],
   },
 ];
 
+/** The two worlds next to the stage, with a cut-out product on a colour block */
+export const ARIZONA_HOME_WORLDS = [
+  {
+    title: 'Damen',
+    link: '/damenmode',
+    color: '#FFE45C',
+    image: item('8639/middle/D10608BC02644C-10200-V-3x4.jpg'),
+    alt: 'Hoodie für Damen',
+  },
+  {
+    title: 'Herren',
+    link: '/herrenmode',
+    color: '#B8F2D0',
+    image: item('9280/middle/H50022AB44549A1-12400-V.jpg'),
+    alt: 'Grüne Steppjacke für Herren',
+  },
+];
+
+/** Category tiles: colour block + cut-out product (white backgrounds disappear via mix-blend-mode) */
+export const ARIZONA_HOME_CATEGORIES = [
+  { title: 'Winterjacken', sub: 'Damen', link: '/damenmode/jacken/winterjacken', color: '#D9CCFF', image: item('10065/middle/schearzfinalfront.jpg') },
+  { title: 'Hoodies', sub: 'Damen', link: '/damenmode/shirts/hoodies', color: '#FFC8DD', image: item('8639/middle/D10608BC02644C-10200-V-3x4.jpg') },
+  { title: 'Strick', sub: 'Damen', link: '/damenmode/shirts/strickpullover', color: '#FFD6C2', image: item('9241/middle/SELECTED-FEM-Springsummer-4793175-16097300.jpg') },
+  { title: 'Jeans', sub: 'Damen', link: '/damenmode/jeans', color: '#CFE3FF', image: item('3681/middle/on--3268112--front.jpg') },
+  { title: 'Kleider', sub: 'Damen', link: '/damenmode/kleider', color: '#FFF0A8', image: item('6917/middle/froo-3x4-3x4.jpg') },
+  { title: 'Mützen', sub: 'Accessoires', link: '/damenmode/accessoires/kopfbedeckungen/muetzen', color: '#C6F0D8', image: item('8137/middle/Blau--1-.jpg') },
+  { title: 'Jacken', sub: 'Herren', link: '/herrenmode/jacken-maentel', color: '#B8F2D0', image: item('9280/middle/H50022AB44549A1-12400-V.jpg') },
+  { title: 'Hoodies', sub: 'Herren', link: '/herrenmode/oberteile/hoodies', color: '#E4E4E4', image: item('9374/middle/H10608BC21525A4NO-24000-V.jpg') },
+  { title: 'Pullover', sub: 'Herren', link: '/herrenmode/oberteile/pullover', color: '#CFE3FF', image: item('9267/middle/50033-3x4-4-3x4.jpg') },
+  { title: 'Jeans', sub: 'Herren', link: '/herrenmode/jeans', color: '#D9CCFF', image: item('5970/middle/JACKundJONES-Noos2023-2703036-12133074.jpg') },
+  { title: 'Kinder', sub: 'Mode', link: '/kindermode', color: '#FFD6C2', image: item('9254/middle/braun2mainn.jpg') },
+];
+
 const jacket = (name: string) => ({
-  desktop: `${CDN}/frontend/arizona-startseite/arizona-jacken-sport-${name}-600.webp`,
-  mobile: `${CDN}/frontend/arizona-startseite/arizona-jacken-sport-${name}-400.webp`,
+  desktop: stage(`arizona-jacken-sport-${name}-600.webp`),
+  mobile: stage(`arizona-jacken-sport-${name}-400.webp`),
 });
 
-/** Season story: winter jackets, the four editor tiles from before */
+/** Season bento: winter jackets */
 export const ARIZONA_HOME_JACKETS = [
   {
-    label: 'Teddyjacke · Damen',
+    label: 'Teddyjacke',
     alt: 'Sublevel Teddyjacke mit Kapuze in Creme – Damen',
     link: '/damenmode/jacken/winterjacken/teddyjacke-mit-knopfverschluss-langarm_9977',
     ...jacket('damen-1'),
   },
   {
-    label: 'Steppjacke · Herren',
+    label: 'Steppjacke',
     alt: 'Sublevel Steppjacke mit Kapuze in Schwarz – Herren',
     link: '/herrenmode/jacken-maentel/jacken/winterjacke-mit-kapuze-warm-gefuettert_9985',
     ...jacket('herren-1'),
   },
   {
-    label: 'Winterjacke · Damen',
+    label: 'Winterjacke',
     alt: 'Sublevel Winterjacke mit Stehkragen in Schwarz – Damen',
     link: '/damenmode/jacken/winterjacken/warme-winterjacke-stehkragen-und-reissverschluss_9978',
     ...jacket('damen-2'),
   },
   {
-    label: 'Outdoorjacke · Herren',
+    label: 'Outdoorjacke',
     alt: 'Sublevel wattierte Outdoorjacke mit Kapuze in Grün – Herren',
     link: '/herrenmode/jacken-maentel/jacken/wattierte-outdoorjacke-mit-kapuze-und-mehreren-taschen_9280',
     ...jacket('herren-2'),
   },
 ];
 
-/** Fallback list for "Gerade besonders beliebt" while beliebt.json is empty or missing */
+/** Fallback list for "Gerade beliebt" while beliebt.json is empty or missing */
 export const ARIZONA_HOME_POPULAR_FALLBACK =
   '222401,236966,203452,237105,210639,238567,237565,224538,224746,237335,236997,222990';
 
-/** "Neu eingetroffen" tabs: main category id and link */
-export const ARIZONA_HOME_NEW_IN = [
-  { key: 'damen', label: 'Damen', categoryId: '44', link: '/damenmode' },
-  { key: 'herren', label: 'Herren', categoryId: '16', link: '/herrenmode' },
-] as const;
+export const ARIZONA_HOME_TICKER = [
+  'Gratis-Versand ab 99 €',
+  'Lieferung in 1–3 Werktagen',
+  '60 Tage kostenlose Rückgabe',
+  'Kauf auf Rechnung',
+  'PayPal · Klarna · Karte',
+];
