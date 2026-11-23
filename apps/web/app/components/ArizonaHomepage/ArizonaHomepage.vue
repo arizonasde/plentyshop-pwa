@@ -5,7 +5,7 @@
     Motion rules: one entrance on load, scroll reveals only where CSS scroll timelines exist, press feedback on
     everything pressable, hover effects only on real pointers, reduced motion = no autoplay, no tickers, no movement.
   -->
-  <div class="hp" data-testid="arizona-homepage">
+  <div class="hp max-w-screen-3xl mx-auto px-4 @md:px-10" data-testid="arizona-homepage">
     <h1 class="sr-only">Arizona Shopping – Mode für Damen, Herren und Kinder</h1>
 
     <!-- Ticker: service promises -->
@@ -19,7 +19,6 @@
       </div>
     </div>
 
-    <div class="hp-wrap">
       <!-- 1 · Bento stage -->
       <section class="hp-stage" aria-label="Highlights" data-testid="arizona-home-hero">
         <div
@@ -137,9 +136,8 @@
           :content="popularContent"
         />
       </section>
-    </div>
 
-    <!-- 4 · SALE band, full width -->
+    <!-- 4 · SALE band -->
     <section class="hp-sale hp-reveal" aria-labelledby="hp-sale" data-testid="arizona-home-sale">
       <div class="hp-sale-marquee" aria-hidden="true">
         <span v-for="copy in 2" :key="copy" class="hp-sale-track">
@@ -157,7 +155,6 @@
       </div>
     </section>
 
-    <div class="hp-wrap">
       <!-- 5 · New in -->
       <section
         v-for="row in newIn"
@@ -238,11 +235,10 @@
           </li>
         </ul>
       </section>
-    </div>
 
-    <!-- 8 · Brands, full width -->
+    <!-- 8 · Brands -->
     <section class="hp-brands" aria-labelledby="hp-brands" data-testid="arizona-home-brands">
-      <div class="hp-wrap hp-head">
+      <div class="hp-head hp-brands-head">
         <h2 id="hp-brands" class="hp-h2">Deine Marken. <span class="hp-hl hp-hl-white">Ein Shop.</span></h2>
         <NuxtLink :to="localePath('/marken')" class="hp-more">
           Alle Marken <span class="hp-arrow" aria-hidden="true">→</span>
@@ -260,11 +256,9 @@
     </section>
 
     <!-- 9 · Newsletter -->
-    <div class="hp-wrap">
       <section class="hp-newsletter hp-reveal" data-testid="arizona-home-newsletter">
         <NewsletterSubscribe name="NewsletterSubscribe" type="content" :content="newsletterContent" />
       </section>
-    </div>
   </div>
 </template>
 
@@ -362,17 +356,6 @@ const newsletterContent: NewsletterSubscribeContent = {
   --hp-mint: #b8f2d0;
   color: var(--hp-ink);
 }
-.hp-wrap {
-  max-width: 1920px;
-  margin-inline: auto;
-  padding-inline: 1rem;
-}
-@container (min-width: 768px) {
-  .hp-wrap {
-    padding-inline: 2.5rem;
-  }
-}
-
 /* ---------- Type ---------- */
 .hp-h2 {
   font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3.25rem);
@@ -485,7 +468,9 @@ const newsletterContent: NewsletterSubscribeContent = {
 /* ---------- Ticker ---------- */
 .hp-ticker {
   display: flex;
+  margin-top: 0.25rem;
   overflow: hidden;
+  border-radius: 9999px;
   background: var(--hp-ink);
   color: #fff;
 }
@@ -854,9 +839,9 @@ const newsletterContent: NewsletterSubscribeContent = {
   .hp-cats {
     grid-auto-columns: calc((100% - 5 * 1rem) / 6);
     gap: 1rem;
-    margin-inline: -2.5rem;
-    padding-inline: 2.5rem;
-    scroll-padding-inline: 2.5rem;
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
   }
   .hp-cat-label {
     inset: auto 1rem 1rem;
@@ -871,6 +856,7 @@ const newsletterContent: NewsletterSubscribeContent = {
   position: relative;
   margin-top: 3rem;
   overflow: hidden;
+  border-radius: 1.25rem;
   background: var(--hp-red);
   color: #fff;
 }
@@ -899,9 +885,7 @@ const newsletterContent: NewsletterSubscribeContent = {
   position: relative;
   display: grid;
   gap: 1.25rem;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 1.25rem 1rem 2.5rem;
+  padding: 1.25rem 1.25rem 2rem;
 }
 .hp-sale-title {
   font-size: clamp(2.75rem, 1.5rem + 4.5vw, 6rem);
@@ -930,7 +914,7 @@ const newsletterContent: NewsletterSubscribeContent = {
     grid-template-columns: 1fr auto;
     align-items: end;
     gap: 2rem;
-    padding: 1.5rem 2.5rem 3.5rem;
+    padding: 1.5rem 2.5rem 3rem;
   }
 }
 
@@ -1120,11 +1104,14 @@ const newsletterContent: NewsletterSubscribeContent = {
 /* ---------- Brands ---------- */
 .hp-brands {
   margin-top: 3rem;
+  overflow: hidden;
+  border-radius: 1.25rem;
   background: var(--hp-yellow);
-  padding: 2rem 0 1.5rem;
+  padding: 1.75rem 0 1.25rem;
 }
 .hp-brands .hp-head {
   margin-bottom: 1rem;
+  padding-inline: 1.25rem;
 }
 .hp-marquee {
   display: flex;
@@ -1170,7 +1157,14 @@ const newsletterContent: NewsletterSubscribeContent = {
 @container (min-width: 768px) {
   .hp-brands {
     margin-top: 4.5rem;
-    padding: 3rem 0 2.5rem;
+    border-radius: 1.75rem;
+    padding: 2.5rem 0 2rem;
+  }
+  .hp-brands .hp-head {
+    padding-inline: 2.5rem;
+  }
+  .hp-sale {
+    border-radius: 1.75rem;
   }
 }
 
