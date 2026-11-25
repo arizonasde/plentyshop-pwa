@@ -36,37 +36,45 @@
         <UiDivider class="w-screen @md:w-auto -mx-4 @md:mx-0" />
         <CustomerReference />
         <CustomerWish />
-        <UiDivider class="w-screen @md:w-auto -mx-4 @md:mx-0 mb-10" />
-        <CheckoutGeneralTerms />
       </div>
-      <div class="col-span-6 @xl:col-span-5 flex flex-col">
-        <!-- Arizona: on small screens total and buy button come right after the form, the items below them -->
-        <div class="order-2 @lg:order-1">
-          <div v-for="(cartItem, index) in cart?.items" :key="cartItem.id">
-            <UiCartProductCard :cart-item="cartItem" :class="{ 'border-t': index === 0 }" />
-          </div>
-        </div>
+      <!-- Arizona: total, terms and buy button together at the top of the right column and kept in view while the
+           form on the left is filled in; the items follow below (the box scrolls on its own when it is taller than the window) -->
+      <div class="col-span-6 @xl:col-span-5">
         <div
-          class="order-1 @lg:order-2 relative @md:sticky @md:top-20 h-fit"
-          :class="{ 'pointer-events-none opacity-50': cartLoading }"
+          class="@lg:sticky @lg:top-4 h-fit @lg:max-h-[calc(100vh-2rem)] @lg:overflow-y-auto"
+          data-testid="checkout-buy-box"
         >
-          <SfLoaderCircular v-if="cartLoading" class="absolute top-[130px] right-0 left-0 m-auto z-loader" size="2xl" />
-          <Coupon />
-          <OrderSummary v-if="cart" :cart="cart" class="mt-4">
-            <CheckoutExportDeliveryHint v-if="cart.isExportDelivery" />
-            <ClientOnly>
-              <PaymentButtons />
-            </ClientOnly>
-            <ModuleComponentRendering area="checkout.afterBuyButton" />
-            <ArizonaSecureCheckout />
-            <GuaranteeNoticeBanner
-              v-if="isGuaranteeNoticeEnabled && guaranteeNoticeDisplayMode === GUARANTEE_NOTICE_DISPLAY_MODE.Inline"
-              class="mt-4"
+          <div class="relative" :class="{ 'pointer-events-none opacity-50': cartLoading }">
+            <SfLoaderCircular
+              v-if="cartLoading"
+              class="absolute top-[130px] right-0 left-0 m-auto z-loader"
+              size="2xl"
             />
-            <GuaranteeNotice
-              v-else-if="isGuaranteeNoticeEnabled && guaranteeNoticeDisplayMode === GUARANTEE_NOTICE_DISPLAY_MODE.Modal"
-            />
-          </OrderSummary>
+            <OrderSummary v-if="cart" :cart="cart">
+              <CheckoutExportDeliveryHint v-if="cart.isExportDelivery" />
+              <CheckoutGeneralTerms class="!mx-0 mb-4" />
+              <ClientOnly>
+                <PaymentButtons />
+              </ClientOnly>
+              <ModuleComponentRendering area="checkout.afterBuyButton" />
+              <ArizonaSecureCheckout />
+              <GuaranteeNoticeBanner
+                v-if="isGuaranteeNoticeEnabled && guaranteeNoticeDisplayMode === GUARANTEE_NOTICE_DISPLAY_MODE.Inline"
+                class="mt-4"
+              />
+              <GuaranteeNotice
+                v-else-if="
+                  isGuaranteeNoticeEnabled && guaranteeNoticeDisplayMode === GUARANTEE_NOTICE_DISPLAY_MODE.Modal
+                "
+              />
+            </OrderSummary>
+            <Coupon />
+          </div>
+          <div data-testid="checkout-items">
+            <div v-for="(cartItem, index) in cart?.items" :key="cartItem.id">
+              <UiCartProductCard :cart-item="cartItem" :class="{ 'border-t': index === 0 }" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -154,6 +154,8 @@ onMounted(() => {
   const bottom = header?.getBoundingClientRect().bottom ?? 0;
   top.value = Math.max(Math.round(bottom) + 8, 16);
   timeout = setTimeout(close, VISIBLE_MS);
+  // Arizona: load the checkout page code in the background, so "Zur Kasse" opens without waiting
+  preloadRouteComponents(localePath(paths.checkout));
   document.addEventListener('keydown', onKeydown);
 });
 

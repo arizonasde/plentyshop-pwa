@@ -1,7 +1,7 @@
 <template>
   <footer
     data-testid="footer"
-    class="arizona-footer-pattern pt-10 @md:pt-14"
+    class="arizona-footer-wordmark pt-10 @md:pt-14"
     :style="{
       backgroundColor: props.configuration?.colors?.background,
       color: props.configuration?.colors?.text,
@@ -26,27 +26,72 @@ const props = defineProps<FooterContainerProps>();
 </script>
 
 <style scoped>
-/* Arizona: light background pattern on the grey footer – fine dot grid that fades out towards the bottom, plus a
-   soft light glow at the top. The footer colour itself still comes from the editor configuration. */
-.arizona-footer-pattern {
+/* Arizona: huge ARIZONAS lettering that shows faintly through the footer, with a slow light sweep across the
+   letters and a soft glow at the top. Sits just above the copyright bar, behind all footer content.
+   The footer colour itself still comes from the editor configuration. */
+.arizona-footer-wordmark {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
 }
 
-.arizona-footer-pattern::before {
+.arizona-footer-wordmark::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: radial-gradient(ellipse 70% 260px at 50% 0, rgb(255 255 255 / 0.6), transparent 70%);
+}
+
+.arizona-footer-wordmark::after {
+  content: 'ARIZONAS';
+  position: absolute;
+  left: 50%;
+  bottom: 60px;
   z-index: -1;
   pointer-events: none;
-  background-image:
-    radial-gradient(ellipse 70% 260px at 50% 0, rgb(255 255 255 / 0.55), transparent 70%),
-    radial-gradient(circle at center, rgb(0 0 0 / 0.09) 1px, transparent 1.4px);
-  background-size:
-    100% 100%,
-    18px 18px;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgb(0 0 0 / 0.35) 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgb(0 0 0 / 0.35) 100%);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: clamp(4rem, 16.5vw, 19rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  color: transparent;
+  background-image: linear-gradient(
+    105deg,
+    rgb(0 0 0 / 0.065) 0%,
+    rgb(0 0 0 / 0.065) 42%,
+    rgb(255 255 255 / 0.95) 50%,
+    rgb(0 0 0 / 0.065) 58%,
+    rgb(0 0 0 / 0.065) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.45) 100%);
+  mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.45) 100%);
+  animation: arizona-footer-shine 11s ease-in-out infinite;
+}
+
+@keyframes arizona-footer-shine {
+  0%,
+  15% {
+    background-position: 100% 0;
+  }
+
+  65%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arizona-footer-wordmark::after {
+    animation: none;
+  }
 }
 
 :deep([data-testid='multi-grid-column']) {
@@ -78,18 +123,18 @@ const props = defineProps<FooterContainerProps>();
 }
 
 :deep([data-testid='multi-grid-column']:nth-child(1)) {
-  --arizona-footer-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z%22/%3E%3Cpath d=%22M14 2v6h6%22/%3E%3Cpath d=%22M16 13H8%22/%3E%3Cpath d=%22M16 17H8%22/%3E%3C/svg%3E");
+  --arizona-footer-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z%22/%3E%3Cpath d=%22M14 2v6h6%22/%3E%3Cpath d=%22M16 13H8%22/%3E%3Cpath d=%22M16 17H8%22/%3E%3C/svg%3E');
 }
 
 :deep([data-testid='multi-grid-column']:nth-child(2)) {
-  --arizona-footer-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7.9 20A9 9 0 1 0 4 16.1L2 22z%22/%3E%3Cpath d=%22M8 12h.01%22/%3E%3Cpath d=%22M12 12h.01%22/%3E%3Cpath d=%22M16 12h.01%22/%3E%3C/svg%3E");
+  --arizona-footer-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M7.9 20A9 9 0 1 0 4 16.1L2 22z%22/%3E%3Cpath d=%22M8 12h.01%22/%3E%3Cpath d=%22M12 12h.01%22/%3E%3Cpath d=%22M16 12h.01%22/%3E%3C/svg%3E');
 }
 
 :deep([data-testid='multi-grid-column']:nth-child(3)) {
-  --arizona-footer-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z%22/%3E%3Cpath d=%22M2 10h20%22/%3E%3Cpath d=%22M6 15h4%22/%3E%3C/svg%3E");
+  --arizona-footer-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z%22/%3E%3Cpath d=%22M2 10h20%22/%3E%3Cpath d=%22M6 15h4%22/%3E%3C/svg%3E');
 }
 
 :deep([data-testid='multi-grid-column']:nth-child(4)) {
-  --arizona-footer-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M11.48 3.5a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.75a.53.53 0 0 1 .29.9l-3.73 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.21a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.17 9.99a.53.53 0 0 1 .3-.9l5.15-.75a2.12 2.12 0 0 0 1.6-1.16z%22/%3E%3C/svg%3E");
+  --arizona-footer-icon: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22black%22 stroke-width=%221.8%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M11.48 3.5a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.75a.53.53 0 0 1 .29.9l-3.73 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.21a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.17 9.99a.53.53 0 0 1 .3-.9l5.15-.75a2.12 2.12 0 0 0 1.6-1.16z%22/%3E%3C/svg%3E');
 }
 </style>
