@@ -1,7 +1,7 @@
 <template>
   <footer
     data-testid="footer"
-    class="pt-10 @md:pt-14"
+    class="arizona-footer-pattern pt-10 @md:pt-14"
     :style="{
       backgroundColor: props.configuration?.colors?.background,
       color: props.configuration?.colors?.text,
@@ -26,6 +26,29 @@ const props = defineProps<FooterContainerProps>();
 </script>
 
 <style scoped>
+/* Arizona: light background pattern on the grey footer – fine dot grid that fades out towards the bottom, plus a
+   soft light glow at the top. The footer colour itself still comes from the editor configuration. */
+.arizona-footer-pattern {
+  position: relative;
+  isolation: isolate;
+}
+
+.arizona-footer-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 70% 260px at 50% 0, rgb(255 255 255 / 0.55), transparent 70%),
+    radial-gradient(circle at center, rgb(0 0 0 / 0.09) 1px, transparent 1.4px);
+  background-size:
+    100% 100%,
+    18px 18px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgb(0 0 0 / 0.35) 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, rgb(0 0 0 / 0.35) 100%);
+}
+
 :deep([data-testid='multi-grid-column']) {
   @apply break-words;
 }
