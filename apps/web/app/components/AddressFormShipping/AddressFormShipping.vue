@@ -133,10 +133,19 @@
         v-model="city"
         name="city"
         autocomplete="address-level2"
+        list="shipping-city-options"
         v-bind="cityAttributes"
         :invalid="!!errors['city']"
+        @input="cityAutofilled = false"
       />
+      <datalist id="shipping-city-options">
+        <option v-for="option in cityOptions" :key="option" :value="option" />
+      </datalist>
       <ErrorMessage as="span" name="city" class="flex text-negative-700 text-sm mt-2" />
+      <span v-if="cityAutofilled" class="flex text-neutral-500 text-xs mt-1" data-testid="city-autofilled">
+        Ort aus der Postleitzahl ergänzt (Daten:&nbsp;
+        <a href="https://www.geonames.org" target="_blank" rel="noopener" class="underline">GeoNames</a>)
+      </span>
     </label>
 
     <label class="@md:col-span-3">
@@ -202,6 +211,7 @@ import { type Address, AddressType, ApiError, cartGetters, userAddressGetters } 
 import { SfCheckbox, SfIconClose, SfInput, SfSelect } from '@storefront-ui/vue';
 import { ErrorMessage, useForm } from 'vee-validate';
 import type { AddressFormShippingProps } from './types';
+import { loadArizonaPostalCodeCities } from '~/utils/arizonaPostalCode';
 
 const { disabled, address, addAddress = false } = defineProps<AddressFormShippingProps>();
 
@@ -285,6 +295,20 @@ if (!country.value) {
   const { data: cartData } = useCart();
   country.value = String(cartGetters.getShippingCountryId(cartData.value) || 1);
 }
+
+// Arizona: fill in the city from the postal code (own data files, see utils/arizonaPostalCode.ts)
+const cityOptions = ref<string[]>([]);
+const cityAutofilled = ref(false);
+watch([zipCode, country], async ([zip, countryId]) => {
+  const isoCode = shippingCountries.value?.find((entry) => String(entry.id) === String(countryId))?.isoCode2 ?? '';
+  const cities = await loadArizonaPostalCodeCities(isoCode, String(zip ?? ''));
+  if (zip !== zipCode.value || countryId !== country.value) return;
+  cityOptions.value = cities;
+  if (cities.length > 0 && (!String(city.value ?? '').trim() || cityAutofilled.value)) {
+    city.value = cities[0];
+    cityAutofilled.value = true;
+  }
+});
 
 const setDefaultFormValues = () => {
   defaultFormValues.value = {
