@@ -38,7 +38,15 @@ describe('getArizonaPaymentDisplay', () => {
 
 describe('sortArizonaPaymentMethods', () => {
   it('follows the Arizona order and keeps unknown methods at the end in their order', () => {
-    const sorted = sortArizonaPaymentMethods([6059, 6074, 6078, 6057, 6001, 6033, 6020, 6019, 6021].map((id) => method(id)));
+    const sorted = sortArizonaPaymentMethods(
+      [6059, 6074, 6078, 6057, 6001, 6033, 6020, 6019, 6021].map((id) => method(id)),
+    );
     expect(sorted.map((m) => m.id)).toEqual([6033, 6001, 6059, 6074, 6057, 6020, 6078, 6019, 6021]);
+  });
+
+  it('puts Apple Pay and Google Pay first', () => {
+    const sorted = sortArizonaPaymentMethods([6001, 6033, 6044, 6045].map((id) => method(id)));
+    expect(sorted.map((m) => m.id)).toEqual([6045, 6044, 6033, 6001]);
+    expect(getArizonaPaymentDisplay(method(6045)).title).toBe('Apple Pay');
   });
 });

@@ -23,14 +23,15 @@ export const ARIZONA_PAYMENT_DISPLAY: Record<number, { title: string; descriptio
     description: 'Bezahlen Sie bequem per Vorkasse.',
     logo: '/_nuxt-plenty/payment-logos/vorkasse.svg',
   },
-  6044: { title: 'Google Pay', description: 'Bezahlen Sie bequem mit Google Pay.' },
-  6045: { title: 'Apple Pay (PayPal)', description: '' },
+  6044: { title: 'Google Pay', description: 'Bezahlen Sie schnell mit Google Pay.' },
+  6045: { title: 'Apple Pay', description: 'Bezahlen Sie schnell mit Apple Pay.' },
   6020: { title: 'Lastschrift', description: 'Bezahlen Sie bequem per Lastschrift.' },
   6078: { title: 'Sofortüberweisung', description: 'Bezahlen Sie bequem direkt über Ihr Online-Banking.' },
 };
 
 // Explicit list: Object.keys would return the numeric ids in ascending order, not in the order above.
-const ORDER = [6033, 6001, 6059, 6074, 6057, 6044, 6045, 6020, 6078];
+// Apple Pay and Google Pay first: the quickest way to pay, and only offered on devices that support them.
+const ORDER = [6045, 6044, 6033, 6001, 6059, 6074, 6057, 6020, 6078];
 
 export const getArizonaPaymentDisplay = (method: PaymentMethod) => {
   const display = ARIZONA_PAYMENT_DISPLAY[method.id];
