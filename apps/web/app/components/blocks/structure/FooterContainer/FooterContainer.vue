@@ -7,6 +7,7 @@
       color: props.configuration?.colors?.text,
     }"
   >
+    <ArizonaFooterWordmark />
     <!-- Arizona: service highlights with icons above the footer columns -->
     <ArizonaFooterHighlights class="mb-10 @md:mb-14" />
     <div
@@ -26,8 +27,7 @@ const props = defineProps<FooterContainerProps>();
 </script>
 
 <style scoped>
-/* Arizona: huge ARIZONAS lettering that shows faintly through the footer, with a slow light sweep across the
-   letters and a soft glow at the top. Sits just above the copyright bar, behind all footer content.
+/* Arizona: soft glow at the top; the big ARIZONAS lettering behind the content is ArizonaFooterWordmark.
    The footer colour itself still comes from the editor configuration. */
 .arizona-footer-wordmark {
   position: relative;
@@ -42,56 +42,6 @@ const props = defineProps<FooterContainerProps>();
   z-index: -2;
   pointer-events: none;
   background: radial-gradient(ellipse 70% 260px at 50% 0, rgb(255 255 255 / 0.6), transparent 70%);
-}
-
-.arizona-footer-wordmark::after {
-  content: 'ARIZONAS';
-  position: absolute;
-  left: 50%;
-  bottom: 60px;
-  z-index: -1;
-  pointer-events: none;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: clamp(4rem, 16.5vw, 19rem);
-  font-weight: 700;
-  font-style: italic;
-  line-height: 0.78;
-  letter-spacing: -0.06em;
-  color: transparent;
-  background-image: linear-gradient(
-    105deg,
-    rgb(0 0 0 / 0.065) 0%,
-    rgb(0 0 0 / 0.065) 42%,
-    rgb(255 255 255 / 0.95) 50%,
-    rgb(0 0 0 / 0.065) 58%,
-    rgb(0 0 0 / 0.065) 100%
-  );
-  background-size: 300% 100%;
-  background-position: 100% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.45) 100%);
-  mask-image: linear-gradient(to bottom, #000 45%, rgb(0 0 0 / 0.45) 100%);
-  animation: arizona-footer-shine 11s ease-in-out infinite;
-}
-
-@keyframes arizona-footer-shine {
-  0%,
-  15% {
-    background-position: 100% 0;
-  }
-
-  65%,
-  100% {
-    background-position: 0% 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .arizona-footer-wordmark::after {
-    animation: none;
-  }
 }
 
 :deep([data-testid='multi-grid-column']) {
