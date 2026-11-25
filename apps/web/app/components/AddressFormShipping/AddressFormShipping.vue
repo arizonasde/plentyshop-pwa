@@ -374,13 +374,12 @@ const validateAndSubmitForm = async () => {
   }
 };
 
-// Arizona: save the address by itself once it is complete and the customer leaves the form,
-// the "save address" button stays as a fallback.
+// Arizona: save the address by itself once it is complete and the customer has left the form,
+// the "save address" button stays as a fallback. Also retried when the guest e-mail is saved later.
 const formRef = ref<HTMLFormElement>();
-const autoSaveOnLeave = async (event: FocusEvent) => {
+const autoSave = async () => {
   if (!showAddressSaveButton.value || formIsLoading.value || missingGuestCheckoutEmail.value) return;
-  const next = event.relatedTarget as Node | null;
-  if (next && formRef.value?.contains(next)) return;
+  if (formRef.value?.contains(document.activeElement)) return;
   const required = hasShippingCompany.value
     ? [companyName, streetName, apartment, zipCode, city, country]
     : [firstName, lastName, streetName, apartment, zipCode, city, country];
@@ -388,6 +387,11 @@ const autoSaveOnLeave = async (event: FocusEvent) => {
   const { valid } = await validate({ mode: 'silent' });
   if (valid) await validateAndSubmitForm();
 };
+// focus has moved on only after the focusout event
+const autoSaveOnLeave = () => setTimeout(autoSave, 0);
+watch(missingGuestCheckoutEmail, (missing) => {
+  if (!missing) autoSave();
+});
 
 const submitForm = handleSubmit((shippingAddressForm) => {
   shippingAddressToSave.value = shippingAddressForm as Address;
