@@ -1,9 +1,11 @@
 <template>
   <form
+    ref="formRef"
     novalidate
     class="grid grid-cols-1 @md:grid-cols-[50%_1fr_120px] gap-4"
     data-testid="shipping-address-form"
     @submit.prevent="validateAndSubmitForm"
+    @focusout="autoSaveOnLeave"
   >
     <label>
       <UiFormLabel class="flex">
@@ -196,7 +198,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Address, AddressType, ApiError, userAddressGetters } from '@plentymarkets/shop-api';
+import { type Address, AddressType, ApiError, cartGetters, userAddressGetters } from '@plentymarkets/shop-api';
 import { SfCheckbox, SfIconClose, SfInput, SfSelect } from '@storefront-ui/vue';
 import { ErrorMessage, useForm } from 'vee-validate';
 import type { AddressFormShippingProps } from './types';
@@ -276,6 +278,12 @@ if (!addAddress && address) {
     companyName.value = '';
     vatNumber.value = '';
   }
+}
+
+// Arizona: preselect the delivery country (cart country, otherwise Germany), so nobody has to pick it
+if (!country.value) {
+  const { data: cartData } = useCart();
+  country.value = String(cartGetters.getShippingCountryId(cartData.value) || 1);
 }
 
 const setDefaultFormValues = () => {
@@ -364,6 +372,21 @@ const validateAndSubmitForm = async () => {
 
     if (showNewForm.value && !invalidVAT.value && !vatServerError.value) showNewForm.value = false;
   }
+};
+
+// Arizona: save the address by itself once it is complete and the customer leaves the form,
+// the "save address" button stays as a fallback.
+const formRef = ref<HTMLFormElement>();
+const autoSaveOnLeave = async (event: FocusEvent) => {
+  if (!showAddressSaveButton.value || formIsLoading.value || missingGuestCheckoutEmail.value) return;
+  const next = event.relatedTarget as Node | null;
+  if (next && formRef.value?.contains(next)) return;
+  const required = hasShippingCompany.value
+    ? [companyName, streetName, apartment, zipCode, city, country]
+    : [firstName, lastName, streetName, apartment, zipCode, city, country];
+  if (required.some((field) => !String(field.value ?? '').trim())) return;
+  const { valid } = await validate({ mode: 'silent' });
+  if (valid) await validateAndSubmitForm();
 };
 
 const submitForm = handleSubmit((shippingAddressForm) => {

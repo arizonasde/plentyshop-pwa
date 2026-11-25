@@ -61,7 +61,16 @@
           </span>
           <b>{{ format(totals.total) }}</b>
         </div>
-        <UiButton size="lg" class="w-full !rounded-full" data-testid="arizona-mini-cart-button" @click="goToCart">
+        <UiButton size="lg" class="w-full !rounded-full" data-testid="arizona-mini-cart-checkout" @click="goToCheckout">
+          Zur Kasse
+        </UiButton>
+        <UiButton
+          size="lg"
+          variant="secondary"
+          class="w-full !rounded-full mt-2"
+          data-testid="arizona-mini-cart-button"
+          @click="goToCart"
+        >
           Zum Warenkorb
         </UiButton>
       </div>
@@ -103,7 +112,9 @@ const attributes = computed(() => (item.value ? cartGetters.getItemAttributes(it
 const itemQuantity = computed(() => (item.value ? cartGetters.getItemQty(item.value) : 0));
 const itemTotal = computed(() => (item.value ? cartGetters.getCartItemPrice(item.value) * itemQuantity.value : 0));
 const productLink = computed(() =>
-  item.value ? localePath('/' + cartGetters.getProductPath(item.value, useCallisto().isEnabled)) : localePath(paths.cart),
+  item.value
+    ? localePath('/' + cartGetters.getProductPath(item.value, useCallisto().isEnabled))
+    : localePath(paths.cart),
 );
 const totals = computed(() => cartGetters.getTotals(cart.value));
 const shipping = computed(() => {
@@ -127,6 +138,11 @@ const resume = () => {
 const goToCart = () => {
   close();
   navigateTo(localePath(paths.cart));
+};
+// Arizona: guests go straight to the checkout, the e-mail field there starts the guest order
+const goToCheckout = () => {
+  close();
+  navigateTo(localePath(paths.checkout));
 };
 const onKeydown = (event: KeyboardEvent) => {
   if (event.key === 'Escape') close();

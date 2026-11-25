@@ -139,7 +139,6 @@ const { isAvailable: isPaypalAvailable, loadConfig } = usePayPal();
 const { addModernImageExtension } = useModernImage();
 const { isOpen, timer, startTimer, endTimer, closeQuickCheckout, hasTimer, quantity } = useQuickCheckout();
 const cartItemsCount = computed(() => cart.value?.items?.reduce((price, { quantity }) => price + quantity, 0) ?? 0);
-const { isAuthorized } = useCustomer();
 
 onMounted(() => {
   startTimer();
@@ -163,7 +162,7 @@ const imageAlt = computed(() => {
   return image ? productImageGetters.getImageAlternate(image) : '';
 });
 
-const goToCheckout = () => (isAuthorized.value ? goToPage(paths.checkout) : goToPage(paths.guestLogin));
+const goToCheckout = () => goToPage(paths.checkout);
 
 const goToPage = (path: string) => {
   closeQuickCheckout();

@@ -64,9 +64,9 @@ definePageMeta({ pageType: 'static' });
 const NuxtLink = resolveComponent('NuxtLink');
 const viewport = useViewport();
 const localePath = useLocalizedPath();
-const { isAuthorized } = useCustomer();
 const { data: cart, cartIsEmpty, loading } = useCart();
-const goToCheckout = () => (isAuthorized.value ? localePath(paths.checkout) : localePath(paths.guestLogin));
+// Arizona: no extra guest/login page, the checkout itself offers the guest order and a login link
+const goToCheckout = () => localePath(paths.checkout);
 
 const icon = 'page';
 setPageMeta(t('common.labels.cart'), icon);
