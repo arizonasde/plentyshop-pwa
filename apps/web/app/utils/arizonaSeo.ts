@@ -32,7 +32,6 @@ export const buildReturnPolicy = (): MerchantReturnPolicy => ({
   returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
   merchantReturnDays: RETURN_DAYS,
   returnMethod: 'https://schema.org/ReturnByMail',
-  returnFees: 'https://schema.org/FreeReturn',
 });
 
 /**
@@ -154,7 +153,7 @@ export const buildCategoryTitle = (label: string, suffix: string, maxLength = 65
 };
 
 export const buildCategoryDescription = (label: string): string => {
-  return `${label} günstig bei Arizona Shopping kaufen. Kostenloser Versand ab ${ARIZONA_FREE_SHIPPING_FROM} €, Lieferung in 1–3 Werktagen, ${RETURN_DAYS} Tage kostenlose Rückgabe.`;
+  return `${label} günstig bei Arizona Shopping kaufen. Kostenloser Versand ab ${ARIZONA_FREE_SHIPPING_FROM} €, Lieferung in 1–3 Werktagen, ${RETURN_DAYS} Tage Rückgaberecht.`;
 };
 
 /**

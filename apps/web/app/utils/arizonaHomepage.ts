@@ -105,7 +105,7 @@ export const ARIZONA_HOME_POPULAR_FALLBACK =
 export const ARIZONA_HOME_TICKER = [
   'Gratis-Versand ab 99 €',
   'Lieferung in 1–3 Werktagen',
-  '60 Tage kostenlose Rückgabe',
+  '60 Tage Rückgaberecht',
   'Kauf auf Rechnung',
   'PayPal · Klarna · Karte',
 ];

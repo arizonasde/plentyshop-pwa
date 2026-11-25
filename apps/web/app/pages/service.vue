@@ -52,7 +52,8 @@ const faqGroups = [
       {
         question: 'Was kostet der Versand?',
         answer:
-          'Ab 99 € Bestellwert liefern wir dir innerhalb Deutschlands versandkostenfrei mit DHL – darunter zahlst du nur 4,90 €. Bestellst du aus dem Ausland, siehst du die Versandkosten für dein Land direkt im Warenkorb.',
+          'Ab 99 € Bestellwert liefern wir dir innerhalb Deutschlands versandkostenfrei mit DHL – darunter zahlst du nur 4,90 €. In die anderen Lieferländer kostet der Versand 9,90 €.',
+        link: { to: paths.shipping, label: 'Alle Versandkosten' },
       },
       {
         question: 'Wie lange dauert die Lieferung?',
@@ -61,7 +62,8 @@ const faqGroups = [
       {
         question: 'Liefert ihr auch ins Ausland?',
         answer:
-          'Ja, wir liefern nach Deutschland, Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien. Die Versandkosten für dein Land siehst du im Warenkorb.',
+          'Ja, wir liefern nach Deutschland, Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien. Die Versandkosten je Land findest du hier:',
+        link: { to: paths.shipping, label: 'Versandkosten' },
       },
     ],
   },
@@ -71,7 +73,7 @@ const faqGroups = [
     items: [
       {
         question: 'Wie lange kann ich Artikel zurückgeben?',
-        answer: 'Du hast 60 Tage Zeit, Artikel an uns zurückzuschicken. Die Rücksendung ist für dich kostenlos.',
+        answer: 'Du hast 60 Tage Zeit, Artikel an uns zurückzuschicken.',
       },
       {
         question: 'Wie widerrufe ich meine Bestellung?',
@@ -116,7 +118,7 @@ const faqGroups = [
 
 useArizonaStaticPageHead(
   'Service & Hilfe',
-  'Antworten zu Versand (DHL, kostenlos ab 99 €, 1–3 Werktage), 60 Tagen kostenloser Rückgabe, Zahlung mit PayPal, Klarna, Kreditkarte oder Rechnung und Größen.',
+  'Antworten zu Versand (DHL, kostenlos ab 99 €, 1–3 Werktage), 60 Tagen Rückgaberecht, Zahlung mit PayPal, Klarna, Kreditkarte oder Rechnung und Größen.',
 );
 
 useHead({

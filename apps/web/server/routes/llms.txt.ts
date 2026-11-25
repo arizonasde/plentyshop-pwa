@@ -7,8 +7,8 @@ const LLMS_TXT = `# Arizona Shopping
 
 ## Einkaufen bei Arizona Shopping
 
-- Versand: mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–3 Werktagen. Lieferung ins Ausland nach Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien; die Versandkosten dafür stehen im Warenkorb.
-- Rückgabe: 60 Tage, kostenlos.
+- Versand: mit DHL für 4,90 € innerhalb Deutschlands, Lieferung in 1–3 Werktagen. Lieferung ins Ausland nach Österreich, Belgien, Frankreich, Italien, in die Niederlande, nach Polen und Spanien; Versand dorthin 9,90 € (Übersicht: https://www.arizona-shopping.de/shipping).
+- Rückgabe: 60 Tage Rückgaberecht.
 - Bezahlen: Rechnung, PayPal, Kreditkarte, Klarna, Vorkasse, Lastschrift oder Sofortüberweisung.
 - Bestellen ohne Kundenkonto ist möglich.
 - Kontakt: info@arizona-shopping.de
