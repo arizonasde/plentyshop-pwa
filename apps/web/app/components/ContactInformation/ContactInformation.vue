@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="contact-information" class="@md:px-4 py-6">
+  <div data-testid="contact-information" class="@md:px-4 py-6 @5xl:py-4">
     <h2 class="w-full text-neutral-900 text-lg font-bold mb-4">
       {{ t('contact.info.heading') }}
     </h2>

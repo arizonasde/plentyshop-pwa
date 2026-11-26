@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="shipping-method" class="@md:px-4 my-6">
+  <div data-testid="shipping-method" class="@md:px-4 my-6 @5xl:my-4">
     <h3 class="text-neutral-900 text-lg font-bold">{{ t('shipping.method.heading') }}</h3>
     <div v-if="hasCheckoutAddress">
       <div v-if="!loading" class="mt-4">

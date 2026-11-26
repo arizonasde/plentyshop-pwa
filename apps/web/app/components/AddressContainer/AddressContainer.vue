@@ -1,5 +1,5 @@
 <template>
-  <div data-testid="checkout-address" class="@md:px-4 py-6">
+  <div data-testid="checkout-address" class="@md:px-4 py-6 @5xl:py-4">
     <div v-if="isLoading" class="flex flex-col @sm:flex-row @sm:items-center justify-between">
       <div class="relative w-full">
         <h2 class="text-neutral-900 text-lg font-bold mb-5 mt-2">

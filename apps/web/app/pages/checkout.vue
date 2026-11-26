@@ -6,40 +6,49 @@
     :heading="t('common.labels.checkout')"
   >
     <div v-if="cart" class="@lg:grid @lg:grid-cols-12 @lg:gap-x-6">
-      <div class="col-span-6 @xl:col-span-7 mb-10 @lg:mb-0">
-        <UiDivider id="top-contact-information-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-        <ContactInformation id="contact-information" />
-        <UiDivider id="top-shipping-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-        <AddressContainer id="shipping-address" :key="0" :type="AddressType.Shipping" />
-        <UiDivider id="top-billing-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-        <div v-if="showBillingAddressSection">
-          <AddressContainer id="billing-address" :key="1" :type="AddressType.Billing" />
-          <UiDivider id="bottom-billing-divider" class-name="w-screen @md:w-auto -mx-4 @md:mx-0" />
+      <!-- Arizona: from 1024 px the form splits into two columns (address | shipping + payment), so the whole checkout
+           fits on one screen next to the buy box without scrolling -->
+      <div
+        class="col-span-6 @xl:col-span-7 @5xl:col-span-8 mb-10 @lg:mb-0 @5xl:grid @5xl:grid-cols-2 @5xl:gap-x-6 @5xl:items-start"
+      >
+        <div>
+          <UiDivider id="top-contact-information-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
+          <ContactInformation id="contact-information" />
+          <UiDivider id="top-shipping-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
+          <AddressContainer id="shipping-address" :key="0" :type="AddressType.Shipping" />
+          <UiDivider id="top-billing-divider" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
+          <div v-if="showBillingAddressSection">
+            <AddressContainer id="billing-address" :key="1" :type="AddressType.Billing" />
+            <UiDivider id="bottom-billing-divider" class-name="w-screen @md:w-auto -mx-4 @md:mx-0" />
+          </div>
         </div>
-        <div class="relative" :class="{ 'pointer-events-none opacity-50': disableShippingPayment }">
-          <ShippingMethod
-            :disabled="disableShippingPayment"
-            :loading="!checkoutReady"
-            @update:shipping-method="handleShippingMethodUpdate"
-          />
-          <SfLoaderCircular
-            v-if="disableShippingPayment"
-            class="absolute mt-5 right-0 left-0 m-auto z-loader"
-            size="2xl"
-          />
+        <div>
+          <UiDivider class="hidden @5xl:block" />
+          <div class="relative" :class="{ 'pointer-events-none opacity-50': disableShippingPayment }">
+            <ShippingMethod
+              :disabled="disableShippingPayment"
+              :loading="!checkoutReady"
+              @update:shipping-method="handleShippingMethodUpdate"
+            />
+            <SfLoaderCircular
+              v-if="disableShippingPayment"
+              class="absolute mt-5 right-0 left-0 m-auto z-loader"
+              size="2xl"
+            />
+            <UiDivider class="w-screen @md:w-auto -mx-4 @md:mx-0" />
+            <PreferredDeliveryPackstationFinder v-if="countryHasDelivery" />
+            <PreferredDelivery v-if="countryHasDelivery" />
+            <UiDivider v-if="preferredDeliveryAvailable" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
+            <CheckoutPayment :disabled="disableShippingPayment" @update:active-payment="handlePaymentMethodUpdate" />
+          </div>
           <UiDivider class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-          <PreferredDeliveryPackstationFinder v-if="countryHasDelivery" />
-          <PreferredDelivery v-if="countryHasDelivery" />
-          <UiDivider v-if="preferredDeliveryAvailable" class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-          <CheckoutPayment :disabled="disableShippingPayment" @update:active-payment="handlePaymentMethodUpdate" />
+          <CustomerReference />
+          <CustomerWish />
         </div>
-        <UiDivider class="w-screen @md:w-auto -mx-4 @md:mx-0" />
-        <CustomerReference />
-        <CustomerWish />
       </div>
       <!-- Arizona: total, terms and buy button together at the top of the right column and kept in view while the
            form on the left is filled in; the items follow below (the box scrolls on its own when it is taller than the window) -->
-      <div class="col-span-6 @xl:col-span-5">
+      <div class="col-span-6 @xl:col-span-5 @5xl:col-span-4">
         <div
           class="@lg:sticky @lg:top-4 h-fit @lg:max-h-[calc(100vh-2rem)] @lg:overflow-y-auto"
           data-testid="checkout-buy-box"
