@@ -1,11 +1,13 @@
 <template>
-  <NuxtLink :to="path" class="arizona-magazine-product" :class="{ 'is-mini': mini }">
-    <img :src="image" :alt="name" loading="lazy" />
+  <NuxtLink :to="path" class="arizona-magazine-product mag-press-soft" :class="{ 'is-mini': mini }">
+    <span class="rahmen">
+      <img :src="image" :alt="name" loading="lazy" />
+    </span>
     <template v-if="!mini">
       <b>{{ brand }}</b>
-      <span>{{ name }}</span>
+      <span class="name">{{ name }}</span>
     </template>
-    {{ format(price) }}
+    <span class="preis">{{ format(price) }}</span>
   </NuxtLink>
 </template>
 
@@ -32,39 +34,68 @@ const path = computed(() =>
 <style scoped>
 .arizona-magazine-product {
   display: block;
+  min-width: 0;
   text-decoration: none;
   font-size: 13px;
+  line-height: 1.4;
 }
-.arizona-magazine-product img {
+.rahmen {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: #ece7df;
+}
+.rahmen img {
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  background: #ece7df;
   display: block;
-  margin-bottom: 8px;
-  transition: opacity 0.2s;
+  transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-.arizona-magazine-product:hover img {
-  opacity: 0.85;
+@media (hover: hover) and (pointer: fine) {
+  .arizona-magazine-product:hover .rahmen img {
+    transform: scale(1.04);
+  }
+  .arizona-magazine-product:hover .name {
+    color: #1a1a1a;
+  }
 }
-.arizona-magazine-product b {
+b {
   display: block;
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.arizona-magazine-product span {
+.name {
   display: block;
   color: #6f6a63;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: color 200ms ease;
 }
-.arizona-magazine-product.is-mini {
+.preis {
+  display: block;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.is-mini {
   font-size: 11px;
+}
+.is-mini .rahmen {
+  margin-bottom: 4px;
+}
+.is-mini .preis {
+  margin: 0;
+  font-weight: 500;
   color: #6f6a63;
 }
-.arizona-magazine-product.is-mini img {
-  margin-bottom: 4px;
+@media (prefers-reduced-motion: reduce) {
+  .rahmen img {
+    transition: none;
+  }
+  .arizona-magazine-product:hover .rahmen img {
+    transform: none;
+  }
 }
 </style>

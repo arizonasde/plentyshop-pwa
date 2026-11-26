@@ -18,3 +18,6 @@ export type ArizonaMagazinePost = {
 export type ArizonaMagazineShort = { titel: string; link: string; quelle: string; datum: string };
 
 export type ArizonaMagazine = { stand: string; beitraege: ArizonaMagazinePost[]; kurz: ArizonaMagazineShort[] };
+
+/** filter of the post list on the magazine page */
+export type ArizonaMagazineFilter = 'alle' | 'News' | 'Tipp';

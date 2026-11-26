@@ -1,10 +1,15 @@
-/* Arizona: magazine "Trends & Tipps" (pages/magazin), styled like a fashion magazine. All rules live under .mag. */
+/* Arizona: magazine "Trends & Tipps" (pages/magazin), styled like a fashion magazine. All rules live under .mag.
+   Motion: one entrance on load, scroll reveals only via CSS scroll timelines, press feedback on everything clickable,
+   hover effects only on real pointers, reduced motion = fades only. */
 .mag {
   --papier: #faf7f2;
-  --tinte: #1a1a1a;
+  --papier-tief: #f1ebe1;
+  --tinte: #141414;
   --grau: #6f6a63;
-  --linie: #d9d2c7;
+  --linie: #ddd5c8;
   --rot: #c8102e;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   background: var(--papier);
   color: var(--tinte);
   font-size: 16px;
@@ -13,117 +18,238 @@
 .mag a {
   color: inherit;
 }
-.mag .serif,
-.mag .kurz li a {
+.mag .serif {
   font-family: 'Bodoni Moda', Didot, Georgia, serif;
 }
 .mag .wrap {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 16px 48px;
 }
 .mag .kicker {
-  font: 600 11px/1 Inter, sans-serif;
+  font:
+    600 11px/1.3 Inter,
+    sans-serif;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--rot);
 }
+
+/* ---------- masthead ---------- */
+.mag .kopf {
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 3px double var(--tinte);
+}
 .mag .leiste {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
-  letter-spacing: 0.08em;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--grau);
   padding: 14px 0;
   border-bottom: 1px solid var(--linie);
 }
-.mag .kopf {
-  text-align: center;
-  padding: 28px 0 18px;
-  border-bottom: 3px double var(--tinte);
-}
-.mag .kopf h1,
-.mag .kopf .name {
-  margin: 0;
+.mag .titelzug {
+  margin: 28px 0 0;
   font-weight: 700;
-  font-size: clamp(56px, 11vw, 148px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
+  font-size: clamp(40px, 12.4vw, 168px);
+  line-height: 0.88;
+  white-space: nowrap;
+  letter-spacing: -0.025em;
 }
-.mag .kopf.klein .name {
-  display: block;
-  text-decoration: none;
-  font-size: clamp(40px, 6vw, 72px);
-}
-.mag .kopf h1 em,
-.mag .kopf .name em {
+.mag .titelzug em,
+.mag .kopf-name em {
   font-style: italic;
   font-weight: 500;
   color: var(--rot);
 }
-.mag .kopf p {
-  margin: 12px 0 0;
-  font-size: 13px;
-  letter-spacing: 0.18em;
+.mag .unterzeile {
+  margin: 14px 0 0;
+  font-size: 12px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--grau);
 }
-.mag nav {
+
+/* ---------- chips, buttons, links ---------- */
+.mag .rubriken {
   display: flex;
   justify-content: center;
-  gap: 28px;
-  padding: 12px 0;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 0;
   border-bottom: 1px solid var(--linie);
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+}
+.mag .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--linie);
+  border-radius: 9999px;
+  background: transparent;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-}
-.mag nav a {
   text-decoration: none;
+  color: var(--tinte);
+  cursor: pointer;
 }
-.mag nav a:hover,
-.mag .kurz li a:hover,
-.mag .mehr:hover {
-  color: var(--rot);
-}
-.mag .leer {
-  text-align: center;
-  padding: 64px 0;
+.mag .chip .anzahl {
+  font-weight: 500;
   color: var(--grau);
 }
-.mag .titel {
-  display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: 48px;
-  padding: 48px 0;
-  border-bottom: 1px solid var(--linie);
-  align-items: center;
+.mag .chip.is-aktiv {
+  border-color: var(--tinte);
+  background: var(--tinte);
+  color: #fff;
 }
+.mag .chip.is-aktiv .anzahl {
+  color: rgb(255 255 255 / 0.6);
+}
+.mag .knopf {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--tinte);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px 24px;
+  border: 1px solid var(--tinte);
+}
+.mag .knopf-hell {
+  background: transparent;
+  color: var(--tinte);
+}
+.mag .pfeil,
+.mag .pfeil-links {
+  display: inline-block;
+  transition: transform 200ms var(--ease-out);
+}
+.mag .mehr,
+.mag .weiter {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: color 200ms ease;
+}
+.mag .weiter {
+  border-bottom: 0;
+}
+
+/* press feedback: firm on buttons, soft on large image links */
+.mag .mag-press {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+.mag .mag-press:active {
+  transform: scale(0.97);
+}
+.mag .mag-press-soft {
+  transition: transform 200ms var(--ease-out);
+}
+.mag .mag-press-soft:active {
+  transform: scale(0.985);
+}
+.mag :focus-visible {
+  outline: 2px solid var(--rot);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mag .chip:hover {
+    border-color: var(--tinte);
+  }
+  .mag .knopf:hover {
+    background: var(--rot);
+    border-color: var(--rot);
+    color: #fff;
+  }
+  .mag .knopf:hover .pfeil,
+  .mag .weiter:hover .pfeil,
+  .mag .zitat-link:hover .pfeil {
+    transform: translateX(4px);
+  }
+  .mag .zurueck:hover .pfeil-links {
+    transform: translateX(-4px);
+  }
+  .mag .mehr:hover,
+  .mag .weiter:hover,
+  .mag .kurz a:hover .serif {
+    color: var(--rot);
+  }
+  .mag .bildrahmen:hover img {
+    transform: scale(1.035);
+  }
+  .mag .karte h4 a:hover,
+  .mag .cover h2 a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+}
+
+/* ---------- images ---------- */
 .mag figure {
   margin: 0;
 }
-.mag .titel figure img,
-.mag .beitrag figure img {
+.mag .bildrahmen {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--papier-tief);
+}
+.mag .bildrahmen img {
   width: 100%;
   display: block;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  transition: transform 700ms var(--ease-out);
 }
 .mag figcaption {
   font-size: 11px;
   color: var(--grau);
   margin-top: 8px;
 }
-.mag .titel h2 {
-  font-weight: 700;
-  font-size: clamp(40px, 5.4vw, 76px);
-  line-height: 0.98;
-  letter-spacing: -0.015em;
-  margin: 14px 0 18px;
+
+/* ---------- cover story ---------- */
+.mag .leer {
+  text-align: center;
+  padding: 64px 0;
+  color: var(--grau);
 }
-.mag .titel h2 a {
+.mag .cover {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 56px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--linie);
+  align-items: center;
+}
+.mag .cover h2 {
+  font-weight: 700;
+  font-size: clamp(42px, 5.6vw, 84px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+  text-wrap: balance;
+}
+.mag .cover h2 a {
   text-decoration: none;
 }
 .mag .dek {
@@ -133,166 +259,203 @@
   line-height: 1.35;
   color: var(--grau);
   margin: 0 0 22px;
+  text-wrap: balance;
+}
+.mag .text {
+  font-size: 18px;
+  line-height: 1.65;
+  margin: 0;
+  text-wrap: pretty;
 }
 .mag .text::first-letter {
   font-family: 'Bodoni Moda', Georgia, serif;
   font-weight: 700;
   float: left;
-  font-size: 72px;
-  line-height: 0.82;
-  padding: 6px 10px 0 0;
+  font-size: 76px;
+  line-height: 0.8;
+  padding: 8px 10px 0 0;
   color: var(--rot);
+}
+.mag .aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
 }
 .mag .quelle {
   font-size: 12px;
   color: var(--grau);
   border-top: 1px solid var(--linie);
   padding-top: 12px;
-  margin-top: 22px;
+  margin-top: 28px;
 }
-.mag .knopf {
-  display: inline-block;
-  margin-top: 22px;
-  background: var(--tinte);
-  color: #fff;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 14px 22px;
+
+/* ---------- section heads ---------- */
+.mag .abschnitt-kopf {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
 }
-.mag .knopf:hover {
-  background: var(--rot);
+.mag .abschnitt-kopf h3 {
+  margin: 6px 0 0;
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 1.05;
+  font-weight: 700;
 }
+.mag .filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ---------- shop the look ---------- */
 .mag .look {
-  padding: 36px 0;
+  padding: 40px 0;
   border-bottom: 1px solid var(--linie);
 }
-.mag .look h3 {
-  font-size: 28px;
-  font-weight: 500;
+.mag .look .abschnitt-kopf h3 {
   font-style: italic;
-  margin: 6px 0 18px;
+  font-weight: 500;
 }
 .mag .produkte {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
-.mag .zitat {
-  background: var(--rot);
-  color: #fff;
-  text-align: center;
-  padding: 64px 16px;
-  margin: 48px 0;
-}
-.mag .zitat p {
-  margin: 0 auto;
-  max-width: 900px;
-  font-weight: 500;
-  font-style: italic;
-  font-size: clamp(32px, 5vw, 60px);
-  line-height: 1.08;
-}
-.mag .zitat span {
-  display: block;
-  margin-top: 16px;
-  font: 600 11px/1 Inter, sans-serif;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  opacity: 0.85;
-}
-.mag .rubrik {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin: 48px 0 24px;
-}
-.mag .rubrik h3 {
-  margin: 0;
-  font-size: 36px;
-  font-weight: 700;
-}
-.mag .rubrik::after {
-  content: '';
-  flex: 1;
-  border-bottom: 1px solid var(--tinte);
+
+/* ---------- posts ---------- */
+.mag .beitraege {
+  padding: 48px 0 8px;
 }
 .mag .raster {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px;
+  gap: 40px 32px;
 }
-.mag .raster.breit {
-  grid-template-columns: 2fr 1fr;
+.mag .karte {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
-.mag .spalte {
-  display: grid;
-  gap: 48px;
+.mag .karte .bildrahmen {
+  margin-bottom: 16px;
 }
-.mag .raster.breit .karte img.bild {
-  aspect-ratio: 3 / 2;
-  object-position: 50% 15%;
-}
-.mag .raster.breit .mini {
-  max-width: 66%;
-}
-.mag .karte img.bild {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
-  margin-bottom: 14px;
+.mag .karte .marke {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--papier);
+  padding: 5px 10px;
+  font:
+    600 10px/1 Inter,
+    sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 .mag .karte h4 {
-  font-size: 30px;
+  font-size: clamp(26px, 2.4vw, 32px);
   line-height: 1.05;
   font-weight: 700;
   margin: 10px 0;
+  text-wrap: balance;
 }
 .mag .karte h4 a {
   text-decoration: none;
 }
 .mag .karte p {
-  margin: 0 0 12px;
+  margin: 0 0 14px;
   color: #3b3935;
+  text-wrap: pretty;
 }
 .mag .mini {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 14px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--linie);
 }
-.mag .mehr {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+
+/* ---------- tip of the week ---------- */
+.mag .zitat {
+  background: var(--rot);
+  color: #fff;
+  text-align: center;
+  padding: clamp(48px, 8vw, 88px) 20px;
+  margin: 56px 0;
+}
+.mag .zitat-marke {
+  display: block;
+  font:
+    600 11px/1 Inter,
+    sans-serif;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  opacity: 0.85;
 }
+.mag .zitat p {
+  margin: 18px auto 0;
+  max-width: 920px;
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(36px, 6vw, 76px);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.mag .zitat-link {
+  display: inline-block;
+  max-width: 560px;
+  margin-top: 26px;
+  line-height: 1.5;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.6);
+  padding-bottom: 3px;
+}
+
+/* ---------- in brief ---------- */
 .mag .kurz {
   border-top: 3px solid var(--tinte);
-  padding-top: 14px;
+  padding-top: 24px;
 }
-.mag .kurz ul {
+.mag .kurz ol {
   list-style: none;
-  margin: 12px 0 0;
+  margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
 }
 .mag .kurz li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
   border-bottom: 1px solid var(--linie);
-  padding: 14px 0;
+  padding: 16px 0;
 }
-.mag .kurz li a {
+.mag .kurz .nummer {
+  font-size: 26px;
+  line-height: 1;
+  font-style: italic;
+  color: var(--rot);
+}
+.mag .kurz a {
   display: block;
   text-decoration: none;
+}
+.mag .kurz a .serif {
+  display: block;
   font-size: 19px;
   line-height: 1.25;
   font-weight: 500;
+  transition: color 200ms ease;
 }
-.mag .kurz li span {
+.mag .kurz small {
   display: block;
   margin-top: 6px;
   font-size: 11px;
@@ -300,21 +463,114 @@
   text-transform: uppercase;
   color: var(--grau);
 }
-.mag .beitrag {
+
+/* ---------- single post ---------- */
+.mag .kopf-klein {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 3px double var(--tinte);
+}
+.mag .zurueck {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.mag .kopf-name {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.mag .kopf-datum {
+  justify-self: end;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grau);
+}
+.mag .artikel-kopf {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 0 36px;
+  text-align: center;
+}
+.mag .artikel-kopf h1 {
+  font-weight: 700;
+  font-size: clamp(44px, 7vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 16px 0 22px;
+  text-wrap: balance;
+}
+.mag .artikel-kopf .dek {
+  font-size: clamp(19px, 2vw, 24px);
+  margin: 0 auto;
+  max-width: 680px;
+}
+.mag .meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 24px 0 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grau);
+}
+.mag .meta span + span::before {
+  content: '·';
+  margin-right: 20px;
+}
+.mag .artikel-raster {
   display: grid;
   grid-template-columns: 6fr 5fr;
-  gap: 48px;
-  padding: 40px 0;
+  gap: 56px;
   align-items: start;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--linie);
 }
-.mag .beitrag h1 {
-  font-weight: 700;
-  font-size: clamp(36px, 4.6vw, 64px);
-  line-height: 1;
-  letter-spacing: -0.015em;
-  margin: 14px 0 18px;
+.mag .artikel-bild {
+  position: sticky;
+  top: 96px;
 }
-.mag footer {
+.mag .artikel-text {
+  padding-top: 8px;
+}
+.mag .artikel-text .text {
+  font-size: 20px;
+}
+.mag .artikel-text .knopf {
+  margin-top: 28px;
+}
+.mag .look-seite {
+  margin-top: 36px;
+  padding: 28px 0 0;
+  border-top: 3px solid var(--tinte);
+  border-bottom: 0;
+}
+.mag .look-seite h2 {
+  font-size: 28px;
+  font-weight: 500;
+  font-style: italic;
+  margin: 6px 0 18px;
+}
+.mag .produkte-zwei {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---------- footer ---------- */
+.mag .fuss {
   margin-top: 64px;
   border-top: 3px double var(--tinte);
   padding-top: 24px;
@@ -325,32 +581,195 @@
   gap: 16px;
   flex-wrap: wrap;
 }
-@media (max-width: 900px) {
-  .mag .raster.breit,
-  .mag .titel,
-  .mag .beitrag {
+
+/* ---------- layout breakpoints ---------- */
+@media (max-width: 960px) {
+  .mag .cover,
+  .mag .artikel-raster {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 28px;
   }
-  .mag .titel {
-    padding: 28px 0;
+  .mag .cover {
+    padding: 28px 0 36px;
+  }
+  .mag .artikel-bild {
+    position: static;
   }
   .mag .raster {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-@media (max-width: 600px) {
-  .mag .raster {
-    grid-template-columns: 1fr;
-  }
-  .mag .produkte {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .mag nav {
-    gap: 16px;
-    font-size: 12px;
+  .mag .kurz ol {
+    grid-template-columns: 1fr;
   }
-  .mag .raster.breit .mini {
-    max-width: none;
+}
+@media (max-width: 640px) {
+  .mag .leiste-mitte,
+  .mag .kopf-datum {
+    display: none;
+  }
+  .mag .kopf-klein {
+    grid-template-columns: auto 1fr;
+  }
+  .mag .kopf-klein .kopf-name {
+    justify-self: end;
+  }
+  .mag .titelzug {
+    margin-top: 20px;
+  }
+  .mag .meta span:nth-child(3) {
+    display: none;
+  }
+  .mag .rubriken {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin: 0 -16px;
+    padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .mag .rubriken .chip {
+    flex: none;
+  }
+  .mag .raster {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  /* products scroll sideways on phones, each snapping into place */
+  .mag .look .produkte:not(.produkte-zwei) {
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: 62%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin: 0 -16px;
+    padding: 0 16px 4px;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .mag .look .produkte:not(.produkte-zwei) > * {
+    scroll-snap-align: start;
+  }
+  .mag .produkte-zwei {
+    gap: 14px;
+  }
+  .mag .text {
+    font-size: 17px;
+  }
+  .mag .artikel-text .text {
+    font-size: 18px;
+  }
+  .mag .artikel-kopf {
+    padding: 32px 0 24px;
+  }
+  .mag .aktionen .knopf {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* ---------- motion ---------- */
+/* one entrance on load: masthead and cover text stagger in, the cover image unveils from the bottom */
+.mag .mag-rise > * {
+  animation: mag-rise 600ms var(--ease-out) backwards;
+}
+.mag .mag-rise > :nth-child(2) {
+  animation-delay: 50ms;
+}
+.mag .mag-rise > :nth-child(3) {
+  animation-delay: 90ms;
+}
+.mag .mag-rise > :nth-child(4) {
+  animation-delay: 125ms;
+}
+.mag .mag-rise > :nth-child(5) {
+  animation-delay: 150ms;
+}
+.mag .mag-rise > :nth-child(6) {
+  animation-delay: 170ms;
+}
+.mag .mag-rise-late > * {
+  animation-delay: 140ms;
+}
+.mag .mag-rise-late > :nth-child(2) {
+  animation-delay: 185ms;
+}
+.mag .mag-rise-late > :nth-child(3) {
+  animation-delay: 220ms;
+}
+.mag .mag-rise-late > :nth-child(n + 4) {
+  animation-delay: 250ms;
+}
+.mag .mag-appear .bildrahmen {
+  animation: mag-unveil 900ms var(--ease-out) 60ms both;
+}
+.mag .mag-appear .bildrahmen img {
+  animation: mag-settle 1100ms var(--ease-out) 60ms backwards;
+}
+@keyframes mag-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes mag-unveil {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes mag-settle {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+/* scroll reveals only where the browser supports scroll timelines; elsewhere everything is simply visible */
+@supports (animation-timeline: view()) {
+  .mag .mag-reveal {
+    animation: mag-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+  .mag .karte.mag-reveal .bildrahmen {
+    animation: mag-unveil linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 35%;
+  }
+}
+@keyframes mag-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mag .mag-rise > *,
+  .mag .mag-reveal {
+    animation-name: mag-fade;
+  }
+  .mag .mag-appear .bildrahmen,
+  .mag .mag-appear .bildrahmen img,
+  .mag .karte.mag-reveal .bildrahmen {
+    animation: none;
+  }
+  .mag .mag-press,
+  .mag .mag-press-soft,
+  .mag .pfeil,
+  .mag .pfeil-links,
+  .mag .bildrahmen img {
+    transition: none;
+  }
+  .mag .mag-press:active,
+  .mag .mag-press-soft:active,
+  .mag .bildrahmen:hover img {
+    transform: none;
+  }
+}
+@keyframes mag-fade {
+  from {
+    opacity: 0;
   }
 }
