@@ -210,12 +210,26 @@ const story = ARIZONA_BRAND_STORIES[brand.slug];
 
 const currentPage = computed(() => Number(route.query.page) || 1);
 
+// Arizona: plenty freezes search results per exact parameter set for days (26.11.: „Luminox“/48 showed 1 of 95 watches).
+// The search ignores letter case, so the term's case changes daily – a fresh query each day, no repeat for 128 days.
+const dailySearchTerm = (term: string) => {
+  const day = Math.floor(Date.now() / 86_400_000);
+  let bit = 0;
+  return [...term]
+    .map((char) => {
+      if (!/[a-z]/i.test(char)) return char;
+      const upper = (day >> bit++ % 7) & 1;
+      return upper ? char.toUpperCase() : char.toLowerCase();
+    })
+    .join('');
+};
+
 const { data } = await useAsyncData(
   () => `arizona-brand-${brand.slug}-${currentPage.value}`,
   () =>
     brand.searchTerm
       ? useSdk().plentysystems.getSearch({
-          term: brand.searchTerm,
+          term: dailySearchTerm(brand.searchTerm),
           itemsPerPage: PAGE_SIZE,
           page: currentPage.value,
           sort: 'item.score',
