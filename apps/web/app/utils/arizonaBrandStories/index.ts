@@ -116,7 +116,7 @@ const LUMINOX: ArizonaBrandStory = {
   ],
   seriesTitle: 'Die Luminox-Serien bei Arizona Shopping',
   seriesIntro:
-    'Luminox ordnet seine Uhren nach Einsatzgebiet: Wasser, Luft und Land. Diese Serien führen wir – insgesamt 64 Modelle in 25 Serien.',
+    'Luminox ordnet seine Uhren nach Einsatzgebiet: Wasser, Luft und Land. Diese Serien führen wir – insgesamt 95 Modelle in 29 Serien.',
   seriesGroups: [
     {
       title: 'Wasser',
@@ -141,6 +141,16 @@ const LUMINOX: ArizonaBrandStory = {
           name: 'Leatherback SEA Turtle',
           models: '0300, Giant 0320',
           text: 'Leichte Uhr für Alltag und Wassersport, benannt nach der Lederschildkröte.',
+        },
+        {
+          name: 'Sea Bass',
+          models: '2000',
+          text: 'Taucheruhr mit 44-mm-Gehäuse aus CARBONOX, einseitig drehbarer Lünette und 100 m Wasserdichtheit – in vielen Zifferblattfarben.',
+        },
+        {
+          name: 'Sea Lion',
+          models: '2050',
+          text: 'Die Sea Lion in 44 mm: CARBONOX-Gehäuse, einseitig drehbare Lünette, 100 m wasserdicht – mit Silikon- oder PU-Band.',
         },
       ],
     },
@@ -194,13 +204,18 @@ const LUMINOX: ArizonaBrandStory = {
           models: '0920',
           text: 'Sportliche Automatikuhr aus der Sport-Timer-Linie.',
         },
+        {
+          name: 'Moon Valley',
+          models: 'CARBONOX 2400, Steel 2500',
+          text: 'Field-Uhr mit 43-mm-Gehäuse und fester Lünette – aus CARBONOX oder Edelstahl, 100 m wasserdicht.',
+        },
       ],
     },
   ],
   footnote:
     '* Angabe des Herstellers. Quellen: de.luminox.com (Geschichte, Technik, Navy SEAL Foundation), Schweizer „Swiss made“-Verordnung für Uhren (SR 232.119). Bilder: Luminox.',
   comingSoon:
-    'Die Luminox-Kollektion kommt in Kürze zu Arizona Shopping: 64 Modelle aus 25 Serien. Merk dir diese Seite – die Uhren erscheinen hier, sobald sie lieferbar sind.',
+    'Die Luminox-Kollektion kommt in Kürze zu Arizona Shopping: 95 Modelle aus 29 Serien. Merk dir diese Seite – die Uhren erscheinen hier, sobald sie lieferbar sind.',
 };
 
 const CARLO_COLUCCI: ArizonaBrandStory = {
