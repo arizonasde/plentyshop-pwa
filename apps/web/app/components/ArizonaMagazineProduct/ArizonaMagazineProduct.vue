@@ -3,11 +3,11 @@
     <span class="rahmen">
       <img :src="image" :alt="name" loading="lazy" />
     </span>
-    <template v-if="!mini">
+    <span class="info">
       <b>{{ brand }}</b>
-      <span class="name">{{ name }}</span>
-    </template>
-    <span class="preis">{{ format(price) }}</span>
+      <span v-if="!mini" class="name">{{ name }}</span>
+      <span class="preis">{{ format(price) }}</span>
+    </span>
   </NuxtLink>
 </template>
 
@@ -32,9 +32,15 @@ const path = computed(() =>
 </script>
 
 <style scoped>
+/* white product tile on the dark magazine: image on white, text below */
 .arizona-magazine-product {
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #fff;
+  color: #111;
   text-decoration: none;
   font-size: 13px;
   line-height: 1.4;
@@ -42,53 +48,50 @@ const path = computed(() =>
 .rahmen {
   display: block;
   overflow: hidden;
-  margin-bottom: 10px;
-  background: #ece7df;
+  background: #fff;
 }
 .rahmen img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
   display: block;
+  padding: 12px;
   transition: transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-@media (hover: hover) and (pointer: fine) {
-  .arizona-magazine-product:hover .rahmen img {
-    transform: scale(1.04);
-  }
-  .arizona-magazine-product:hover .name {
-    color: #1a1a1a;
-  }
+.info {
+  display: block;
+  padding: 12px 16px 16px;
+  border-top: 1px solid #eee;
 }
 b {
   display: block;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: #777;
 }
 .name {
   display: block;
-  color: #6f6a63;
+  margin-top: 2px;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 200ms ease;
 }
 .preis {
-  display: block;
-  margin-top: 2px;
-  font-weight: 600;
+  display: inline-block;
+  margin-top: 8px;
+  border-radius: 9999px;
+  background: #111;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
 }
-.is-mini {
-  font-size: 11px;
-}
-.is-mini .rahmen {
-  margin-bottom: 4px;
-}
-.is-mini .preis {
-  margin: 0;
-  font-weight: 500;
-  color: #6f6a63;
+@media (hover: hover) and (pointer: fine) {
+  .arizona-magazine-product:hover .rahmen img {
+    transform: scale(1.05);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .rahmen img {

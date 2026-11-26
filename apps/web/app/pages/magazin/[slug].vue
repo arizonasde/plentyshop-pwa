@@ -1,81 +1,86 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <div v-if="post" class="mag" data-testid="arizona-magazine-post">
-      <div class="wrap">
-        <header class="kopf-klein">
-          <NuxtLink :to="localePath('/magazin')" class="zurueck mag-press">
-            <span class="pfeil-links" aria-hidden="true">←</span> Magazin
-          </NuxtLink>
-          <NuxtLink :to="localePath('/magazin')" class="kopf-name serif">Trends <em>&amp;</em> Tipps</NuxtLink>
-          <span class="kopf-datum">{{ arizonaMagazineDate(post.datum) }}</span>
-        </header>
-
-        <article class="artikel">
+      <!-- hero: blurred picture as backdrop, headline centred, sharp picture below -->
+      <section class="held held-artikel">
+        <img class="held-hintergrund" :src="post.bild" alt="" aria-hidden="true" />
+        <div class="wrap">
+          <div class="marke-zeile">
+            <NuxtLink :to="localePath('/magazin')" class="zurueck mag-press">
+              <span class="pfeil-links" aria-hidden="true">←</span> Trends &amp; Tipps
+            </NuxtLink>
+            <span class="ausgabe">{{ arizonaMagazineDate(post.datum) }}</span>
+          </div>
           <div class="artikel-kopf mag-rise">
-            <div class="kicker">{{ post.art }} · {{ post.thema }}</div>
-            <!-- the post is the page heading; the magazine name above is only decoration -->
-            <h1 class="serif">{{ post.headline }}</h1>
-            <p class="dek">{{ post.titel }}</p>
-            <p class="meta">
-              <span>{{ arizonaMagazineDate(post.datum) }}</span>
-              <span>{{ readingTime }}</span>
-              <span v-if="postProducts.length">{{ postProducts.length }} Teile zum Nachshoppen</span>
-            </p>
-          </div>
-
-          <div class="artikel-raster">
-            <figure class="artikel-bild mag-appear">
-              <div class="bildrahmen">
-                <img :src="post.bild" :alt="post.titel" fetchpriority="high" />
-              </div>
-              <figcaption>Bild KI-bearbeitet, Originalprodukt</figcaption>
-            </figure>
-
-            <div class="artikel-text mag-rise mag-rise-late">
-              <p class="text">{{ post.text }}</p>
-              <NuxtLink v-if="post.kategorie" class="knopf mag-press" :to="localePath(post.kategorie)">
-                Jetzt entdecken <span class="pfeil" aria-hidden="true">→</span>
-              </NuxtLink>
-              <p v-if="post.quelle" class="quelle">
-                Thema aufgegriffen von
-                <a :href="post.quelle.link" rel="nofollow noopener" target="_blank">
-                  {{ post.quelle.name }}: „{{ post.quelle.titel }}“</a
-                >, {{ post.quelle.datum }}
-              </p>
-
-              <section v-if="postProducts.length" class="look look-seite">
-                <div class="kicker">Shop the Look</div>
-                <h2 class="serif">Die Teile zum Artikel</h2>
-                <div class="produkte produkte-zwei">
-                  <ArizonaMagazineProduct
-                    v-for="product in postProducts"
-                    :key="productGetters.getVariationId(product)"
-                    :product="product"
-                  />
-                </div>
-              </section>
+            <span class="pille pille-akzent">{{ post.art }} · {{ post.thema }}</span>
+            <!-- the post is the page heading -->
+            <h1 class="anzeige">{{ post.headline }}</h1>
+            <p class="lead">{{ post.titel }}</p>
+            <div class="meta">
+              <span class="pille pille-glas">{{ readingTime }}</span>
+              <span v-if="postProducts.length" class="pille pille-glas">{{ postProducts.length }} Teile im Look</span>
             </div>
           </div>
-        </article>
+          <figure class="artikel-bild mag-appear">
+            <img :src="post.bild" :alt="post.titel" fetchpriority="high" />
+            <figcaption>Bild KI-bearbeitet, Originalprodukt</figcaption>
+          </figure>
+        </div>
+      </section>
 
-        <section v-if="more.length" class="beitraege mehr-beitraege">
-          <div class="abschnitt-kopf mag-reveal">
+      <article class="wrap lesespalte mag-reveal">
+        <p class="text">{{ post.text }}</p>
+        <NuxtLink v-if="post.kategorie" class="knopf mag-press" :to="localePath(post.kategorie)">
+          Jetzt entdecken <span class="pfeil" aria-hidden="true">→</span>
+        </NuxtLink>
+        <p v-if="post.quelle" class="quelle">
+          Thema aufgegriffen von
+          <a :href="post.quelle.link" rel="nofollow noopener" target="_blank">
+            {{ post.quelle.name }}: „{{ post.quelle.titel }}“</a
+          >, {{ post.quelle.datum }}
+        </p>
+      </article>
+
+      <section v-if="postProducts.length" class="band">
+        <div class="wrap">
+          <div class="kopfzeile mag-reveal">
             <div>
-              <div class="kicker">Weiterlesen</div>
-              <h3 class="serif">Mehr aus dem Magazin</h3>
+              <span class="ueber">Shop the Look</span>
+              <h2 class="anzeige">Die Teile zum Artikel</h2>
             </div>
-            <NuxtLink class="mehr" :to="localePath('/magazin')">Zur Übersicht</NuxtLink>
+            <NuxtLink v-if="post.kategorie" class="textlink" :to="localePath(post.kategorie)">
+              Alles ansehen <span class="pfeil" aria-hidden="true">→</span>
+            </NuxtLink>
           </div>
-          <div class="raster">
-            <ArizonaMagazineCard v-for="entry in more" :key="entry.slug" class="mag-reveal" :post="entry" />
+          <div class="leiste-wisch">
+            <ArizonaMagazineProduct
+              v-for="product in postProducts"
+              :key="productGetters.getVariationId(product)"
+              :product="product"
+            />
           </div>
-        </section>
+        </div>
+      </section>
 
-        <footer class="fuss">
-          <span>© Arizona Shopping · Trends &amp; Tipps</span>
-          <NuxtLink class="mehr" :to="localePath('/magazin')">← Zurück zum Magazin</NuxtLink>
-        </footer>
-      </div>
+      <section v-if="more.length" class="wrap abschnitt">
+        <div class="kopfzeile mag-reveal">
+          <div>
+            <span class="ueber">Weiterlesen</span>
+            <h2 class="anzeige">Mehr aus dem Magazin</h2>
+          </div>
+          <NuxtLink class="textlink" :to="localePath('/magazin')">
+            Zur Übersicht <span class="pfeil" aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
+        <div class="bento bento-drei">
+          <ArizonaMagazineCard v-for="entry in more" :key="entry.slug" class="mag-reveal" :post="entry" />
+        </div>
+      </section>
+
+      <footer class="wrap fuss">
+        <span>© Arizona Shopping · Trends &amp; Tipps</span>
+        <NuxtLink class="textlink" :to="localePath('/magazin')">← Zurück zum Magazin</NuxtLink>
+      </footer>
     </div>
   </NuxtLayout>
 </template>

@@ -1,138 +1,147 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <div class="mag" data-testid="arizona-magazine">
-      <div class="wrap">
-        <header class="kopf mag-rise">
-          <div class="leiste">
-            <span>Ausgabe {{ issue }}</span>
-            <span class="leiste-mitte">Mode · Styling · Trends</span>
-            <span>{{ today }}</span>
-          </div>
-          <h1 class="titelzug serif">Trends <em>&amp;</em> Tipps</h1>
-          <p class="unterzeile">Das Modemagazin von Arizona Shopping</p>
-        </header>
+      <p v-if="!cover" class="wrap leer">Die nächste Ausgabe ist in Arbeit – schau bald wieder vorbei.</p>
 
-        <nav v-if="cover" class="rubriken mag-rise" aria-label="Rubriken">
-          <a class="chip mag-press" href="#titel">Titelgeschichte</a>
-          <a v-if="coverProducts.length" class="chip mag-press" href="#look">Shop the Look</a>
-          <a v-if="rest.length" class="chip mag-press" href="#beitraege">Beiträge</a>
-          <a v-if="shorts.length" class="chip mag-press" href="#kurz">Kurz gemeldet</a>
-        </nav>
-
-        <p v-if="!cover" class="leer">Die nächste Ausgabe ist in Arbeit – schau bald wieder vorbei.</p>
-
-        <template v-else>
-          <section id="titel" class="cover">
-            <figure class="cover-bild mag-appear">
-              <NuxtLink :to="localePath(arizonaMagazinePostPath(cover.slug))" class="bildrahmen mag-press-soft">
-                <img :src="cover.bild" :alt="cover.titel" fetchpriority="high" />
-              </NuxtLink>
-              <figcaption>Bild KI-bearbeitet, Originalprodukt</figcaption>
-            </figure>
-            <div class="cover-text mag-rise mag-rise-late">
-              <div class="kicker">Titelgeschichte · {{ cover.art }} · {{ arizonaMagazineDate(cover.datum) }}</div>
-              <h2 class="serif">
+      <template v-else>
+        <!-- hero: blurred cover image as backdrop, sharp image + headline on top -->
+        <section id="titel" class="held">
+          <img class="held-hintergrund" :src="cover.bild" alt="" aria-hidden="true" />
+          <div class="wrap held-raster">
+            <div class="held-text mag-rise">
+              <div class="marke-zeile">
+                <span class="wortmarke">Trends &amp; Tipps</span>
+                <span class="ausgabe">Ausgabe {{ issue }}</span>
+              </div>
+              <span class="pille pille-akzent">Titelgeschichte · {{ cover.art }}</span>
+              <h1 class="anzeige">
                 <NuxtLink :to="localePath(arizonaMagazinePostPath(cover.slug))">{{ cover.headline }}</NuxtLink>
-              </h2>
-              <p class="dek">{{ cover.titel }}</p>
-              <p class="text">{{ cover.text }}</p>
+              </h1>
+              <p class="lead">{{ cover.text }}</p>
               <div class="aktionen">
                 <NuxtLink class="knopf mag-press" :to="localePath(arizonaMagazinePostPath(cover.slug))">
                   Artikel lesen <span class="pfeil" aria-hidden="true">→</span>
                 </NuxtLink>
-                <NuxtLink v-if="cover.kategorie" class="knopf knopf-hell mag-press" :to="localePath(cover.kategorie)">
-                  Jetzt entdecken
+                <NuxtLink v-if="cover.kategorie" class="knopf knopf-rand mag-press" :to="localePath(cover.kategorie)">
+                  Zum Shop
                 </NuxtLink>
               </div>
-              <p v-if="cover.quelle" class="quelle">
-                Thema aufgegriffen von
-                <a :href="cover.quelle.link" rel="nofollow noopener" target="_blank">
-                  {{ cover.quelle.name }}: „{{ cover.quelle.titel }}“</a
-                >, {{ cover.quelle.datum }}
-              </p>
             </div>
-          </section>
+            <NuxtLink
+              :to="localePath(arizonaMagazinePostPath(cover.slug))"
+              class="held-bild mag-appear mag-press-soft"
+              tabindex="-1"
+              aria-hidden="true"
+            >
+              <img :src="cover.bild" :alt="cover.titel" fetchpriority="high" />
+              <span class="bild-hinweis">Bild KI-bearbeitet, Originalprodukt</span>
+            </NuxtLink>
+          </div>
+        </section>
 
-          <section v-if="coverProducts.length" id="look" class="look mag-reveal">
-            <div class="abschnitt-kopf">
+        <!-- stories: one circle per topic -->
+        <nav class="wrap storys" aria-label="Themen dieser Ausgabe">
+          <NuxtLink
+            v-for="post in posts"
+            :key="post.slug"
+            :to="localePath(arizonaMagazinePostPath(post.slug))"
+            class="story mag-press"
+          >
+            <span class="story-ring"><img :src="post.kachel || post.bild" alt="" loading="lazy" /></span>
+            <span class="story-name">{{ post.thema }}</span>
+          </NuxtLink>
+        </nav>
+
+        <section v-if="coverProducts.length" id="look" class="band">
+          <div class="wrap">
+            <div class="kopfzeile mag-reveal">
               <div>
-                <div class="kicker">Shop the Look</div>
-                <h3 class="serif">Die Teile zur Titelgeschichte</h3>
+                <span class="ueber">Shop the Look</span>
+                <h2 class="anzeige">Das trägt die Titelgeschichte</h2>
               </div>
-              <NuxtLink v-if="cover.kategorie" class="mehr" :to="localePath(cover.kategorie)">Alle ansehen</NuxtLink>
+              <NuxtLink v-if="cover.kategorie" class="textlink" :to="localePath(cover.kategorie)">
+                Alles ansehen <span class="pfeil" aria-hidden="true">→</span>
+              </NuxtLink>
             </div>
-            <div class="produkte">
+            <div class="leiste-wisch">
               <ArizonaMagazineProduct
                 v-for="product in coverProducts"
                 :key="variationKey(product)"
                 :product="product"
               />
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section v-if="rest.length" id="beitraege" class="beitraege">
-            <div class="abschnitt-kopf mag-reveal">
-              <div>
-                <div class="kicker">In dieser Ausgabe</div>
-                <h3 class="serif">Alle Beiträge</h3>
-              </div>
-              <div v-if="news.length && tips.length" class="filter" role="group" aria-label="Beiträge filtern">
-                <button
-                  v-for="option in filterOptions"
-                  :key="option.value"
-                  type="button"
-                  class="chip mag-press"
-                  :class="{ 'is-aktiv': filter === option.value }"
-                  :aria-pressed="filter === option.value"
-                  @click="filter = option.value"
-                >
-                  {{ option.label }} <span class="anzahl">{{ option.count }}</span>
-                </button>
-              </div>
+        <section v-if="rest.length" id="beitraege" class="wrap abschnitt">
+          <div class="kopfzeile mag-reveal">
+            <div>
+              <span class="ueber">In dieser Ausgabe</span>
+              <h2 class="anzeige">Lies weiter</h2>
             </div>
-            <div class="raster">
-              <ArizonaMagazineCard
-                v-for="post in shown"
-                :key="post.slug"
-                class="mag-reveal"
-                :post="post"
-                :products="productsOf(post)"
-              />
+            <div v-if="news.length && tips.length" class="filter" role="group" aria-label="Beiträge filtern">
+              <button
+                v-for="option in filterOptions"
+                :key="option.value"
+                type="button"
+                class="pille pille-knopf mag-press"
+                :class="{ 'is-aktiv': filter === option.value }"
+                :aria-pressed="filter === option.value"
+                @click="filter = option.value"
+              >
+                {{ option.label }} <span class="anzahl">{{ option.count }}</span>
+              </button>
             </div>
-          </section>
-
-          <section v-if="tips[0]" class="zitat mag-reveal">
-            <span class="zitat-marke">Tipp der Woche</span>
-            <p class="serif">„{{ tips[0].headline.replace(/[.!]$/, '') }}.“</p>
-            <NuxtLink class="zitat-link mag-press" :to="localePath(arizonaMagazinePostPath(tips[0].slug))">
-              {{ tips[0].titel.replace(/^Modetipp:\s*/, '') }} <span class="pfeil" aria-hidden="true">→</span>
+          </div>
+          <div class="bento">
+            <ArizonaMagazineCard
+              v-for="(post, index) in shown"
+              :key="post.slug"
+              class="mag-reveal"
+              :class="{ 'is-gross': index === 0 && shown.length > 2 }"
+              :post="post"
+              :products="productsOf(post)"
+            />
+            <NuxtLink
+              v-if="tips[0] && filter !== 'News'"
+              :to="localePath(arizonaMagazinePostPath(tips[0].slug))"
+              class="tipp-kachel mag-reveal mag-press-soft"
+            >
+              <span class="ueber">Tipp der Woche</span>
+              <span class="tipp-zitat anzeige">„{{ tips[0].headline.replace(/[.!]$/, '') }}.“</span>
+              <span class="textlink">Zum Tipp <span class="pfeil" aria-hidden="true">→</span></span>
             </NuxtLink>
-          </section>
+          </div>
+        </section>
 
-          <section v-if="shorts.length" id="kurz" class="kurz mag-reveal">
-            <div class="abschnitt-kopf">
-              <div>
-                <div class="kicker">Aus der Modewelt</div>
-                <h3 class="serif">Kurz gemeldet</h3>
-              </div>
+        <section v-if="shorts.length" id="kurz" class="wrap abschnitt">
+          <div class="kopfzeile mag-reveal">
+            <div>
+              <span class="ueber">Aus der Modewelt</span>
+              <h2 class="anzeige">Kurz gemeldet</h2>
             </div>
-            <ol>
-              <li v-for="(short, index) in shorts" :key="short.link">
-                <span class="nummer serif">{{ String(index + 1).padStart(2, '0') }}</span>
-                <a :href="short.link" rel="nofollow noopener" target="_blank">
-                  <span class="serif">{{ short.titel }}</span>
-                  <small>{{ short.quelle }} · {{ shortDate(short.datum) }} <span aria-hidden="true">↗</span></small>
-                </a>
-              </li>
-            </ol>
-          </section>
-        </template>
+          </div>
+          <div class="leiste-wisch leiste-kurz">
+            <a
+              v-for="short in shorts"
+              :key="short.link"
+              :href="short.link"
+              rel="nofollow noopener"
+              target="_blank"
+              class="meldung mag-press-soft"
+            >
+              <span class="pille">{{ short.quelle }}</span>
+              <span class="meldung-titel">{{ short.titel }}</span>
+              <span class="meldung-fuss">{{ shortDate(short.datum) }} <span aria-hidden="true">↗</span></span>
+            </a>
+          </div>
+        </section>
+      </template>
 
-        <footer class="fuss">
-          <span>© Arizona Shopping · Trends &amp; Tipps</span>
-          <span>Bilder KI-bearbeitet mit Originalprodukten · Themen aufgegriffen aus den genannten Quellen</span>
-        </footer>
-      </div>
+      <footer class="wrap fuss">
+        <span>© Arizona Shopping · Trends &amp; Tipps · Stand {{ today }}</span>
+        <span>Bilder KI-bearbeitet mit Originalprodukten · Themen aufgegriffen aus den genannten Quellen</span>
+      </footer>
     </div>
   </NuxtLayout>
 </template>
@@ -141,7 +150,6 @@
 import { productGetters, type Product } from '@plentymarkets/shop-api';
 import type { Locale } from '#i18n';
 import {
-  arizonaMagazineDate,
   arizonaMagazinePostPath,
   loadArizonaMagazineProducts,
   useArizonaMagazine,

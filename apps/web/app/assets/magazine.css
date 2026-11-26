@@ -1,155 +1,125 @@
-/* Arizona: magazine "Trends & Tipps" (pages/magazin), styled like a fashion magazine. All rules live under .mag.
-   Motion: one entrance on load, scroll reveals only via CSS scroll timelines, press feedback on everything clickable,
-   hover effects only on real pointers, reduced motion = fades only. */
+/* Arizona: magazine "Trends & Tipps" (pages/magazin) – dark lookbook style. All rules live under .mag.
+   Motion (emil-design-eng): one entrance on load, scroll reveals only via CSS scroll timelines, press feedback on
+   everything clickable, hover effects only on real pointers, reduced motion = fades only. */
 .mag {
-  --papier: #faf7f2;
-  --papier-tief: #f1ebe1;
-  --tinte: #141414;
-  --grau: #6f6a63;
-  --linie: #ddd5c8;
-  --rot: #c8102e;
+  --grund: #0d0d0d;
+  --flaeche: #181818;
+  --flaeche-hell: #222;
+  --text: #f4f1ec;
+  --leise: #a19d96;
+  --linie: rgb(255 255 255 / 0.12);
+  --akzent: #ff5b3a;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  background: var(--papier);
-  color: var(--tinte);
+  background: var(--grund);
+  color: var(--text);
+  font-family: Inter, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  overflow-x: clip;
 }
 .mag a {
   color: inherit;
 }
-.mag .serif {
-  font-family: 'Bodoni Moda', Didot, Georgia, serif;
+.mag .anzeige {
+  font-family: 'Bricolage Grotesque', Inter, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.035em;
 }
 .mag .wrap {
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 16px 48px;
+  padding-inline: 16px;
 }
-.mag .kicker {
-  font:
-    600 11px/1.3 Inter,
-    sans-serif;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--rot);
-}
-
-/* ---------- masthead ---------- */
-.mag .kopf {
+.mag .leer {
   text-align: center;
-  padding-bottom: 20px;
-  border-bottom: 3px double var(--tinte);
-}
-.mag .leiste {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--grau);
-  padding: 14px 0;
-  border-bottom: 1px solid var(--linie);
-}
-.mag .titelzug {
-  margin: 28px 0 0;
-  font-weight: 700;
-  font-size: clamp(40px, 12.4vw, 168px);
-  line-height: 0.88;
-  white-space: nowrap;
-  letter-spacing: -0.025em;
-}
-.mag .titelzug em,
-.mag .kopf-name em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--rot);
-}
-.mag .unterzeile {
-  margin: 14px 0 0;
-  font-size: 12px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--grau);
+  padding: 96px 16px;
+  color: var(--leise);
 }
 
-/* ---------- chips, buttons, links ---------- */
-.mag .rubriken {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--linie);
-}
-.mag .chip {
+/* ---------- small parts: pills, buttons, links ---------- */
+.mag .pille {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  width: fit-content;
   border: 1px solid var(--linie);
   border-radius: 9999px;
-  background: transparent;
-  padding: 8px 16px;
-  font-size: 12px;
+  padding: 6px 12px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-decoration: none;
-  color: var(--tinte);
-  cursor: pointer;
+  color: var(--text);
+  background: transparent;
 }
-.mag .chip .anzahl {
-  font-weight: 500;
-  color: var(--grau);
-}
-.mag .chip.is-aktiv {
-  border-color: var(--tinte);
-  background: var(--tinte);
+.mag .pille-akzent {
+  border-color: var(--akzent);
+  background: var(--akzent);
   color: #fff;
 }
-.mag .chip.is-aktiv .anzahl {
-  color: rgb(255 255 255 / 0.6);
+.mag .pille-glas {
+  border-color: rgb(255 255 255 / 0.22);
+  background: rgb(0 0 0 / 0.35);
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+.mag .pille-knopf {
+  cursor: pointer;
+  padding: 9px 16px;
+}
+.mag .pille-knopf .anzahl {
+  opacity: 0.55;
+}
+.mag .pille-knopf.is-aktiv {
+  border-color: #fff;
+  background: #fff;
+  color: var(--grund);
 }
 .mag .knopf {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  background: var(--tinte);
-  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--grund);
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 700;
   text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 15px 24px;
-  border: 1px solid var(--tinte);
 }
-.mag .knopf-hell {
+.mag .knopf-rand {
+  border-color: rgb(255 255 255 / 0.35);
   background: transparent;
-  color: var(--tinte);
+  color: #fff;
+}
+.mag .textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+.mag .ueber {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--akzent);
 }
 .mag .pfeil,
 .mag .pfeil-links {
   display: inline-block;
   transition: transform 200ms var(--ease-out);
 }
-.mag .mehr,
-.mag .weiter {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  transition: color 200ms ease;
-}
-.mag .weiter {
-  border-bottom: 0;
-}
 
-/* press feedback: firm on buttons, soft on large image links */
+/* press feedback: firm on buttons, soft on large cards and images */
 .mag .mag-press {
   transition:
     transform 160ms var(--ease-out),
@@ -161,149 +131,231 @@
   transform: scale(0.97);
 }
 .mag .mag-press-soft {
-  transition: transform 200ms var(--ease-out);
+  transition:
+    transform 220ms var(--ease-out),
+    background-color 200ms ease;
 }
 .mag .mag-press-soft:active {
   transform: scale(0.985);
 }
 .mag :focus-visible {
-  outline: 2px solid var(--rot);
+  outline: 2px solid var(--akzent);
   outline-offset: 3px;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .mag .chip:hover {
-    border-color: var(--tinte);
+  .mag .pille-knopf:not(.is-aktiv):hover {
+    border-color: rgb(255 255 255 / 0.45);
   }
   .mag .knopf:hover {
-    background: var(--rot);
-    border-color: var(--rot);
+    border-color: var(--akzent);
+    background: var(--akzent);
     color: #fff;
   }
+  .mag .knopf-rand:hover {
+    border-color: #fff;
+    background: rgb(255 255 255 / 0.08);
+  }
   .mag .knopf:hover .pfeil,
-  .mag .weiter:hover .pfeil,
-  .mag .zitat-link:hover .pfeil {
+  .mag .textlink:hover .pfeil,
+  .mag .karte:hover .pfeil,
+  .mag .tipp-kachel:hover .pfeil {
     transform: translateX(4px);
   }
   .mag .zurueck:hover .pfeil-links {
     transform: translateX(-4px);
   }
-  .mag .mehr:hover,
-  .mag .weiter:hover,
-  .mag .kurz a:hover .serif {
-    color: var(--rot);
+  .mag .textlink:hover {
+    color: var(--akzent);
   }
-  .mag .bildrahmen:hover img {
-    transform: scale(1.035);
+  .mag .karte:hover .karte-bild,
+  .mag .held-bild:hover img {
+    transform: scale(1.04);
   }
-  .mag .karte h4 a:hover,
-  .mag .cover h2 a:hover {
+  .mag .meldung:hover {
+    background: var(--flaeche-hell);
+  }
+  .mag .held h1 a:hover {
     text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
   }
 }
 
-/* ---------- images ---------- */
-.mag figure {
-  margin: 0;
-}
-.mag .bildrahmen {
+/* ---------- hero (overview + article) ---------- */
+.mag .held {
   position: relative;
-  display: block;
+  isolation: isolate;
   overflow: hidden;
-  background: var(--papier-tief);
 }
-.mag .bildrahmen img {
+.mag .held-hintergrund {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
   width: 100%;
-  display: block;
-  aspect-ratio: 4 / 5;
+  height: 100%;
   object-fit: cover;
-  transition: transform 700ms var(--ease-out);
+  filter: blur(64px) saturate(1.4);
+  opacity: 0.55;
+  transform: scale(1.2);
 }
-.mag figcaption {
-  font-size: 11px;
-  color: var(--grau);
-  margin-top: 8px;
+.mag .held::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgb(13 13 13 / 0.2), rgb(13 13 13 / 0.55) 60%, var(--grund));
 }
-
-/* ---------- cover story ---------- */
-.mag .leer {
-  text-align: center;
-  padding: 64px 0;
-  color: var(--grau);
-}
-.mag .cover {
+.mag .held-raster {
   display: grid;
-  grid-template-columns: 7fr 5fr;
-  gap: 56px;
-  padding: 48px 0;
-  border-bottom: 1px solid var(--linie);
+  grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
+  gap: 56px;
+  min-height: min(86vh, 860px);
+  padding-block: 40px 72px;
 }
-.mag .cover h2 {
+.mag .marke-zeile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--linie);
+}
+.mag .wortmarke {
+  font-family: 'Bricolage Grotesque', Inter, sans-serif;
+  font-size: 20px;
   font-weight: 700;
-  font-size: clamp(42px, 5.6vw, 84px);
-  line-height: 0.96;
   letter-spacing: -0.02em;
-  margin: 16px 0 20px;
+}
+.mag .wortmarke::after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: 6px;
+  border-radius: 9999px;
+  background: var(--akzent);
+}
+.mag .ausgabe {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+.mag .held h1 {
+  margin: 22px 0 22px;
+  font-size: clamp(46px, 6.6vw, 108px);
+  line-height: 0.94;
   text-wrap: balance;
 }
-.mag .cover h2 a {
+.mag .held h1 a {
   text-decoration: none;
 }
-.mag .dek {
-  font-family: 'Bodoni Moda', Georgia, serif;
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.35;
-  color: var(--grau);
-  margin: 0 0 22px;
-  text-wrap: balance;
-}
-.mag .text {
-  font-size: 18px;
-  line-height: 1.65;
+.mag .lead {
+  max-width: 560px;
   margin: 0;
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgb(244 241 236 / 0.82);
   text-wrap: pretty;
-}
-.mag .text::first-letter {
-  font-family: 'Bodoni Moda', Georgia, serif;
-  font-weight: 700;
-  float: left;
-  font-size: 76px;
-  line-height: 0.8;
-  padding: 8px 10px 0 0;
-  color: var(--rot);
 }
 .mag .aktionen {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 32px;
 }
-.mag .quelle {
+.mag .held-bild {
+  position: relative;
+  display: block;
+  justify-self: end;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  border-radius: 28px;
+  rotate: 2deg;
+  box-shadow: 0 40px 90px -30px rgb(0 0 0 / 0.8);
+}
+.mag .held-bild img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+.mag .bild-hinweis {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  border-radius: 9999px;
+  background: rgb(0 0 0 / 0.45);
+  padding: 4px 10px;
+  font-size: 10px;
+  color: rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- stories ---------- */
+.mag .storys {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-block: 8px 40px;
+  scrollbar-width: none;
+}
+.mag .story {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 88px;
+  text-decoration: none;
+}
+.mag .story-ring {
+  display: block;
+  width: 80px;
+  height: 80px;
+  padding: 3px;
+  border-radius: 9999px;
+  background: conic-gradient(from 200deg, var(--akzent), #ffb347, #ff3a8c, var(--akzent));
+}
+.mag .story-ring img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid var(--grund);
+  border-radius: 9999px;
+}
+.mag .story-name {
+  max-width: 100%;
+  overflow: hidden;
   font-size: 12px;
-  color: var(--grau);
-  border-top: 1px solid var(--linie);
-  padding-top: 12px;
-  margin-top: 28px;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* ---------- section heads ---------- */
-.mag .abschnitt-kopf {
+.mag .abschnitt {
+  padding-block: 72px 8px;
+}
+.mag .kopfzeile {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 16px 24px;
+  margin-bottom: 28px;
 }
-.mag .abschnitt-kopf h3 {
-  margin: 6px 0 0;
-  font-size: clamp(30px, 3.4vw, 44px);
-  line-height: 1.05;
-  font-weight: 700;
+.mag .kopfzeile h2 {
+  margin: 8px 0 0;
+  font-size: clamp(34px, 4.4vw, 60px);
+  line-height: 1;
 }
 .mag .filter {
   display: flex;
@@ -311,399 +363,387 @@
   gap: 6px;
 }
 
-/* ---------- shop the look ---------- */
-.mag .look {
-  padding: 40px 0;
-  border-bottom: 1px solid var(--linie);
+/* ---------- shop the look band ---------- */
+.mag .band {
+  margin-inline: 8px;
+  border-radius: 32px;
+  background: var(--flaeche);
+  padding-block: 56px 48px;
 }
-.mag .look .abschnitt-kopf h3 {
-  font-style: italic;
-  font-weight: 500;
-}
-.mag .produkte {
+.mag .leiste-wisch {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 260px);
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.25) transparent;
+}
+.mag .leiste-wisch > * {
+  scroll-snap-align: start;
 }
 
-/* ---------- posts ---------- */
-.mag .beitraege {
-  padding: 48px 0 8px;
-}
-.mag .raster {
+/* ---------- bento grid of posts ---------- */
+.mag .bento {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 260px;
+  gap: 16px;
+}
+.mag .bento-drei {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px 32px;
 }
 .mag .karte {
+  position: relative;
+  display: block;
+  grid-row: span 2;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--flaeche);
+  color: #fff;
+  text-decoration: none;
+}
+.mag .karte.is-gross {
+  grid-column: span 2;
+}
+.mag .karte.is-gross .karte-bild {
+  object-position: 50% 12%;
+}
+.mag .karte-bild {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  transition: transform 700ms var(--ease-out);
+}
+.mag .karte-verlauf {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.88), rgb(0 0 0 / 0.4) 45%, transparent 72%);
+}
+.mag .karte-oben {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 6px;
+}
+.mag .karte-unten {
+  position: absolute;
+  inset: auto 0 0;
   display: flex;
   flex-direction: column;
-  min-width: 0;
-}
-.mag .karte .bildrahmen {
-  margin-bottom: 16px;
-}
-.mag .karte .marke {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: var(--papier);
-  padding: 5px 10px;
-  font:
-    600 10px/1 Inter,
-    sans-serif;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-.mag .karte h4 {
-  font-size: clamp(26px, 2.4vw, 32px);
-  line-height: 1.05;
-  font-weight: 700;
-  margin: 10px 0;
-  text-wrap: balance;
-}
-.mag .karte h4 a {
-  text-decoration: none;
-}
-.mag .karte p {
-  margin: 0 0 14px;
-  color: #3b3935;
-  text-wrap: pretty;
-}
-.mag .mini {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 1px solid var(--linie);
+  padding: 22px;
 }
-
-/* ---------- tip of the week ---------- */
-.mag .zitat {
-  background: var(--rot);
-  color: #fff;
-  text-align: center;
-  padding: clamp(48px, 8vw, 88px) 20px;
-  margin: 56px 0;
-}
-.mag .zitat-marke {
-  display: block;
-  font:
-    600 11px/1 Inter,
-    sans-serif;
-  letter-spacing: 0.24em;
+.mag .karte-thema {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.85;
+  color: rgb(255 255 255 / 0.72);
 }
-.mag .zitat p {
-  margin: 18px auto 0;
-  max-width: 920px;
-  font-weight: 500;
-  font-style: italic;
-  font-size: clamp(36px, 6vw, 76px);
-  line-height: 1.04;
+.mag .karte-titel {
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.02;
   text-wrap: balance;
 }
-.mag .zitat-link {
-  display: inline-block;
-  max-width: 560px;
-  margin-top: 26px;
+.mag .karte.is-gross .karte-titel {
+  font-size: clamp(32px, 3.6vw, 58px);
+}
+.mag .karte-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 14px;
   line-height: 1.5;
+  color: rgb(255 255 255 / 0.8);
+}
+.mag .karte-weiter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
   font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+.mag .tipp-kachel {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 24px;
+  background: var(--akzent);
+  color: var(--grund);
+  padding: 40px clamp(24px, 5vw, 64px);
   text-decoration: none;
-  border-bottom: 1px solid rgb(255 255 255 / 0.6);
-  padding-bottom: 3px;
+}
+.mag .tipp-kachel .ueber {
+  color: var(--grund);
+}
+.mag .tipp-zitat {
+  font-size: clamp(36px, 5.4vw, 80px);
+  line-height: 0.98;
+}
+.mag .tipp-kachel .textlink {
+  color: var(--grund);
 }
 
 /* ---------- in brief ---------- */
-.mag .kurz {
-  border-top: 3px solid var(--tinte);
-  padding-top: 24px;
+.mag .leiste-kurz {
+  grid-auto-columns: minmax(260px, 300px);
 }
-.mag .kurz ol {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 40px;
-}
-.mag .kurz li {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 12px;
-  border-bottom: 1px solid var(--linie);
-  padding: 16px 0;
-}
-.mag .kurz .nummer {
-  font-size: 26px;
-  line-height: 1;
-  font-style: italic;
-  color: var(--rot);
-}
-.mag .kurz a {
-  display: block;
+.mag .meldung {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 210px;
+  border-radius: 20px;
+  background: var(--flaeche);
+  padding: 20px;
   text-decoration: none;
 }
-.mag .kurz a .serif {
-  display: block;
-  font-size: 19px;
-  line-height: 1.25;
-  font-weight: 500;
-  transition: color 200ms ease;
+.mag .meldung-titel {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.3;
 }
-.mag .kurz small {
-  display: block;
-  margin-top: 6px;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--grau);
+.mag .meldung-fuss {
+  margin-top: auto;
+  font-size: 12px;
+  color: var(--leise);
 }
 
 /* ---------- single post ---------- */
-.mag .kopf-klein {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 0;
-  border-bottom: 3px double var(--tinte);
+.mag .held-artikel .marke-zeile {
+  margin-bottom: 0;
 }
 .mag .zurueck {
-  justify-self: start;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-.mag .kopf-name {
-  text-decoration: none;
+  gap: 8px;
+  font-family: 'Bricolage Grotesque', Inter, sans-serif;
+  font-size: 18px;
   font-weight: 700;
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-.mag .kopf-datum {
-  justify-self: end;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--grau);
+  text-decoration: none;
 }
 .mag .artikel-kopf {
-  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 48px 0 36px;
+  padding-block: 48px 40px;
   text-align: center;
 }
 .mag .artikel-kopf h1 {
-  font-weight: 700;
-  font-size: clamp(44px, 7vw, 104px);
-  line-height: 0.95;
-  letter-spacing: -0.025em;
-  margin: 16px 0 22px;
-  text-wrap: balance;
+  font-size: clamp(46px, 7.4vw, 120px);
 }
-.mag .artikel-kopf .dek {
-  font-size: clamp(19px, 2vw, 24px);
-  margin: 0 auto;
-  max-width: 680px;
+.mag .artikel-kopf .lead {
+  max-width: 640px;
 }
 .mag .meta {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 20px;
-  margin: 24px 0 0;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--grau);
-}
-.mag .meta span + span::before {
-  content: '·';
-  margin-right: 20px;
-}
-.mag .artikel-raster {
-  display: grid;
-  grid-template-columns: 6fr 5fr;
-  gap: 56px;
-  align-items: start;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--linie);
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
 }
 .mag .artikel-bild {
-  position: sticky;
-  top: 96px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 24px;
 }
-.mag .artikel-text {
-  padding-top: 8px;
+.mag .artikel-bild img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 28px;
+  box-shadow: 0 40px 90px -30px rgb(0 0 0 / 0.8);
 }
-.mag .artikel-text .text {
-  font-size: 20px;
+.mag .artikel-bild figcaption {
+  margin-top: 10px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--leise);
 }
-.mag .artikel-text .knopf {
-  margin-top: 28px;
+.mag .lesespalte {
+  max-width: 760px;
+  padding-block: 40px 72px;
 }
-.mag .look-seite {
-  margin-top: 36px;
-  padding: 28px 0 0;
-  border-top: 3px solid var(--tinte);
-  border-bottom: 0;
+.mag .text {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
-.mag .look-seite h2 {
-  font-size: 28px;
-  font-weight: 500;
-  font-style: italic;
-  margin: 6px 0 18px;
+.mag .text::first-letter {
+  float: left;
+  padding: 6px 12px 0 0;
+  font-family: 'Bricolage Grotesque', Inter, sans-serif;
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--akzent);
 }
-.mag .produkte-zwei {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+.mag .lesespalte .knopf {
+  margin-top: 32px;
+}
+.mag .quelle {
+  margin: 32px 0 0;
+  border-top: 1px solid var(--linie);
+  padding-top: 14px;
+  font-size: 12px;
+  color: var(--leise);
 }
 
 /* ---------- footer ---------- */
 .mag .fuss {
-  margin-top: 64px;
-  border-top: 3px double var(--tinte);
-  padding-top: 24px;
-  font-size: 12px;
-  color: var(--grau);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
+  margin-top: 72px;
+  border-top: 1px solid var(--linie);
+  padding-block: 28px 48px;
+  font-size: 12px;
+  color: var(--leise);
 }
 
 /* ---------- layout breakpoints ---------- */
 @media (max-width: 960px) {
-  .mag .cover,
-  .mag .artikel-raster {
+  .mag .held-raster {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
+    min-height: 0;
+    padding-block: 16px 48px;
   }
-  .mag .cover {
-    padding: 28px 0 36px;
+  .mag .held-bild {
+    justify-self: center;
+    max-width: 460px;
   }
-  .mag .artikel-bild {
-    position: static;
-  }
-  .mag .raster {
+  .mag .bento,
+  .mag .bento-drei {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .mag .kurz ol {
-    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 640px) {
-  .mag .leiste-mitte,
-  .mag .kopf-datum {
-    display: none;
+  .mag .marke-zeile {
+    margin-bottom: 24px;
   }
-  .mag .kopf-klein {
-    grid-template-columns: auto 1fr;
+  .mag .held-raster .held-bild {
+    order: -1;
+    rotate: 0deg;
   }
-  .mag .kopf-klein .kopf-name {
-    justify-self: end;
+  .mag .held h1 {
+    font-size: clamp(42px, 12vw, 64px);
   }
-  .mag .titelzug {
-    margin-top: 20px;
-  }
-  .mag .meta span:nth-child(3) {
-    display: none;
-  }
-  .mag .rubriken {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    overflow-x: auto;
-    margin: 0 -16px;
-    padding-inline: 16px;
-    scrollbar-width: none;
-  }
-  .mag .rubriken .chip {
-    flex: none;
-  }
-  .mag .raster {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-  /* products scroll sideways on phones, each snapping into place */
-  .mag .look .produkte:not(.produkte-zwei) {
-    grid-auto-flow: column;
-    grid-template-columns: none;
-    grid-auto-columns: 62%;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    margin: 0 -16px;
-    padding: 0 16px 4px;
-    scroll-padding-inline: 16px;
-    scrollbar-width: none;
-  }
-  .mag .look .produkte:not(.produkte-zwei) > * {
-    scroll-snap-align: start;
-  }
-  .mag .produkte-zwei {
-    gap: 14px;
-  }
-  .mag .text {
+  .mag .lead {
     font-size: 17px;
-  }
-  .mag .artikel-text .text {
-    font-size: 18px;
-  }
-  .mag .artikel-kopf {
-    padding: 32px 0 24px;
   }
   .mag .aktionen .knopf {
     flex: 1 1 auto;
-    justify-content: center;
+  }
+  .mag .storys {
+    gap: 14px;
+    padding-bottom: 24px;
+  }
+  .mag .band {
+    margin-inline: 0;
+    border-radius: 28px;
+    padding-block: 40px 32px;
+  }
+  .mag .leiste-wisch {
+    grid-auto-columns: 68%;
+    margin-inline: -16px;
+    padding-inline: 16px;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .mag .leiste-kurz {
+    grid-auto-columns: 80%;
+  }
+  .mag .abschnitt {
+    padding-top: 56px;
+  }
+  .mag .bento,
+  .mag .bento-drei {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .mag .karte,
+  .mag .karte.is-gross {
+    grid-column: auto;
+    grid-row: auto;
+    aspect-ratio: 4 / 5;
+  }
+  .mag .karte.is-gross .karte-titel {
+    font-size: 36px;
+  }
+  .mag .tipp-kachel {
+    padding: 32px 24px;
+  }
+  .mag .artikel-kopf {
+    padding-block: 32px 28px;
+  }
+  .mag .artikel-kopf h1 {
+    font-size: clamp(40px, 11.5vw, 60px);
+  }
+  .mag .text {
+    font-size: 19px;
+  }
+  .mag .text::first-letter {
+    font-size: 68px;
   }
 }
 
 /* ---------- motion ---------- */
-/* one entrance on load: masthead and cover text stagger in, the cover image unveils from the bottom */
+/* one entrance on load: hero text staggers in, the hero image unveils from the bottom and settles */
 .mag .mag-rise > * {
   animation: mag-rise 600ms var(--ease-out) backwards;
 }
 .mag .mag-rise > :nth-child(2) {
-  animation-delay: 50ms;
+  animation-delay: 60ms;
 }
 .mag .mag-rise > :nth-child(3) {
-  animation-delay: 90ms;
+  animation-delay: 110ms;
 }
 .mag .mag-rise > :nth-child(4) {
-  animation-delay: 125ms;
-}
-.mag .mag-rise > :nth-child(5) {
   animation-delay: 150ms;
 }
-.mag .mag-rise > :nth-child(6) {
-  animation-delay: 170ms;
+.mag .mag-rise > :nth-child(5) {
+  animation-delay: 180ms;
 }
-.mag .mag-rise-late > * {
-  animation-delay: 140ms;
+.mag .mag-rise > :nth-child(n + 6) {
+  animation-delay: 200ms;
 }
-.mag .mag-rise-late > :nth-child(2) {
-  animation-delay: 185ms;
+.mag .mag-appear {
+  animation: mag-unveil 900ms var(--ease-out) 80ms both;
 }
-.mag .mag-rise-late > :nth-child(3) {
+.mag .mag-appear img {
+  animation: mag-settle 1100ms var(--ease-out) 80ms backwards;
+}
+.mag .storys .story {
+  animation: mag-rise 500ms var(--ease-out) 190ms backwards;
+}
+.mag .storys .story:nth-child(2) {
   animation-delay: 220ms;
 }
-.mag .mag-rise-late > :nth-child(n + 4) {
+.mag .storys .story:nth-child(3) {
   animation-delay: 250ms;
 }
-.mag .mag-appear .bildrahmen {
-  animation: mag-unveil 900ms var(--ease-out) 60ms both;
+.mag .storys .story:nth-child(4) {
+  animation-delay: 275ms;
 }
-.mag .mag-appear .bildrahmen img {
-  animation: mag-settle 1100ms var(--ease-out) 60ms backwards;
+.mag .storys .story:nth-child(n + 5) {
+  animation-delay: 295ms;
 }
 @keyframes mag-rise {
   from {
@@ -713,15 +753,15 @@
 }
 @keyframes mag-unveil {
   from {
-    clip-path: inset(0 0 100% 0);
+    clip-path: inset(0 0 100% 0 round 28px);
   }
   to {
-    clip-path: inset(0 0 0 0);
+    clip-path: inset(0 0 0 0 round 28px);
   }
 }
 @keyframes mag-settle {
   from {
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
 }
 
@@ -732,40 +772,40 @@
     animation-timeline: view();
     animation-range: entry 0% entry 55%;
   }
-  .mag .karte.mag-reveal .bildrahmen {
-    animation: mag-unveil linear both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 35%;
-  }
 }
 @keyframes mag-reveal {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(28px) scale(0.98);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .mag .mag-rise > *,
-  .mag .mag-reveal {
+  .mag .mag-reveal,
+  .mag .storys .story {
     animation-name: mag-fade;
   }
-  .mag .mag-appear .bildrahmen,
-  .mag .mag-appear .bildrahmen img,
-  .mag .karte.mag-reveal .bildrahmen {
+  .mag .mag-appear,
+  .mag .mag-appear img {
     animation: none;
   }
   .mag .mag-press,
   .mag .mag-press-soft,
   .mag .pfeil,
   .mag .pfeil-links,
-  .mag .bildrahmen img {
+  .mag .karte-bild,
+  .mag .held-bild img {
     transition: none;
   }
   .mag .mag-press:active,
   .mag .mag-press-soft:active,
-  .mag .bildrahmen:hover img {
+  .mag .karte:hover .karte-bild,
+  .mag .held-bild:hover img {
     transform: none;
+  }
+  .mag .held-bild {
+    rotate: 0deg;
   }
 }
 @keyframes mag-fade {
