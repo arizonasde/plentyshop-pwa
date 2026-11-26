@@ -33,11 +33,29 @@ export type ArizonaBrandStory = {
     points: string[];
     image: ArizonaBrandImage;
   }[];
+  /**
+   * Optional street layout (Carlo Colucci): huge condensed name, a look builder with real items, culture chapter and
+   * the products as „Der Drop“. Brands with this block get the ArizonaBrandStreet layout.
+   */
+  street?: ArizonaBrandStreet;
+  /** Heading above the products and the unit used in the counter, e.g. „Die Uhren“ / Modell, Modelle */
+  productsTitle?: string;
+  productsUnit?: [string, string];
   sections: { title: string; paragraphs: string[] }[];
-  seriesTitle: string;
-  seriesIntro: string;
-  seriesGroups: { title: string; text: string; series: { name: string; models: string; text: string }[] }[];
+  seriesTitle?: string;
+  seriesIntro?: string;
+  seriesGroups?: { title: string; text: string; series: { name: string; models: string; text: string }[] }[];
   /** Shown instead of the empty product grid while no item of the brand is available yet */
   comingSoon: string;
   footnote: string;
+};
+
+/** Arizona: street brand layout (see ArizonaBrandStreet) */
+export type ArizonaBrandStreet = {
+  tagline: string;
+  /** Looks for the look builder; each links to a real item (path without locale) and its variation for the wishlist */
+  looks: { name: string; text: string; combo: string; image: ArizonaBrandImage; url: string; variationId: number }[];
+  ticker: string[];
+  culture: { kicker: string; title: string; text: string; moments: { year: string; text: string }[] };
+  gallery: [ArizonaBrandImage, ArizonaBrandImage];
 };

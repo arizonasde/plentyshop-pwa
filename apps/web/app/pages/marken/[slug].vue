@@ -1,13 +1,24 @@
 <template>
   <NuxtLayout name="default" :breadcrumbs="breadcrumbs">
     <NarrowContainer class="px-4 pb-10">
-      <!-- Arizona: brands with a showcase (Luminox) get their own full page layout -->
-      <ArizonaBrandShowcase v-if="story?.showcase" :story="story" :brand-name="brand.name">
+      <!-- Arizona: brands with a showcase (Luminox) or a street block (Carlo Colucci) get their own full page layout -->
+      <component
+        :is="story.showcase ? ArizonaBrandShowcase : ArizonaBrandStreet"
+        v-if="story?.showcase || story?.street"
+        :story="story"
+        :brand-name="brand.name"
+        :total="total"
+      >
         <template #products>
-          <h2 class="mb-4 text-3xl font-black tracking-tight @md:text-4xl">
-            Die Uhren
-            <span v-if="products.length" class="ml-1 align-middle typography-text-sm font-normal text-neutral-600">
-              {{ total }} {{ total === 1 ? 'Modell' : 'Modelle' }} lieferbar
+          <h2 class="mb-4 tracking-tight" :class="story.street ? 'cs-drop' : 'text-3xl font-black @md:text-4xl'">
+            {{ story.productsTitle ?? 'Die Uhren' }}
+            <span
+              v-if="products.length"
+              class="ml-1 align-middle font-sans typography-text-sm font-normal normal-case tracking-normal text-neutral-600 [font-stretch:100%]"
+            >
+              {{ total }}
+              {{ total === 1 ? (story.productsUnit?.[0] ?? 'Modell') : (story.productsUnit?.[1] ?? 'Modelle') }}
+              lieferbar
             </span>
           </h2>
           <section
@@ -40,7 +51,7 @@
             :max-visible-pages="viewport.isGreaterOrEquals('lg') ? 5 : 2"
           />
         </template>
-      </ArizonaBrandShowcase>
+      </component>
       <template v-else>
         <!-- Arizona: brands with a portrait get a dark header with claim and key facts -->
         <header
@@ -126,10 +137,15 @@
             </p>
           </section>
 
-          <section id="marke-serien" class="mt-12 scroll-mt-24" data-testid="brand-series">
+          <section
+            v-if="story.seriesGroups?.length"
+            id="marke-serien"
+            class="mt-12 scroll-mt-24"
+            data-testid="brand-series"
+          >
             <h2 class="typography-headline-4 font-bold mb-2">{{ story.seriesTitle }}</h2>
             <p class="mb-6 max-w-3xl text-neutral-700">{{ story.seriesIntro }}</p>
-            <div v-for="group in story.seriesGroups" :key="group.title" class="mb-8">
+            <div v-for="group in story.seriesGroups ?? []" :key="group.title" class="mb-8">
               <h3 class="mb-3 flex flex-wrap items-baseline gap-x-3">
                 <span class="rounded-full bg-neutral-950 px-3 py-1 typography-text-sm font-bold text-white">{{
                   group.title
@@ -162,6 +178,7 @@
 import { productGetters } from '@plentymarkets/shop-api';
 import type { Locale } from '#i18n';
 import { ARIZONA_BRAND_STORIES } from '~/utils/arizonaBrandStories';
+import { ArizonaBrandStreet, ArizonaBrandShowcase } from '#components';
 
 /**
  * Arizona: landing page of one brand (e.g. /marken/only) with all its items across the shop's categories,

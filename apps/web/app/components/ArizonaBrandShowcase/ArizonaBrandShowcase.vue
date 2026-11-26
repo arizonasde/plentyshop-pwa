@@ -347,7 +347,7 @@ onBeforeUnmount(() => {
 const activeGroup = ref(0);
 const tabs = ref<HTMLButtonElement[]>([]);
 const onTabKeydown = (event: KeyboardEvent) => {
-  const count = props.story.seriesGroups.length;
+  const count = props.story.seriesGroups?.length ?? 0;
   const next: Record<string, number> = {
     ArrowRight: (activeGroup.value + 1) % count,
     ArrowLeft: (activeGroup.value - 1 + count) % count,
