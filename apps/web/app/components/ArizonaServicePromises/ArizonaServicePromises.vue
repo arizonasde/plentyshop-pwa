@@ -20,7 +20,7 @@ const deliveryPromise = ref('Lieferung in 1–3 Werktagen');
 onMounted(() => (deliveryPromise.value = `Lieferung ${getArizonaDeliveryPromise().window}`));
 
 const servicePromises = computed(() => [
-  'Kostenloser Versand ab 99 €, sonst 4,90 € mit DHL',
+  'Kostenloser Versand ab 50 €, sonst 4,90 € mit DHL',
   ...(props.withoutDelivery ? [] : [deliveryPromise.value]),
   'Bezahlen mit PayPal, Klarna, Kreditkarte oder auf Rechnung',
   '60 Tage Rückgaberecht',

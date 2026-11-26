@@ -103,7 +103,7 @@ export const ARIZONA_HOME_POPULAR_FALLBACK =
   '222401,236966,203452,237105,210639,238567,237565,224538,224746,237335,236997,222990';
 
 export const ARIZONA_HOME_TICKER = [
-  'Gratis-Versand ab 99 €',
+  'Gratis-Versand ab 50 €',
   'Lieferung in 1–3 Werktagen',
   '60 Tage Rückgaberecht',
   'Kauf auf Rechnung',

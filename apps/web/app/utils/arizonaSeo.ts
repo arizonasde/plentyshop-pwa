@@ -4,7 +4,7 @@ import { ARIZONA_FREE_SHIPPING_FROM, ARIZONA_SHIPPING_COST } from '~/utils/arizo
 
 /**
  * Shop-specific SEO rules for arizona-shopping.de.
- * Shipping and return terms mirror the checkout: DHL to Germany for 4.90 EUR, free from 99 EUR item value
+ * Shipping and return terms mirror the checkout: DHL to Germany for 4.90 EUR, free from 50 EUR item value (since 26.11.2026, also profile 34)
  * (see utils/arizonaShipping), 60 days return window.
  */
 

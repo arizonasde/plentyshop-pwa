@@ -61,6 +61,6 @@ const euro = (value: number) =>
 
 useArizonaStaticPageHead(
   'Versandkosten',
-  'Versandkosten bei Arizona Shopping: Deutschland 4,90 €, ab 99 € kostenlos. Österreich, Belgien, Frankreich, Italien, Niederlande, Polen und Spanien 9,90 €. Versand mit DHL.',
+  'Versandkosten bei Arizona Shopping: Deutschland 4,90 €, ab 50 € kostenlos. Österreich, Belgien, Frankreich, Italien, Niederlande, Polen und Spanien 9,90 €. Versand mit DHL.',
 );
 </script>

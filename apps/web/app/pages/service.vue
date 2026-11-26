@@ -52,7 +52,7 @@ const faqGroups = [
       {
         question: 'Was kostet der Versand?',
         answer:
-          'Ab 99 € Bestellwert liefern wir dir innerhalb Deutschlands versandkostenfrei mit DHL – darunter zahlst du nur 4,90 €. In die anderen Lieferländer kostet der Versand 9,90 €.',
+          'Ab 50 € Bestellwert liefern wir dir innerhalb Deutschlands versandkostenfrei mit DHL – darunter zahlst du nur 4,90 €. In die anderen Lieferländer kostet der Versand 9,90 €.',
         link: { to: paths.shipping, label: 'Alle Versandkosten' },
       },
       {
@@ -118,7 +118,7 @@ const faqGroups = [
 
 useArizonaStaticPageHead(
   'Service & Hilfe',
-  'Antworten zu Versand (DHL, kostenlos ab 99 €, 1–3 Werktage), 60 Tagen Rückgaberecht, Zahlung mit PayPal, Klarna, Kreditkarte oder Rechnung und Größen.',
+  'Antworten zu Versand (DHL, kostenlos ab 50 €, 1–3 Werktage), 60 Tagen Rückgaberecht, Zahlung mit PayPal, Klarna, Kreditkarte oder Rechnung und Größen.',
 );
 
 useHead({

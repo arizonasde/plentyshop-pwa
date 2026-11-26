@@ -259,7 +259,7 @@ const breadcrumbs = computed(() => [
 
 const title = `${brand.name} online kaufen`;
 const description =
-  `${brand.name} bei Arizona Shopping: ${brand.intro} Kostenloser Versand ab 99 €, 60 Tage Rückgaberecht.`.slice(
+  `${brand.name} bei Arizona Shopping: ${brand.intro} Kostenloser Versand ab 50 €, 60 Tage Rückgaberecht.`.slice(
     0,
     300,
   );

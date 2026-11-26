@@ -1,9 +1,9 @@
 /**
  * Arizona shipping terms, mirroring shipping profile "DHL Paket DE" (18) in plentyONE:
- * 4.90 EUR per order within Germany, free from 99 EUR item value. Other countries keep their own rates.
+ * 4.90 EUR per order within Germany, free from 50 EUR item value (since 26.11.2026, also profile 34). Other countries keep their own rates.
  */
 export const ARIZONA_SHIPPING_COST = 4.9;
-export const ARIZONA_FREE_SHIPPING_FROM = 99;
+export const ARIZONA_FREE_SHIPPING_FROM = 50;
 export const ARIZONA_FREE_SHIPPING_COUNTRY_ID = 1;
 
 export const getArizonaFreeShippingProgress = (itemSum: number) => {

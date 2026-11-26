@@ -41,7 +41,7 @@
  */
 const highlights = [
   {
-    title: 'Kostenloser Versand ab 99 €',
+    title: 'Kostenloser Versand ab 50 €',
     text: 'Sonst 4,90 € mit DHL, in 1–3 Werktagen bei dir',
     dhl: true,
     // truck
