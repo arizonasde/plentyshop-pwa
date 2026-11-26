@@ -1,11 +1,11 @@
 <template>
-  <div data-testid="shipping-method" class="@md:px-4 my-6 @5xl:my-4">
+  <div data-testid="shipping-method" class="@md:px-4 my-6 @5xl:!my-4">
     <h3 class="text-neutral-900 text-lg font-bold">{{ t('shipping.method.heading') }}</h3>
     <div v-if="hasCheckoutAddress">
       <div v-if="!loading" class="mt-4">
         <ul
           v-if="shippingMethods && shippingMethods.length > 0"
-          class="grid gap-y-4 @md:grid-cols-2 @md:gap-x-4"
+          class="grid gap-y-4 @md:grid-cols-2 @md:gap-x-4 @5xl:!grid-cols-1"
           role="radiogroup"
           data-testid="shipping-method-list"
         >
@@ -30,7 +30,7 @@
               />
             </template>
             <div class="flex items-center flex-row gap-2">
-              <span>{{ shippingProviderGetters.getShippingMethodName(method) }}</span>
+              <span>{{ shippingMethodName(method) }}</span>
               <span class="ml-auto">{{ getShippingAmount(shippingProviderGetters.getShippingAmount(method)) }}</span>
             </div>
             <div v-if="getDeliveryDays(shippingProviderGetters.getParcelServicePresetId(method))">
@@ -74,6 +74,13 @@
 import { AddressType, shippingProviderGetters, cartGetters } from '@plentymarkets/shop-api';
 import { SfIconWarning, SfListItem, SfRadio } from '@storefront-ui/vue';
 import type { CheckoutShippingEmits, ShippingMethodProps } from './types';
+
+// Arizona: "DHL Kleinpaket - DHL Kleinpaket" → "DHL Kleinpaket" when provider and profile have the same name
+const shippingMethodName = (method: Parameters<typeof shippingProviderGetters.getShippingMethodName>[0]) => {
+  const name = shippingProviderGetters.getShippingMethodName(method);
+  const [provider, profile] = name.split(' - ');
+  return provider && provider === profile ? provider : name;
+};
 
 const { disabled = false, loading = false } = defineProps<ShippingMethodProps>();
 const { hasCheckoutAddress } = useCheckoutAddress(AddressType.Shipping);
