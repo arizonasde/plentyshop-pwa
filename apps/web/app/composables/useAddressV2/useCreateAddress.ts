@@ -8,7 +8,7 @@ export const useCreateAddress = (type: AddressType) => {
     vatServerErrors: ['address.vatServerBusy', 'address.vatServerFallback'],
   }));
 
-  const create = async (address: Address) => {
+  const create = async (address: Address, retried = false): Promise<boolean> => {
     try {
       state.value.loading = true;
       state.value.invalidVAT = false;
@@ -17,6 +17,17 @@ export const useCreateAddress = (type: AddressType) => {
       state.value.loading = false;
       return Promise.resolve(true);
     } catch (error: unknown) {
+      // Arizona: an expired guest session answers "login.loginFailed" – sign in as guest again with the known
+      // e-mail address and try once more, instead of showing "Zugangsdaten ungültig" to the customer
+      if (!retried && errorHasKeyValue(error, 'key', 'login.loginFailed')) {
+        const { user, isAuthorized, loginAsGuest } = useCustomer();
+        const guestMail = user.value?.guestMail;
+        if (guestMail && !isAuthorized.value) {
+          await loginAsGuest(guestMail);
+          await useFetchSession().fetchSession();
+          return create(address, true);
+        }
+      }
       state.value.invalidVAT = errorHasKeyValue(error, 'key', 'address.vatInvalid');
       if (!state.value.invalidVAT) {
         state.value.vatServerError = errorHasKeyAnyValue(error, 'key', state.value.vatServerErrors);

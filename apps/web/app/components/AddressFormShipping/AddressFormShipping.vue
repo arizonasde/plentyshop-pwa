@@ -377,14 +377,18 @@ const validateAndSubmitForm = async () => {
   if (formData.valid) {
     if (hasShippingCompany.value) setDefaultFormValues();
 
+    // Arizona: the form only closes when the address was really saved, so a failed save can be retried
+    let saved = false;
     try {
       setShippingSkeleton(true);
       await submitForm();
+      saved = true;
     } catch (error) {
       if (error instanceof Error) {
         if (error.message === getErrorCode('1400')) {
           await fetchSession();
           await submitForm();
+          saved = true;
         }
       } else if (error instanceof ApiError) {
         useHandleError(error);
@@ -394,7 +398,7 @@ const validateAndSubmitForm = async () => {
       formIsLoading.value = false;
     }
 
-    if (showNewForm.value && !invalidVAT.value && !vatServerError.value) showNewForm.value = false;
+    if (saved && showNewForm.value && !invalidVAT.value && !vatServerError.value) showNewForm.value = false;
   }
 };
 
