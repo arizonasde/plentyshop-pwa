@@ -66,7 +66,14 @@ export const useProduct: UseProductReturn = (slug) => {
 
     const { data, error } = await useAsyncData(
       `fetchProduct-${params.id}-${params.variationId}-${$i18n.locale.value}`,
-      () => useSdk().plentysystems.getProduct(params),
+      // Arizona: plenty freezes the server-side getProduct answer per exact parameter set (Luminox pages showed the
+      // price and "not salable" state of the creation day for 8 days). An hourly changing extra parameter forces a
+      // fresh answer at least once per hour without touching the request semantics.
+      () =>
+        useSdk().plentysystems.getProduct({
+          ...params,
+          arizonaFresh: Math.floor(Date.now() / 3_600_000),
+        } as ProductParams),
     );
     useHandleError(error.value ?? null);
 
