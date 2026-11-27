@@ -7,8 +7,7 @@ export const ARIZONA_BLACK_WEEK_START = new Date('2026-11-19T00:00:00+01:00').ge
 /** End of Cyber Monday (30.11.2026, 24:00 German time) */
 export const ARIZONA_BLACK_WEEK_END = new Date('2026-12-01T00:00:00+01:00').getTime();
 
-export const isArizonaBlackWeek = (now = Date.now()) =>
-  now >= ARIZONA_BLACK_WEEK_START && now < ARIZONA_BLACK_WEEK_END;
+export const isArizonaBlackWeek = (now = Date.now()) => now >= ARIZONA_BLACK_WEEK_START && now < ARIZONA_BLACK_WEEK_END;
 
 /** Remaining time of the Black Week as "3 Tage 05:12:33" (or "05:12:33" on the last day) */
 export const arizonaBlackWeekRemaining = (now = Date.now()) => {
@@ -18,4 +17,19 @@ export const arizonaBlackWeekRemaining = (now = Date.now()) => {
   const time = `${pad(Math.floor((seconds % 86_400) / 3600))}:${pad(Math.floor((seconds % 3600) / 60))}:${pad(seconds % 60)}`;
   if (!days) return time;
   return `${days} ${days === 1 ? 'Tag' : 'Tage'} ${time}`;
+};
+
+/**
+ * Arizona: code of the day on Black Friday weekend (coupon campaigns in plentyONE, whole range, one day each).
+ * The day is the German calendar day; outside these three days no code is shown.
+ */
+export const ARIZONA_BLACK_FRIDAY_CODES: Record<string, { code: string; percent: number; day: string }> = {
+  '2026-11-27': { code: 'BFFREITAG20', percent: 20, day: 'Freitag' },
+  '2026-11-28': { code: 'BFSAMSTAG15', percent: 15, day: 'Samstag' },
+  '2026-11-29': { code: 'BFSONNTAG10', percent: 10, day: 'Sonntag' },
+};
+
+export const arizonaBlackFridayCodeToday = (now = Date.now()) => {
+  const day = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Berlin' }).format(new Date(now));
+  return ARIZONA_BLACK_FRIDAY_CODES[day] ?? null;
 };

@@ -37,6 +37,28 @@
             <template v-else>Reduzierte Preise für</template>
             {{ offers.length ? `${offers.length} ausgewählte Artikel` : 'ausgewählte Artikel' }} – nur bis Cyber Monday.
           </p>
+          <!-- code of the day, only in the browser so a cached page never shows yesterday's code -->
+          <div
+            v-if="codeToday"
+            class="mt-5 inline-flex flex-wrap items-center gap-3 rounded-xl border-2 border-dashed border-[#F5C400] bg-white/5 px-4 py-3"
+            data-testid="arizona-black-friday-code"
+          >
+            <span class="font-semibold leading-snug">
+              Nur heute ({{ codeToday.day }}): <span class="text-[#F5C400]">extra −{{ codeToday.percent }} %</span> auf
+              alles mit Code
+            </span>
+            <button
+              type="button"
+              class="rounded-lg bg-white px-3 py-1.5 font-mono text-lg font-black tracking-wider text-neutral-950 hover:bg-[#FFD633]"
+              :aria-label="`Code ${codeToday.code} kopieren`"
+              @click="copyCode"
+            >
+              {{ codeToday.code }}
+            </button>
+            <span class="typography-text-sm text-white/70" aria-live="polite">{{
+              copied ? 'Kopiert ✓' : 'Antippen zum Kopieren'
+            }}</span>
+          </div>
         </div>
 
         <div class="flex flex-col gap-4 @md:items-end">
@@ -104,7 +126,7 @@ import { productGetters, type Product } from '@plentymarkets/shop-api';
 import { SfScrollable } from '@storefront-ui/vue';
 import { loadArizonaDealProducts } from '~/composables/useArizonaDailyDeals/useArizonaDailyDeals';
 import { useArizonaBlackFridayDeals } from '~/composables/useArizonaBlackFridayDeals/useArizonaBlackFridayDeals';
-import { arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
+import { arizonaBlackFridayCodeToday, arizonaBlackWeekRemaining, isArizonaBlackWeek } from '~/utils/arizonaBlackFriday';
 import { ARIZONA_SEARCH_CARD } from '~/utils/arizonaSearch';
 
 /**
@@ -130,6 +152,18 @@ onBeforeUnmount(() => clearInterval(timer));
 
 const blackWeek = computed(() => isArizonaBlackWeek(now.value));
 const countdown = computed(() => (mounted.value ? arizonaBlackWeekRemaining(now.value) : '\u00A0'));
+const codeToday = computed(() => (mounted.value ? arizonaBlackFridayCodeToday(now.value) : null));
+const copied = ref(false);
+const copyCode = async () => {
+  if (!codeToday.value) return;
+  try {
+    await navigator.clipboard.writeText(codeToday.value.code);
+    copied.value = true;
+    setTimeout(() => (copied.value = false), 2000);
+  } catch {
+    // clipboard blocked: the code stays readable on the button
+  }
+};
 
 const products = ref<Product[]>([]);
 // strongly reduced items and today's deals in turn; only reload when the items change
