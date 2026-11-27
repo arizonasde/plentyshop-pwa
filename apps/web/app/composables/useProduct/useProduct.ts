@@ -1,6 +1,7 @@
 import type { Product, ProductParams } from '@plentymarkets/shop-api';
 import { productGetters } from '@plentymarkets/shop-api';
 import { toRefs } from '@vueuse/shared';
+import { arizonaNoCacheConfig } from '~/utils/arizonaNoCache';
 /**
  * @description Composable managing product data
  * @param slug Product slug
@@ -66,7 +67,11 @@ export const useProduct: UseProductReturn = (slug) => {
 
     const { data, error } = await useAsyncData(
       `fetchProduct-${params.id}-${params.variationId}-${$i18n.locale.value}`,
-      () => useSdk().plentysystems.getProduct(params),
+      // Arizona: bypass the frozen middleware cache (see utils/arizonaNoCache.ts)
+      () =>
+        (useSdk().plentysystems.getProduct as unknown as (p: ProductParams, c: unknown) => ReturnType<
+          ReturnType<typeof useSdk>['plentysystems']['getProduct']
+        >)(params, arizonaNoCacheConfig()),
     );
     useHandleError(error.value ?? null);
 

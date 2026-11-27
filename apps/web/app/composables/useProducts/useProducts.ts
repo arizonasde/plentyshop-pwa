@@ -1,4 +1,5 @@
 import type { FacetSearchCriteria, Product, Facet } from '@plentymarkets/shop-api';
+import { arizonaNoCacheConfig } from '~/utils/arizonaNoCache';
 /**
  * @description Composable for managing products.
  * @returns UseProductsReturn
@@ -41,7 +42,11 @@ export const useProducts: UseProductsReturn = (category = '') => {
 
     const { data } = await useAsyncData(
       `useProducts-${identifier}-${JSON.stringify(params)}`,
-      () => useSdk().plentysystems.getFacet(params),
+      // Arizona: bypass the frozen middleware cache (see utils/arizonaNoCache.ts)
+      () =>
+        (useSdk().plentysystems.getFacet as unknown as (p: FacetSearchCriteria, c: unknown) => ReturnType<
+          ReturnType<typeof useSdk>['plentysystems']['getFacet']
+        >)(params, arizonaNoCacheConfig()),
       { transform: trimListingProducts },
     );
 
