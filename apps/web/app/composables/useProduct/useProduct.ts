@@ -74,25 +74,6 @@ export const useProduct: UseProductReturn = (slug) => {
     state.value.data = data.value?.data ?? ({} as Product);
     handlePreviewProduct(state, $i18n.locale.value, true);
     state.value.loading = false;
-
-    // Arizona: the server-side getProduct answer can be frozen by plenty for days (Luminox showed the creation-day
-    // price and "not salable" although the browser call is current). After hydration, load the product once more in
-    // the browser and take over price, stock and salable state.
-    if (import.meta.client && useNuxtApp().isHydrating) {
-      onNuxtReady(async () => {
-        try {
-          const { data: fresh } = await useSdk().plentysystems.getProduct(params);
-          if (fresh?.variation?.id && fresh.variation.id === state.value.data?.variation?.id) {
-            properties.setProperties(fresh.properties ?? []);
-            state.value.data = fresh;
-            handlePreviewProduct(state, $i18n.locale.value, true);
-          }
-        } catch {
-          // keep the server answer
-        }
-      });
-    }
-
     return state.value.data;
   };
 
