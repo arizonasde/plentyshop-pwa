@@ -47,8 +47,10 @@ export const useProduct: UseProductReturn = (slug) => {
    */
 
   const fetchProduct: FetchProduct = async (params: ProductParams) => {
-    const { $i18n } = useNuxtApp();
+    const nuxtApp = useNuxtApp();
+    const { $i18n } = nuxtApp;
     const { isInEditor } = useEditorState();
+    const sdk = useSdk();
     state.value.loading = true;
 
     if (isGlobalProductDetailsTemplate.value && isInEditor.value) {
@@ -78,19 +80,21 @@ export const useProduct: UseProductReturn = (slug) => {
     // Arizona: the server-side getProduct answer can be frozen by plenty for days (Luminox showed the creation-day
     // price and "not salable" although the browser call is current). After hydration, load the product once more in
     // the browser and take over price, stock and salable state.
-    if (import.meta.client && useNuxtApp().isHydrating) {
-      onNuxtReady(async () => {
+    if (import.meta.client) {
+      setTimeout(async () => {
         try {
-          const { data: fresh } = await useSdk().plentysystems.getProduct(params);
+          const { data: fresh } = await sdk.plentysystems.getProduct(params);
           if (fresh?.variation?.id && fresh.variation.id === state.value.data?.variation?.id) {
-            properties.setProperties(fresh.properties ?? []);
-            state.value.data = fresh;
-            handlePreviewProduct(state, $i18n.locale.value, true);
+            nuxtApp.runWithContext(() => {
+              properties.setProperties(fresh.properties ?? []);
+              state.value.data = fresh;
+              handlePreviewProduct(state, $i18n.locale.value, true);
+            });
           }
         } catch {
           // keep the server answer
         }
-      });
+      }, 0);
     }
 
     return state.value.data;
